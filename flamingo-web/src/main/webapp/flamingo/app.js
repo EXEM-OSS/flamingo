@@ -22,6 +22,7 @@ Ext.application({
     extend: 'Flamingo.Application',
 
     requires: [
+        'util.*',
         'Flamingo.view.main.Main',
         'Flamingo.view.hdfsbrowser.Browser',
         'Flamingo.view.ooziemonitoring.Oozie',

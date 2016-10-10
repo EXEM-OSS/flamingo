@@ -46,14 +46,14 @@ Ext.define('Flamingo.view.hdfsbrowser.File', {
             sortable: false
         },
         {
-            text: message.msg('fs.hdfs.common.filename'),
+            text: 'File Name',
             align: 'left',
             flex: 1,
             dataIndex: 'filename',
             tdCls: 'monospace-column'
         },
         {
-            text: message.msg('fs.hdfs.common.file.length'),
+            text: 'File Size',
             width: 100,
             sortable: true,
             dataIndex: 'length',
@@ -74,29 +74,30 @@ Ext.define('Flamingo.view.hdfsbrowser.File', {
             align: 'center'
         },
         {
-            text: message.msg('fs.hdfs.common.modification'),
+            text: 'Modified',
             width: 140,
             dataIndex: 'modificationTime',
             align: 'center'
         },
         {
-            text: message.msg('fs.hdfs.common.owner'), width: 80, dataIndex: 'owner', align: 'center'
+            text: 'Owner', width: 80, dataIndex: 'owner', align: 'center'
         },
         {
-            text: message.msg('fs.hdfs.common.group'), width: 80, dataIndex: 'group', align: 'center'
+            text: 'Group', width: 80, dataIndex: 'group', align: 'center'
         },
         {
-            text: message.msg('fs.hdfs.common.permission'), width: 80, dataIndex: 'permission', align: 'center'
+            text: 'Permission',
+            width: 80, dataIndex: 'permission', align: 'center'
         },
         {
-            text: message.msg('fs.hdfs.common.replication'),
+            text: 'Replication',
             width: 60,
             dataIndex: 'replication',
             align: 'center',
             hidden: true
         },
         {
-            text: message.msg('fs.hdfs.common.spaceConsumed'),
+            text: 'Consumed',
             width: 80,
             dataIndex: 'spaceConsumed',
             hidden: true,
@@ -115,35 +116,35 @@ Ext.define('Flamingo.view.hdfsbrowser.File', {
                 text: 'Create',
                 iconCls: 'common-directory-add',
                 reference: 'createDirectoryMenu',
-                tooltip: message.msg('fs.hdfs.directory.menu.tip.create'),
+                tooltip: 'Create directory in current path.',
                 handler: 'onClickCreateDirectory'
             },
             {
                 text: 'Copy',
                 iconCls: 'common-file-copy',
                 reference: 'copyButton',
-                tooltip: message.msg('fs.hdfs.file.panel.tip.copy'),
+                tooltip: 'Copy the selected file(s) to the selected path.',
                 handler: 'onClickCopyFile'
             },
             {
                 text: 'Move',
                 iconCls: 'common-file-move',
                 reference: 'moveButton',
-                tooltip: message.msg('fs.hdfs.file.panel.tip.move'),
+                tooltip: 'Move the selected file(s) to the selected path.',
                 handler: 'onClickMoveFile'
             },
             {
                 text: 'Rename',
                 iconCls: 'common-file-rename',
                 reference: 'renameButton',
-                tooltip: message.msg('fs.hdfs.file.panel.tip.rename'),
+                tooltip: 'Rename the selected file.',
                 handler: 'onRenameClick'
             },
             {
                 text: 'Delete',
                 iconCls: 'common-delete',
                 reference: 'deleteButton',
-                tooltip: message.msg('fs.hdfs.file.panel.tip.delete'),
+                tooltip: 'Delete the selected file.',
                 handler: 'onDeleteClick'
             },
             '-',
@@ -151,28 +152,28 @@ Ext.define('Flamingo.view.hdfsbrowser.File', {
                 text: 'Upload',
                 iconCls: 'common-upload',
                 reference: 'uploadButton',
-                tooltip: message.msg('fs.hdfs.file.panel.tip.upload'),
+                tooltip: 'Upload files to the selected path.',
                 handler: 'onClickUploadFile'
             },
             {
                 text: 'Download',
                 iconCls: 'common-download',
                 reference: 'downloadButton',
-                tooltip: message.msg('fs.hdfs.file.panel.tip.download'),
+                tooltip: 'Download the file to local.',
                 handler: 'onClickDownloadFile'
             },
             {
                 text: 'Preview',
                 iconCls: 'common-file-view',
                 reference: 'viewFileContentsButton',
-                tooltip: message.msg('fs.hdfs.file.panel.tip.viewFile'),
+                tooltip: 'Preview the file.',
                 handler: 'onClickViewFile'
             },
             {
                 text: 'Set Permission',
                 iconCls: 'common-user-auth',
                 itemId: 'setPermission',
-                tooltip: message.msg('fs.hdfs.file.panel.tip.permission'),
+                tooltip: 'Change ownership of selected files.',
                 handler: 'onPermissionClick'
             },
             '->',
@@ -188,7 +189,7 @@ Ext.define('Flamingo.view.hdfsbrowser.File', {
                 text: 'Refresh',
                 iconCls: 'common-refresh',
                 reference: 'refreshButton',
-                tooltip: message.msg('fs.hdfs.file.tip.refresh'),
+                tooltip: 'Refresh the file list of the selected path.',
                 handler: 'onRefreshClick'
             }
         ]

@@ -244,8 +244,8 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
             node = me.getViewModel().get('node');
 
         Ext.MessageBox.show({
-                title: message.msg('fs.hdfs.directory.title.create'),
-                message: message.msg('fs.hdfs.directory.msg.create'),
+                title: 'Create Directory',
+                message: 'Please enter a directory name to create.',
                 width: 300,
                 prompt: true,
                 buttons: Ext.MessageBox.YESNO,
@@ -319,7 +319,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (Ext.isEmpty(record)) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.directory.msg.copy.target'),
+                message: 'Please select a path to copy.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -345,7 +345,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (currentPath == fullyQualifiedPath) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.directory.msg.copy.samePath'),
+                message: 'Cannot be copied to the current location.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -353,15 +353,15 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         }
 
         Ext.MessageBox.show({
-            title: message.msg('fs.hdfs.directory.title.copy'),
-            message: format(message.msg('fs.hdfs.directory.msg.copy.confirm'), selectedNodeName, dstPath),
+            title: 'Copy Directory',
+            message: format('Are you sure you want to copy "{0}" to "{1}"?', selectedNodeName, dstPath),
             buttons: Ext.MessageBox.YESNO,
             icon: Ext.MessageBox.WARNING,
             fn: function handler(btn) {
                 if (btn == 'yes') {
                     var progress = Ext.MessageBox.show({
                         title: 'Notification',
-                        message: message.msg('fs.hdfs.file.msg.directory.copying'),
+                        message: 'Copying directory...',
                         width: 300,
                         wait: true,
                         waitConfig: {interval: 200},
@@ -437,7 +437,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (Ext.isEmpty(record)) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.directory.msg.move.target'),
+                message: 'Please select a path to move.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -457,7 +457,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (currentPath == record.id || node == record.id) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.directory.msg.move.samePath'),
+                message: 'Cannot be moved to the current location.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -465,8 +465,8 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         }
 
         Ext.MessageBox.show({
-            title: message.msg('fs.hdfs.directory.title.move'),
-            message: format(message.msg('fs.hdfs.directory.msg.move.confirm'), selectedNodeName, record.id),
+            title: 'Move Directory',
+            message: format('Are you sure you want to move "{0}" to "{1}"?', selectedNodeName, record.id),
             buttons: Ext.MessageBox.YESNO,
             icon: Ext.MessageBox.WARNING,
             fn: function handler(btn) {
@@ -536,8 +536,8 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
             selectedNodeName = selection[0].get('text');
 
         Ext.MessageBox.show({
-            title: message.msg('fs.hdfs.directory.title.rename'),
-            message: message.msg('fs.hdfs.directory.msg.rename.confirm'),
+            title: 'Rename Directory',
+            message: 'Do you want to rename the selected directory?',
             width: 300,
             prompt: true,
             buttons: Ext.MessageBox.YESNO,

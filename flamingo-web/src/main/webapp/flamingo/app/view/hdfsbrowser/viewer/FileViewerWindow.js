@@ -25,7 +25,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerWindow', {
 
     controller: 'fileViewerViewController',
 
-    title: message.msg('fs.hdfs.viewer.title'),
+    title: 'Preview',
     height: 550,
     width: 850,
     modal: true,

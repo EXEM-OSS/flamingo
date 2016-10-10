@@ -68,8 +68,8 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowserController', {
         if (Ext.isEmpty(record)) {
             Ext.MessageBox.show({
                 title: '확인',
-                text: message.msg('common.ok'),
-                message: message.msg('fs.hdfs.file.msg.select'),
+                text: 'OK',
+                message: 'Please select a file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.INFO
             });
@@ -162,7 +162,7 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowserController', {
         if (selectedFiles.length < 1) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.select'),
+                message: 'Please select a file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -170,7 +170,7 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowserController', {
         } else if (selectedFiles.length > 1) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.common.file.limit'),
+                message: 'Please select one file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -192,7 +192,7 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowserController', {
         if (fileSize < 1) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.zeroFileSize'),
+                message: 'File contents does not exist.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -202,7 +202,7 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowserController', {
         if (filePath.match(extensionPattern)) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.viewFile'),
+                message: 'Cannot preview binary or compressed files.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -225,7 +225,7 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowserController', {
 
         var progress = Ext.MessageBox.show({
             title: 'Notification',
-            message: message.msg('fs.hdfs.file.msg.view'),
+            message: 'Loading file..',
             width: 300,
             wait: true,
             waitConfig: {interval: 50},
@@ -270,12 +270,7 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowserController', {
             function () {
                 progress.close();
 
-                Ext.MessageBox.show({
-                    title: message.msg('common.warning'),
-                    message: format(message.msg('common.failure'), config['system.admin.email']),
-                    buttons: Ext.MessageBox.OK,
-                    icon: Ext.MessageBox.WARNING
-                });
+                error('Warning', 'Please contact system admin')
             }
         );
     }

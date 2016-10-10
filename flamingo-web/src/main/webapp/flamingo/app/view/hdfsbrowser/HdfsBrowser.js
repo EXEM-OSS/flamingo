@@ -62,7 +62,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowser', {
             minHeight: 400,
             margin: '0 20 0 20',
             flex: 1,
-            title: message.msg('fs.hdfs.browser.file'),
+            title: 'HDFS File',
             border: false,
             layout: 'fit',
             dockedItems: [{

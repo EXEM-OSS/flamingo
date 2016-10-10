@@ -24,7 +24,7 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionWindow', {
 
     controller: 'hdfsPermissionViewController',
 
-    title: message.msg('fs.hdfs.permission.window.title'),
+    title: 'Set Access Permission',
     height: 370,
     width: 320,
     modal: true,
@@ -41,13 +41,13 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionWindow', {
     buttons: [
         {
             xtype: 'button',
-            text: message.msg('common.change'),
+            text: 'Update',
             iconCls: 'common-ok',
             handler: 'onChangePermission'
         },
         {
             xtype: 'button',
-            text: message.msg('common.cancel'),
+            text: 'Cancel',
             iconCls: 'common-cancel',
             handler: 'onCancelPermission'
         }

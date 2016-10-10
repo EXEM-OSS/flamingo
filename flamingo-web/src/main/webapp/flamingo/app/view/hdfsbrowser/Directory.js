@@ -30,7 +30,7 @@ Ext.define('Flamingo.view.hdfsbrowser.Directory', {
                     text: 'Refresh',
                     iconCls: 'common-refresh',
                     reference: 'directoryRefreshBtn',
-                    tooltip: message.msg('fs.hdfs.directory.tip.refresh'),
+                    tooltip: 'Refresh directory list.',
                     handler: 'onDirectoryRefreshClick'
                 }
             ]

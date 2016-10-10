@@ -63,14 +63,14 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 iconCls: 'x-tbar-page-first',
                                 reference: 'firstButton',
                                 disabled: true,
-                                tooltip: message.msg('fs.hdfs.viewer.window.firstButton.tip'),
+                                tooltip: 'First Page',
                                 handler: 'onFirstPageButtonClick'
                             },
                             {
                                 iconCls: 'x-tbar-page-prev',
                                 reference: 'prevButton',
                                 disabled: true,
-                                tooltip: message.msg('fs.hdfs.viewer.window.prevButton.tip'),
+                                tooltip: 'Previous Page',
                                 handler: 'onPreviousPageButtonClick'
                             },
                             {
@@ -104,14 +104,14 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 iconCls: 'x-tbar-page-next',
                                 reference: 'nextButton',
                                 disabled: false,
-                                tooltip: message.msg('fs.hdfs.viewer.window.nextButton.tip'),
+                                tooltip: 'Next Page',
                                 handler: 'onNextPageButtonClick'
                             },
                             {
                                 iconCls: 'x-tbar-page-last',
                                 reference: 'lastButton',
                                 disabled: false,
-                                tooltip: message.msg('fs.hdfs.viewer.window.lastButton.tip'),
+                                tooltip: 'Last Page',
                                 handler: 'onLastPageButtonClick'
                             },
                             {
@@ -122,7 +122,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 reference: 'startOffset',
                                 name: 'startOffset',
                                 labelWidth: 70,
-                                tooltip: message.msg('fs.hdfs.viewer.window.startOffset.tip'),
+                                tooltip: 'Start Offset',
                                 labelAlign: 'right',
                                 hidden: true
                             },
@@ -131,7 +131,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 reference: 'dfsBlockStartOffset',
                                 name: 'dfsBlockStartOffset',
                                 labelWidth: 70,
-                                tooltip: message.msg('fs.hdfs.viewer.window.dfsBlockStartOffset.tip'),
+                                tooltip: 'DFS Block Start Offset',
                                 labelAlign: 'right',
                                 hidden: true
                             },
@@ -140,7 +140,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 reference: 'chunkSizeToView',
                                 name: 'chunkSizeToView',
                                 labelWidth: 50,
-                                tooltip: message.msg('fs.hdfs.viewer.window.chunkSizeToView.tip'),
+                                tooltip: 'Chunk size to view',
                                 labelAlign: 'right',
                                 hidden: true
                             },
@@ -149,7 +149,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 reference: 'filePath',
                                 name: 'filePath',
                                 labelWidth: 50,
-                                tooltip: message.msg('fs.hdfs.viewer.window.filePath.tip'),
+                                tooltip: 'HDFS File Path',
                                 labelAlign: 'right',
                                 hidden: true
                             },
@@ -158,7 +158,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 reference: 'fileSize',
                                 name: 'fileSize',
                                 labelWidth: 50,
-                                tooltip: message.msg('fs.hdfs.viewer.window.fileSize.tip'),
+                                tooltip: 'HDFS File Size',
                                 labelAlign: 'right',
                                 hidden: true
                             },
@@ -167,7 +167,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 reference: 'dfsBlockSize',
                                 name: 'dfsBlockSize',
                                 labelWidth: 50,
-                                tooltip: message.msg('fs.hdfs.viewer.window.blockSize.tip'),
+                                tooltip: 'HDFS Block Size',
                                 labelAlign: 'right',
                                 hidden: true
                             },
@@ -177,7 +177,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 name: 'totalPage',
                                 value: 'totalPage',
                                 labelWidth: 50,
-                                tooltip: message.msg('fs.hdfs.viewer.window.totalPage.tip'),
+                                tooltip: 'HDFS File Total Page',
                                 labelAlign: 'right',
                                 hidden: true
                             },
@@ -186,7 +186,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 reference: 'bestNode',
                                 name: 'bestNode',
                                 labelWidth: 50,
-                                tooltip: message.msg('fs.hdfs.viewer.window.bestNode.tip'),
+                                tooltip: 'Best Node Information',
                                 labelAlign: 'right',
                                 hidden: true
                             },
@@ -195,7 +195,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 reference: 'currentContentsBlockSize',
                                 name: 'currentContentsBlockSize',
                                 labelWidth: 50,
-                                tooltip: message.msg('fs.hdfs.viewer.window.currentContentsBlockSize.tip'),
+                                tooltip: 'Block size consists of current page',
                                 labelAlign: 'right',
                                 hidden: true
                             },
@@ -204,7 +204,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
                                 reference: 'lastDfsBlockSize',
                                 name: 'lastDfsBlockSize',
                                 labelWidth: 50,
-                                tooltip: message.msg('fs.hdfs.viewer.window.lastDfsBlockSize.tip'),
+                                tooltip: 'Last DFS Block Size',
                                 labelAlign: 'right',
                                 hidden: true
                             }

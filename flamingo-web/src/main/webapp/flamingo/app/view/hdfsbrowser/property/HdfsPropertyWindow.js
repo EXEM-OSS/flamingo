@@ -46,7 +46,7 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
             items: [
                 {
                     xtype: 'fieldset',
-                    title: message.msg('fs.hdfs.property.defaultInfo.title'),
+                    title: 'Default Property',
                     height: 180,
                     layout: {
                         type: 'vbox',
@@ -63,26 +63,26 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                             xtype: 'displayfield',
                             name: 'name',
                             value: 'Unknown',
-                            fieldLabel: message.msg('fs.hdfs.common.name')
+                            fieldLabel: 'Name'
                         },
                         {
                             xtype: 'displayfield',
                             name: 'path',
                             value: 'Unknown',
-                            fieldLabel: message.msg('common.path')
+                            fieldLabel: 'Path'
                         },
                         {
                             xtype: 'radiogroup',
                             name: 'typeRadioGroup',
                             maintainFlex: false,
-                            fieldLabel: message.msg('fs.hdfs.common.type'),
+                            fieldLabel: 'Type',
                             items: [
                                 {
                                     xtype: 'radiofield',
                                     disabled: true,
                                     disabledCls: 'disabled_plain',
                                     name: 'isFile',
-                                    boxLabel: message.msg('common.file'),
+                                    boxLabel: 'File',
                                     checked: true
                                 },
                                 {
@@ -98,7 +98,7 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                             xtype: 'displayfield',
                             name: 'length',
                             value: 'Unknown',
-                            fieldLabel: message.msg('fs.hdfs.common.directory.length'),
+                            fieldLabel: 'Directory Size',
                             renderer: function (name) {
                                 return Ext.util.Format.fileSize(name)
                                     + ' (' + toCommaNumber(name) + ')'
@@ -108,13 +108,13 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                             xtype: 'displayfield',
                             name: 'modification',
                             value: 'Unknown',
-                            fieldLabel: message.msg('fs.hdfs.common.modification')
+                            fieldLabel: 'Modified'
                         }
                     ]
                 },
                 {
                     xtype: 'fieldset',
-                    title: message.msg('fs.hdfs.common.ownership'),
+                    title: 'Ownership',
                     height: 60,
                     layout: {
                         type: 'vbox',
@@ -143,13 +143,13 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                                     xtype: 'displayfield',
                                     name: 'owner',
                                     value: 'Unknown',
-                                    fieldLabel: message.msg('fs.hdfs.common.owner')
+                                    fieldLabel: 'Owner'
                                 },
                                 {
                                     xtype: 'displayfield',
                                     name: 'group',
                                     value: 'Unknown',
-                                    fieldLabel: message.msg('fs.hdfs.common.group')
+                                    fieldLabel: 'Group'
                                 }
                             ]
                         }
@@ -157,7 +157,7 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                 },
                 {
                     xtype: 'fieldset',
-                    title: message.msg('fs.hdfs.property.accessPermission'),
+                    title: 'Permission',
                     height: 130,
                     layout: {
                         type: 'vbox',
@@ -173,24 +173,24 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                         {
                             xtype: 'checkboxgroup',
                             name: 'ownerPermission',
-                            fieldLabel: message.msg('fs.hdfs.common.owner'),
+                            fieldLabel: 'Owner',
                             items: [
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'ownerRead',
-                                    boxLabel: message.msg('fs.hdfs.common.read'),
+                                    boxLabel: 'Read',
                                     readOnly: true
                                 },
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'ownerWrite',
-                                    boxLabel: message.msg('fs.hdfs.common.write'),
+                                    boxLabel: 'Write',
                                     readOnly: true
                                 },
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'ownerExecute',
-                                    boxLabel: message.msg('fs.hdfs.common.execute'),
+                                    boxLabel: 'Execute',
                                     readOnly: true
                                 }
                             ]
@@ -198,7 +198,7 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                         {
                             xtype: 'checkboxgroup',
                             name: 'groupPermission',
-                            fieldLabel: message.msg('fs.hdfs.common.group'),
+                            fieldLabel: 'Group',
                             labelAlign: 'right',
                             columns: 3,
                             vertical: false,
@@ -207,19 +207,19 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'groupRead',
-                                    boxLabel: message.msg('fs.hdfs.common.read'),
+                                    boxLabel: 'Read',
                                     readOnly: true
                                 },
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'groupWrite',
-                                    boxLabel: message.msg('fs.hdfs.common.write'),
+                                    boxLabel: 'Write',
                                     readOnly: true
                                 },
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'groupExecute',
-                                    boxLabel: message.msg('fs.hdfs.common.execute'),
+                                    boxLabel: 'Execute',
                                     readOnly: true
                                 }
                             ]
@@ -227,26 +227,26 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                         {
                             xtype: 'checkboxgroup',
                             name: 'otherPermission',
-                            fieldLabel: message.msg('fs.hdfs.common.other'),
+                            fieldLabel: 'Other',
                             labelAlign: 'right',
                             columns: 3,
                             items: [
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'otherRead',
-                                    boxLabel: message.msg('fs.hdfs.common.read'),
+                                    boxLabel: 'Read',
                                     readOnly: true
                                 },
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'otherWrite',
-                                    boxLabel: message.msg('fs.hdfs.common.write'),
+                                    boxLabel: 'Write',
                                     readOnly: true
                                 },
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'otherExecute',
-                                    boxLabel: message.msg('fs.hdfs.common.execute'),
+                                    boxLabel: 'Execute',
                                     readOnly: true
                                 }
                             ]
@@ -255,7 +255,7 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                 },
                 {
                     xtype: 'fieldset',
-                    title: message.msg('fs.hdfs.property.spaceInfo'),
+                    title: 'Space Usage Information',
                     flex: 1,
                     layout: {
                         type: 'hbox',
@@ -284,7 +284,7 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                                     xtype: 'displayfield',
                                     name: 'blockSize',
                                     value: 'Unknown',
-                                    fieldLabel: message.msg('fs.hdfs.property.blockSize'),
+                                    fieldLabel: 'Blocks',
                                     renderer: function (name) {
                                         return Ext.util.Format.fileSize(name)
                                             + ' (' + toCommaNumber(name) + ')';
@@ -294,13 +294,13 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                                     xtype: 'displayfield',
                                     name: 'replication',
                                     value: 'Unknown',
-                                    fieldLabel: message.msg('fs.hdfs.property.replication')
+                                    fieldLabel: 'Replication'
                                 },
                                 {
                                     xtype: 'displayfield',
                                     name: 'quota',
                                     value: 'Unknown',
-                                    fieldLabel: message.msg('fs.hdfs.property.quota'),
+                                    fieldLabel: 'Directory Quota',
                                     hidden: true,
                                     renderer: function (value) {
                                         return value < 0 ? '' : value;
@@ -310,19 +310,19 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                                     xtype: 'displayfield',
                                     name: 'directoryCount',
                                     value: 'Unknown',
-                                    fieldLabel: message.msg('fs.hdfs.property.directoryCount')
+                                    fieldLabel: 'Directories'
                                 },
                                 {
                                     xtype: 'displayfield',
                                     name: 'fileCount',
                                     value: 'Unknown',
-                                    fieldLabel: message.msg('fs.hdfs.property.fileCount')
+                                    fieldLabel: 'Files'
                                 },
                                 {
                                     xtype: 'displayfield',
                                     name: 'spaceQuota',
                                     value: 'Unknown',
-                                    fieldLabel: message.msg('fs.hdfs.property.spaceQuota'),
+                                    fieldLabel: 'Disk Quota',
                                     hidden: true,
                                     renderer: function (value) {
                                         return value < 0 ? '' : value;
@@ -332,7 +332,7 @@ Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
                                     xtype: 'displayfield',
                                     name: 'spaceConsumed',
                                     value: 'Unknown',
-                                    fieldLabel: message.msg('fs.hdfs.property.spaceConsumed'),
+                                    fieldLabel: 'Consumed',
                                     renderer: function (name) {
                                         return Ext.util.Format.fileSize(name)
                                             + ' (' + toCommaNumber(name) + ')';

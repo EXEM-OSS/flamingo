@@ -53,7 +53,7 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsBrowser', {
         type: 'browserModel'
     },
 
-    title: message.msg('fs.hdfs.common.browser'),
+    title: 'HDFS Browser',
     height: 600,
     width: 800,
     layout: {

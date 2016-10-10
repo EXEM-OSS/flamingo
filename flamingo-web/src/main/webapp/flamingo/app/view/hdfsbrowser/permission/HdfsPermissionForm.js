@@ -101,13 +101,13 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionForm', {
                         {
                             xtype: 'checkboxgroup',
                             style: 'margin-top:10px;',
-                            fieldLabel: message.msg('fs.hdfs.common.owner'),
+                            fieldLabel: 'Owner',
                             items: [
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'ownerRead',
                                     reference: 'ownerRead',
-                                    boxLabel: message.msg('fs.hdfs.common.read'),
+                                    boxLabel: 'Read',
                                     uncheckedValue: 0,
                                     inputValue: 1
                                 },
@@ -115,7 +115,7 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionForm', {
                                     xtype: 'checkboxfield',
                                     name: 'ownerWrite',
                                     reference: 'ownerWrite',
-                                    boxLabel: message.msg('fs.hdfs.common.write'),
+                                    boxLabel: 'Write',
                                     uncheckedValue: 0,
                                     inputValue: 1
                                 },
@@ -123,7 +123,7 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionForm', {
                                     xtype: 'checkboxfield',
                                     name: 'ownerExecute',
                                     reference: 'ownerExecute',
-                                    boxLabel: message.msg('fs.hdfs.common.execute'),
+                                    boxLabel: 'Execute',
                                     uncheckedValue: 0,
                                     inputValue: 1
                                 }
@@ -131,13 +131,13 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionForm', {
                         },
                         {
                             xtype: 'checkboxgroup',
-                            fieldLabel: message.msg('fs.hdfs.common.group'),
+                            fieldLabel: 'Group',
                             items: [
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'groupRead',
                                     reference: 'groupRead',
-                                    boxLabel: message.msg('fs.hdfs.common.read'),
+                                    boxLabel: 'Read',
                                     uncheckedValue: 0,
                                     inputValue: 1
                                 },
@@ -145,7 +145,7 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionForm', {
                                     xtype: 'checkboxfield',
                                     name: 'groupWrite',
                                     reference: 'groupWrite',
-                                    boxLabel: message.msg('fs.hdfs.common.write'),
+                                    boxLabel: 'Write',
                                     uncheckedValue: 0,
                                     inputValue: 1
                                 },
@@ -153,7 +153,7 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionForm', {
                                     xtype: 'checkboxfield',
                                     name: 'groupExecute',
                                     reference: 'groupExecute',
-                                    boxLabel: message.msg('fs.hdfs.common.execute'),
+                                    boxLabel: 'Execute',
                                     uncheckedValue: 0,
                                     inputValue: 1
                                 }
@@ -162,13 +162,13 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionForm', {
                         {
                             xtype: 'checkboxgroup',
                             reference: 'otherCheckGroup',
-                            fieldLabel: message.msg('fs.hdfs.common.other'),
+                            fieldLabel: 'Other',
                             items: [
                                 {
                                     xtype: 'checkboxfield',
                                     name: 'otherRead',
                                     reference: 'otherRead',
-                                    boxLabel: message.msg('fs.hdfs.common.read'),
+                                    boxLabel: 'Read',
                                     uncheckedValue: 0,
                                     inputValue: 1
                                 },
@@ -176,7 +176,7 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionForm', {
                                     xtype: 'checkboxfield',
                                     name: 'otherWrite',
                                     reference: 'otherWrite',
-                                    boxLabel: message.msg('fs.hdfs.common.write'),
+                                    boxLabel: 'Write',
                                     uncheckedValue: 0,
                                     inputValue: 1
                                 },
@@ -184,7 +184,7 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionForm', {
                                     xtype: 'checkboxfield',
                                     name: 'otherExecute',
                                     reference: 'otherExecute',
-                                    boxLabel: message.msg('fs.hdfs.common.execute'),
+                                    boxLabel: 'Execute',
                                     uncheckedValue: 0,
                                     inputValue: 1
                                 }
@@ -194,13 +194,13 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionForm', {
                             xtype: 'checkboxfield',
                             reference: 'recursivePermission',
                             name: 'recursivePermission',
-                            boxLabel: message.msg('fs.hdfs.common.recursive'),
+                            boxLabel: 'Apply All',
                             labelAlign: 'right',
                             style: 'margin-left:69px;margin-bottom:15px;',
                             uncheckedValue: 0,
                             inputValue: 1,
                             checked: false,
-                            tip: message.msg('fs.hdfs.common.recursivePermission.tip'),
+                            tip: 'Changes permission of all sub-directories and files in the selected path.',
                             listeners: {
                                 render: function (checkbox) {
                                     Ext.create('Ext.tip.ToolTip', {

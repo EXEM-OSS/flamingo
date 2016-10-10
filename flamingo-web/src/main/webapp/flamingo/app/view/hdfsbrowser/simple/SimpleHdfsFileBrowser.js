@@ -62,10 +62,10 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowser', {
                 }
             },
             tbar: [{
-                text: message.msg('fs.hdfs.common.viewFile'),
+                text: 'View',
                 iconCls: 'common-file-view',
                 reference: 'viewFileContentsButton',
-                tooltip: message.msg('fs.hdfs.file.panel.tip.viewFile'),
+                tooltip: 'Preview the file.',
                 handler: 'onClickViewFile'
             }],
             columns: [
@@ -77,7 +77,7 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowser', {
                     sortable: false
                 },
                 {
-                    text: message.msg('fs.hdfs.common.filename'),
+                    text: 'File Name',
                     width: 225,
                     dataIndex: 'filename',
                     tdCls: 'monospace-column'/*,
@@ -95,35 +95,35 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowser', {
                     }*/
                 },
                 {
-                    text: message.msg('fs.hdfs.common.file.length'),
+                    text: 'File Size',
                     width: 80,
                     sortable: true,
                     dataIndex: 'length',
                     align: 'center'
                 },
                 {
-                    text: message.msg('fs.hdfs.common.modification'),
+                    text: 'Modified',
                     width: 140,
                     dataIndex: 'modificationTime',
                     align: 'center'
                 },
                 {
-                    text: message.msg('fs.hdfs.common.owner'), width: 80, dataIndex: 'owner', align: 'center'
+                    text: 'Owner', width: 80, dataIndex: 'owner', align: 'center'
                 },
                 {
-                    text: message.msg('fs.hdfs.common.group'), width: 80, dataIndex: 'group', align: 'center'
+                    text: 'Group', width: 80, dataIndex: 'group', align: 'center'
                 },
                 {
-                    text: message.msg('fs.hdfs.common.permission'), width: 80, dataIndex: 'permission', align: 'center'
+                    text: 'Permission', width: 80, dataIndex: 'permission', align: 'center'
                 },
                 {
-                    text: message.msg('fs.hdfs.common.replication'),
+                    text: 'Replication',
                     width: 60,
                     dataIndex: 'replication',
                     align: 'center'
                 },
                 {
-                    text: message.msg('fs.hdfs.common.spaceConsumed'),
+                    text: 'Consumed',
                     width: 80,
                     dataIndex: 'spaceConsumed',
                     align: 'center',
@@ -178,12 +178,12 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowser', {
     buttonAlign: 'right',
     buttons: [
         {
-            text: message.msg('common.ok'),
+            text: 'OK',
             iconCls: 'common-ok',
             handler: 'onBtnOkClick'
         },
         {
-            text: message.msg('common.cancel'),
+            text: 'Cancel',
             iconCls: 'common-cancel',
             handler: 'onBtnCancelClick'
         }

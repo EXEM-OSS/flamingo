@@ -47,7 +47,7 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsDirectoryBrowser', {
         type: 'simpleHdfsBrowserModel'
     },
 
-    title: message.msg('fs.hdfs.common.browser'),
+    title: 'HDFS Browser',
     height: 400,
     width: 400,
     layout: 'fit',
@@ -67,12 +67,12 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsDirectoryBrowser', {
     buttonAlign: 'center',
     buttons: [
         {
-            text: message.msg('common.ok'),
+            text: 'OK',
             iconCls: 'common-ok',
             handler: 'onOkClick'
         },
         {
-            text: message.msg('common.cancel'),
+            text: 'Cancel',
             iconCls: 'common-cancel',
             handler: 'onCancelClick'
         }

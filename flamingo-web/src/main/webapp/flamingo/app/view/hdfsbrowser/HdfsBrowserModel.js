@@ -59,7 +59,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserModel', {
                         var qtip =
                             message.msg('common.path') + ' : ' + newChildNode.raw.fullyQualifiedPath
                             + '<br/>'
-                            + message.msg('fs.hdfs.common.owner') + ' : ' + newChildNode.raw.owner
+                            + 'Owner' + ' : ' + newChildNode.raw.owner
                             + '<br/>'
                             + message.msg('common.group') + ' : ' + newChildNode.raw.group
                             + '<br/>'
