@@ -8,6 +8,9 @@
         <#case "global">
             <#include "global.ftl">
             <#break>
+        <#case "credentials">
+            <#include "credentials.ftl">
+            <#break>
         <#case "start">
             <#include "start.ftl">
             <#break>
