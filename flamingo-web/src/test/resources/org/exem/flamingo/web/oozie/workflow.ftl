@@ -1,10 +1,18 @@
-<workflow-app xmlns="uri:oozie:workflow:0.4" name="${workflow.name}">
+<workflow-app xmlns="uri:oozie:workflow:0.5" name="${name}">
 
     <#if parameters.size > 0>
     <parameters>
     <#list parameters as parameter>
         <property>
-            <name>${parameter}</name>
+            <#if parameter.name == 'MAPREDUCE'>
+            <name>${parameter.name}</name>
+            </#if>
+            <#if parameter.value == 'MAPREDUCE'>
+            <value>${parameter.value}</value>
+            </#if>
+            <#if parameter.description == 'MAPREDUCE'>
+            <description>${parameter.description}</description>
+            </#if>
         </property>
     </#list>
     </parameters>
@@ -22,32 +30,22 @@
             <prepare>
                 <#if prepare.type == 'DELETE'>
                 <delete path="${prepare.path}"/>
-                <#elseif prepare.type == 'DELETE'>
+                <#elseif prepare.type == 'MKDIR'>
+                <mkdir path="${prepare.path}"/>
                 </#if>
                 </prepare>
             </#list>
+
+            <#if action.configuration.size > 0>
             <configuration>
+                <#list action.configurations as configuration>
                 <property>
-                    <name>mapred.mapper.class</name>
-                    <value>com.myBiz.mr.MyMapClass</value>
+                    <name>${configuration.name}</name>
+                    <value>${configuration.value}</value>
                 </property>
-                <property>
-                    <name>mapred.reducer.class</name>
-                    <value>com.myBiz.mr.MyRedClass</value>
-                </property>
-                <property>
-                    <name>mapred.job.reduce.memory.mb</name>
-                    <value>8192</value>
-                </property>
-                <property>
-                    <name>mapred.input.dir</name>
-                    <value>/hdfs/user/joe/input</value>
-                </property>
-                <property>
-                    <name>mapred.output.dir</name>
-                    <value>/hdfs/user/joe/output</value>
-                </property>
+                </#list>
             </configuration>
+            </#if>
         </map-reduce>
         </#if>
     </action>
