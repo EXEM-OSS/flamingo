@@ -3,17 +3,14 @@
         <#if (global.jobTracker)??>
         <job-tracker>${global.jobTracker}</job-tracker>
         </#if>
-
         <#if (global.nameNode)??>
         <name-node>${global.nameNode}</name-node>
         </#if>
-
         <#if (global.jobXml)??>
         <#list global.jobXml as xml>
         <job-xml>${xml}</job-xml>
         </#list>
         </#if>
-
         <#if (global.properties)??>
         <configuration>
             <#list global.properties as property>
