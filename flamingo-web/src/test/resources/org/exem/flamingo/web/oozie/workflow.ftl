@@ -1,5 +1,6 @@
 <workflow-app xmlns="uri:oozie:workflow:0.4" name="${workflow.name}">
 
+    <#if parameters.size > 0>
     <parameters>
     <#list parameters as parameter>
         <property>
@@ -7,11 +8,13 @@
         </property>
     </#list>
     </parameters>
+    </#if>
 
-    <start to="${workflow.startName}"/>
+    <start name="${workflow.startName}" to="${workflow.startTo}"/>
 
     <#list actions as action>
-    <action name="${actionName}">
+    <action name="${actionName}" to="${action.to}">
+        <#if action.type == 'MAPREDUCE'>
         <map-reduce>
             <job-tracker>${action.jobTracker}</job-tracker>
             <name-node>${action.nameNode}</name-node>
@@ -46,9 +49,9 @@
                 </property>
             </configuration>
         </map-reduce>
+        </#if>
     </action>
     </#list>
-
 
     <end name="${workflow.endName}"/>
 
