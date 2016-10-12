@@ -1,19 +1,18 @@
-    <#if (global)??>
     <global>
-        <#if (global.jobTracker)??>
-        <job-tracker>${global.jobTracker}</job-tracker>
+        <#if (action.jobTracker)??>
+        <job-tracker>${action.jobTracker}</job-tracker>
         </#if>
-        <#if (global.nameNode)??>
-        <name-node>${global.nameNode}</name-node>
+        <#if (action.nameNode)??>
+        <name-node>${action.nameNode}</name-node>
         </#if>
-        <#if (global.jobXml)??>
-        <#list global.jobXml as xml>
+        <#if (action.jobXml)??>
+        <#list action.jobXml as xml>
         <job-xml>${xml}</job-xml>
         </#list>
         </#if>
-        <#if (global.properties)??>
+        <#if (action.properties)??>
         <configuration>
-            <#list global.properties as property>
+            <#list action.properties as property>
             <property>
                 <#if (property.name)??>
                 <name>${property.name}</name>
@@ -29,4 +28,3 @@
         </configuration>
         </#if>
     </global>
-    </#if>

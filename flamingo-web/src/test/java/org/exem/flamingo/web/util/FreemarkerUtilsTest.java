@@ -1,6 +1,7 @@
 package org.exem.flamingo.web.util;
 
 import freemarker.template.Configuration;
+import org.exem.flamingo.web.oozie.OozieWorkflowTestFixture;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -28,6 +29,19 @@ public class FreemarkerUtilsTest {
     }
 
     @Test
+    public void testParameter() throws Exception {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
+        FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);
+        Configuration conf = configurer.getConfiguration();
+
+        OozieWorkflowTestFixture fixture = new OozieWorkflowTestFixture();
+        Map workflow = fixture.createWorkflow("Hello WF");
+        fixture.createParameters(workflow);
+
+        String evaluated = FreemarkerUtils.evaluate(conf, "workflow_integration.ftl", workflow);
+        System.out.println(XmlFormatter.format(evaluated));
+    }
+
     public void parameter() throws Exception {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
         FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);
@@ -48,7 +62,6 @@ public class FreemarkerUtilsTest {
         Assert.assertEquals(2, StringUtils.countOccurrencesOf(evaluated, "<name>adsf</name>"));
     }
 
-    @Test
     public void global() throws Exception {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
         FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);

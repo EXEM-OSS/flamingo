@@ -9,7 +9,7 @@ public class OozieWorkflowTestFixture {
 
     public Map createWorkflow(String workflowName) {
         Map workflow = new HashMap();
-        workflow.put("workflowName", workflowName);
+        workflow.put("name", workflowName);
         workflow.put("actions", new ArrayList());
         return workflow;
     }

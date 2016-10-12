@@ -1,6 +1,5 @@
-    <#if parameters?has_content>
     <parameters>
-        <#list parameters as parameter>
+        <#list action.parameters as parameter>
         <property>
             <#if (parameter.name)??>
             <name>${parameter.name}</name>
@@ -14,4 +13,3 @@
         </property>
         </#list>
     </parameters>
-    </#if>
