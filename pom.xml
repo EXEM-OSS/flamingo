@@ -9,9 +9,7 @@
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>Flamingo</name>
-    <description>Flamingo is a web application for managing Apache Oozie. Flamingo drastically simplifies management of
-        Apache Oozie.
-    </description>
+    <description>Flamingo is a web application for managing Apache Oozie. Flamingo drastically simplifies management of Apache Oozie.</description>
     <url>https://exem-oss.github.io/flamingo</url>
 
     <modules>

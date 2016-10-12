@@ -143,6 +143,15 @@
             <version>${javax.jstl.version}</version>
         </dependency>
 
+        <!-- ================= -->
+        <!--  Apache Velocity  -->
+        <!-- ================= -->
+
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+        </dependency>
+
         <!-- ============= -->
         <!--  Logging API  -->
         <!-- ============= -->
