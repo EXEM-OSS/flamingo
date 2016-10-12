@@ -1,0 +1,258 @@
+<uri:workflow-app name="string" xmlns:uri="uri:oozie:workflow:0.5">
+    <!--Optional:-->
+    <uri:parameters>
+        <!--1 or more repetitions:-->
+        <uri:property>
+            <uri:name>string</uri:name>
+            <!--Optional:-->
+            <uri:value>string</uri:value>
+            <!--Optional:-->
+            <uri:description>string</uri:description>
+        </uri:property>
+    </uri:parameters>
+    <!--Optional:-->
+
+    <uri:global>
+        <!--Optional:-->
+        <uri:job-tracker>string</uri:job-tracker>
+        <!--Optional:-->
+        <uri:name-node>string</uri:name-node>
+        <!--Zero or more repetitions:-->
+        <uri:job-xml>string</uri:job-xml>
+        <!--Optional:-->
+        <uri:configuration>
+            <!--1 or more repetitions:-->
+            <uri:property>
+                <uri:name>string</uri:name>
+                <uri:value>string</uri:value>
+                <!--Optional:-->
+                <uri:description>string</uri:description>
+            </uri:property>
+        </uri:configuration>
+    </uri:global>
+
+    <!--Optional:-->
+    <uri:credentials>
+        <uri:credential name="string" type="string">
+            <!--1 or more repetitions:-->
+            <uri:property>
+                <uri:name>string</uri:name>
+                <uri:value>string</uri:value>
+                <!--Optional:-->
+                <uri:description>string</uri:description>
+            </uri:property>
+        </uri:credential>
+    </uri:credentials>
+
+    <uri:start to="string"/>
+    <!--You have a CHOICE of the next 5 items at this level-->
+
+    <uri:decision name="string">
+        <uri:switch>
+            <!--1 or more repetitions:-->
+            <uri:case to="string">string</uri:case>
+            <uri:default to="string"/>
+        </uri:switch>
+    </uri:decision>
+
+    <uri:fork name="string">
+        <!--2 or more repetitions:-->
+        <uri:path start="string"/>
+        <uri:path start="string"/>
+    </uri:fork>
+
+    <uri:join name="string" to="string"/>
+
+    <uri:kill name="string">
+        <uri:message>string</uri:message>
+    </uri:kill>
+
+    <uri:action name="string" cred="string" retry-max="string" retry-interval="string">
+        <!--You have a CHOICE of the next 6 items at this level-->
+        <uri:map-reduce>
+            <!--Optional:-->
+            <uri:job-tracker>string</uri:job-tracker>
+            <!--Optional:-->
+            <uri:name-node>string</uri:name-node>
+            <!--Optional:-->
+            <uri:prepare>
+                <!--Zero or more repetitions:-->
+                <uri:delete path="string"/>
+                <!--Zero or more repetitions:-->
+                <uri:mkdir path="string"/>
+            </uri:prepare>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <!--Optional:-->
+            <uri:streaming>
+                <!--Optional:-->
+                <uri:mapper>string</uri:mapper>
+                <!--Optional:-->
+                <uri:reducer>string</uri:reducer>
+                <!--Optional:-->
+                <uri:record-reader>string</uri:record-reader>
+                <!--Zero or more repetitions:-->
+                <uri:record-reader-mapping>string</uri:record-reader-mapping>
+                <!--Zero or more repetitions:-->
+                <uri:env>string</uri:env>
+            </uri:streaming>
+            <!--Optional:-->
+            <uri:pipes>
+                <!--Optional:-->
+                <uri:map>string</uri:map>
+                <!--Optional:-->
+                <uri:reduce>string</uri:reduce>
+                <!--Optional:-->
+                <uri:inputformat>string</uri:inputformat>
+                <!--Optional:-->
+                <uri:partitioner>string</uri:partitioner>
+                <!--Optional:-->
+                <uri:writer>string</uri:writer>
+                <!--Optional:-->
+                <uri:program>string</uri:program>
+            </uri:pipes>
+            <!--Zero or more repetitions:-->
+            <uri:job-xml>string</uri:job-xml>
+            <!--Optional:-->
+            <uri:configuration>
+                <!--1 or more repetitions:-->
+                <uri:property>
+                    <uri:name>string</uri:name>
+                    <uri:value>string</uri:value>
+                    <!--Optional:-->
+                    <uri:description>string</uri:description>
+                </uri:property>
+            </uri:configuration>
+            <!--Optional:-->
+            <uri:config-class>string</uri:config-class>
+            <!--Zero or more repetitions:-->
+            <uri:file>string</uri:file>
+            <!--Zero or more repetitions:-->
+            <uri:archive>string</uri:archive>
+        </uri:map-reduce>
+        <uri:pig>
+            <!--Optional:-->
+            <uri:job-tracker>string</uri:job-tracker>
+            <!--Optional:-->
+            <uri:name-node>string</uri:name-node>
+            <!--Optional:-->
+            <uri:prepare>
+                <!--Zero or more repetitions:-->
+                <uri:delete path="string"/>
+                <!--Zero or more repetitions:-->
+                <uri:mkdir path="string"/>
+            </uri:prepare>
+            <!--Zero or more repetitions:-->
+            <uri:job-xml>string</uri:job-xml>
+            <!--Optional:-->
+            <uri:configuration>
+                <!--1 or more repetitions:-->
+                <uri:property>
+                    <uri:name>string</uri:name>
+                    <uri:value>string</uri:value>
+                    <!--Optional:-->
+                    <uri:description>string</uri:description>
+                </uri:property>
+            </uri:configuration>
+            <uri:script>string</uri:script>
+            <!--Zero or more repetitions:-->
+            <uri:param>string</uri:param>
+            <!--Zero or more repetitions:-->
+            <uri:argument>string</uri:argument>
+            <!--Zero or more repetitions:-->
+            <uri:file>string</uri:file>
+            <!--Zero or more repetitions:-->
+            <uri:archive>string</uri:archive>
+        </uri:pig>
+        <uri:sub-workflow>
+            <uri:app-path>string</uri:app-path>
+            <!--Optional:-->
+            <uri:propagate-configuration/>
+            <!--Optional:-->
+            <uri:configuration>
+                <!--1 or more repetitions:-->
+                <uri:property>
+                    <uri:name>string</uri:name>
+                    <uri:value>string</uri:value>
+                    <!--Optional:-->
+                    <uri:description>string</uri:description>
+                </uri:property>
+            </uri:configuration>
+        </uri:sub-workflow>
+        <uri:fs>
+            <!--Optional:-->
+            <uri:name-node>string</uri:name-node>
+            <!--Zero or more repetitions:-->
+            <uri:job-xml>string</uri:job-xml>
+            <!--Optional:-->
+            <uri:configuration>
+                <!--1 or more repetitions:-->
+                <uri:property>
+                    <uri:name>string</uri:name>
+                    <uri:value>string</uri:value>
+                    <!--Optional:-->
+                    <uri:description>string</uri:description>
+                </uri:property>
+            </uri:configuration>
+            <!--You have a CHOICE of the next 6 items at this level-->
+            <uri:delete path="string"/>
+            <uri:mkdir path="string"/>
+            <uri:move source="string" target="string"/>
+            <uri:chmod path="string" permissions="string" dir-files="string">
+                <!--Optional:-->
+                <uri:recursive/>
+            </uri:chmod>
+            <uri:touchz path="string"/>
+            <uri:chgrp path="string" group="string" dir-files="string">
+                <!--Optional:-->
+                <uri:recursive/>
+            </uri:chgrp>
+        </uri:fs>
+        <uri:java>
+            <!--Optional:-->
+            <uri:job-tracker>string</uri:job-tracker>
+            <!--Optional:-->
+            <uri:name-node>string</uri:name-node>
+            <!--Optional:-->
+            <uri:prepare>
+                <!--Zero or more repetitions:-->
+                <uri:delete path="string"/>
+                <!--Zero or more repetitions:-->
+                <uri:mkdir path="string"/>
+            </uri:prepare>
+            <!--Zero or more repetitions:-->
+            <uri:job-xml>string</uri:job-xml>
+            <!--Optional:-->
+            <uri:configuration>
+                <!--1 or more repetitions:-->
+                <uri:property>
+                    <uri:name>string</uri:name>
+                    <uri:value>string</uri:value>
+                    <!--Optional:-->
+                    <uri:description>string</uri:description>
+                </uri:property>
+            </uri:configuration>
+            <uri:main-class>string</uri:main-class>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <uri:java-opts>string</uri:java-opts>
+            <!--1 or more repetitions:-->
+            <uri:java-opt>string</uri:java-opt>
+            <!--Zero or more repetitions:-->
+            <uri:arg>string</uri:arg>
+            <!--Zero or more repetitions:-->
+            <uri:file>string</uri:file>
+            <!--Zero or more repetitions:-->
+            <uri:archive>string</uri:archive>
+            <!--Optional:-->
+            <uri:capture-output/>
+        </uri:java>
+        <!--You may enter ANY elements at this point-->
+        <AnyElement/>
+        <uri:ok to="string"/>
+        <uri:error to="string"/>
+        <!--You may enter ANY elements at this point-->
+        <AnyElement/>
+    </uri:action>
+    <uri:end name="string"/>
+    <!--You may enter ANY elements at this point-->
+    <AnyElement/>
+</uri:workflow-app>
