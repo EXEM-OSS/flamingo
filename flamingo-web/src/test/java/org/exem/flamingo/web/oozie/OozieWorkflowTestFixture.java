@@ -176,4 +176,19 @@ public class OozieWorkflowTestFixture {
         }
         return list;
     }
+
+    public Map createAction(Map workflow) {
+        ArrayList actions = (ArrayList) workflow.get("actions");
+
+        Map node = new HashMap();
+        node.put("category", "action");
+        node.put("name", "MapReduce");
+        node.put("cred", "1");
+        node.put("retryMax", "2");
+        node.put("retryInterval", "3");
+        actions.add(node);
+
+        return workflow;
+    }
+
 }

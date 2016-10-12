@@ -116,9 +116,22 @@ public class OozieWorkflowTestFixtureTest {
 
         String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
-         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<fork name=\"Join\">"));
-         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<path start=\"1\"/>"));
-         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<path start=\"2\"/>"));
-         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<path start=\"3\"/>"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<fork name=\"Join\">"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<path start=\"1\"/>"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<path start=\"2\"/>"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<path start=\"3\"/>"));
+    }
+
+    @Test
+    public void action() throws Exception {
+        Map workflow = fixture.createWorkflow("Hello WF");
+        fixture.createAction(workflow);
+
+        String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        System.out.println(XmlFormatter.format(evaluated));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "cred=\"1\""));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "name=\"MapReduce\""));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "retry-interval=\"3\""));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "retry-max=\"2\""));
     }
 }

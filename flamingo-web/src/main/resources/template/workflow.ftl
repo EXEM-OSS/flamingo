@@ -29,6 +29,9 @@
         <#case "join">
             <#include "join.ftl">
             <#break>
+        <#case "action">
+            <#include "action.ftl">
+            <#break>
         <#default>
     </#switch>
     </#list>
