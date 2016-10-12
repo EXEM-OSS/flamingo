@@ -42,6 +42,20 @@ public class FreemarkerUtilsTest {
         System.out.println(XmlFormatter.format(evaluated));
     }
 
+    @Test
+    public void testGlobal() throws Exception {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
+        FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);
+        Configuration conf = configurer.getConfiguration();
+
+        OozieWorkflowTestFixture fixture = new OozieWorkflowTestFixture();
+        Map workflow = fixture.createWorkflow("Hello WF");
+        fixture.createGlobal(workflow);
+
+        String evaluated = FreemarkerUtils.evaluate(conf, "workflow_integration.ftl", workflow);
+        System.out.println(XmlFormatter.format(evaluated));
+    }
+
     public void parameter() throws Exception {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
         FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);
