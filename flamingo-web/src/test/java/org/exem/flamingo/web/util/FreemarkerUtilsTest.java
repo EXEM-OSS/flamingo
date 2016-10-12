@@ -1,6 +1,7 @@
 package org.exem.flamingo.web.util;
 
 import freemarker.template.Configuration;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,7 +21,8 @@ public class FreemarkerUtilsTest {
         Map params = new HashMap();
         params.put("name", "Freemarker");
 
-        FreemarkerUtils.evaluate(conf, "org/exem/flamingo/web/oozie/helloworld.ftl", params);
+        String evaluated = FreemarkerUtils.evaluate(conf, "helloworld.ftl", params);
+        Assert.assertEquals("Hello Freemarker", evaluated);
     }
 
 }
