@@ -1,22 +1,8 @@
 <workflow-app xmlns="uri:oozie:workflow:0.5" name="${name}">
 
-    <#if parameters.size > 0>
-    <parameters>
-    <#list parameters as parameter>
-        <property>
-            <#if parameter.name == 'MAPREDUCE'>
-            <name>${parameter.name}</name>
-            </#if>
-            <#if parameter.value == 'MAPREDUCE'>
-            <value>${parameter.value}</value>
-            </#if>
-            <#if parameter.description == 'MAPREDUCE'>
-            <description>${parameter.description}</description>
-            </#if>
-        </property>
-    </#list>
-    </parameters>
-    </#if>
+    <#include "parameter.ftl">
+
+    <#include "global.ftl">
 
     <start name="${workflow.startName}" to="${workflow.startTo}"/>
 
