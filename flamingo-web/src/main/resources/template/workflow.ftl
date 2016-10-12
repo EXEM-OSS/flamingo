@@ -10,8 +10,10 @@
             <#break>
         <#case "start">
             <#include "start.ftl">
+            <#break>
         <#case "end">
             <#include "end.ftl">
+            <#break>
         <#case "kill">
             <#include "kill.ftl">
             <#break>

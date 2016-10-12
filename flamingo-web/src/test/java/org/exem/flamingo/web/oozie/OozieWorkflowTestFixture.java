@@ -17,10 +17,10 @@ public class OozieWorkflowTestFixture {
     public Map createParameters(Map workflow) {
         ArrayList actions = (ArrayList) workflow.get("actions");
 
-        Map parameters = new HashMap();
-        parameters.put("category", "parameters");
-        parameters.put("parameters", createProperties());
-        actions.add(parameters);
+        Map node = new HashMap();
+        node.put("category", "parameters");
+        node.put("parameters", createProperties());
+        actions.add(node);
 
         return workflow;
     }
@@ -28,13 +28,48 @@ public class OozieWorkflowTestFixture {
     public Map createGlobal(Map workflow) {
         ArrayList actions = (ArrayList) workflow.get("actions");
 
-        Map global = new HashMap();
-        global.put("category", "global");
-        global.put("nameNode", "localhost:8020");
-        global.put("jobTracker", "localhost:8032");
-        global.put("jobXml", createList("1.xml", "2.xml", "3.xml"));
-        global.put("properties", createProperties());
-        actions.add(global);
+        Map node = new HashMap();
+        node.put("category", "global");
+        node.put("nameNode", "localhost:8020");
+        node.put("jobTracker", "localhost:8032");
+        node.put("jobXml", createList("1.xml", "2.xml", "3.xml"));
+        node.put("properties", createProperties());
+        actions.add(node);
+
+        return workflow;
+    }
+
+    public Map createStart(Map workflow) {
+        ArrayList actions = (ArrayList) workflow.get("actions");
+
+        Map node = new HashMap();
+        node.put("category", "start");
+        node.put("name", "Start");
+        node.put("to", "nextAction");
+        actions.add(node);
+
+        return workflow;
+    }
+
+    public Map createEnd(Map workflow) {
+        ArrayList actions = (ArrayList) workflow.get("actions");
+
+        Map node = new HashMap();
+        node.put("category", "end");
+        node.put("name", "End");
+        actions.add(node);
+
+        return workflow;
+    }
+
+    public Map createKill(Map workflow) {
+        ArrayList actions = (ArrayList) workflow.get("actions");
+
+        Map node = new HashMap();
+        node.put("category", "kill");
+        node.put("name", "kill");
+        node.put("message", "Job Killed");
+        actions.add(node);
 
         return workflow;
     }
