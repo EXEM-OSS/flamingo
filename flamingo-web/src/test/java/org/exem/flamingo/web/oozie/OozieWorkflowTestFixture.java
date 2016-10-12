@@ -191,4 +191,46 @@ public class OozieWorkflowTestFixture {
         return workflow;
     }
 
+    public Map createAction(Map workflow, Map data) {
+        ArrayList actions = (ArrayList) workflow.get("actions");
+
+        Map node = new HashMap();
+        node.put("category", "action");
+        node.put("name", "MapReduce");
+        node.put("cred", "1");
+        node.put("retryMax", "2");
+        node.put("retryInterval", "3");
+        node.put("data", data);
+        actions.add(node);
+
+        return workflow;
+    }
+
+    public Map createMapReduce() {
+        Map action = new HashMap();
+        action.put("type", "mapreduce");
+        action.put("nameNode", "hdfs://localhost:8020");
+        action.put("jobTracker", "localhost:8032");
+        action.put("prepares", createPrepares());
+        action.put("configurations", createProperties());
+        action.put("configClass", "StartApplication");
+        action.put("archives", createList("a.har", "b.har", "c.har"));
+        action.put("files", createList("a.jar", "b.jar", "c.jar"));
+        return action;
+    }
+
+    public List createPrepares() {
+        List list = new ArrayList();
+        list.add(createPrepare("MKDIR"));
+        list.add(createPrepare("DELETE"));
+        return list;
+    }
+
+    public Map createPrepare(String type) {
+        Map property = new HashMap();
+        property.put("type", type);
+        property.put("path", "/test");
+        return property;
+    }
+
 }

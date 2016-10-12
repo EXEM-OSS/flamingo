@@ -134,4 +134,20 @@ public class OozieWorkflowTestFixtureTest {
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "retry-interval=\"3\""));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "retry-max=\"2\""));
     }
+
+    @Test
+    public void actionMapReduce() throws Exception {
+        Map workflow = fixture.createWorkflow("Hello WF");
+        fixture.createAction(workflow, fixture.createMapReduce());
+
+        String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        System.out.println(XmlFormatter.format(evaluated));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<job-tracker>localhost:8032</job-tracker>"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<name-node>hdfs://localhost:8020</name-node>"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<mkdir path=\"/test\"/>"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<delete path=\"/test\"/>"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<config-class>StartApplication</config-class>"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<archive>a.har</archive>"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<file>a.jar</file>"));
+    }
 }
