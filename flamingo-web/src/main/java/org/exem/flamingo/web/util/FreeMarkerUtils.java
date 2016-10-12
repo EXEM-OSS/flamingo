@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Map;
 
-public class FreemarkerUtils {
+public class FreeMarkerUtils {
 
     public static String evaluate(Configuration cfg, String templateFile, Map<String, Object> model) throws IOException, TemplateException {
         Template template = cfg.getTemplate(templateFile);

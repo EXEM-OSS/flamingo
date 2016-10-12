@@ -1,7 +1,7 @@
 package org.exem.flamingo.web.oozie;
 
 import freemarker.template.Configuration;
-import org.exem.flamingo.web.util.FreemarkerUtils;
+import org.exem.flamingo.web.util.FreeMarkerUtils;
 import org.exem.flamingo.web.util.XmlFormatter;
 import org.junit.Assert;
 import org.junit.Before;
@@ -32,7 +32,7 @@ public class OozieWorkflowTestFixtureTest {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createParameters(workflow);
 
-        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
     }
 
@@ -41,7 +41,7 @@ public class OozieWorkflowTestFixtureTest {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createGlobal(workflow);
 
-        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
     }
 
@@ -50,7 +50,7 @@ public class OozieWorkflowTestFixtureTest {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createStart(workflow);
 
-        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<start name=\"Start\" to=\"nextAction\"/>"));
     }
@@ -60,7 +60,7 @@ public class OozieWorkflowTestFixtureTest {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createEnd(workflow);
 
-        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<end name=\"End\"/>"));
     }
@@ -70,7 +70,7 @@ public class OozieWorkflowTestFixtureTest {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createKill(workflow);
 
-        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<kill name=\"kill\">"));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<message>Job Killed</message>"));
@@ -81,7 +81,7 @@ public class OozieWorkflowTestFixtureTest {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createCredentials(workflow);
 
-        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<credentials>"));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<credential name=\"Credentials\" type=\"Credentials Type\">"));
@@ -92,7 +92,7 @@ public class OozieWorkflowTestFixtureTest {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createDecision(workflow);
 
-        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<decision name=\"Decision\">"));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<case to=\"To\">Predicate</case>"));
@@ -104,7 +104,7 @@ public class OozieWorkflowTestFixtureTest {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createJoin(workflow);
 
-        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<join name=\"Join\" to=\"Next\"/>"));
     }
@@ -114,7 +114,7 @@ public class OozieWorkflowTestFixtureTest {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createFork(workflow);
 
-        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
          Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<fork name=\"Join\">"));
          Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<path start=\"1\"/>"));
