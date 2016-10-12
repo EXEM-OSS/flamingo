@@ -1,7 +1,5 @@
-    <#if (kill)??>
-    <kill name="${kill.name}">
-        <#if (kill.message)??>
-        <message>${kill.message}</message>
+    <kill name="${action.name}">
+        <#if (action.message)??>
+        <message>${action.message}</message>
         </#if>
     </kill>
-    </#if>

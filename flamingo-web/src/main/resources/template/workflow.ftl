@@ -8,6 +8,13 @@
         <#case "global">
             <#include "global.ftl">
             <#break>
+        <#case "start">
+            <#include "start.ftl">
+        <#case "end">
+            <#include "end.ftl">
+        <#case "kill">
+            <#include "kill.ftl">
+            <#break>
         <#default>
     </#switch>
     </#list>

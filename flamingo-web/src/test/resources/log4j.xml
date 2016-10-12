@@ -17,4 +17,4 @@
         <level value="DEBUG"/>
         <appender-ref ref="CONSOLE"/>
     </root>
-</log4j:configuration>  
+</log4j:configuration>
