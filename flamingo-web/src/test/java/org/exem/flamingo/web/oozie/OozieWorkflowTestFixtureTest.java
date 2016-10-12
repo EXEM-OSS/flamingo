@@ -1,7 +1,6 @@
 package org.exem.flamingo.web.oozie;
 
 import freemarker.template.Configuration;
-import org.exem.flamingo.web.oozie.OozieWorkflowTestFixture;
 import org.exem.flamingo.web.util.FreemarkerUtils;
 import org.exem.flamingo.web.util.XmlFormatter;
 import org.junit.Assert;
@@ -108,5 +107,18 @@ public class OozieWorkflowTestFixtureTest {
         String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<join name=\"Join\" to=\"Next\"/>"));
+    }
+
+    @Test
+    public void fork() throws Exception {
+        Map workflow = fixture.createWorkflow("Hello WF");
+        fixture.createFork(workflow);
+
+        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        System.out.println(XmlFormatter.format(evaluated));
+         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<fork name=\"Join\">"));
+         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<path start=\"1\"/>"));
+         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<path start=\"2\"/>"));
+         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<path start=\"3\"/>"));
     }
 }

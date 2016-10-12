@@ -157,4 +157,23 @@ public class OozieWorkflowTestFixture {
         return workflow;
     }
 
+    public Map createFork(Map workflow) {
+        ArrayList actions = (ArrayList) workflow.get("actions");
+
+        Map node = new HashMap();
+        node.put("category", "fork");
+        node.put("name", "Join");
+        node.put("forks", createForkItem("1", "2", "3"));
+        actions.add(node);
+
+        return workflow;
+    }
+
+    public List<String> createForkItem(String... params) {
+        List list = new ArrayList();
+        for (String param : params) {
+            list.add(param);
+        }
+        return list;
+    }
 }
