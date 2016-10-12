@@ -110,4 +110,37 @@ public class OozieWorkflowTestFixture {
 
         return workflow;
     }
+
+    public Map createDecision(Map workflow) {
+        ArrayList actions = (ArrayList) workflow.get("actions");
+
+        Map node = new HashMap();
+        node.put("category", "decision");
+        node.put("name", "Decision");
+        node.put("dcs", createDecisionCases());
+        actions.add(node);
+
+        return workflow;
+    }
+
+    public List createDecisionCases() {
+        List list = new ArrayList();
+        list.add(createDecisionCase_Case());
+        list.add(createDecisionCase_Default());
+        return list;
+    }
+
+    public Map createDecisionCase_Case() {
+        Map property = new HashMap();
+        property.put("type", "case");
+        property.put("to", "To");
+        property.put("predicate", "Predicate");
+        return property;
+    }
+    public Map createDecisionCase_Default() {
+        Map property = new HashMap();
+        property.put("type", "default");
+        property.put("to", "To");
+        return property;
+    }
 }

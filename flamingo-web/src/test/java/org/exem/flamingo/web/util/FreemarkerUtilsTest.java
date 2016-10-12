@@ -85,4 +85,16 @@ public class FreemarkerUtilsTest {
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<credentials>"));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<credential name=\"Credentials\" type=\"Credentials Type\">"));
     }
+
+    @Test
+    public void decision() throws Exception {
+        Map workflow = fixture.createWorkflow("Hello WF");
+        fixture.createDecision(workflow);
+
+        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        System.out.println(XmlFormatter.format(evaluated));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<decision name=\"Decision\">"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<case to=\"To\">Predicate</case>"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<default to=\"To\"/>"));
+    }
 }
