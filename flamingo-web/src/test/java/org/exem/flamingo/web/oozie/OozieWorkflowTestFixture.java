@@ -137,10 +137,24 @@ public class OozieWorkflowTestFixture {
         property.put("predicate", "Predicate");
         return property;
     }
+
     public Map createDecisionCase_Default() {
         Map property = new HashMap();
         property.put("type", "default");
         property.put("to", "To");
         return property;
     }
+
+    public Map createJoin(Map workflow) {
+        ArrayList actions = (ArrayList) workflow.get("actions");
+
+        Map node = new HashMap();
+        node.put("category", "join");
+        node.put("name", "Join");
+        node.put("to", "Next");
+        actions.add(node);
+
+        return workflow;
+    }
+
 }

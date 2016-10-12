@@ -23,6 +23,9 @@
         <#case "decision">
             <#include "decision.ftl">
             <#break>
+        <#case "join">
+            <#include "join.ftl">
+            <#break>
         <#default>
     </#switch>
     </#list>

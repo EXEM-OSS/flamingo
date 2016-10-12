@@ -99,4 +99,14 @@ public class OozieWorkflowTestFixtureTest {
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<case to=\"To\">Predicate</case>"));
         Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<default to=\"To\"/>"));
     }
+
+    @Test
+    public void join() throws Exception {
+        Map workflow = fixture.createWorkflow("Hello WF");
+        fixture.createJoin(workflow);
+
+        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
+        System.out.println(XmlFormatter.format(evaluated));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<join name=\"Join\" to=\"Next\"/>"));
+    }
 }
