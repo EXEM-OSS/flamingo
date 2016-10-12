@@ -3,6 +3,7 @@ package org.exem.flamingo.web.util;
 import freemarker.template.Configuration;
 import org.exem.flamingo.web.oozie.OozieWorkflowTestFixture;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,13 +14,20 @@ import java.util.Map;
 
 public class FreemarkerUtilsTest {
 
-    @Test
-    public void parameters() throws Exception {
+    Configuration conf;
+
+    OozieWorkflowTestFixture fixture;
+
+    @Before
+    public void before() {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
         FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);
-        Configuration conf = configurer.getConfiguration();
+        this.conf = configurer.getConfiguration();
+        this.fixture = new OozieWorkflowTestFixture();
+    }
 
-        OozieWorkflowTestFixture fixture = new OozieWorkflowTestFixture();
+    @Test
+    public void parameters() throws Exception {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createParameters(workflow);
 
@@ -29,11 +37,6 @@ public class FreemarkerUtilsTest {
 
     @Test
     public void global() throws Exception {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
-        FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);
-        Configuration conf = configurer.getConfiguration();
-
-        OozieWorkflowTestFixture fixture = new OozieWorkflowTestFixture();
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createGlobal(workflow);
 
@@ -43,11 +46,6 @@ public class FreemarkerUtilsTest {
 
     @Test
     public void start() throws Exception {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
-        FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);
-        Configuration conf = configurer.getConfiguration();
-
-        OozieWorkflowTestFixture fixture = new OozieWorkflowTestFixture();
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createStart(workflow);
 
@@ -58,11 +56,6 @@ public class FreemarkerUtilsTest {
 
     @Test
     public void end() throws Exception {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
-        FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);
-        Configuration conf = configurer.getConfiguration();
-
-        OozieWorkflowTestFixture fixture = new OozieWorkflowTestFixture();
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createEnd(workflow);
 
@@ -73,11 +66,6 @@ public class FreemarkerUtilsTest {
 
     @Test
     public void kill() throws Exception {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
-        FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);
-        Configuration conf = configurer.getConfiguration();
-
-        OozieWorkflowTestFixture fixture = new OozieWorkflowTestFixture();
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createKill(workflow);
 
