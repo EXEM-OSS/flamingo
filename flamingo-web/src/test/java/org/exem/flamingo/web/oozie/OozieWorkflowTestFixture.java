@@ -14,6 +14,17 @@ public class OozieWorkflowTestFixture {
         return workflow;
     }
 
+    public Map createParameters(Map workflow) {
+        ArrayList actions = (ArrayList) workflow.get("actions");
+
+        Map parameters = new HashMap();
+        parameters.put("category", "parameters");
+        parameters.put("parameters", createProperties());
+        actions.add(parameters);
+
+        return workflow;
+    }
+
     public Map createGlobal(Map workflow) {
         ArrayList actions = (ArrayList) workflow.get("actions");
 
