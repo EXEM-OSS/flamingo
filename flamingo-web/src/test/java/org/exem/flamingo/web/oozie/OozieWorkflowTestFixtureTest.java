@@ -1,7 +1,9 @@
-package org.exem.flamingo.web.util;
+package org.exem.flamingo.web.oozie;
 
 import freemarker.template.Configuration;
 import org.exem.flamingo.web.oozie.OozieWorkflowTestFixture;
+import org.exem.flamingo.web.util.FreemarkerUtils;
+import org.exem.flamingo.web.util.XmlFormatter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +14,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import java.util.Map;
 
-public class FreemarkerUtilsTest {
+public class OozieWorkflowTestFixtureTest {
 
     Configuration conf;
 
