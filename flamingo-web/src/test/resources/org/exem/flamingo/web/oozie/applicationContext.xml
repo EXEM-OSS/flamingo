@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean name="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="templateLoaderPath" value="classpath:/org/exem/flamingo/web/oozie/"/>
+        <property name="templateLoaderPath" value="classpath:/template/"/>
         <property name="defaultEncoding" value="utf-8"/>
         <property name="freemarkerVariables">
             <map>

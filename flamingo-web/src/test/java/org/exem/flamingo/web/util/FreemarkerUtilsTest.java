@@ -16,19 +16,6 @@ import java.util.Map;
 public class FreemarkerUtilsTest {
 
     @Test
-    public void evaluate() throws Exception {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
-        FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);
-        Configuration conf = configurer.getConfiguration();
-
-        Map params = new HashMap();
-        params.put("name", "Freemarker");
-
-        String evaluated = FreemarkerUtils.evaluate(conf, "helloworld.ftl", params);
-        Assert.assertEquals("Hello Freemarker", evaluated);
-    }
-
-    @Test
     public void testParameter() throws Exception {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("org/exem/flamingo/web/oozie/applicationContext.xml");
         FreeMarkerConfigurer configurer = ctx.getBean(FreeMarkerConfigurer.class);
@@ -38,7 +25,7 @@ public class FreemarkerUtilsTest {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createParameters(workflow);
 
-        String evaluated = FreemarkerUtils.evaluate(conf, "workflow_integration.ftl", workflow);
+        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
     }
 
@@ -52,7 +39,7 @@ public class FreemarkerUtilsTest {
         Map workflow = fixture.createWorkflow("Hello WF");
         fixture.createGlobal(workflow);
 
-        String evaluated = FreemarkerUtils.evaluate(conf, "workflow_integration.ftl", workflow);
+        String evaluated = FreemarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
     }
 
