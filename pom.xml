@@ -9,7 +9,9 @@
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>Flamingo</name>
-    <description>Flamingo is a web application for managing Apache Oozie. Flamingo drastically simplifies management of Apache Oozie.</description>
+    <description>Flamingo is a web application for managing Apache Oozie. Flamingo drastically simplifies management of
+        Apache Oozie.
+    </description>
     <url>https://exem-oss.github.io/flamingo</url>
 
     <modules>
@@ -60,6 +62,9 @@
         <tablibs.version>1.1.2</tablibs.version>
         <jta.version>1.1</jta.version>
         <javamail.version>1.4.7</javamail.version>
+
+        <!-- Apache Velocity -->
+        <velocity.version>1.7</velocity.version>
 
         <!-- Logging -->
         <commons.logging.version>1.2</commons.logging.version>
@@ -722,6 +727,16 @@
                 <groupId>javax.mail</groupId>
                 <artifactId>mail</artifactId>
                 <version>${javamail.version}</version>
+            </dependency>
+
+            <!-- ================= -->
+            <!--  Apache Velocity  -->
+            <!-- ================= -->
+
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity</artifactId>
+                <version>${velocity.version}</version>
             </dependency>
 
             <!-- ============= -->
