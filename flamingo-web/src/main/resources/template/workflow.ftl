@@ -20,6 +20,9 @@
         <#case "kill">
             <#include "kill.ftl">
             <#break>
+        <#case "decision">
+            <#include "decision.ftl">
+            <#break>
         <#default>
     </#switch>
     </#list>
