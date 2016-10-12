@@ -5,6 +5,7 @@
 
     <bean name="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath" value="classpath:/org/exem/flamingo/web/oozie/"/>
+        <property name="defaultEncoding" value="utf-8"/>
         <property name="freemarkerVariables">
             <map>
                 <entry key="xml_escape" value-ref="fmXmlEscape"/>
