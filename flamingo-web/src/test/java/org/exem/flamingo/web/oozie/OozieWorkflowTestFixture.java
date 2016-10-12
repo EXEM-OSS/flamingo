@@ -98,4 +98,16 @@ public class OozieWorkflowTestFixture {
         return list;
     }
 
+    public Map createCredentials(Map workflow) {
+        ArrayList actions = (ArrayList) workflow.get("actions");
+
+        Map node = new HashMap();
+        node.put("category", "credentials");
+        node.put("name", "Credentials");
+        node.put("type", "Credentials Type");
+        node.put("properties", createProperties());
+        actions.add(node);
+
+        return workflow;
+    }
 }
