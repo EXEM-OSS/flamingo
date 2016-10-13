@@ -13,6 +13,19 @@
             </prepare>
         </#if>
 
+        <#if (action.data.streaming)??>
+            <#include "streaming.ftl">
+        </#if>
+        <#if (action.data.pipes)??>
+            <#include "pipes.ftl">
+        </#if>
+
+        <#if (action.data.jobXml)??>
+            <#list action.data.jobXml as xml>
+                <job-xml>${xml}</job-xml>
+            </#list>
+        </#if>
+
         <#if (action.data.configuration)??>
             <configuration>
                 <#list action.data.configurations as configuration>
