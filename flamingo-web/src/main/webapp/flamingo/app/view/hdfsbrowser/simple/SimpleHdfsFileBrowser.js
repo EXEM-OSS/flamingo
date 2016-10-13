@@ -31,7 +31,7 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowser', {
         type: 'simpleHdfsBrowserModel'
     },
 
-    title: message.msg('fs.hdfs.common.browser'),
+    title: 'HDFS Browser',
     layout: 'fit',
     width: 800,
     height: 600,
@@ -80,19 +80,7 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsFileBrowser', {
                     text: 'File Name',
                     width: 225,
                     dataIndex: 'filename',
-                    tdCls: 'monospace-column'/*,
-                    renderer: function (value, metaData, record) {
-                        metaData.tdAttr = 'data-qtip="'
-                            + message.msg('fs.hdfs.common.filename') + ' : ' + record.get('filename')
-                            + '<br/>'
-                            + message.msg('fs.hdfs.common.file.length') + ' : ' + fileSize(record.get('length')) + ' (' + toCommaNumber(record.get('length')) + ')'
-                            + '<br/>'
-                            + message.msg('fs.hdfs.common.replication') + ' : ' + record.get('replication')
-                            + '<br/>'
-                            + message.msg('fs.hdfs.common.spaceConsumed') + ' : ' + fileSize(record.get('spaceConsumed'))
-                            + '"';
-                        return value;
-                    }*/
+                    tdCls: 'monospace-column'
                 },
                 {
                     text: 'File Size',

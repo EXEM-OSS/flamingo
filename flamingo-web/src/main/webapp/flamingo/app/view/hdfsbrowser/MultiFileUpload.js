@@ -50,7 +50,7 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
             buttonOnly: true,
             buttonConfig: {
                 iconCls: 'common-search',
-                text: message.msg('fs.hdfs.file.upload.find')
+                text: 'Find'
             },
             width: 60,
             listeners: {
@@ -69,16 +69,14 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
                             store.add({
                                 name: files[i].name, size: files[i].size, type: files[i].type,
                                 status: files[i].size >= grid.maxUploadSize
-                                    ? message.msg('fs.hdfs.file.upload.exceed')
-                                    : message.msg('fs.hdfs.file.upload.ready'),
+                                    ? 'Capacity Exceeded'
+                                    : 'Ready',
                                 file: files[i]
                             });
                         } else {
                             record.set('size', files[i].size);
                             record.set('type', files[i].type);
-                            record.set('status', files[i].size >= grid.maxUploadSize
-                                ? message.msg('fs.hdfs.file.upload.exceed')
-                                : message.msg('fs.hdfs.file.upload.ready'));
+                            record.set('status', files[i].size >= grid.maxUploadSize ? 'Capacity Exceeded' : 'Ready');
                             record.set('file', files[i]);
                             record.commit();
                         }
@@ -88,7 +86,7 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
         },
         '-',
         {
-            text: message.msg('fs.hdfs.file.upload.deleteAll'),
+            text: 'Delete All',
             iconCls: 'common-delete',
             handler: function (btn) {
                 var grid = btn.up('multiFileUploadPanel'),
@@ -99,7 +97,7 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
         },
         '->',
         {
-            text: message.msg('fs.hdfs.file.upload'),
+            text: 'Upload',
             iconCls: 'common-upload',
             handler: function (btn) {
                 var grid = btn.up('multiFileUploadPanel'),
@@ -113,7 +111,7 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
             }
         },
         {
-            text: message.msg('fs.hdfs.file.upload.abort'),
+            text: 'Cancel',
             iconCls: 'common-cancel',
             handler: function (btn) {
                 var grid = btn.up('multiFileUploadPanel'),
@@ -122,7 +120,7 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
                 if (grid.xhrHashMap) {
                     grid.xhrHashMap.each(function (key, value, length) {
                         record = store.getById(key);
-                        if (record && record.get('status') == message.msg('fs.hdfs.file.upload.uploading')) {
+                        if (record && record.get('status') == 'Uploading..') {
                             value.abort();
                         }
                     });
@@ -133,13 +131,13 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
     columns: [
         {
             dataIndex: 'name',
-            header: message.msg('fs.hdfs.file.upload.fileName'),
+            header: 'File Name',
             flex: 1,
             align: 'center'
         },
         {
             dataIndex: 'size',
-            header: message.msg('fs.hdfs.file.upload.fileSize'),
+            header: 'File Size',
             width: 70,
             fixed: true,
             align: 'center',
@@ -149,21 +147,21 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
         },
         {
             dataIndex: 'type',
-            header: message.msg('fs.hdfs.file.upload.fileType'),
+            header: 'Type',
             width: 150,
             fixed: true,
             align: 'center'
         },
         {
             dataIndex: 'status',
-            header: message.msg('fs.hdfs.file.upload.status'),
+            header: 'Status',
             width: 70,
             fixed: true,
             align: 'center'
         },
         {
             dataIndex: 'progress',
-            header: message.msg('fs.hdfs.file.upload.progress'),
+            header: 'Progress',
             width: 90,
             fixed: true,
             align: 'center',
@@ -211,7 +209,7 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
     },
     bbar: {
         xtype: '_statusBar',
-        text: Ext.String.format(message.msg('fs.hdfs.file.msg.upload.max'),
+        text: Ext.String.format('Maximum allowed size of file to upload \: {0}',
             Ext.util.Format.fileSize(parseInt(config['file.upload.max.size'])))
     },
     xhrHashMap: new Ext.util.HashMap(),
@@ -229,7 +227,7 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
             return;
         }
 
-        if (records[idx].get('status') == message.msg('fs.hdfs.file.upload.ready') || records[idx].get('status') == message.msg('fs.hdfs.file.upload.abort')) {
+        if (records[idx].get('status') == 'Ready' || records[idx].get('status') == 'Cancel') {
             grid.xhrHashMap.add(records[idx].get('name'), xhr);
         }
         else {
@@ -247,7 +245,7 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
         xhr.upload.addEventListener("progress", function (evt) {
             var percentComplete = Math.round(evt.loaded * 100 / evt.total);
             records[idx].set('progress', percentComplete);
-            records[idx].set('status', message.msg('fs.hdfs.file.upload.uploading'));
+            records[idx].set('status', 'Uploading..');
             records[idx].commit();
         }, false);
 
@@ -255,36 +253,35 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
             var response = Ext.decode(evt.target.responseText);
 
             if (response.success) {
-                records[idx].set('status', message.msg('fs.hdfs.file.upload.completed'));
+                records[idx].set('status', 'Completed');
                 records[idx].commit();
             } else if (response.error.cause) {
                 error('Notification', response.error.cause);
 
                 records[idx].set('progress', 0);
-                records[idx].set('status', message.msg('fs.hdfs.file.upload.error'));
+                records[idx].set('status', 'Error');
                 records[idx].commit();
             } else if (response.error.message) {
                 error('Notification', response.error.message);
 
                 records[idx].set('progress', 0);
-                records[idx].set('status', message.msg('fs.hdfs.file.upload.error'));
+                records[idx].set('status', 'Error');
                 records[idx].commit();
             } else {
-                error(message.msg('common.warning'), format(message.msg('common.failure'), config['system.admin.email']));
-
                 records[idx].set('progress', 0);
-                records[idx].set('status', message.msg('fs.hdfs.file.upload.error'));
+                records[idx].set('status', 'Error');
                 records[idx].commit();
+                error('Error', 'Please contact system admin');
             }
         }, false);
 
         xhr.addEventListener("error", function (evt) {
-            records[idx].set('status', message.msg('fs.hdfs.file.upload.error'));
+            records[idx].set('status', 'Error');
             records[idx].commit();
         }, false);
 
         xhr.addEventListener("abort", function (evt) {
-            records[idx].set('status', message.msg('fs.hdfs.file.upload.abort'));
+            records[idx].set('status', 'Cancel');
             records[idx].commit();
         }, false);
 
@@ -294,12 +291,12 @@ Ext.define('Flamingo.view.hdfsbrowser.MultiFileUpload', {
             if (evt.target.status != 200) {
                 if (response.error.code == 100) {
                     records[idx].set('progress', 0);
-                    records[idx].set('status', message.msg('fs.hdfs.file.upload.duplicated'));
+                    records[idx].set('status', 'Duplicated File');
                     records[idx].commit();
                     return;
                 }
 
-                records[idx].set('status', message.msg('fs.hdfs.file.upload.error'));
+                records[idx].set('status', 'Error');
                 records[idx].commit();
             }
 

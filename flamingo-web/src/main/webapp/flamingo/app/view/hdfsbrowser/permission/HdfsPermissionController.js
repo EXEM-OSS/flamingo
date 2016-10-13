@@ -98,7 +98,7 @@ Ext.define('Flamingo.view.hdfsbrowser.permission.HdfsPermissionController', {
 
         var progress = Ext.MessageBox.show({
             title: 'Notification',
-            message: message.msg('fs.hdfs.file.msg.permission'),
+            message: 'Changing ownership',
             width: 300,
             wait: true,
             waitConfig: {interval: 200},

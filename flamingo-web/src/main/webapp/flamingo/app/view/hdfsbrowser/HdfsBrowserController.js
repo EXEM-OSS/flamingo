@@ -289,7 +289,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                                 }
                             },
                             function () {
-                                error(message.msg('common.warning'), format(message.msg('common.failure'), config['system.admin.email']));
+                                error('Error', 'Please contact system admin');
                             }
                         );
                     }
@@ -404,12 +404,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                         function () {
                             progress.close();
 
-                            Ext.MessageBox.show({
-                                title: message.msg('common.warning'),
-                                message: format(message.msg('common.failure'), config['system.admin.email']),
-                                buttons: Ext.MessageBox.OK,
-                                icon: Ext.MessageBox.WARNING
-                            });
+                            error('Error', 'Please contact system admin');
                         }
                     );
                 }
@@ -504,12 +499,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                             }
                         },
                         function () {
-                            Ext.MessageBox.show({
-                                title: message.msg('common.warning'),
-                                message: format(message.msg('common.failure'), config['system.admin.email']),
-                                buttons: Ext.MessageBox.OK,
-                                icon: Ext.MessageBox.WARNING
-                            });
+                            error('Error', 'Please contact system admin');
                             return false;
                         }
                     );
@@ -571,7 +561,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                             }
                         },
                         function () {
-                            error(message.msg('common.warning'), format(message.msg('common.failure'), config['system.admin.email']));
+                            error('Error', 'Please contact system admin');
                         }
                     );
                 }
@@ -598,8 +588,8 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
             parentPath = node;
 
         Ext.MessageBox.show({
-            title: message.msg('fs.hdfs.directory.title.delete'),
-            message: format(message.msg('fs.hdfs.directory.msg.delete.confirm'), currentPath),
+            title: 'Delete Directory',
+            message: format('Do you want to delete the selected {0} directory?', currentPath),
             buttons: Ext.MessageBox.YESNO,
             icon: Ext.MessageBox.WARNING,
             fn: function handler(btn) {
@@ -624,7 +614,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                             }
                         },
                         function () {
-                            error(message.msg('common.warning'), format(message.msg('common.failure'), config['system.admin.email']));
+                            error('Error', 'Please contact system admin');
                         }
                     );
                 }
@@ -646,8 +636,8 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
             filenameToMerge = selection[0].get('text');
 
         Ext.MessageBox.show({
-            title: message.msg('fs.hdfs.directory.title.merge'),
-            message: message.msg('fs.hdfs.directory.msg.merge'),
+            title: 'Merge File',
+            message: 'Please enter names of file to merge.',
             width: 300,
             prompt: true,
             buttons: Ext.MessageBox.YESNO,
@@ -658,7 +648,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                 if (Ext.isEmpty(text)) {
                     Ext.MessageBox.show({
                         title: 'Notification',
-                        message: message.msg('fs.hdfs.directory.msg.merge'),
+                        message: 'Please enter names of file to merge.',
                         buttons: Ext.MessageBox.OK,
                         icon: Ext.MessageBox.WARNING
                     });
@@ -710,12 +700,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                             }
                         },
                         function () {
-                            Ext.MessageBox.show({
-                                title: message.msg('common.warning'),
-                                message: format(message.msg('common.failure'), config['system.admin.email']),
-                                buttons: Ext.MessageBox.OK,
-                                icon: Ext.MessageBox.WARNING
-                            });
+                            error('Error', 'Please contact system admin');
                         }
                     );
                 }
@@ -745,7 +730,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
 
                 if (obj.success) {
                     Ext.create('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
-                        title: message.msg('fs.hdfs.property.title.Directory'),
+                        title: 'Directory Property',
                         propertyData: obj.map
                     }).show();
                 } else {
@@ -758,12 +743,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                 }
             },
             function () {
-                Ext.MessageBox.show({
-                    title: message.msg('common.warning'),
-                    message: format(message.msg('common.failure'), config['system.admin.email']),
-                    buttons: Ext.MessageBox.OK,
-                    icon: Ext.MessageBox.WARNING
-                });
+                error('Error', 'Please contact system admin');
             }
         );
     },
@@ -837,12 +817,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                 }
             },
             function () {
-                Ext.MessageBox.show({
-                    title: message.msg('common.warning'),
-                    message: format(message.msg('common.failure'), config['system.admin.email']),
-                    buttons: Ext.MessageBox.OK,
-                    icon: Ext.MessageBox.WARNING
-                });
+                error('Error', 'Please contact system admin');
             }
         );
     },
@@ -857,7 +832,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (selectedFiles.length == 0) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.select'),
+                message: 'Please select a file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -886,7 +861,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (Ext.isEmpty(record)) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.directory.msg.copy.target'),
+                message: 'Please select a path to copy.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -900,7 +875,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (selectedFiles[0].get('path') == dstPath) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.directory.msg.copy.samePath'),
+                message: 'Cannot be copied to the current location.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -914,15 +889,15 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         }
 
         Ext.MessageBox.show({
-            title: message.msg('fs.hdfs.file.title.copy'),
-            message: format(message.msg('fs.hdfs.file.msg.copy'), selectedFiles.length, dstPath),
+            title: 'Copy File',
+            message: format('Do you want to copy the selected {0} file(s) to {1}?', selectedFiles.length, dstPath),
             buttons: Ext.MessageBox.YESNO,
             icon: Ext.MessageBox.INFO,
             fn: function handler(btn) {
                 if (btn == 'yes') {
                     Ext.MessageBox.show({
                         title: 'Notification',
-                        message: message.msg('fs.hdfs.file.msg.copying'),
+                        message: 'Copying file(s)..',
                         width: 300,
                         wait: true,
                         waitConfig: {interval: 200},
@@ -961,13 +936,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                             }
                         },
                         function () {
-                            Ext.MessageBox.hide();
-                            Ext.MessageBox.show({
-                                title: message.msg('common.warning'),
-                                message: format(message.msg('common.failure'), config['system.admin.email']),
-                                buttons: Ext.MessageBox.OK,
-                                icon: Ext.MessageBox.WARNING
-                            });
+                            error('Error', 'Please contact system admin');
                         }
                     );
                 }
@@ -985,7 +954,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (selectedFiles.length == 0) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.select'),
+                message: 'Please select a file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1014,7 +983,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (Ext.isEmpty(record)) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.directory.msg.move.target'),
+                message: 'Please select a path to move.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1031,7 +1000,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (compareToValidPath == record.id) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.directory.msg.move.samePath'),
+                message: 'Cannot be moved to the current location.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1045,15 +1014,15 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         }
 
         Ext.MessageBox.show({
-            title: message.msg('fs.hdfs.file.title.move'),
-            message: format(message.msg('fs.hdfs.file.msg.move'), filesToMove.length, record.id),
+            title: 'Move File',
+            message: format('Do you want to move the selected {0} file(s) to {1}?', filesToMove.length, record.id),
             buttons: Ext.MessageBox.YESNO,
             icon: Ext.MessageBox.INFO,
             fn: function handler(btn) {
                 if (btn == 'yes') {
                     var progress = Ext.MessageBox.show({
                         title: 'Notification',
-                        message: message.msg('fs.hdfs.file.msg.moving'),
+                        message: 'Moving file(s)..',
                         width: 300,
                         wait: true,
                         waitConfig: {interval: 200},
@@ -1095,12 +1064,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                         function () {
                             progress.close();
 
-                            Ext.MessageBox.show({
-                                title: message.msg('common.warning'),
-                                message: format(message.msg('common.failure'), config['system.admin.email']),
-                                buttons: Ext.MessageBox.OK,
-                                icon: Ext.MessageBox.WARNING
-                            });
+                            error('Error', 'Please contact system admin');
                         }
                     );
                 }
@@ -1121,7 +1085,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (selectedFiles.length < 1) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.select'),
+                message: 'Please select a file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1129,7 +1093,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         } else if (selectedFiles.length > 1) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.common.file.limit'),
+                message: 'Please select one file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1139,8 +1103,8 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         var selectedFilename = selectedFile.get('filename');
 
         Ext.MessageBox.show({
-            title: message.msg('fs.hdfs.file.title.rename'),
-            message: message.msg('fs.hdfs.file.msg.rename.input'),
+            title: 'Rename',
+            message: 'Please enter a new file name.',
             width: 300,
             prompt: true,
             buttons: Ext.MessageBox.YESNO,
@@ -1181,12 +1145,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                             });
                         }
                     }, function () {
-                        Ext.MessageBox.show({
-                            title: message.msg('common.warning'),
-                            message: format(message.msg('common.failure'), config['system.admin.email']),
-                            buttons: Ext.MessageBox.OK,
-                            icon: Ext.MessageBox.WARNING
-                        });
+                        error('Error', 'Please contact system admin');
                     });
                 }
             }
@@ -1205,7 +1164,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (selectedFiles.length == 0) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.select'),
+                message: 'Please select a file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1219,8 +1178,8 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         }
 
         Ext.MessageBox.show({
-            title: message.msg('fs.hdfs.file.title.delete'),
-            message: format(message.msg('fs.hdfs.file.msg.delete'), selectedFiles.length),
+            title: 'Delete File',
+            message: format('Do you want to delete the selected {0} file(s)?', selectedFiles.length),
             buttons: Ext.MessageBox.YESNO,
             icon: Ext.MessageBox.WARNING,
             fn: function handler(btn) {
@@ -1228,7 +1187,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
 
                     var progress = Ext.MessageBox.show({
                         title: 'Notification',
-                        message: message.msg('fs.hdfs.file.msg.deleting'),
+                        message: 'Deleting file...',
                         width: 300,
                         wait: true,
                         waitConfig: {interval: 200},
@@ -1270,12 +1229,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                         function () {
                             progress.close();
 
-                            Ext.MessageBox.show({
-                                title: message.msg('common.warning'),
-                                message: format(message.msg('common.failure'), config['system.admin.email']),
-                                buttons: Ext.MessageBox.OK,
-                                icon: Ext.MessageBox.WARNING
-                            });
+                            error('Error', 'Please contact system admin');
                         }
                     );
                 }
@@ -1292,7 +1246,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (selectedFiles.length > 1) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.common.file.limit'),
+                message: 'Please select one file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1314,7 +1268,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
 
                 if (obj.success) {
                     Ext.create('Flamingo.view.hdfsbrowser.property.HdfsPropertyWindow', {
-                        title: message.msg('fs.hdfs.property.title.File'),
+                        title: 'File Property',
                         propertyData: obj.map
                     }).show();
                 } else if (obj.error.cause) {
@@ -1334,12 +1288,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                 }
             },
             function () {
-                Ext.MessageBox.show({
-                    title: message.msg('common.warning'),
-                    message: format(message.msg('common.failure'), config['system.admin.email']),
-                    buttons: Ext.MessageBox.OK,
-                    icon: Ext.MessageBox.WARNING
-                });
+                error('Error', 'Please contact system admin');
             }
         )
     },
@@ -1353,7 +1302,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
             currentPath = me.getViewModel().get('node');
 
         Ext.create('Ext.window.Window', {
-            title: message.msg('fs.hdfs.file.title.upload'),
+            title: 'Upload FIle',
             layout: 'fit',
             border: false,
             modal: true,
@@ -1380,7 +1329,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (Ext.isEmpty(selectedFiles)) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.select'),
+                message: 'Please select a file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1390,7 +1339,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (selectedFiles.length > 1) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.common.file.limit'),
+                message: 'Please select one file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1399,8 +1348,8 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
 
         if (selectedFiles.length > config['file.download.max.size']) {
             Ext.MessageBox.show({
-                title: message.msg('common.check'),
-                message: format(message.msg('fs.hdfs.file.msg.download.max'), Ext.util.Format.fileSize(config['file.download.max.size'])),
+                title: 'Info',
+                message: format('Maximum allowed size of file to download \: {0}', Ext.util.Format.fileSize(config['file.download.max.size'])),
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1448,7 +1397,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (selectedFiles.length < 1) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.select'),
+                message: 'Please select a file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1456,7 +1405,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         } else if (selectedFiles.length > 1) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.common.file.limit'),
+                message: 'Please select one file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1478,7 +1427,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (fileSize < 1) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.zeroFileSize'),
+                message: 'File contents does not exist.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1488,7 +1437,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (filePath.match(extensionPattern)) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.viewFile'),
+                message: 'Cannot preview binary or compressed files.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1511,7 +1460,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
 
         var progress = Ext.MessageBox.show({
             title: 'Notification',
-            message: message.msg('fs.hdfs.file.msg.view'),
+            message: 'Loading file..',
             width: 300,
             wait: true,
             waitConfig: {interval: 50},
@@ -1556,12 +1505,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
             function () {
                 progress.close();
 
-                Ext.MessageBox.show({
-                    title: message.msg('common.warning'),
-                    message: format(message.msg('common.failure'), config['system.admin.email']),
-                    buttons: Ext.MessageBox.OK,
-                    icon: Ext.MessageBox.WARNING
-                });
+                error('Error', 'Please contact system admin');
             }
         );
     },
@@ -1575,7 +1519,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (selectedFiles.length < 1) {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.file.msg.select'),
+                message: 'Please select a file.',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1590,7 +1534,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (filePath == '/' || filePath == 'root') {
             Ext.MessageBox.show({
                 title: 'Notification',
-                message: message.msg('fs.hdfs.directory.msg.permission.root'),
+                message: 'Cannot change the ownership of root directory(/).',
                 buttons: Ext.MessageBox.OK,
                 icon: Ext.MessageBox.WARNING
             });
@@ -1643,12 +1587,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                     }
                 },
                 function () {
-                    Ext.MessageBox.show({
-                        title: message.msg('common.warning'),
-                        message: format(message.msg('common.failure'), config['system.admin.email']),
-                        buttons: Ext.MessageBox.OK,
-                        icon: Ext.MessageBox.WARNING
-                    });
+                    error('Error', 'Please contact system admin');
                 }
             )
         } else {
@@ -1954,7 +1893,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                 }
             },
             function () {
-                error(message.msg('common.warning'), format(message.msg('common.failure'), config['system.admin.email']));
+                error('Error', 'Please contact system admin');
             }
         );
     },
@@ -2048,7 +1987,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
                         }
                     },
                     function () {
-                        error(message.msg('common.warning'), format(message.msg('common.failure'), config['system.admin.email']));
+                        error('Error', 'Please contact system admin');
                     }
                 );
             }

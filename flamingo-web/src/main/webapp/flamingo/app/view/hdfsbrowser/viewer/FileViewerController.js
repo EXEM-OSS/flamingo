@@ -104,12 +104,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerController', {
                 }
             },
             function () {
-                Ext.MessageBox.show({
-                    title: message.msg('common.warning'),
-                    message: format(message.msg('common.failure'), config['system.admin.email']),
-                    buttons: Ext.MessageBox.OK,
-                    icon: Ext.MessageBox.WARNING
-                });
+                error('Error', 'Please contact system admin');
             }
         );
     },
@@ -168,12 +163,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerController', {
                 }
             },
             function () {
-                Ext.MessageBox.show({
-                    title: message.msg('common.warning'),
-                    message: format(message.msg('common.failure'), config['system.admin.email']),
-                    buttons: Ext.MessageBox.OK,
-                    icon: Ext.MessageBox.WARNING
-                });
+                error('Error', 'Please contact system admin');
             }
         );
     },
@@ -230,12 +220,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerController', {
                 }
             },
             function () {
-                Ext.MessageBox.show({
-                    title: message.msg('common.warning'),
-                    message: format(message.msg('common.failure'), config['system.admin.email']),
-                    buttons: Ext.MessageBox.OK,
-                    icon: Ext.MessageBox.WARNING
-                });
+                error('Error', 'Please contact system admin');
             }
         );
     },
@@ -283,12 +268,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerController', {
                 }
             },
             function () {
-                Ext.MessageBox.show({
-                    title: message.msg('common.warning'),
-                    message: format(message.msg('common.failure'), config['system.admin.email']),
-                    buttons: Ext.MessageBox.OK,
-                    icon: Ext.MessageBox.WARNING
-                });
+                error('Error', 'Please contact system admin');
             }
         );
     },
@@ -362,12 +342,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerController', {
                     }
                 },
                 function () {
-                    Ext.MessageBox.show({
-                        title: message.msg('common.warning'),
-                        message: format(message.msg('common.failure'), config['system.admin.email']),
-                        buttons: Ext.MessageBox.OK,
-                        icon: Ext.MessageBox.WARNING
-                    });
+                    error('Error', 'Please contact system admin');
                 }
             );
         }

@@ -19,7 +19,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserModel', {
     alias: 'viewmodel.browserModel',
 
     data: {
-        title: message.msg('fs.hdfs.common.browser'),
+        title: 'HDFS Browser',
         node: '/'
     },
 
@@ -57,31 +57,23 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserModel', {
 
                         // 툴팁을 추가한다.
                         var qtip =
-                            message.msg('common.path') + ' : ' + newChildNode.raw.fullyQualifiedPath
+                            'Path : ' + newChildNode.raw.fullyQualifiedPath
                             + '<br/>'
                             + 'Owner' + ' : ' + newChildNode.raw.owner
                             + '<br/>'
-                            + message.msg('common.group') + ' : ' + newChildNode.raw.group
+                            + 'Group : ' + newChildNode.raw.group
                             + '<br/>'
-                            + message.msg('fs.hdfs.property.directoryCount') + ' : ' + toCommaNumber(newChildNode.raw.directoryCount)
+                            + 'Directory Count : ' + toCommaNumber(newChildNode.raw.directoryCount)
                             + '<br/>'
-                            + message.msg('fs.hdfs.property.fileCount') + ' : ' + toCommaNumber(newChildNode.raw.fileCount);
+                            + 'File Count : ' + toCommaNumber(newChildNode.raw.fileCount);
 
                         if (newChildNode.raw.spaceConsumed > 0) {
-                            qtip = qtip + '<br/>' + message.msg('fs.hdfs.directorySize') + ' : ' + fileSize(newChildNode.raw.spaceConsumed)
+                            qtip = qtip + '<br/>Directory Size : ' + fileSize(newChildNode.raw.spaceConsumed)
                                 + '<br/>'
-                                + message.msg('fs.hdfs.fileSize') + ' : ' + fileSize(newChildNode.raw.spaceConsumed / 2);
+                                + 'File Size : ' + fileSize(newChildNode.raw.spaceConsumed / 2);
                         }
 
                         newChildNode.set('qtip', qtip);
-
-                        /*
-                         // spaceConsumed는 복제를 포함한 용량이므로 복제를 제외한 용량은 1/2로 나눈다.
-                         var consumed = newChildNode.raw.spaceConsumed / 2;
-                         if (consumed > (_50GB)) {
-                         newChildNode.set('iconCls', 'common-refresh');
-                         }
-                         */
                     }
                 }
             }
