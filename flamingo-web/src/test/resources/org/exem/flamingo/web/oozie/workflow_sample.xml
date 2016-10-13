@@ -1,0 +1,258 @@
+<workflow-app name="string" xmlns:uri="oozie:workflow:0.5">
+    <!--Optional:-->
+    <parameters>
+        <!--1 or more repetitions:-->
+        <property>
+            <name>string</name>
+            <!--Optional:-->
+            <value>string</value>
+            <!--Optional:-->
+            <description>string</description>
+        </property>
+    </parameters>
+    <!--Optional:-->
+
+    <global>
+        <!--Optional:-->
+        <job-tracker>string</job-tracker>
+        <!--Optional:-->
+        <name-node>string</name-node>
+        <!--Zero or more repetitions:-->
+        <job-xml>string</job-xml>
+        <!--Optional:-->
+        <configuration>
+            <!--1 or more repetitions:-->
+            <property>
+                <name>string</name>
+                <value>string</value>
+                <!--Optional:-->
+                <description>string</description>
+            </property>
+        </configuration>
+    </global>
+
+    <!--Optional:-->
+    <credentials>
+        <credential name="string" type="string">
+            <!--1 or more repetitions:-->
+            <property>
+                <name>string</name>
+                <value>string</value>
+                <!--Optional:-->
+                <description>string</description>
+            </property>
+        </credential>
+    </credentials>
+
+    <start to="string"/>
+    <!--You have a CHOICE of the next 5 items at this level-->
+
+    <decision name="string">
+        <switch>
+            <!--1 or more repetitions:-->
+            <case to="string">string</case>
+            <default to="string"/>
+        </switch>
+    </decision>
+
+    <fork name="string">
+        <!--2 or more repetitions:-->
+        <path start="string"/>
+        <path start="string"/>
+    </fork>
+
+    <join name="string" to="string"/>
+
+    <kill name="string">
+        <message>string</message>
+    </kill>
+
+    <action name="string" cred="string" retry-max="string" retry-interval="string">
+        <!--You have a CHOICE of the next 6 items at this level-->
+        <map-reduce>
+            <!--Optional:-->
+            <job-tracker>string</job-tracker>
+            <!--Optional:-->
+            <name-node>string</name-node>
+            <!--Optional:-->
+            <prepare>
+                <!--Zero or more repetitions:-->
+                <delete path="string"/>
+                <!--Zero or more repetitions:-->
+                <mkdir path="string"/>
+            </prepare>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <!--Optional:-->
+            <streaming>
+                <!--Optional:-->
+                <mapper>string</mapper>
+                <!--Optional:-->
+                <reducer>string</reducer>
+                <!--Optional:-->
+                <record-reader>string</record-reader>
+                <!--Zero or more repetitions:-->
+                <record-reader-mapping>string</record-reader-mapping>
+                <!--Zero or more repetitions:-->
+                <env>string</env>
+            </streaming>
+            <!--Optional:-->
+            <pipes>
+                <!--Optional:-->
+                <map>string</map>
+                <!--Optional:-->
+                <reduce>string</reduce>
+                <!--Optional:-->
+                <inputformat>string</inputformat>
+                <!--Optional:-->
+                <partitioner>string</partitioner>
+                <!--Optional:-->
+                <writer>string</writer>
+                <!--Optional:-->
+                <program>string</program>
+            </pipes>
+            <!--Zero or more repetitions:-->
+            <job-xml>string</job-xml>
+            <!--Optional:-->
+            <configuration>
+                <!--1 or more repetitions:-->
+                <property>
+                    <name>string</name>
+                    <value>string</value>
+                    <!--Optional:-->
+                    <description>string</description>
+                </property>
+            </configuration>
+            <!--Optional:-->
+            <config-class>string</config-class>
+            <!--Zero or more repetitions:-->
+            <file>string</file>
+            <!--Zero or more repetitions:-->
+            <archive>string</archive>
+        </map-reduce>
+        <pig>
+            <!--Optional:-->
+            <job-tracker>string</job-tracker>
+            <!--Optional:-->
+            <name-node>string</name-node>
+            <!--Optional:-->
+            <prepare>
+                <!--Zero or more repetitions:-->
+                <delete path="string"/>
+                <!--Zero or more repetitions:-->
+                <mkdir path="string"/>
+            </prepare>
+            <!--Zero or more repetitions:-->
+            <job-xml>string</job-xml>
+            <!--Optional:-->
+            <configuration>
+                <!--1 or more repetitions:-->
+                <property>
+                    <name>string</name>
+                    <value>string</value>
+                    <!--Optional:-->
+                    <description>string</description>
+                </property>
+            </configuration>
+            <script>string</script>
+            <!--Zero or more repetitions:-->
+            <param>string</param>
+            <!--Zero or more repetitions:-->
+            <argument>string</argument>
+            <!--Zero or more repetitions:-->
+            <file>string</file>
+            <!--Zero or more repetitions:-->
+            <archive>string</archive>
+        </pig>
+        <sub-workflow>
+            <app-path>string</app-path>
+            <!--Optional:-->
+            <propagate-configuration/>
+            <!--Optional:-->
+            <configuration>
+                <!--1 or more repetitions:-->
+                <property>
+                    <name>string</name>
+                    <value>string</value>
+                    <!--Optional:-->
+                    <description>string</description>
+                </property>
+            </configuration>
+        </sub-workflow>
+        <fs>
+            <!--Optional:-->
+            <name-node>string</name-node>
+            <!--Zero or more repetitions:-->
+            <job-xml>string</job-xml>
+            <!--Optional:-->
+            <configuration>
+                <!--1 or more repetitions:-->
+                <property>
+                    <name>string</name>
+                    <value>string</value>
+                    <!--Optional:-->
+                    <description>string</description>
+                </property>
+            </configuration>
+            <!--You have a CHOICE of the next 6 items at this level-->
+            <delete path="string"/>
+            <mkdir path="string"/>
+            <move source="string" target="string"/>
+            <chmod path="string" permissions="string" dir-files="string">
+                <!--Optional:-->
+                <recursive/>
+            </chmod>
+            <touchz path="string"/>
+            <chgrp path="string" group="string" dir-files="string">
+                <!--Optional:-->
+                <recursive/>
+            </chgrp>
+        </fs>
+        <java>
+            <!--Optional:-->
+            <job-tracker>string</job-tracker>
+            <!--Optional:-->
+            <name-node>string</name-node>
+            <!--Optional:-->
+            <prepare>
+                <!--Zero or more repetitions:-->
+                <delete path="string"/>
+                <!--Zero or more repetitions:-->
+                <mkdir path="string"/>
+            </prepare>
+            <!--Zero or more repetitions:-->
+            <job-xml>string</job-xml>
+            <!--Optional:-->
+            <configuration>
+                <!--1 or more repetitions:-->
+                <property>
+                    <name>string</name>
+                    <value>string</value>
+                    <!--Optional:-->
+                    <description>string</description>
+                </property>
+            </configuration>
+            <main-class>string</main-class>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <java-opts>string</java-opts>
+            <!--1 or more repetitions:-->
+            <java-opt>string</java-opt>
+            <!--Zero or more repetitions:-->
+            <arg>string</arg>
+            <!--Zero or more repetitions:-->
+            <file>string</file>
+            <!--Zero or more repetitions:-->
+            <archive>string</archive>
+            <!--Optional:-->
+            <capture-output/>
+        </java>
+        <!--You may enter ANY elements at this point-->
+        <AnyElement/>
+        <ok to="string"/>
+        <error to="string"/>
+        <!--You may enter ANY elements at this point-->
+        <AnyElement/>
+    </action>
+    <end name="string"/>
+    <!--You may enter ANY elements at this point-->
+    <AnyElement/>
+</workflow-app>
