@@ -120,7 +120,6 @@ Use following command for deploying site :
 * Slack : flamingo-dev-team.slack.com
 * Issue Tracker : http://jira.exem-oss.org/projects/FL
 * WIKI 
-  FEA : http://confluence.exem-oss.org/display/FEA 
   FL : http://confluence.exem-oss.org/display/FL/Flamingo 
 
 ## References
