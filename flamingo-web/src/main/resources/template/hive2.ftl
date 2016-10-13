@@ -1,4 +1,4 @@
-        <hive xmlns="${version!"uri:oozie:hive-action:0.5"}">
+        <hive2 xmlns="${version!"uri:oozie:hive-action:0.5"}">
             <job-tracker>${action.data.jobTracker}</job-tracker>
             <name-node>${action.data.nameNode}</name-node>
             <#if (action.data.prepares)??>
@@ -30,6 +30,14 @@
                 </configuration>
             </#if>
 
+            <#if (action.data.jdbcUrl)??>
+                <jdbc-url>${action.data.jdbcUrl}</jdbc-url>
+            </#if>
+
+            <#if (action.data.password)??>
+                <password>${action.data.password}</password>
+            </#if>
+
             <#if (action.data.script)??>
                 <script>${action.data.script}</script>
             </#if>
@@ -57,4 +65,4 @@
                     <archive>${archive}</archive>
                 </#list>
             </#if>
-        </hive>
+        </hive2>
