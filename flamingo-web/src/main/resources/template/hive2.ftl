@@ -3,13 +3,13 @@
         <name-node>${action.data.nameNode}</name-node>
         <#if (action.data.prepares)??>
             <prepare>
-            <#list action.data.prepares as prepare>
-                <#if prepare.type == 'DELETE'>
-                    <delete path="${prepare.path}"/>
-                <#elseif prepare.type == 'MKDIR'>
-                    <mkdir path="${prepare.path}"/>
-                </#if>
-            </#list>
+                <#list action.data.prepares as prepare>
+                    <#if prepare.type == 'DELETE'>
+                        <delete path="${prepare.path}"/>
+                    <#elseif prepare.type == 'MKDIR'>
+                        <mkdir path="${prepare.path}"/>
+                    </#if>
+                </#list>
             </prepare>
         </#if>
 
