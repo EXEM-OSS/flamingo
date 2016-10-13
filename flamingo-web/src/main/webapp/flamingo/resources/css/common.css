@@ -154,3 +154,30 @@
 .f11 {font-size:11px !important;}
 a.wtxt{color:#FFFFFF;}
 
+.breadcrumb {
+    padding: 4px 15px;
+    margin: 0;
+    list-style: none;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+}
+.breadcrumb > li {
+    display: inline-block;
+}
+.breadcrumb > li + li:before {
+    padding: 0 5px;
+    color: #ccc;
+    content: "/\00a0";
+}
+.breadcrumb > .active {
+    color: #777;
+}
+
+.breadcrumb > li > a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.breadcrumb-over {
+    cursor: pointer;
+}

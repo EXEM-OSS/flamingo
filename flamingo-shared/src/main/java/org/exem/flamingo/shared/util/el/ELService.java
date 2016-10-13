@@ -7,7 +7,7 @@
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,9 +16,21 @@
  * limitations under the License.
  */
 
-Ext.define('Flamingo.view.hdfsbrowser.Browser', {
-    extend: 'Ext.panel.Panel',
-    xtype: 'hdfsbrowser',
+package org.exem.flamingo.shared.util.el;
 
-    title: 'HDFS Browser'
-});
+/**
+ * Expression Language Service Interface.
+ *
+ * @author Byoung Gon, Kim
+ * @since 0.2
+ */
+public interface ELService {
+
+    /**
+     * Expression Language Evaluator를 생성한다.
+     *
+     * @return Expression Language Evaluator
+     */
+    ELEvaluator createEvaluator();
+}
+

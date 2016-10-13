@@ -6,6 +6,6 @@
         <include within="org.exem.flamingo.agent.nn.*"/>
     </weaver>
     <aspects>
-        <aspect name="org.exem.flamingo.agent.nn.NamenodeAspect"/>
+        <aspect name="org.exem.flamingo.agent.nn.NameNodeAspectJ"/>
     </aspects>
 </aspectj>

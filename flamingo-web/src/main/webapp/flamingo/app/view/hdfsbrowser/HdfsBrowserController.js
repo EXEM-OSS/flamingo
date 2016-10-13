@@ -719,7 +719,8 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
         if (selection.length == 0) {
             info('확인', '디렉토리를 선택하시오.');
         }
-        var currentPath = selection[0].get('id'),
+
+        var currentPath = selection[0].get('fullyQualifiedPath'),
             params = {
                 currentPath: currentPath
             };

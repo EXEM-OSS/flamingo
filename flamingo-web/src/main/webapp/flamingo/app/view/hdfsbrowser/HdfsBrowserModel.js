@@ -80,7 +80,51 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserModel', {
         },
         fileStore: {
             autoLoad: false,
-            model: 'FEM.model.filesystem.hdfs.File',
+            fields: [
+                {
+                    name: 'id',
+                    convert: function (value, record) {
+                        if (record.get('path') == '/') {
+                            return record.get('path') + record.get('filename');
+                        } else {
+                            return record.get('path') + '/' + record.get('filename');
+                        }
+                    }
+                },
+                {
+                    name: 'filename'
+                },
+                {
+                    name: 'length'
+                },
+                {
+                    name: 'modificationTime',
+                    convert: function (value) {
+                        return Ext.Date.format(new Date(value), 'Y-m-d H:i:s');
+                    }
+                },
+                {
+                    name: 'permission'
+                },
+                {
+                    name: 'group'
+                },
+                {
+                    name: 'owner'
+                },
+                {
+                    name: 'replication'
+                },
+                {
+                    name: 'blockSize'
+                },
+                {
+                    name: 'spaceConsumed'
+                },
+                {
+                    name: 'path'
+                }
+            ],
             pageSize: 1000,
             proxy: {
                 type: 'ajax',
@@ -98,7 +142,71 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserModel', {
         },
         listStore: {
             autoLoad: false,
-            model: 'FEM.model.filesystem.hdfs.List',
+            fields: [
+                {
+                    name: 'fullPath',
+                    convert: function (value, record) {
+                        if (record.get('path') == '/') {
+                            return record.get('path') + record.get('filename');
+                        }
+                        else if (record.get('path') == '.') {
+                            return record.get('fullyQualifiedPath');
+                        }
+                        else {
+                            return record.get('path') + '/' + record.get('filename');
+                        }
+                    }
+                },
+                {
+                    name: 'filename'
+                },
+                {
+                    name: 'length',
+                    convert: function (value, record) {
+                        return fileSize(value);
+                    }
+                },
+                {
+                    name: 'modificationTime',
+                    convert: function (value) {
+                        return Ext.Date.format(new Date(value), 'Y-m-d H:i:s');
+                    }
+                },
+                {
+                    name: 'permission'
+                },
+                {
+                    name: 'group'
+                },
+                {
+                    name: 'owner'
+                },
+                {
+                    name: 'replication',
+                    convert: function (value, record) {
+                        if (record.get('directory')) {
+                            return '';
+                        }
+
+                        return value;
+                    }
+                },
+                {
+                    name: 'blockSize'
+                },
+                {
+                    name: 'spaceConsumed',
+                    convert: function (value, record) {
+                        return fileSize(value);
+                    }
+                },
+                {
+                    name: 'path'
+                },
+                {
+                    name: 'directory'
+                }
+            ],
             pageSize: 1000,
             proxy: {
                 type: 'ajax',
@@ -141,10 +249,6 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserModel', {
             listeners: {
                 load: 'onListStoreLoad'
             }
-        },
-
-        treemaplegend: {
-            model: 'FEM.model.filesystem.hdfs.TreemapLegend'
         },
 
         fileUnit: {

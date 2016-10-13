@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -26,7 +25,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
         <output.encoding>UTF-8</output.encoding>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
         <flamingo.version>${project.version}</flamingo.version>
 
         <!-- Spring Framework -->
@@ -37,8 +36,14 @@
         <aspectj.version>1.8.4</aspectj.version>
 
         <!-- Commons -->
+        <commons.el.version>1.0</commons.el.version>
         <commons.io.version>2.5</commons.io.version>
+        <commons.beanutils.version>1.9.2</commons.beanutils.version>
         <commons.lang.version>2.6</commons.lang.version>
+        <commons.exec.version>1.3</commons.exec.version>
+        <commons.codec.version>1.10</commons.codec.version>
+        <commons.fileupload.version>1.3.1</commons.fileupload.version>
+        <commons.cli.version>1.2</commons.cli.version>
 
         <!-- HttpClient -->
         <httpcore.version>4.4.4</httpcore.version>
@@ -80,6 +85,9 @@
 
         <!-- Google Guava -->
         <guava.version>19.0</guava.version>
+
+        <!-- Scheduler -->
+        <quartz.version>2.2.3</quartz.version>
 
         <!-- junit -->
         <junit.version>4.12</junit.version>
@@ -188,242 +196,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.6</version>
-                <reportSets>
-                    <reportSet>
-                        <id>pmd-report</id>
-                        <reports>
-                            <report>pmd</report>
-                        </reports>
-                        <configuration>
-                            <skipEmptyReport>false</skipEmptyReport>
-                        </configuration>
-                    </reportSet>
-
-                    <reportSet>
-                        <id>pmd-aggregate</id>
-                        <inherited>false</inherited>
-                        <reports>
-                            <report>pmd</report>
-                        </reports>
-                        <configuration>
-                            <aggregate>true</aggregate>
-                            <skipEmptyReport>false</skipEmptyReport>
-                        </configuration>
-                    </reportSet>
-
-                    <reportSet>
-                        <id>cpd-report</id>
-                        <reports>
-                            <report>cpd</report>
-                        </reports>
-                        <configuration>
-                            <skipEmptyReport>false</skipEmptyReport>
-                        </configuration>
-                    </reportSet>
-
-                    <reportSet>
-                        <id>cpd-aggregate</id>
-                        <inherited>false</inherited>
-                        <reports>
-                            <report>cpd</report>
-                        </reports>
-                        <configuration>
-                            <aggregate>true</aggregate>
-                            <skipEmptyReport>false</skipEmptyReport>
-                        </configuration>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.19.1</version>
-                <reportSets>
-                    <reportSet>
-                        <id>unit-tests</id>
-                        <reports>
-                            <report>report-only</report>
-                        </reports>
-                        <configuration>
-                            <linkXRef>true</linkXRef>
-                            <alwaysGenerateSurefireReport>true</alwaysGenerateSurefireReport>
-                        </configuration>
-                    </reportSet>
-
-                    <reportSet>
-                        <id>unit-tests-aggregate</id>
-                        <inherited>false</inherited>
-                        <reports>
-                            <report>report-only</report>
-                        </reports>
-                        <configuration>
-                            <aggregate>true</aggregate>
-                            <linkXRef>true</linkXRef>
-                            <alwaysGenerateSurefireReport>true</alwaysGenerateSurefireReport>
-                        </configuration>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.4</version>
-                <configuration>
-                    <effort>Max</effort>
-                    <threshold>Medium</threshold>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>taglist-maven-plugin</artifactId>
-                <version>2.4</version>
-                <reportSets>
-                    <reportSet>
-                        <id>taglist-report</id>
-                        <reports>
-                            <report>taglist</report>
-                        </reports>
-                        <configuration>
-                            <tagListOptions>
-                                <tagClasses>
-                                    <tagClass>
-                                        <displayName>Todo Work</displayName>
-                                        <tags>
-                                            <tag>
-                                                <matchString>TODO</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                            <tag>
-                                                <matchString>FIXME</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                        </tags>
-                                    </tagClass>
-                                    <tagClass>
-                                        <displayName>Architecture Review Needed</displayName>
-                                        <tags>
-                                            <tag>
-                                                <matchString>ARCH-REV</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                        </tags>
-                                    </tagClass>
-                                </tagClasses>
-                            </tagListOptions>
-                        </configuration>
-                    </reportSet>
-
-                    <reportSet>
-                        <id>taglist-aggregate</id>
-                        <inherited>false</inherited>
-                        <reports>
-                            <report>taglist</report>
-                        </reports>
-                        <configuration>
-                            <aggregate>true</aggregate>
-                            <tagListOptions>
-                                <tagClasses>
-                                    <tagClass>
-                                        <displayName>Todo Work</displayName>
-                                        <tags>
-                                            <tag>
-                                                <matchString>TODO</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                            <tag>
-                                                <matchString>FIXME</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                        </tags>
-                                    </tagClass>
-                                    <tagClass>
-                                        <displayName>Architecture Review Needed</displayName>
-                                        <tags>
-                                            <tag>
-                                                <matchString>ARCH-REV</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                        </tags>
-                                    </tagClass>
-                                </tagClasses>
-                            </tagListOptions>
-                        </configuration>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.5</version>
-                <reportSets>
-                    <reportSet>
-                        <id>aggregate</id>
-                        <inherited>false</inherited>
-                        <reports>
-                            <report>aggregate</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <links>
-                        <link>https://docs.oracle.com/javase/7/docs/api</link>
-                        <link>http://docs.spring.io/spring/docs/${spring.version}/javadoc-api</link>
-                        <link>https://commons.apache.org/proper/commons-io/javadocs/api-${commons.io.version}/</link>
-                    </links>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <aggregate>true</aggregate>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
-                </configuration>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>cobertura</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-
-            <!--  Changes  -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-changes-plugin</artifactId>
-                <version>2.12</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>changes-report</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-    </reporting>
 
     <dependencyManagement>
         <dependencies>
@@ -598,15 +370,51 @@
             <!-- ========= -->
 
             <dependency>
+                <groupId>commons-el</groupId>
+                <artifactId>commons-el</artifactId>
+                <version>${commons.el.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons.io.version}</version>
             </dependency>
 
             <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons.beanutils.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>commons-lang</groupId>
                 <artifactId>commons-lang</artifactId>
                 <version>${commons.lang.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons.codec.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-exec</artifactId>
+                <version>${commons.exec.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons.fileupload.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-cli</groupId>
+                <artifactId>commons-cli</artifactId>
+                <version>${commons.cli.version}</version>
             </dependency>
 
             <!-- ====== -->
@@ -927,6 +735,22 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+
+            <!-- ====================== -->
+            <!--  Quartz Job Scheduler  -->
+            <!-- ====================== -->
+
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- ========== -->

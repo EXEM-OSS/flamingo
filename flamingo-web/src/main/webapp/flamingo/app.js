@@ -24,7 +24,7 @@ Ext.application({
     requires: [
         'util.*',
         'Flamingo.view.main.Main',
-        'Flamingo.view.hdfsbrowser.Browser',
+        'Flamingo.view.hdfsbrowser.HdfsBrowser',
         'Flamingo.view.ooziemonitoring.Oozie',
         'Flamingo.view.workflowdesigner.Designer'
     ],

@@ -19,8 +19,7 @@ Ext.define('Flamingo.view.hdfsbrowser.File', {
     alias: 'widget.hdfsFilePanel',
 
     requires: [
-        'Ext.toolbar.Breadcrumb',
-        'FEM.model.filesystem.hdfs.List'
+        'Ext.toolbar.Breadcrumb'
     ],
 
     border: false,

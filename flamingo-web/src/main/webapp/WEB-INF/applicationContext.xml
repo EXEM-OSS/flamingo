@@ -17,7 +17,19 @@
 
     <!-- ========================= PROPERTIES DEFINITION ========================= -->
 
-    <util:properties id="config" location="/WEB-INF/config.properties"/>
     <util:properties id="app" location="/WEB-INF/app.properties"/>
+    <util:properties id="config" location="/WEB-INF/config.properties"/>
+    <util:properties id="hadoop" location="/WEB-INF/hadoop.properties"/>
 
+    <!-- ========================= REST TEMPLATE DEFINITION ========================= -->
+
+    <bean id="httpClient" class="org.exem.flamingo.shared.util.SslHttpClientFactoryBean"/>
+
+    <bean id="sslRestTemplate" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg>
+            <bean class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+                <constructor-arg ref="httpClient"/>
+            </bean>
+        </constructor-arg>
+    </bean>
 </beans>

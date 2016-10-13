@@ -25,6 +25,7 @@
     <script type="text/javascript" src="/resources/ext/ext-all.js"></script>
     <script type="text/javascript" src="/resources/ext/theme-triton.js"></script>
 
+    <script type="text/javascript" src="/resources/js/util/Connection.js"></script>
     <script type="text/javascript" src="/resources/js/util/CronParser.js"></script>
     <script type="text/javascript" src="/resources/js/util/Date.js"></script>
     <script type="text/javascript" src="/resources/js/util/Iterator.js"></script>
