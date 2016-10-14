@@ -25,7 +25,8 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowser', {
         'Flamingo.view.hdfsbrowser.Directory',
         'Flamingo.view.hdfsbrowser.File',
         'Flamingo.view.hdfsbrowser.context.Directory',
-        'Flamingo.view.hdfsbrowser.context.File'
+        'Flamingo.view.hdfsbrowser.context.File',
+        'Flamingo.view.hdfsbrowser.MultiFileUpload'
     ],
 
     controller: 'browserViewController',

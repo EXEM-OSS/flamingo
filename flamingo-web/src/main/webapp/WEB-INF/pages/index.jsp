@@ -13,6 +13,8 @@
     <link type="text/css" rel="stylesheet" href="/resources/ext/theme-triton-all_1.css"/>
     <link type="text/css" rel="stylesheet" href="/resources/ext/theme-triton-all_2.css"/>
 
+    <script type="text/javascript" src="/config/js.json"></script>
+
     <script type="text/javascript" src="/resources/js/jquery/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.js"></script>
     <script type="text/javascript" src="/resources/js/jquery-contextMenu/jquery.contextMenu.min.js"></script>

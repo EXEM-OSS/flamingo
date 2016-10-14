@@ -1308,6 +1308,8 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowserController', {
             border: false,
             modal: true,
             closeAction: 'destroy',
+            width: 800,
+            height: 600,
             items: [{
                 xtype: 'multiFileUploadPanel',
                 uploadPath: currentPath,

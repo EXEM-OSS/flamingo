@@ -28,10 +28,6 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerController', {
         var refs = me.getReferences();
         var totalPage = window.propertyData.totalPage;
 
-        // Contents 필드 하단의 Toolbar 숨김
-        //window.down('toolbar').setVisible(false);
-        //window.down('statusBar').setVisible(false);
-
         refs.fileViewerContentsForm.getForm().setValues(window.propertyData);
 
         /**
