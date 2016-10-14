@@ -13,6 +13,8 @@
     <link type="text/css" rel="stylesheet" href="/resources/ext/theme-triton-all_1.css"/>
     <link type="text/css" rel="stylesheet" href="/resources/ext/theme-triton-all_2.css"/>
 
+    <script type="text/javascript" src="/config/js.json"></script>
+
     <script type="text/javascript" src="/resources/js/jquery/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="/resources/js/jquery-ui/jquery-ui.js"></script>
     <script type="text/javascript" src="/resources/js/jquery-contextMenu/jquery.contextMenu.min.js"></script>
@@ -24,6 +26,20 @@
 
     <script type="text/javascript" src="/resources/ext/ext-all.js"></script>
     <script type="text/javascript" src="/resources/ext/theme-triton.js"></script>
+
+    <script type="text/javascript" src="/resources/js/util/Connection.js"></script>
+    <script type="text/javascript" src="/resources/js/util/CronParser.js"></script>
+    <script type="text/javascript" src="/resources/js/util/Date.js"></script>
+    <script type="text/javascript" src="/resources/js/util/Iterator.js"></script>
+    <script type="text/javascript" src="/resources/js/util/JavaMap.js"></script>
+    <script type="text/javascript" src="/resources/js/util/Lang.js"></script>
+    <script type="text/javascript" src="/resources/js/util/Logger.js"></script>
+    <script type="text/javascript" src="/resources/js/util/Map.js"></script>
+    <script type="text/javascript" src="/resources/js/util/String.js"></script>
+    <script type="text/javascript" src="/resources/js/util/TaskManager.js"></script>
+    <script type="text/javascript" src="/resources/js/util/UI.js"></script>
+    <script type="text/javascript" src="/resources/js/util/WebBrowser.js"></script>
+
 
     <script type="text/javascript" src="/app.js"></script>
 </head>

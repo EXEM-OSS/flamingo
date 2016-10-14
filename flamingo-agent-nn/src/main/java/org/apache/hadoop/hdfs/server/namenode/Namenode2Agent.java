@@ -70,9 +70,9 @@ public class Namenode2Agent {
      * @param args Apache Hadoop Namenode, Configuration
      * @throws RuntimeException 초기화할 수 없는 경우
      */
-    public static void start(Object args) {
-        Namenode2Agent.namenode = (NameNode) args;
-        Namenode2Agent.configuration = Namenode2Agent.namenode.conf;
+    public static void start(Object nn, Object[] args) {
+        Namenode2Agent.namenode = (NameNode) nn;
+        Namenode2Agent.configuration = (Configuration) args[0];
 
         if (!isInitialized) {
             isInitialized = true;

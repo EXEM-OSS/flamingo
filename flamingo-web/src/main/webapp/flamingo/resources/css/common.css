@@ -1,13 +1,11 @@
-/**
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+/*
+ * Copyright 2012-2016 the Flamingo Community.
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 @charset "utf-8";
 
 /*폰트 Montserrat 적용*/
@@ -154,3 +151,30 @@
 .f11 {font-size:11px !important;}
 a.wtxt{color:#FFFFFF;}
 
+.breadcrumb {
+    padding: 4px 15px;
+    margin: 0;
+    list-style: none;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+}
+.breadcrumb > li {
+    display: inline-block;
+}
+.breadcrumb > li + li:before {
+    padding: 0 5px;
+    color: #ccc;
+    content: "/\00a0";
+}
+.breadcrumb > .active {
+    color: #777;
+}
+
+.breadcrumb > li > a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.breadcrumb-over {
+    cursor: pointer;
+}

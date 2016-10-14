@@ -13,27 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.exem.flamingo.shared.util;
+Ext.define('Flamingo.view.hdfsbrowser.property.HdfsPropertyController', {
+    extend: 'Ext.app.ViewController',
+    alias: 'controller.hdfsPropertyViewController',
 
-import java.lang.management.ManagementFactory;
+    /**
+     * 속성창을 화면에 표시한 후 서버로부터 디렉토리 또는 파일 정보를 가져온다.
+     *
+     * @param window Window 속성창
+     */
+    onAfterRender: function (window) {
+        var me = this;
+        var refs = me.getReferences();
 
-/**
- * 시스템 유틸리티.
- *
- * @author Byoung Gon, Kim
- * @since 0.1
- */
-public class SystemUtils {
-
-    public static String getPid() {
-        try {
-            String name = ManagementFactory.getRuntimeMXBean().getName();
-            if (name != null) {
-                return name.split("@")[0];
-            }
-        } catch (Throwable ex) {
-            // Ignore
-        }
-        return "????";
+        refs.hdfsProperty.getForm().setValues(window.propertyData);
     }
-}
+});
