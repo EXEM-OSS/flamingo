@@ -80,15 +80,12 @@
                     <artifactId>hadoop-hdfs</artifactId>
                 </exclusion>
             </exclusions>
-<<<<<<< HEAD
-=======
         </dependency>
 
         <dependency>
             <groupId>org.exem.flamingo</groupId>
             <artifactId>flamingo-agent-nn</artifactId>
             <version>${flamingo.version}</version>
->>>>>>> FL-81
         </dependency>
 
         <!-- ================== -->
@@ -263,9 +260,5 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
         </dependency>
-<<<<<<< HEAD
-
-=======
->>>>>>> FL-81
     </dependencies>
 </project>
