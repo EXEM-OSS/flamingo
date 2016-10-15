@@ -18,6 +18,37 @@
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <configuration>
+                            <target>
+                                <get dest="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext">
+                                    <url url="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.1/ext-all.js"/>
+                                    <url url="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.1/classic/theme-triton/theme-triton.js"/>
+                                    <url url="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.1/classic/theme-triton/resources/theme-triton-all_1.css"/>
+                                    <url url="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.1/classic/theme-triton/resources/theme-triton-all_2.css"/>
+                                </get>
+                                <get dest="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext">
+                                    <url url="http://fontawesome.io/assets/font-awesome-4.6.3.zip"/>
+                                </get>
+                                <unzip src="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext/font-awesome-4.6.3.zip" dest="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext"/>
+                                <move todir="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext/font-awesome">
+                                    <fileset dir="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext/font-awesome-4.6.3"/>
+                                </move>
+                                <delete file="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext/font-awesome-4.6.3.zip"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
                 <executions>
