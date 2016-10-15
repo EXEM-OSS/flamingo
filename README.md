@@ -126,8 +126,7 @@ Use following command for deploying site :
 * Facebook : https://www.facebook.com/groups/flamingo.workflow
 * Slack : flamingo-dev-team.slack.com
 * Issue Tracker : http://jira.exem-oss.org/projects/FL
-* WIKI 
-  FL : http://confluence.exem-oss.org/display/FL/Flamingo 
+* WIKI : http://confluence.exem-oss.org/display/FL/Flamingo
 
 ## References
 
