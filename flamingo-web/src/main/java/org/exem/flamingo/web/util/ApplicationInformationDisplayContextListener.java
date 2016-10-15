@@ -16,7 +16,7 @@
 
 package org.exem.flamingo.web.util;
 
-import org.exem.flamingo.web.logging.WebLogbackConfigurer ;
+import org.exem.flamingo.web.logging.WebLogbackConfigurer;
 import org.apache.commons.io.IOUtils;
 import org.exem.flamingo.agent.nn.SystemUtils;
 import org.slf4j.Logger;
@@ -116,11 +116,11 @@ public class ApplicationInformationDisplayContextListener implements javax.servl
         print(builder, sysProps);
 
         printHeader(builder, "System Environments");
-        Map<String, String> getenv = System.getenv();
+        Map<String, String> envs = System.getenv();
         Properties envProps = new Properties();
-        Set<String> strings = getenv.keySet();
+        Set<String> strings = envs.keySet();
         for (String key : strings) {
-            String message = getenv.get(key);
+            String message = envs.get(key);
             envProps.put(key, message);
         }
 
