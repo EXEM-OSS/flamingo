@@ -15,12 +15,6 @@
         </property>
     </bean>
 
-    <!-- ========================= PROPERTIES DEFINITION ========================= -->
-
-    <util:properties id="app" location="/WEB-INF/app.properties"/>
-    <util:properties id="config" location="/WEB-INF/config.properties"/>
-    <util:properties id="hadoop" location="/WEB-INF/hadoop.properties"/>
-
     <!-- ========================= REST TEMPLATE DEFINITION ========================= -->
 
     <bean id="httpClient" class="org.exem.flamingo.shared.util.SslHttpClientFactoryBean"/>
@@ -32,4 +26,17 @@
             </bean>
         </constructor-arg>
     </bean>
+
+    <!-- ========================= PROPERTIES DEFINITION ========================= -->
+
+    <util:properties id="app" location="/WEB-INF/app.properties"/>
+    <util:properties id="hadoop" location="/WEB-INF/hadoop.properties"/>
+
+    <beans profile="production">
+        <util:properties id="config" location="/WEB-INF/config.properties"/>
+    </beans>
+
+    <beans profile="development">
+        <util:properties id="config" location="/WEB-INF/config-dev.properties"/>
+    </beans>
 </beans>

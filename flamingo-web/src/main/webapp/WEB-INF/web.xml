@@ -31,6 +31,11 @@
         </param-value>
     </context-param>
 
+    <context-param>
+        <param-name>spring.profiles.default</param-name>
+        <param-value>production</param-value>
+    </context-param>
+
     <!-- ========================= -->
     <!--  Listeners Configuration  -->
     <!-- ========================= -->

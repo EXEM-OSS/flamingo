@@ -90,6 +90,13 @@ Flamingo drastically simplifies management of Apache Oozie through the following
 
 ## For Developer
 
+### Spring Framework Profiles
+
+* Development Mode : -Dspring.profiles.active=development
+  Property Place Holder : /WEB-INF/config-dev.properties
+* Production Mode : -Dspring.profiles.active=production
+  Property Place Holder : /WEB-INF/config.properties
+
 ### Site Deployment
 
 Open your Maven settings (~/.m2/settings.xml) and add the following server configuration:

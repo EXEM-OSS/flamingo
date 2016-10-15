@@ -11,20 +11,6 @@
             http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
             http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!-- ========================= PROPERTY PLACE HOLDER DEFINITION ========================= -->
-
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>/WEB-INF/config.properties</value>
-            </list>
-        </property>
-    </bean>
-
-    <!-- ========================= PROPERTIES DEFINITION ========================= -->
-
-    <util:properties id="config" location="/WEB-INF/config.properties"/>
-
     <!-- ========================= COMPONENT SCAN DEFINITION ========================= -->
 
     <context:annotation-config/>
@@ -43,16 +29,18 @@
 
     <!-- ========================= MESSAGE SOURCE DEFINITION ========================= -->
 
-    <!--<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">-->
-        <!--<property name="basenames">-->
-            <!--<list>-->
-                <!--<value>classpath:locale/message</value>-->
-            <!--</list>-->
-        <!--</property>-->
-        <!--<property name="fileEncodings" value="UTF-8"/>-->
-        <!--<property name="defaultEncoding" value="UTF-8"/>-->
-        <!--<property name="fallbackToSystemLocale" value="false"/>-->
-    <!--</bean>-->
+<!--
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:locale/message</value>
+            </list>
+        </property>
+        <property name="fileEncodings" value="UTF-8"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="fallbackToSystemLocale" value="false"/>
+    </bean>
+-->
 
     <!-- ========================= MVC DEFINITION ========================= -->
 
@@ -173,4 +161,32 @@
     <bean id="jacksonObjectMapper" class="org.exem.flamingo.shared.util.ObjectMapperFactoryBean">
         <property name="indentOutput" value="true"/>
     </bean>
+
+    <beans profile="production">
+        <!-- ========================= PROPERTY PLACE HOLDER DEFINITION ========================= -->
+        <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="locations">
+                <list>
+                    <value>/WEB-INF/config.properties</value>
+                </list>
+            </property>
+        </bean>
+
+        <!-- ========================= PROPERTIES DEFINITION ========================= -->
+        <util:properties id="config" location="/WEB-INF/config.properties"/>
+    </beans>
+
+    <beans profile="development">
+        <!-- ========================= PROPERTY PLACE HOLDER DEFINITION ========================= -->
+        <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="locations">
+                <list>
+                    <value>/WEB-INF/config-dev.properties</value>
+                </list>
+            </property>
+        </bean>
+
+        <!-- ========================= PROPERTIES DEFINITION ========================= -->
+        <util:properties id="config" location="/WEB-INF/config-dev.properties"/>
+    </beans>
 </beans>
