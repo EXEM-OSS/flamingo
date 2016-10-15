@@ -162,7 +162,7 @@
         <property name="indentOutput" value="true"/>
     </bean>
 
-    <beans profile="production">
+    <beans profile="prod">
         <!-- ========================= PROPERTY PLACE HOLDER DEFINITION ========================= -->
         <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
             <property name="locations">
@@ -176,7 +176,7 @@
         <util:properties id="config" location="/WEB-INF/config.properties"/>
     </beans>
 
-    <beans profile="development">
+    <beans profile="dev">
         <!-- ========================= PROPERTY PLACE HOLDER DEFINITION ========================= -->
         <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
             <property name="locations">

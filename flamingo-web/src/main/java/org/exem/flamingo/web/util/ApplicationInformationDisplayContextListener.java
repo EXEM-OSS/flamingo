@@ -16,7 +16,7 @@
 
 package org.exem.flamingo.web.util;
 
-import ch.qos.logback.ext.spring.web.WebLogbackConfigurer;
+import org.exem.flamingo.web.logging.WebLogbackConfigurer ;
 import org.apache.commons.io.IOUtils;
 import org.exem.flamingo.agent.nn.SystemUtils;
 import org.slf4j.Logger;

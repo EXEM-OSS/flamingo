@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
 
     <jmxConfigurator/>
@@ -59,7 +58,7 @@
         </triggeringPolicy>
     </appender>
 
-    <logger name="org.exem.flamingo" level="DEBUG"/>
+    <logger name="org.exem.flamingo" level="INFO"/>
 
     <logger name="org.hibernate.validator.internal.util.Version" level="WARN"/>
     <logger name="org.springframework" level="INFO"/>
@@ -87,23 +86,11 @@
     <logger name="jdbc.connection" level="WARN"/>
     <logger name="log4jdbc.debug" level="WARN"/>
 
-    <logger name="com.datastax.driver" level="INFO"/>
-`
-<!--
-    <logger name="jdbc.sqlonly" level="WARN"/>
-    <logger name="jdbc.sqltiming" level="WARN"/>
-    <logger name="jdbc.resultset" level="WARN"/>
-    <logger name="jdbc.resultsettable" level="WARN"/>
-    <logger name="jdbc.audit" level="WARN"/>
-    <logger name="jdbc.connection" level="WARN"/>
-    <logger name="log4jdbc.debug" level="WARN"/>
--->
-
     <logger name="flamingo.exception" level="WARN">
         <appender-ref ref="EXCEPTION"/>
     </logger>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>

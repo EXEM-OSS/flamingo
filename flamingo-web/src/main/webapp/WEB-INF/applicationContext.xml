@@ -32,11 +32,11 @@
     <util:properties id="app" location="/WEB-INF/app.properties"/>
     <util:properties id="hadoop" location="/WEB-INF/hadoop.properties"/>
 
-    <beans profile="production">
+    <beans profile="prod">
         <util:properties id="config" location="/WEB-INF/config.properties"/>
     </beans>
 
-    <beans profile="development">
+    <beans profile="dev">
         <util:properties id="config" location="/WEB-INF/config-dev.properties"/>
     </beans>
 </beans>

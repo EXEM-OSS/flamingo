@@ -1,0 +1,97 @@
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <jmxConfigurator/>
+
+    <property name="CONSOLE_LOG_PATTERN_DEBUG" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%c:%L]){cyan} %clr(:){faint} %m%n%wex"/>
+    <property name="CONSOLE_LOG_PATTERN" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%c:%L]){cyan} %clr(:){faint} %m%n%wex"/>
+    <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } --- [%c:%L] : %m%n%wex"/>
+
+    <property name="APP_LOG_FILE" value="${catalina.home}/logs/app-dev.log"/>
+    <property name="EXCEPTION_LOG_FILE" value="${catalina.home}/logs/exception-dev.log"/>
+    <property name="POOL_LOG_FILE" value="${catalina.home}/logs/pool-dev.log"/>
+
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN_DEBUG}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <file>${APP_LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${APP_LOG_FILE}.%i</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>50MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <appender name="EXCEPTION" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <file>${EXCEPTION_LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${APP_LOG_FILE}.%i</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>50MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <appender name="POOL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <file>${POOL_LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${POOL_LOG_FILE}.%i</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>50MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <logger name="org.exem.flamingo" level="DEBUG"/>
+
+    <logger name="org.hibernate.validator.internal.util.Version" level="WARN"/>
+    <logger name="org.springframework" level="DEBUG"/>
+    <logger name="org.hibernate" level="INFO"/>
+    <logger name="org.quartz" level="INFO"/>
+    <logger name="org.mybatis" level="INFO"/>
+    <logger name="org.jboss" level="INFO"/>
+    <logger name="org.apache" level="INFO"/>
+    <logger name="org.activiti" level="INFO"/>
+    <logger name="org.aspectj.weaver" level="INFO"/>
+
+    <logger name="HikariPool" level="WARN">
+        <appender-ref ref="POOL" />
+    </logger>
+
+    <logger name="com.zaxxer.hikari" level="INFO">
+        <appender-ref ref="POOL" />
+    </logger>
+
+    <logger name="jdbc.sqlonly" level="DEBUG"/>
+    <logger name="jdbc.sqltiming" level="DEBUG"/>
+    <logger name="jdbc.resultset" level="DEBUG"/>
+    <logger name="jdbc.resultsettable" level="DEBUG"/>
+    <logger name="jdbc.audit" level="DEBUG"/>
+    <logger name="jdbc.connection" level="DEBUG"/>
+    <logger name="log4jdbc.debug" level="DEBUG"/>
+
+    <logger name="flamingo.exception" level="WARN">
+        <appender-ref ref="EXCEPTION"/>
+    </logger>
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

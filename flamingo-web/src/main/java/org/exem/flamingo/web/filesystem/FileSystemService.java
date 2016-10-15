@@ -39,7 +39,7 @@ public interface FileSystemService {
     /**
      * 디렉토리 목록을 반환한다.
      *
-     * @param path         HDFS directory path to check
+     * @param path HDFS directory path to check
      * @return 디렉토리 목록
      */
     List<FileInfo> getDirectories(String path, boolean directoryOnly);
@@ -47,7 +47,7 @@ public interface FileSystemService {
     /**
      * 파일 목록을 반환한다.
      *
-     * @param path         HDFS file path to check
+     * @param path HDFS file path to check
      * @return 파일 목록
      */
     List<FileInfo> getFiles(String path);
@@ -55,10 +55,10 @@ public interface FileSystemService {
     /**
      * 파일 목록을 반환한다.
      *
-     * @param path         HDFS file path to check
-     * @param page 페이지 번호
-     * @param start 시작 번호
-     * @param limit 목록 제한 갯수
+     * @param path   HDFS file path to check
+     * @param page   페이지 번호
+     * @param start  시작 번호
+     * @param limit  목록 제한 갯수
      * @param filter 필터링
      * @return 파일 목록
      */
@@ -67,7 +67,7 @@ public interface FileSystemService {
     /**
      * 파일 목록을 반환한다.
      *
-     * @param path         HDFS file path to check
+     * @param path  HDFS file path to check
      * @param limit 목록 제한 갯수
      * @return 파일 목록
      */
@@ -76,8 +76,7 @@ public interface FileSystemService {
     /**
      * 파일/디렉토리 정보를 반환한다.
      *
-
-     * @param path         HDFS file path to check
+     * @param path HDFS file path to check
      * @return 파일/디렉토리 정보
      */
     ContentSummary getContentSummary(String path) throws IOException;
@@ -85,8 +84,8 @@ public interface FileSystemService {
     /**
      * 디렉토리를 생성한다.
      *
-     * @param path         HDFS directory path to create
-     * @param username     Username
+     * @param path     HDFS directory path to create
+     * @param username Username
      * @return 디렉토리 생성 여부
      */
     boolean createDirectory(String path, String username);
@@ -94,9 +93,9 @@ public interface FileSystemService {
     /**
      * 디렉토리를 복사한다.
      *
-     * @param currentPath  HDFS directory source path to copy
-     * @param dstPath      HDFS directory target path to be copied
-     * @param username     Username
+     * @param currentPath HDFS directory source path to copy
+     * @param dstPath     HDFS directory target path to be copied
+     * @param username    Username
      * @return 디렉토리 복사 여부
      */
     boolean copyDirectory(String currentPath, String dstPath, String username);
@@ -104,9 +103,9 @@ public interface FileSystemService {
     /**
      * 디렉토리를 이동한다.
      *
-     * @param currentPath       HDFS directory source path to move
-     * @param dstPath           HDFS directory target path to be moved
-     * @param username          Username
+     * @param currentPath HDFS directory source path to move
+     * @param dstPath     HDFS directory target path to be moved
+     * @param username    Username
      * @return 디렉토리 이동 여부
      */
     boolean moveDirectory(String currentPath, String dstPath, String username);
@@ -114,9 +113,9 @@ public interface FileSystemService {
     /**
      * 디렉토리명을 변경한다.
      *
-     * @param srcPath           HDFS directory source path to rename
-     * @param directoryName     HDFS directory new name to be renamed
-     * @param username          Username
+     * @param srcPath       HDFS directory source path to rename
+     * @param directoryName HDFS directory new name to be renamed
+     * @param username      Username
      * @return 디렉토리명 변경 여부
      */
     boolean renameDirectory(String srcPath, String directoryName, String username);
@@ -124,18 +123,16 @@ public interface FileSystemService {
     /**
      * 디렉토리를 삭제한다.
      *
-
-     * @param currentPath  HDFS directory path to delete
-     * @param username     Username
+     * @param currentPath HDFS directory path to delete
+     * @param username    Username
      * @return 디렉토리 삭제 여부
      */
     boolean deleteDirectory(String currentPath, String username);
 
     /**
-
-     * @param currentPath  HDFS directory source path to merge files
-     * @param dstPath      HDFS directory new name to be saved merged files
-     * @param username     Username
+     * @param currentPath HDFS directory source path to merge files
+     * @param dstPath     HDFS directory new name to be saved merged files
+     * @param username    Username
      * @return true or false
      */
     boolean mergeFiles(String currentPath, String dstPath, String username);
@@ -143,8 +140,7 @@ public interface FileSystemService {
     /**
      * 디렉토리 및 파일 정보를 확인한다.
      *
-
-     * @param path         HDFS directory or file information
+     * @param path HDFS directory or file information
      * @return 디렉토리 또는 파일 정보
      */
     HdfsFileInfo getFileInfo(String path);
@@ -159,8 +155,8 @@ public interface FileSystemService {
     /**
      * 파일을 복사한다.
      *
-     * @param srcFileList   HDFS file(s) fullyQualified path to copy
-     * @param dstPath       HDFS file(s) destination path to be copied
+     * @param srcFileList HDFS file(s) fullyQualified path to copy
+     * @param dstPath     HDFS file(s) destination path to be copied
      * @return 복사된 파일 목록
      */
     List<String> copyFiles(List<String> srcFileList, String dstPath, String username);
@@ -168,9 +164,9 @@ public interface FileSystemService {
     /**
      * 파일을 이동한다.
      *
-     * @param srcFileList       HDFS file(s) fullyQualified path to move
-     * @param dstPath           HDFS file(s) destination path to be moved
-     * @param username          Username
+     * @param srcFileList HDFS file(s) fullyQualified path to move
+     * @param dstPath     HDFS file(s) destination path to be moved
+     * @param username    Username
      * @return 이동된 파일 목록
      */
     List<String> moveFiles(List<String> srcFileList, String dstPath, String username);
@@ -178,10 +174,10 @@ public interface FileSystemService {
     /**
      * 파일명을 변경한다.
      *
-     * @param fullyQualifiedPath    HDFS file fully qualified path
-     * @param srcPath               HDFS file Source path to rename
-     * @param filename              HDFS filename to be renamed
-     * @param username              Username
+     * @param fullyQualifiedPath HDFS file fully qualified path
+     * @param srcPath            HDFS file Source path to rename
+     * @param filename           HDFS filename to be renamed
+     * @param username           Username
      * @return 변경 여부
      */
     boolean renameFile(String fullyQualifiedPath, String srcPath, String filename, String username);
@@ -189,10 +185,9 @@ public interface FileSystemService {
     /**
      * 파일을 삭제한다.
      *
-
-     * @param files        HDFS file(s) path to delete
-     * @param srcPath      HDFS file source path to delete
-     * @param username     Username
+     * @param files    HDFS file(s) path to delete
+     * @param srcPath  HDFS file source path to delete
+     * @param username Username
      * @return 삭제된 파일 목록
      */
     List<String> deleteFiles(String files, String srcPath, String username);
@@ -221,9 +216,9 @@ public interface FileSystemService {
     /**
      * 파일을 로딩한다.
      *
-     * @param srcFilePath         HDFS file source path to download
-     * @param fullyQualifiedPath  HDFS fully qualified path to download
-     * @param username            Username
+     * @param srcFilePath        HDFS file source path to download
+     * @param fullyQualifiedPath HDFS fully qualified path to download
+     * @param username           Username
      * @return 다운로드할 파일의 내용
      */
     byte[] load(String srcFilePath, String fullyQualifiedPath, String username);
@@ -240,7 +235,6 @@ public interface FileSystemService {
     /**
      * HDFS 경로에 사용자 홈 디렉토리를 생성한다.
      *
-
      * @param hdfsUserHome HDFS User's home directory
      * @param username     Username
      * @return true or false
@@ -250,7 +244,6 @@ public interface FileSystemService {
     /**
      * HDFS 경로에 존재하는 해당 사용자의 홈 디렉토리를 삭제한다.
      *
-
      * @param hdfsUserHome HDFS user home directory
      * @return true or false
      */
@@ -268,9 +261,9 @@ public interface FileSystemService {
     /**
      * Namenode Agent를 통해 직접 다운로드 한 후 Audit 로그를 저장한다.
      *
-     * @param srcFilePath           HDFS file source path to download
-     * @param fullyQualifiedPath    HDFS file fully qualified path to download
-     * @param username              Username
+     * @param srcFilePath        HDFS file source path to download
+     * @param fullyQualifiedPath HDFS file fully qualified path to download
+     * @param username           Username
      */
     void validateBeforeDownload(String srcFilePath, String fullyQualifiedPath, String username);
 
