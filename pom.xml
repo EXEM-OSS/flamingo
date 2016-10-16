@@ -99,7 +99,7 @@
 
     <build>
         <plugins>
-            <!-- Compiler -->
+            <!-- Maven Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -109,6 +109,13 @@
                     <target>${java.version}</target>
                     <encoding>${output.encoding}</encoding>
                 </configuration>
+            </plugin>
+
+            <!-- Maven Surefire -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
             </plugin>
 
             <!-- PMD -->
@@ -142,6 +149,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
+                <version>3.5.1</version>
                 <configuration>
                     <skipDeploy>false</skipDeploy>
                     <outputDirectory>${basedir}/target/staging</outputDirectory>
@@ -164,46 +172,42 @@
                         <artifactId>reflow-velocity-tools</artifactId>
                         <version>1.1.1</version>
                     </dependency>
+
                     <!-- Reflow skin requires Velocity >= 1.7  -->
                     <dependency>
                         <groupId>org.apache.velocity</groupId>
                         <artifactId>velocity</artifactId>
                         <version>1.7</version>
                     </dependency>
+
+                    <dependency>
+                        <groupId>org.apache.maven.doxia</groupId>
+                        <artifactId>doxia-core</artifactId>
+                        <version>1.7</version>
+                    </dependency>
                 </dependencies>
             </plugin>
 
-            <!-- Cobertura for Code Coverage -->
+            <!-- Atlassian Clover for Code Coverage-->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>clover-maven-plugin</artifactId>
                 <configuration>
-                    <instrumentation>
-                        <!--
-                        <ignores>
-                            <ignore>com.example.boringcode.*</ignore>
-                        </ignores>
-                        <excludes>
-                            <exclude>com/example/dullcode/**/*.class</exclude>
-                            <exclude>com/example/**/*Test.class</exclude>
-                        </excludes>
-                        -->
-                    </instrumentation>
+                    <licenseLocation>~/.m2/clover.license</licenseLocation>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
+
         </plugins>
     </build>
 
     <reporting>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.9</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
@@ -297,6 +301,22 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.5</version>
+                <reportSets>
+                    <reportSet>
+                        <id>aggregate</id>
+                        <inherited>false</inherited>
+                        <reports>
+                            <report>aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+
+<!--
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>taglist-maven-plugin</artifactId>
                 <version>2.4</version>
@@ -374,52 +394,21 @@
                     </reportSet>
                 </reportSets>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.5</version>
-                <reportSets>
-                    <reportSet>
-                        <id>aggregate</id>
-                        <inherited>false</inherited>
-                        <reports>
-                            <report>aggregate</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
+-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
                 <configuration>
                     <links>
                         <link>https://docs.oracle.com/javase/7/docs/api</link>
                         <link>http://docs.spring.io/spring/docs/${spring.version}/javadoc-api</link>
                         <link>https://commons.apache.org/proper/commons-io/javadocs/api-${commons.io.version}/</link>
                     </links>
+                    <!-- JDK 7, 8 -->
+                    <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <aggregate>true</aggregate>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
-                </configuration>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>cobertura</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
             </plugin>
 
             <!--  Changes  -->

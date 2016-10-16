@@ -26,7 +26,8 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 /**
- * Resource Utilty. 이 유틸리티를 클래스를 이용해서 해당 리소스에 대한 URL 및 파일 정보를 얻어올 수 있다.
+ * Class Path, Local File System 등에 존재하는 다양한 리소스를 다루는 기능을 제공하는 리소스 유틸리티.
+ * 이 유틸리티를 클래스를 이용해서 해당 리소스에 대한 URL 및 파일 정보를 얻어올 수 있다.
  * 이 유틸리티 클래스는 Spring Framework의 {@link org.springframework.util.ResourceUtils}를 독립 사용 가능하도록 한
  * 수정 버전이다.
  *
