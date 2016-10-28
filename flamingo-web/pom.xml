@@ -33,13 +33,13 @@
                                     <url url="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.1/classic/theme-triton/resources/theme-triton-all_2.css"/>
                                 </get>
                                 <get dest="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext">
-                                    <url url="http://fontawesome.io/assets/font-awesome-4.6.3.zip"/>
+                                    <url url="http://fontawesome.io/assets/font-awesome-4.7.0.zip"/>
                                 </get>
-                                <unzip src="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext/font-awesome-4.6.3.zip" dest="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext"/>
+                                <unzip src="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext/font-awesome-4.7.0.zip" dest="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext"/>
                                 <move todir="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext/font-awesome">
-                                    <fileset dir="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext/font-awesome-4.6.3"/>
+                                    <fileset dir="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext/font-awesome-4.7.0"/>
                                 </move>
-                                <delete file="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext/font-awesome-4.6.3.zip"/>
+                                <delete file="${basedir}/target/${project.artifactId}-${project.version}/flamingo/resources/ext/font-awesome-4.7.0.zip"/>
                             </target>
                         </configuration>
                         <goals>
