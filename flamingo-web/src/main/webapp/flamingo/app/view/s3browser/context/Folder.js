@@ -13,19 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-Ext.application({
-    name: 'Flamingo',
+Ext.define('Flamingo.view.s3browser.context.Folder', {
+    extend: 'Ext.menu.Menu',
+    xtype: 'foldermenu',
 
-    extend: 'Flamingo.Application',
 
     requires: [
-        'util.*',
-        'Flamingo.view.main.Main',
-        'Flamingo.view.hdfsbrowser.HdfsBrowser',
-        'Flamingo.view.ooziemonitoring.Oozie',
-        'Flamingo.view.workflowdesigner.Designer',
-        'Flamingo.view.s3browser.S3Browser'
+        'Flamingo.view.s3browser.context.ContextController'
     ],
 
-    mainView: 'Flamingo.view.main.Main'
+    controller: 's3context',
+
+    items: [
+        {
+            text: 'Open',
+            iconCls: 'common-directory-open',
+            itemId: 'openFolderMenu',
+            tooltip: 'Open foler',
+            handler: 'onMenuitemClick'
+        },
+        {
+            text: 'Delete',
+            iconCls: 'common-database-remove',
+            itemId: 'deleteFolderMenu',
+            tooltip: 'Delete folder',
+            handler: 'onMenuitemClick'
+        }
+    ]
 });
