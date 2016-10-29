@@ -943,7 +943,7 @@ OG.handler.EventHandler.prototype = {
                             me.setConnectable(selected, guide, me._isConnectable(selected.shape));
                             renderer.toFront(guide.group);
                         }
-                    })
+                    });
 
                     renderer.removeAllConnectGuide();
                     renderer.toFrontEdges();
@@ -5412,21 +5412,15 @@ OG.handler.EventHandler.prototype = {
                 if($(spot).data("end")){
                     isConnectable = 'to';
                 }
-                //var index = $(spot).data("index");
-                //if (index || index === 0) {
-                //    if (index === 0) {
-                //        isConnectable = 'from'
-                //    }
-                //    if (index === vertices.length - 1) {
-                //        isConnectable = 'to'
-                //    }
-                //}
             }
             return isConnectable;
         };
 
         $(element).bind({
             mousemove: function (event) {
+                if(!me._isConnectable(element.shape)){
+                    return;
+                }
 
                 var isShape = $(element).attr("_type") === OG.Constants.NODE_TYPE.SHAPE;
                 var isEdge = $(element).attr("_shape") === OG.Constants.SHAPE_TYPE.EDGE;
@@ -5589,6 +5583,9 @@ OG.handler.EventHandler.prototype = {
                 }
             },
             mouseout: function (event) {
+                if(!me._isConnectable(element.shape)){
+                    return;
+                }
                 var isShape = $(element).attr("_type") === OG.Constants.NODE_TYPE.SHAPE;
                 var isEdge = $(element).attr("_shape") === OG.Constants.SHAPE_TYPE.EDGE;
                 var isDragging = $(root).data(OG.Constants.CONNECT_GUIDE_SUFFIX.SPOT_EVENT_DRAG);
@@ -5639,6 +5636,9 @@ OG.handler.EventHandler.prototype = {
                 event.stopImmediatePropagation();
             },
             mouseover: function (event) {
+                if(!me._isConnectable(element.shape)){
+                    return;
+                }
                 var guide;
                 //마우스가 어떠한 shape 에 접근할 때
 

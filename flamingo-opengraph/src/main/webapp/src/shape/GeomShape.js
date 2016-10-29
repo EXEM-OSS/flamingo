@@ -3,7 +3,8 @@
  *
  * @class
  * @extends OG.shape.IShape
- * @requires OG.common.*, OG.geometry.*
+ * @requires OG.common.*
+ * @requires OG.geometry.*
  *
  * @author <a href="mailto:sppark@uengine.org">Seungpil Park</a>
  */

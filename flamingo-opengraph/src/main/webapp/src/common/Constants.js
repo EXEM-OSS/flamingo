@@ -25,7 +25,10 @@ OG.shape = {};
 /** @namespace */
 OG.shape.bpmn = {};
 
-/** @namespace */
+/**
+ * @namespace
+ * @private
+ */
 OG.shape.essencia = {};
 
 /**

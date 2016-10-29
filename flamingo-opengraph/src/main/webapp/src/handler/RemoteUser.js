@@ -8,6 +8,7 @@
  * var user = new OG.handler.RemoteUser(key, name, sessionId);
  *
  * @author <a href="mailto:sppark@uengine.org">Seungpil Park</a>
+ * @private
  */
 OG.handler.RemoteUser = function (key, name, sessionId) {
 

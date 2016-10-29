@@ -1,0 +1,535 @@
+<!doctype html>
+<html>
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
+  <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
+  <meta charset="UTF-8">
+  <title>Opengraph Documentation</title>
+
+  <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
+  <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
+  <link rel="stylesheet" href="require/webknife/highlight.min.css" type="text/css">
+  <link rel="stylesheet" href="require/docgen.css" type="text/css">
+  <link rel="stylesheet" href="require/print.css" media="print">
+
+  <!--load scripts second-->
+
+  <script src="require/webknife/framework.min.js"></script>
+  <script src="require/webknife/framework.icons.js"></script>
+  <script src="require/webknife/highlight.min.js"></script>
+
+  <!--inline scripts last-->
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+  $("#dg-toc").hide(); //hide the table of contents
+
+  //instantiate an svg injector to show SVG icons
+  var injector = new svgInject();
+  injector.inject();
+
+  //code syntax highlighting
+  $('pre code, .w-inline-code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  //toggle visibility of table of contents
+  $("#dg-navigator").click(function()
+  {
+    $("#dg-toc").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
+
+});
+</script>
+
+<script type="text/x-mathjax-config">
+//MathJax configuration is the same as used by math.stackexchange.com
+MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+  tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+  TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+  messageStyle: "none"
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="dg-toc"><div><table class="unstyled"><tr><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Overview</li><li><a href="README.html">Overview</a></li><li><a href="getting-start.html">Getting Started</a></li><li><a href="examples.html">Examples</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Canvas</li><li><a href="canvas.html">Canvas Drawing</a></li><li><a href="selector.html">Canvas Selector</a></li><li><a href="data.html">Canvas Data</a></li><li><a href="event.html">Canvas Event</a></li><li><a href="renderer.html">Developer - Renderer</a></li><li><a href="handler.html">Developer - Handler</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Element</li><li><a href="element.html">Element</a></li><li><a href="geometry.html">Geometry</a></li><li><a href="shapes.html">Shape</a></li><li><a href="extend-shape.html">Extend Shape</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Api reference</li><li><a href="jsdoc.html">Api reference</a></li></ul></td><td class="dg-tocGroup" id="dg-tocFixedColumn"><ul><li><span class="w-icon dg-tocIcon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon dg-tocIcon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div></div></td></tr></table></div></div>
+<div id="dg-navigator">Table of contents</div>
+
+<header>
+ <div class="w-fixed-width">
+  <a id="dg-homelink" href="README.html">
+    <div id="dg-logo" style="background-image: url(files/images/logo.png); height: 84px; line-height: 84px; padding-left: 109px;">
+      <span id="dg-title">Opengraph Documentation</span> <span id="dg-web-title-version" style="font-weight:normal;">(0.1.1)</span>
+    </div>
+  </a>
+  <div>
+    <span id="dg-backlink"></span>
+  </div>
+ </div>
+</header>
+
+<section id="dg-content"><div class="w-fixed-width"><div id="dg-innerContent"><h1 id="dg-autoTitle">Extend Shape</h1><h1 id="extend-shape">Extend Shape</h1>
+<p><a href="shapes.md">Shape</a> &#xC139;&#xC158;&#xC5D0;&#xC11C; &#xAE30;&#xBCF8;&#xC801;&#xC778; &#xB2E4;&#xC74C;&#xC758; &#xAE30;&#xBCF8;&#xC801;&#xC778; Shape &#xD074;&#xB798;&#xC2A4;&#xB4E4;&#xC744; &#xC0B4;&#xD3B4;&#xBCF4;&#xC558;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<ul>
+<li><a href="shapes.md#geomshape">GeomShape</a></li>
+<li><a href="shapes.md#edgeshape">EdgeShape</a></li>
+<li><a href="shapes.md#groupshape">GroupShape</a></li>
+<li><a href="shapes.md#imageshape">ImageShape</a></li>
+<li><a href="shapes.md#textshape">TextShape</a></li>
+</ul>
+<p>&#xB2E4;&#xC74C; &#xC0B4;&#xD3B4;&#xBCFC; Shape &#xB4E4;&#xC740; &#xC704;&#xC758; &#xAE30;&#xBCF8; Shape &#xD074;&#xB798;&#xC2A4;&#xB4E4;&#xC744; &#xC0C1;&#xC18D;&#xBC1B;&#xB294; &#xB3C4;&#xD615;&#xB4E4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<h2 id="circleshape">CircleShape</h2>
+<p>OG.shape.CircleShape &#xB294; &#xC6D0;&#xD615; &#xB3C4;&#xD615;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>OG.shape.GeomShape &#xB97C; &#xC0C1;&#xC18D;&#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+ * Circle Shape
+ *
+ * @class
+ * @extends OG.shape.GeomShape
+ * @requires OG.common.*
+ * @requires OG.geometry.*
+ *
+ * @param {String} label &#xB77C;&#xBCA8; [Optional]
+ * @author &lt;a href=&quot;mailto:sppark@uengine.org&quot;&gt;Seungpil Park&lt;/a&gt;
+ */
+ 
+Example)
+canvas.drawShape([300, 300], new OG.CircleShape(), [250, 250], {&apos;fill&apos;: &apos;#d9534f&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.CircleShape(), [200, 200], {&apos;fill&apos;: &apos;#f9f9f9&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.CircleShape(), [150, 150], {&apos;fill&apos;: &apos;#5bc0de&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.CircleShape(), [100, 100], {&apos;fill&apos;: &apos;#5cb85c&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.CircleShape(), [50, 50], {&apos;fill&apos;: &apos;#428bca&apos;, &apos;fill-opacity&apos;: 1});
+</code></pre>
+<p><img src="images/extend/extend-circle.png" alt=""></p>
+<h2 id="ellipseshape">EllipseShape</h2>
+<p>OG.shape.EllipseShape &#xB294; &#xD0C0;&#xC6D0;&#xD615; &#xB3C4;&#xD615;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>OG.shape.GeomShape &#xB97C; &#xC0C1;&#xC18D;&#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+ * Ellipse Shape
+ *
+ * @class
+ * @extends OG.shape.GeomShape
+ * @requires OG.common.*
+ * @requires OG.geometry.*
+ *
+ * @param {String} label &#xB77C;&#xBCA8; [Optional]
+ * @author &lt;a href=&quot;mailto:sppark@uengine.org&quot;&gt;Seungpil Park&lt;/a&gt;
+ */
+
+Example)
+canvas.drawShape([300, 300], new OG.EllipseShape(), [250, 150], {&apos;fill&apos;: &apos;#d9534f&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.EllipseShape(), [100, 200], {&apos;fill&apos;: &apos;#f9f9f9&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.EllipseShape(), [150, 50], {&apos;fill&apos;: &apos;#5bc0de&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.EllipseShape(), [50, 100], {&apos;fill&apos;: &apos;#5cb85c&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.EllipseShape(), [50, 10], {&apos;fill&apos;: &apos;#428bca&apos;, &apos;fill-opacity&apos;: 1});
+</code></pre>
+<p><img src="images/extend/extend-ellipse.png" alt=""></p>
+<h2 id="rectangleshape">RectangleShape</h2>
+<p>OG.shape.EllipseShape &#xB294; &#xC9C1;&#xC0AC;&#xAC01;&#xD615; &#xB3C4;&#xD615;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>OG.shape.GeomShape &#xB97C; &#xC0C1;&#xC18D;&#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+ * Rectangle Shape
+ *
+ * @class
+ * @extends OG.shape.GeomShape
+ * @requires OG.common.*
+ * @requires OG.geometry.*
+ *
+ * @param {String} label &#xB77C;&#xBCA8; [Optional]
+ * @author &lt;a href=&quot;mailto:sppark@uengine.org&quot;&gt;Seungpil Park&lt;/a&gt;
+ */
+ 
+Example)
+canvas.drawShape([300, 300], new OG.RectangleShape(), [250, 150], {&apos;fill&apos;: &apos;#d9534f&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.RectangleShape(), [100, 200], {&apos;fill&apos;: &apos;#f9f9f9&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.RectangleShape(), [150, 50], {&apos;fill&apos;: &apos;#5bc0de&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.RectangleShape(), [50, 100], {&apos;fill&apos;: &apos;#5cb85c&apos;, &apos;fill-opacity&apos;: 1});
+canvas.drawShape([300, 300], new OG.RectangleShape(), [50, 10], {&apos;fill&apos;: &apos;#428bca&apos;, &apos;fill-opacity&apos;: 1});
+</code></pre>
+<p><img src="images/extend/extend-rect.png" alt=""></p>
+<h2 id="poolshape">PoolShape</h2>
+<p>PoolShape &#xB294; OG.shape.GroupShape &#xB97C; &#xC0C1;&#xC18D;&#xBC1B;&#xC73C;&#xBA70; Label &#xC774; &#xB3C4;&#xD615;&#xC758; &#xC0C1;&#xB2E8;&#xB77C;&#xC778;&#xC5D0; &#xC704;&#xCE58;&#xD558;&#xB294; &#xD2B9;&#xC131;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>PoolShape &#xC758; &#xC885;&#xB958;&#xB294; OG.shape.VerticalPoolShape &#xC640; OG.shape.HorizontalPoolShape &#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>PoolShape &#xC758; &#xC790;&#xC2DD;&#xC73C;&#xB85C; &#xADF8;&#xB824;&#xC9C4; &#xB3C4;&#xD615;&#xC740;, PoolShape &#xC678;&#xBD80;&#xC5D0; &#xADF8;&#xB824;&#xC9C4; &#xB3C4;&#xD615;&#xACFC; &#xC120;&#xC5F0;&#xACB0;&#xC774; &#xB420; &#xACBD;&#xC6B0; &#xC5F0;&#xACB0; &#xC2A4;&#xD0C0;&#xC77C;&#xC774; &#xBC14;&#xB00C;&#xAC8C; &#xB418;&#xB294; &#xC18D;&#xC131;&#xC774; &#xC788;&#xB294;&#xB370;, &#xC774;&#xB294; BPM &#xC758; &#xC77C;&#xBC18;&#xC801; &#xD45C;&#xD604;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB97C; &#xBC29;&#xC9C0; &#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; canvas &#xC758; CONNECT_STYLE_CHANGE &#xCEE8;&#xD53C;&#xADF8;&#xB97C; false &#xB85C; &#xC8FC;&#xC2DC;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var verticalPool = canvas.drawShape([200, 200], new OG.VerticalPoolShape(&apos;VerticalPoolShape&apos;), [250, 200], {
+    &apos;fill&apos;: &apos;#d9534f&apos;,
+    &apos;fill-opacity&apos;: 1
+});
+var horizontalPool = canvas.drawShape([500, 200], new OG.HorizontalPoolShape(&apos;HorizontalPoolShape&apos;), [250, 200], {
+    &apos;fill&apos;: &apos;#428bca&apos;,
+    &apos;fill-opacity&apos;: 1
+});
+
+//verticalPool &#xC548;&#xC5D0; &#xB3C4;&#xD615;&#xC744; &#xADF8;&#xB9B0;&#xB2E4;.
+var startShape1 = canvas.drawShape([250, 150], new OG.E_Start(), [30, 30]);
+canvas.appendChild(startShape1, verticalPool);
+
+//horizontalPool &#xC548;&#xC5D0; &#xB3C4;&#xD615;&#xC744; &#xADF8;&#xB9B0;&#xB2E4;.
+var endShape1 = canvas.drawShape([450, 150], new OG.E_End(), [30, 30]);
+canvas.appendChild(endShape1, horizontalPool);
+
+//startShape1 &#xACFC; endShape1 &#xB97C; &#xC5F0;&#xACB0;&#xD55C;&#xB2E4;.(Group &#xAC04;&#xC758; &#xC120; &#xC5F0;&#xACB0;)
+canvas.connect(startShape1, endShape1);
+
+//Group &#xAC04;&#xC758; &#xC5F0;&#xACB0;&#xC2DC; &#xC120; &#xC2A4;&#xD0C0;&#xC77C;&#xC758; &#xBCC0;&#xACBD; &#xC5EC;&#xBD80;&#xB97C; false &#xB85C; &#xC904; &#xACBD;&#xC6B0;
+canvas._CONFIG.CONNECT_STYLE_CHANGE = false;
+var startShap2 = canvas.drawShape([250, 250], new OG.E_Start(), [30, 30]);
+canvas.appendChild(startShap2, verticalPool);
+
+var endShape2 = canvas.drawShape([450, 250], new OG.E_End(), [30, 30]);
+canvas.appendChild(endShape2, horizontalPool);
+canvas.connect(startShap2, endShape2);
+</code></pre>
+<p><img src="images/extend/extend-pool.png" alt=""></p>
+<h2 id="laneshape">LaneShape</h2>
+<p>LaneShape &#xB294; PoolShape &#xC640; &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xB85C; OG.shape.GroupShape &#xB97C; &#xC0C1;&#xC18D;&#xBC1B;&#xC73C;&#xBA70; Label &#xC774; &#xB3C4;&#xD615;&#xC758; &#xC0C1;&#xB2E8;&#xB77C;&#xC778;&#xC5D0; &#xC704;&#xCE58;&#xD558;&#xB294; &#xD2B9;&#xC131;&#xC774; &#xC788;&#xACE0;, UI &#xC0C1;&#xC5D0;&#xC11C; &#xB3C4;&#xD615;&#xC5D0; &#xB300;&#xD55C; &#xBD84;&#xAE30;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>LaneShape &#xC758; &#xC885;&#xB958;&#xB294; OG.shape.VerticalLaneShape &#xC640; OG.shape.HorizontalLaneShape &#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>PoolShape &#xC640; &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xB85C; &#xB0B4;&#xBD80;&#xC758; &#xB3C4;&#xD615;&#xC774; &#xC678;&#xBD80;&#xC758; &#xB3C4;&#xD615;&#xACFC; &#xC5F0;&#xACB0;&#xB420; &#xACBD;&#xC6B0; &#xC120;&#xC5F0;&#xACB0;&#xC758; &#xBCC0;&#xD654;&#xB97C; &#xBC29;&#xC9C0;&#xD558;&#xB824;&#xBA74; CONNECT_STYLE_CHANGE &#xCEE8;&#xD53C;&#xADF8;&#xB97C; false &#xB85C; &#xC8FC;&#xC2DC;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>UI &#xC774;&#xC678;&#xC5D0; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC801;&#xC73C;&#xB85C; LaneShape &#xB97C; &#xBD84;&#xAE30;&#xD560; &#xB54C;&#xB294;, canvas.getRenderer().divideLane(LaneShape Dom element, &#xBD84;&#xAE30;&#xBA85;&#xB839;) &#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<table class="w-table w-fixed w-stripe">
+<thead>
+<tr>
+<th>&#xBD84;&#xAE30; &#xBA85;&#xB839;</th>
+<th>&#xBC29;&#xD5A5;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QUARTER_UPPER</td>
+<td>VerticalLane &#xC778; &#xACBD;&#xC6B0; &#xC88C;&#xCE21; &#xBC29;&#xD5A5;, Horizontal &#xC778; &#xACBD;&#xC6B0; &#xC0C1;&#xB2E8; &#xBC29;&#xD5A5;&#xC73C;&#xB85C; &#xD655;&#xC7A5;</td>
+</tr>
+<tr>
+<td>QUARTER_LOW</td>
+<td>VerticalLane &#xC778; &#xACBD;&#xC6B0; &#xC6B0;&#xCE21; &#xBC29;&#xD5A5;, Horizontal &#xC778; &#xACBD;&#xC6B0; &#xD558;&#xB2E8; &#xBC29;&#xD5A5;&#xC73C;&#xB85C; &#xD655;&#xC7A5;</td>
+</tr>
+<tr>
+<td>QUARTER_BISECTOR</td>
+<td>&#xB0B4;&#xBD80;&#xC801;&#xC73C;&#xB85C; 2&#xBD84;&#xAE30;</td>
+</tr>
+<tr>
+<td>QUARTER_THIRDS</td>
+<td>&#xB0B4;&#xBD80;&#xC801;&#xC73C;&#xB85C; 3&#xBD84;&#xAE30;</td>
+</tr>
+</tbody>
+</table>
+<pre><code>var verticalLane = canvas.drawShape([300, 300], new OG.VerticalLaneShape(&apos;VerticalLaneShape&apos;), [450, 250]);
+var divideLanes = canvas.getRenderer().divideLane(verticalLane, &apos;QUARTER_THIRDS&apos;);
+for(var i = 0 ; i &lt;divideLanes.length; i++){
+    canvas.setShapeStyle(divideLanes[i],{&apos;fill&apos;:&apos;#5bc0de&apos;, &apos;fill-opacity&apos;:1});
+}
+
+var horizontalLane = canvas.drawShape([800, 300], new OG.HorizontalLaneShape(&apos;HorizontalLaneShape&apos;), [250, 300]);
+divideLanes = canvas.getRenderer().divideLane(horizontalLane,&apos;QUARTER_BISECTOR&apos;);
+for(var i = 0 ; i &lt;divideLanes.length; i++){
+    canvas.setShapeStyle(divideLanes[i],{&apos;fill&apos;:&apos;#5bc0de&apos;, &apos;fill-opacity&apos;:1});
+}
+
+var verticalLane2 = canvas.drawShape([600, 600], new OG.VerticalLaneShape(&apos;VerticalLaneShape2&apos;), [450, 250]);
+canvas.getRenderer().divideLane(verticalLane2,&apos;QUARTER_LOW&apos;);
+canvas.getRenderer().divideLane(verticalLane2,&apos;QUARTER_UPPER&apos;);
+</code></pre>
+<p><img src="images/extend/extend-lane.png" alt=""></p>
+<h2 id="define-custom-shape">Define Custom Shape</h2>
+<p>OG.shape &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xC5D0; &#xC0C8;&#xB85C;&#xC6B4; &#xC0AC;&#xC6A9;&#xC790; &#xC9C0;&#xC815; Shape &#xB97C; &#xB4F1;&#xB85D;&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC744; &#xC54C;&#xC544;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xAD6C;&#xD604;&#xC744; &#xC704;&#xD574; <a href="geometry.md#geometrycollection">GeometryCollection</a> &#xC758; &#xC608;&#xC81C;&#xB97C; &#xC7AC;&#xC0AC;&#xC6A9;&#xD558;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var shape = new OG.GeomShape();
+shape.SHAPE_ID = &apos;OG.shape.CustomCollection&apos;;
+shape.createShape = function () {
+.
+.
+</code></pre>
+<p>&#xC608;&#xC81C;&#xC5D0;&#xC11C;&#xB294; GeomShape &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xD558;&#xB098; &#xC0DD;&#xC131;&#xD558;&#xACE0;, OG.shape.CustomCollection &#xC544;&#xC774;&#xB514;&#xB97C; &#xBD80;&#xC5EC;&#xD55C; &#xD6C4;, createShape &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC624;&#xBC84;&#xB77C;&#xC774;&#xB529; &#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xBC88; &#xD30C;&#xD2B8;&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xD560; &#xB0B4;&#xC6A9;&#xC740; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xC5D0; OG.shape.CustomCollection &#xB97C; &#xB4F1;&#xB85D;&#xD558;&#xACE0;, &#xD544;&#xC694;&#xD560; &#xACBD;&#xC6B0; &#xC774; Shape &#xC744; &#xC7AC;&#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xD558;&#xB294; &#xC608;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>Html &#xD398;&#xC774;&#xC9C0;&#xAC00; &#xC2DC;&#xC791;&#xD560; &#xB584;, &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB97C; &#xC77D;&#xC5B4;&#xB4E4;&#xC778; &#xD6C4;, &#xB2E4;&#xC74C;&#xC758; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB3C4;&#xB85D; &#xD558;&#xC2ED;&#xC2DC;&#xC624;.</p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+        &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;ko&quot; lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;BPMN Modeler Example&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE8&quot;&gt;
+
+
+    &lt;!-- jquery --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/jquery-1.11.1/jquery-1.11.1.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- jquery ui --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/jquery-ui-1.11.0.custom/jquery-ui.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/jquery-ui-1.11.0.custom/jquery-ui.css&quot;/&gt;
+
+    &lt;!-- jquery Context Menu --&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/contextmenu/jquery.contextMenu.css&quot;/&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/contextmenu/jquery.contextMenu-min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- Opengraph --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/opengraph/OpenGraph-0.1.1-SNAPSHOT.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        $(document).ready(function () {
+            OG.shape.CustomCollection = function (label) {
+                OG.shape.CustomCollection.superclass.call(this);
+
+                this.SHAPE_ID = &apos;OG.shape.CustomCollection&apos;;
+                this.label = label;
+            };
+            OG.shape.CustomCollection.prototype = new OG.shape.GeomShape();
+            OG.shape.CustomCollection.superclass = OG.shape.GeomShape;
+            OG.shape.CustomCollection.prototype.constructor = OG.shape.CustomCollection;
+            OG.CustomCollection = OG.shape.CustomCollection;
+
+        });
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;canvas&quot; style=&quot;cursor: default;&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>&#xC704;&#xC758; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C;&#xB294; OG.shape.GeomShape() &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC0C1;&#xC18D;&#xBC1B;&#xC740; OG.shape.CustomCollection &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xC600;&#xACE0;, SHAPE_ID &#xB85C; &apos;OG.shape.CustomCollection&apos; &#xB97C; &#xC9C0;&#xC815;&#xD558;&#xC600;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xC81C; &#xC774; &#xD074;&#xB798;&#xC2A4;&#xAC00; &#xB3C4;&#xD615;&#xC744; &#xC5B4;&#xB5BB;&#xAC8C; &#xADF8;&#xB9B4; &#xAC83;&#xC778;&#xAC00; &#xC815;&#xC758;&#xD558;&#xB294; createShape &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xCC28;&#xB840;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>$(document).ready(function () {
+    OG.shape.CustomCollection = function (label) {
+        OG.shape.CustomCollection.superclass.call(this);
+
+        this.SHAPE_ID = &apos;OG.shape.CustomCollection&apos;;
+        this.label = label;
+    };
+    OG.shape.CustomCollection.prototype = new OG.shape.GeomShape();
+    OG.shape.CustomCollection.superclass = OG.shape.GeomShape;
+    OG.shape.CustomCollection.prototype.constructor = OG.shape.CustomCollection;
+    OG.CustomCollection = OG.shape.CustomCollection;
+
+    OG.shape.CustomCollection.prototype.createShape = function () {
+        if (this.geom) {
+            return this.geom;
+        }
+
+        var geomCollection = [];
+        if (this.geom) {
+            return this.geom;
+        }
+
+        for (var i = 0; i &lt; 36; i++) {
+            var geom = new OG.geometry.Curve([[500, 200], [400, 400 - i * 2], [200, 0 + i * 2], [100, 200]]);
+            geomCollection.push(geom);
+        }
+        for (var i = 0; i &lt; 15; i++) {
+            geomCollection.push(new OG.geometry.Circle([300, 200], i * 2));
+        }
+
+        this.geom = new OG.geometry.GeometryCollection(geomCollection);
+
+        this.geom.style = new OG.geometry.Style({
+            &apos;cursor&apos;: &apos;default&apos;,
+            &apos;stroke&apos;: &apos;#d9534f&apos;,
+            &apos;stroke-width&apos;: &apos;1&apos;,
+            &apos;fill&apos;: &apos;none&apos;,
+            &apos;fill-opacity&apos;: 0
+        });
+        return this.geom;
+    };
+});
+</code></pre>
+<p>&#xC774;&#xC81C; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xC5D0; OG.shape.CustomCollection &#xB3C4;&#xD615;&#xC744; &#xADF8;&#xB9B4; &#xC900;&#xBE44;&#xAC00; &#xC644;&#xB8CC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC2E4;&#xC81C;&#xB85C; &#xC774; &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD654;&#xBA74;&#xC5D0; &#xB4DC;&#xB85C;&#xC789; &#xD574; &#xBCF4;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+var shape = new OG.CustomCollection();
+var customShape = canvas.drawShape([400, 300], shape, [400, 300]);
+</code></pre>
+<p><img src="images/extend/extend-custom1.png" alt=""></p>
+<p>OG.shape.CustomCollection &#xC5D0; &#xD2B9;&#xBCC4;&#xD55C; &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xB9CC;&#xB4E4;&#xC5B4;&#xBCF4;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>createShape &#xBA54;&#xC18C;&#xB4DC; &#xBC14;&#xB85C; &#xC544;&#xB798;&#xC5D0;, animation &#xC774;&#xB77C;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; &#xD504;&#xB85C;&#xD3EC;&#xD0C0;&#xC785; &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>.
+.
+OG.shape.CustomCollection.prototype.animation = function(canvas, element){
+    var count = 0;
+    var command = &apos;plus&apos;;
+    var interval = setInterval(function(){
+        if(command == &apos;plus&apos; &amp;&amp; count &gt; 10){
+            command = &apos;minus&apos;;
+        }else if(command == &apos;minus&apos; &amp;&amp; count &lt; 1){
+            command = &apos;plus&apos;;
+        }
+        if(command == &apos;plus&apos;){
+            count++;
+        }else{
+            count--;
+        }
+        var geomCollection = [];
+        for (var i = 0; i &lt; 36; i++) {
+            var geom = new OG.geometry.Curve([[500, 200], [400, 400 - i * count], [200, 0 + i * count], [100, 200]]);
+            geomCollection.push(geom);
+        }
+        for (var i = 0; i &lt; 15; i++) {
+            geomCollection.push(new OG.geometry.Circle([300, 200], i * count));
+        }
+        element.shape.geom = new OG.geometry.GeometryCollection(geomCollection);
+        element.shape.geom.style = new OG.geometry.Style({
+            &apos;cursor&apos;: &apos;default&apos;,
+            &apos;stroke&apos;: &apos;#d9534f&apos;,
+            &apos;stroke-width&apos;: &apos;1&apos;,
+            &apos;fill&apos;: &apos;none&apos;,
+            &apos;fill-opacity&apos;: 0
+        });
+
+        canvas.getRenderer().redrawShape(element);
+    },100);
+};
+</code></pre>
+<p>&#xC704;&#xC758; animation &#xBA54;&#xC18C;&#xB4DC;&#xB294;, canvas &#xC640; Dom &#xAC1D;&#xCCB4;&#xB97C; &#xC778;&#xC790;&#xAC12;&#xC73C;&#xB85C; &#xBC1B;&#xC544;, 0.1 &#xCD08;&#xB9C8;&#xB2E4; &#xBC88;&#xD654;&#xD558;&#xB294; geometry &#xB97C; &#xCE94;&#xBC84;&#xC2A4; &#xC0C1;&#xC758; Dom &#xAC1D;&#xCCB4;&#xC5D0; &#xC801;&#xC6A9;&#xC2DC;&#xD0AC; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>animation &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xC2DC;&#xCF1C; &#xBCF4;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+var shape = new OG.CustomCollection();
+var customShape = canvas.drawShape([400, 300], shape, [400, 300]);
+customShape.shape.animation(canvas, customShape);
+</code></pre>
+<p><img src="images/extend/extend-custom2.png" alt=""></p>
+<p><img src="images/extend/extend-custom3.png" alt=""></p>
+<ul>
+<li>&#xD480; &#xC18C;&#xC2A4; &#xCF54;&#xB4DC;</li>
+</ul>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+        &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;ko&quot; lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;BPMN Modeler Example&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE8&quot;&gt;
+
+
+    &lt;!-- jquery --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/jquery-1.11.1/jquery-1.11.1.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- jquery ui --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/jquery-ui-1.11.0.custom/jquery-ui.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/jquery-ui-1.11.0.custom/jquery-ui.css&quot;/&gt;
+
+    &lt;!-- jquery Context Menu --&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/contextmenu/jquery.contextMenu.css&quot;/&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/contextmenu/jquery.contextMenu-min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- Opengraph --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/opengraph/OpenGraph-0.1.1-SNAPSHOT.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        $(document).ready(function () {
+            OG.shape.CustomCollection = function (label) {
+                OG.shape.CustomCollection.superclass.call(this);
+
+                this.SHAPE_ID = &apos;OG.shape.CustomCollection&apos;;
+                this.label = label;
+            };
+            OG.shape.CustomCollection.prototype = new OG.shape.GeomShape();
+            OG.shape.CustomCollection.superclass = OG.shape.GeomShape;
+            OG.shape.CustomCollection.prototype.constructor = OG.shape.CustomCollection;
+            OG.CustomCollection = OG.shape.CustomCollection;
+
+            OG.shape.CustomCollection.prototype.createShape = function () {
+                if (this.geom) {
+                    return this.geom;
+                }
+
+                var geomCollection = [];
+                if (this.geom) {
+                    return this.geom;
+                }
+
+                for (var i = 0; i &lt; 36; i++) {
+                    var geom = new OG.geometry.Curve([[500, 200], [400, 400 - i * 2], [200, 0 + i * 2], [100, 200]]);
+                    geomCollection.push(geom);
+                }
+                for (var i = 0; i &lt; 15; i++) {
+                    geomCollection.push(new OG.geometry.Circle([300, 200], i * 2));
+                }
+
+                this.geom = new OG.geometry.GeometryCollection(geomCollection);
+
+                this.geom.style = new OG.geometry.Style({
+                    &apos;cursor&apos;: &apos;default&apos;,
+                    &apos;stroke&apos;: &apos;#d9534f&apos;,
+                    &apos;stroke-width&apos;: &apos;1&apos;,
+                    &apos;fill&apos;: &apos;none&apos;,
+                    &apos;fill-opacity&apos;: 0
+                });
+                return this.geom;
+            };
+
+            OG.shape.CustomCollection.prototype.animation = function(canvas, element){
+                var count = 0;
+                var command = &apos;plus&apos;;
+                var interval = setInterval(function(){
+                    if(command == &apos;plus&apos; &amp;&amp; count &gt; 10){
+                        command = &apos;minus&apos;;
+                    }else if(command == &apos;minus&apos; &amp;&amp; count &lt; 1){
+                        command = &apos;plus&apos;;
+                    }
+                    if(command == &apos;plus&apos;){
+                        count++;
+                    }else{
+                        count--;
+                    }
+                    var geomCollection = [];
+                    for (var i = 0; i &lt; 36; i++) {
+                        var geom = new OG.geometry.Curve([[500, 200], [400, 400 - i * count], [200, 0 + i * count], [100, 200]]);
+                        geomCollection.push(geom);
+                    }
+                    for (var i = 0; i &lt; 15; i++) {
+                        geomCollection.push(new OG.geometry.Circle([300, 200], i * count));
+                    }
+                    element.shape.geom = new OG.geometry.GeometryCollection(geomCollection);
+                    element.shape.geom.style = new OG.geometry.Style({
+                        &apos;cursor&apos;: &apos;default&apos;,
+                        &apos;stroke&apos;: &apos;#d9534f&apos;,
+                        &apos;stroke-width&apos;: &apos;1&apos;,
+                        &apos;fill&apos;: &apos;none&apos;,
+                        &apos;fill-opacity&apos;: 0
+                    });
+
+                    canvas.getRenderer().redrawShape(element);
+                },100);
+            };
+
+            var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+            var shape = new OG.CustomCollection();
+            var customShape = canvas.drawShape([400, 300], shape, [400, 300]);
+            customShape.shape.animation(canvas, customShape);
+
+        });
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;canvas&quot; style=&quot;cursor: default;&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</div></div></section>
+
+ <footer>
+  <div><p class="w-fixed-width"><span id="dg-web-footer">Version 0.1.1 released on 10/17/2016.</span></p></div>
+  <div class="w-fixed-width">
+    <p><span id="dg-copyright">&#xA9; 2016 <a href="sppark@uengine.org">Seunpil park</a></span></p>
+    <p>
+      <span id="dg-marking"></span>
+      <span id="dg-legalese"></span>
+      <span id="dg-attribution">Created by DocGen 2.1.3 on 29/10/2016 at 21:53:02.</span>
+    </p>
+  </div>
+ </footer>
+ 
+ </body>
+</html>

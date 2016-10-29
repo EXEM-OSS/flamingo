@@ -2,9 +2,11 @@
  * 도형의 Style 과 Shape 정보를 통해 캔버스에 렌더링 기능을 정의한 인터페이스
  *
  * @class
- * @requires OG.common.*, OG.geometry.*, OG.shape.*
+ * @requires OG.common.*
+ * @requires OG.geometry.*
+ * @requires OG.shape.*
  *
- * @param {HTMLElement,String} container 컨테이너 DOM element or ID
+ * @param {HTMLElement|String} container 컨테이너 DOM element or ID
  * @param {Number[]} containerSize 컨테이너 Width, Height
  * @param {String} backgroundColor 캔버스 배경색
  * @param {String} backgroundImage 캔버스 배경이미지
@@ -155,7 +157,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 터미널로부터 부모 Shape element 를 찾아 반환한다.
      *
-     * @param {Element,String} terminal 터미널 Element or ID
+     * @param {Element|String} terminal 터미널 Element or ID
      * @return {Element} Shape element
      * @private
      */
@@ -177,7 +179,7 @@ OG.renderer.IRenderer.prototype = {
      * @param {Number[]} position 드로잉할 위치 좌표(중앙 기준)
      * @param {OG.shape.IShape} shape Shape
      * @param {Number[]} size Shape Width, Height
-     * @param {OG.geometry.Style,Object} style 스타일
+     * @param {OG.geometry.Style|Object} style 스타일
      * @param {String} id Element ID 지정
      * @return {Element} Group DOM Element with geometry
      */
@@ -189,7 +191,7 @@ OG.renderer.IRenderer.prototype = {
      * Geometry 를 캔버스에 드로잉한다.
      *
      * @param {OG.geometry.Geometry} geometry 기하 객체
-     * @param {OG.geometry.Style,Object} style 스타일
+     * @param {OG.geometry.Style|Object} style 스타일
      * @return {Element} Group DOM Element with geometry
      */
     drawGeom: function (geometry, style, id) {
@@ -206,7 +208,7 @@ OG.renderer.IRenderer.prototype = {
      * @param {Number[]} position 드로잉할 위치 좌표(스타일 'text-anchor': 'start' or 'middle' or 'end' 에 따라 기준이 다름)
      * @param {String} text 텍스트
      * @param {Number[]} size Text Width, Height, Angle
-     * @param {OG.geometry.Style,Object} style 스타일
+     * @param {OG.geometry.Style|Object} style 스타일
      * @param {String} id Element ID 지정
      * @return {Element} DOM Element
      */
@@ -223,7 +225,7 @@ OG.renderer.IRenderer.prototype = {
      * @param {Number[]} position 드로잉할 위치 좌표(좌상단 기준)
      * @param {String} imgSrc 이미지경로
      * @param {Number[]} size Image Width, Height, Angle
-     * @param {OG.geometry.Style,Object} style 스타일
+     * @param {OG.geometry.Style|Object} style 스타일
      * @param {String} id Element ID 지정
      * @return {Element} DOM Element
      */
@@ -235,7 +237,7 @@ OG.renderer.IRenderer.prototype = {
      * 라인을 캔버스에 드로잉한다.
      *
      * @param {OG.geometry.Line} line 라인
-     * @param {OG.geometry.Style,Object} style 스타일
+     * @param {OG.geometry.Style|Object} style 스타일
      * @param {String} id Element ID 지정
      * @param {Boolean} isSelf 셀프 연결 여부
      * @return {Element} Group DOM Element with geometry
@@ -247,7 +249,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * Shape 의 Label 을 캔버스에 위치 및 사이즈 지정하여 드로잉한다.
      *
-     * @param {Element,String} shapeElement Shape DOM element or ID
+     * @param {Element|String} shapeElement Shape DOM element or ID
      * @param {String} text 텍스트
      * @param {Object} style 스타일
      * @return {Element} DOM Element
@@ -259,7 +261,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * Edge 의 from, to Label 을 캔버스에 위치 및 사이즈 지정하여 드로잉한다.
      *
-     * @param {Element,String} shapeElement Shape DOM element or ID
+     * @param {Element|String} shapeElement Shape DOM element or ID
      * @param {String} text 텍스트
      * @param {String} type 유형(FROM or TO)
      * @return {Element} DOM Element
@@ -289,15 +291,15 @@ OG.renderer.IRenderer.prototype = {
 
     /**
      * 두개의 터미널을 연결하고, 속성정보에 추가한다.
-     *
-     * @param {Element,Number[]} from 시작점
-     * @param {Element,Number[]} to 끝점
+     * @param {Element|Number[]} fromTerminal 시작점 (fromTerminal)
+     * @param {Element|Number[]} toTerminal 끝점 (toTerminal)
      * @param {Element} edge Edge Shape
-     * @param {OG.geometry.Style,Object} style 스타일
+     * @param {OG.geometry.Style|Object} style 스타일
      * @param {String} label Label
-     * @return {Element} 연결된 Edge 엘리먼트
+     * @param {Boolean} preventTrigger 이벤트 트리거 발생 막기
+     * @returns {Element} 연결된 Edge 엘리먼트
      */
-    connect: function (from, to, edge, style, label) {
+    connect: function (fromTerminal, toTerminal, edge, style, label, preventTrigger) {
         throw new OG.NotImplementedException();
     },
 
@@ -313,7 +315,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 의 Edge 연결시 Drop Over 가이드를 드로잉한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     drawDropOverGuide: function (element) {
         throw new OG.NotImplementedException();
@@ -322,7 +324,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 의 Move & Resize 용 가이드를 드로잉한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Object}
      */
     drawGuide: function (element) {
@@ -332,7 +334,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 의 Move & Resize 용 가이드를 제거한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     removeGuide: function (element) {
         throw new OG.NotImplementedException();
@@ -349,7 +351,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 의 Connect Guide 를 제거한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     removeConnectGuide: function () {
         throw new OG.NotImplementedException();
@@ -366,7 +368,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 이외의 모든 Connect Guide 를 제거한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     removeOtherConnectGuide: function () {
         throw new OG.NotImplementedException();
@@ -382,7 +384,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Edge Element 의 Move & Resize 용 가이드를 드로잉한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Object}
      */
     drawEdgeGuide: function (element) {
@@ -394,7 +396,7 @@ OG.renderer.IRenderer.prototype = {
      *
      * @param {Number[]} position 드로잉할 위치 좌표(좌상단)
      * @param {Number[]} size Text Width, Height, Angle
-     * @param {OG.geometry.Style,Object} style 스타일
+     * @param {OG.geometry.Style|Object} style 스타일
      * @return {Element} DOM Element
      */
     drawRubberBand: function (position, size, style) {
@@ -414,7 +416,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 의 Draggable 가이드를 드로잉한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element}
      * @override
      */
@@ -424,7 +426,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 의 Collapse 가이드를 드로잉한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element}
      */
     drawCollapseGuide: function (element) {
@@ -498,7 +500,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * Shape 을 캔버스에서 관련된 모두를 삭제한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     removeShape: function (element) {
         throw new OG.NotImplementedException();
@@ -507,7 +509,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 를 캔버스에서 제거한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     remove: function (element) {
         throw new OG.NotImplementedException();
@@ -516,7 +518,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 하위 엘리먼트만 제거한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     removeChild: function (element) {
         throw new OG.NotImplementedException();
@@ -570,7 +572,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 엘리먼트에 속성값을 설정한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Object} attribute 속성값
      */
     setAttr: function (element, attribute) {
@@ -580,7 +582,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 엘리먼트 속성값을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {String} attrName 속성이름
      * @return {Object} attribute 속성값
      */
@@ -591,7 +593,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * Shape 의 스타일을 변경한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Object} style 스타일
      */
     setShapeStyle: function (element, style) {
@@ -601,7 +603,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 를 최상단 레이어로 이동한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     toFront: function (element) {
         throw new OG.NotImplementedException();
@@ -610,9 +612,27 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 를 최하단 레이어로 이동한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     toBack: function (element) {
+        throw new OG.NotImplementedException();
+    },
+
+    /**
+     * ID에 해당하는 Element 를 앞으로 한단계 이동한다.
+     *
+     * @param {Element|String} element Element 또는 ID
+     */
+    bringForward: function(element){
+        throw new OG.NotImplementedException();
+    },
+
+    /**
+     * ID에 해당하는 Element 를 뒤로 한단계 이동한다.
+     *
+     * @param {Element|String} element Element 또는 ID
+     */
+    sendBackward: function(element){
         throw new OG.NotImplementedException();
     },
 
@@ -676,7 +696,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 를 캔버스에서 show 한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     show: function (element) {
         throw new OG.NotImplementedException();
@@ -685,7 +705,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * ID에 해당하는 Element 를 캔버스에서 hide 한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     hide: function (element) {
         throw new OG.NotImplementedException();
@@ -694,8 +714,8 @@ OG.renderer.IRenderer.prototype = {
     /**
      * Source Element 를 Target Element 아래에 append 한다.
      *
-     * @param {Element,String} srcElement Element 또는 ID
-     * @param {Element,String} targetElement Element 또는 ID
+     * @param {Element|String} srcElement Element 또는 ID
+     * @param {Element|String} targetElement Element 또는 ID
      * @return {Element} Source Element
      */
     appendChild: function (srcElement, targetElement) {
@@ -705,8 +725,8 @@ OG.renderer.IRenderer.prototype = {
     /**
      * Source Element 를 Target Element 이후에 insert 한다.
      *
-     * @param {Element,String} srcElement Element 또는 ID
-     * @param {Element,String} targetElement Element 또는 ID
+     * @param {Element|String} srcElement Element 또는 ID
+     * @param {Element|String} targetElement Element 또는 ID
      * @return {Element} Source Element
      */
     insertAfter: function (srcElement, targetElement) {
@@ -716,8 +736,8 @@ OG.renderer.IRenderer.prototype = {
     /**
      * Source Element 를 Target Element 이전에 insert 한다.
      *
-     * @param {Element,String} srcElement Element 또는 ID
-     * @param {Element,String} targetElement Element 또는 ID
+     * @param {Element|String} srcElement Element 또는 ID
+     * @param {Element|String} targetElement Element 또는 ID
      * @return {Element} Source Element
      */
     insertBefore: function (srcElement, targetElement) {
@@ -727,7 +747,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 해당 Element 를 가로, 세로 Offset 만큼 이동한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Number[]} offset [가로, 세로]
      * @return {Element} Element
      */
@@ -738,7 +758,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 주어진 중심좌표로 해당 Element 를 이동한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Number[]} position [x, y]
      * @return {Element} Element
      */
@@ -749,7 +769,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 중심 좌표를 기준으로 주어진 각도 만큼 회전한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Number} angle 각도
      * @return {Element} Element
      */
@@ -760,7 +780,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 상, 하, 좌, 우 외곽선을 이동한 만큼 리사이즈 한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Number[]} offset [상, 하, 좌, 우] 각 방향으로 + 값
      * @return {Element} Element
      */
@@ -771,7 +791,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 중심좌표는 고정한 채 Bounding Box 의 width, height 를 리사이즈 한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Number[]} size [Width, Height]
      * @return {Element} Element
      */
@@ -782,7 +802,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 노드 Element 를 복사한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element} Element
      */
     clone: function (element) {
@@ -822,7 +842,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 해당 엘리먼트의 BoundingBox 영역 정보를 반환한다.
      *
-     * @param {Element,String} element
+     * @param {Element|String} element
      * @return {Object} {width, height, x, y, x2, y2}
      */
     getBBox: function (element) {
@@ -912,7 +932,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 연결된 이전 Edge Element 들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element[]} Previous Element's Array
      */
     getPrevEdges: function (element) {
@@ -936,7 +956,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 연결된 이후 Edge Element 들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element[]} Previous Element's Array
      */
     getNextEdges: function (element) {
@@ -960,7 +980,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 연결된 이전 노드 Element 들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element[]} Previous Element's Array
      */
     getPrevShapes: function (element) {
@@ -985,7 +1005,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 연결된 이전 노드 Element ID들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {String[]} Previous Element Id's Array
      */
     getPrevShapeIds: function (element) {
@@ -1006,7 +1026,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 연결된 이후 노드 Element 들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element[]} Previous Element's Array
      */
     getNextShapes: function (element) {
@@ -1031,7 +1051,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 연결된 이후 노드 Element ID들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {String[]} Previous Element Id's Array
      */
     getNextShapeIds: function (element) {
@@ -1087,8 +1107,8 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 부모 엘리먼트를 반환한다. 부모가 루트일때는 반환하지 않는다.
      *
-     * @param {Element} Element  엘리먼트
-     * @return {Element} Element  엘리먼트
+     * @param {Element} element  엘리먼트
+     * @return {Element} element  엘리먼트
      */
     getParent: function (element) {
         var parent = element.parentElement;
@@ -1107,8 +1127,8 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 그룹의 하위 엘리먼트를 반환한다.
      *
-     * @param {Element} Element  엘리먼트
-     * @return {Element} Element  엘리먼트
+     * @param {Element} element  엘리먼트
+     * @returns {Array} Elements
      */
     getChilds: function (element) {
         var childShapes = [];
@@ -1126,7 +1146,7 @@ OG.renderer.IRenderer.prototype = {
     /**
      * 그룹의 Shape 인지 반환한다. RootGroup 일 경우는 제외.
      *
-     * @param {Element} Element  엘리먼트
+     * @param {Element} element  엘리먼트
      * @return {boolean} true false
      */
     isGroup: function (element) {
@@ -1170,7 +1190,7 @@ OG.renderer.IRenderer.prototype = {
             if ($(element).attr("_shape") === OG.Constants.SHAPE_TYPE.EDGE) {
                 edges.push(element);
             }
-        })
+        });
         return edges;
     },
     /**

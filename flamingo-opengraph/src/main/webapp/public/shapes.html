@@ -1,0 +1,610 @@
+<!doctype html>
+<html>
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
+  <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
+  <meta charset="UTF-8">
+  <title>Opengraph Documentation</title>
+
+  <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
+  <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
+  <link rel="stylesheet" href="require/webknife/highlight.min.css" type="text/css">
+  <link rel="stylesheet" href="require/docgen.css" type="text/css">
+  <link rel="stylesheet" href="require/print.css" media="print">
+
+  <!--load scripts second-->
+
+  <script src="require/webknife/framework.min.js"></script>
+  <script src="require/webknife/framework.icons.js"></script>
+  <script src="require/webknife/highlight.min.js"></script>
+
+  <!--inline scripts last-->
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+  $("#dg-toc").hide(); //hide the table of contents
+
+  //instantiate an svg injector to show SVG icons
+  var injector = new svgInject();
+  injector.inject();
+
+  //code syntax highlighting
+  $('pre code, .w-inline-code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  //toggle visibility of table of contents
+  $("#dg-navigator").click(function()
+  {
+    $("#dg-toc").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
+
+});
+</script>
+
+<script type="text/x-mathjax-config">
+//MathJax configuration is the same as used by math.stackexchange.com
+MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+  tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+  TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+  messageStyle: "none"
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="dg-toc"><div><table class="unstyled"><tr><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Overview</li><li><a href="README.html">Overview</a></li><li><a href="getting-start.html">Getting Started</a></li><li><a href="examples.html">Examples</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Canvas</li><li><a href="canvas.html">Canvas Drawing</a></li><li><a href="selector.html">Canvas Selector</a></li><li><a href="data.html">Canvas Data</a></li><li><a href="event.html">Canvas Event</a></li><li><a href="renderer.html">Developer - Renderer</a></li><li><a href="handler.html">Developer - Handler</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Element</li><li><a href="element.html">Element</a></li><li><a href="geometry.html">Geometry</a></li><li><a href="shapes.html">Shape</a></li><li><a href="extend-shape.html">Extend Shape</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Api reference</li><li><a href="jsdoc.html">Api reference</a></li></ul></td><td class="dg-tocGroup" id="dg-tocFixedColumn"><ul><li><span class="w-icon dg-tocIcon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon dg-tocIcon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div></div></td></tr></table></div></div>
+<div id="dg-navigator">Table of contents</div>
+
+<header>
+ <div class="w-fixed-width">
+  <a id="dg-homelink" href="README.html">
+    <div id="dg-logo" style="background-image: url(files/images/logo.png); height: 84px; line-height: 84px; padding-left: 109px;">
+      <span id="dg-title">Opengraph Documentation</span> <span id="dg-web-title-version" style="font-weight:normal;">(0.1.1)</span>
+    </div>
+  </a>
+  <div>
+    <span id="dg-backlink"></span>
+  </div>
+ </div>
+</header>
+
+<section id="dg-content"><div class="w-fixed-width"><div id="dg-innerContent"><h1 id="dg-autoTitle">Shape</h1><h1 id="shape">Shape</h1>
+<p>Shape &#xC740; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504; &#xCE94;&#xBC84;&#xC2A4; &#xC5D0; drawing &#xD558;&#xAE30; &#xC704;&#xD55C; &#xB3C4;&#xD615;&#xC744; &#xC815;&#xC758;&#xD55C; &#xD074;&#xB798;&#xC2A4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>Shape &#xC740; &#xD654;&#xBA74;&#xC5D0; &#xD45C;&#xD604;&#xB420; Geometry &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xACE0;, &#xC0AC;&#xC6A9;&#xC790;&#xAC00; UI &#xC0C1;&#xC5D0;&#xC11C; &#xB3C4;&#xD615;&#xC744; &#xC120;&#xD0DD;&#xD558;&#xAC70;&#xB098; &#xC774;&#xB3D9;&#xC2DC;&#xD0A4;&#xB294; &#xB4F1;&#xC758; &#xC774;&#xBCA4;&#xD2B8;&#xC5D0; &#xB300;&#xD55C; &#xC81C;&#xC5B4; &#xB0B4;&#xC6A9;&#xC744; &#xD3EC;&#xD568;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Shape &#xC5D0; &#xB300;&#xD55C; &#xC811;&#xADFC;&#xC740; &#xB3C4;&#xD615; Dom &#xAC1D;&#xCCB4;&#xC758; shape &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xB97C; &#xD1B5;&#xD574; &#xAC00;&#xC838;&#xC62C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+//Shape &#xC815;&#xC758;
+var shape = new OG.RectangleShape();
+
+//Shape &#xC744; &#xD654;&#xBA74;&#xC5D0; drawing &#xD558;&#xC5EC; Dom &#xAC1D;&#xCCB4;&#xB97C; &#xC5BB;&#xC74C;.
+var element = canvas.drawShape([400, 300], new OG.RectangleShape(), [400, 300]);
+
+//Dom &#xAC1D;&#xCCB4;&#xC758; shape &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xC5D0; &#xB4F1;&#xB85D;&#xB418;&#xC5B4;&#xC788;&#xC74C;.
+element.shape ==&gt; Shape &#xD074;&#xB798;&#xC2A4;
+</code></pre>
+<h2 id="ishape">IShape</h2>
+<p>OG.shape.IShape &#xB294; Shape &#xC758; &#xCD5C;&#xC0C1;&#xC704; &#xCD94;&#xC0C1; &#xD074;&#xB798;&#xC2A4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>OG.shape.IShape &#xC5D0;&#xB294; &#xB3C4;&#xD615;, &#xD14D;&#xC2A4;&#xD2B8;, &#xC774;&#xBBF8;&#xC9C0; &#xB4F1;&#xC758; &#xB4DC;&#xB85C;&#xC789; &#xB420; Object &#xC758; &#xC815;&#xBCF4;&#xB97C; &#xC800;&#xC7A5;&#xACFC; &#xC774;&#xBCA4;&#xD2B8; &#xC81C;&#xC5B4;&#xB97C; &#xB2F4;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>OG.shape.IShape &#xC758; &#xC18C;&#xC2A4;&#xCF54;&#xB4DC;&#xB97C; &#xBCF8; &#xD6C4;, Shape &#xD074;&#xB798;&#xC2A4;&#xC758; Configuration &#xC124;&#xC815; &#xBC29;&#xBC95;&#xC744; &#xC54C;&#xC544;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+ * &#xB3C4;&#xD615;, &#xD14D;&#xC2A4;&#xD2B8;, &#xC774;&#xBBF8;&#xC9C0; &#xB4F1;&#xC758; &#xB4DC;&#xB85C;&#xC789; &#xB420; Object &#xC758; &#xC815;&#xBCF4;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xB294; Shape &#xC815;&#xBCF4; &#xCD5C;&#xC0C1;&#xC704; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;
+ *
+ * @class
+ * @requires OG.common.*
+ * @requires OG.geometry.*
+ *
+ * @author &lt;a href=&quot;mailto:sppark@uengine.org&quot;&gt;Seungpil Park&lt;/a&gt;
+ */
+OG.shape.IShape = function () {
+    /**
+     * Shape &#xC720;&#xD615;(GEOM, TEXT, HTML, IMAGE, EDGE, GROUP)
+     * @type String
+     */
+    this.TYPE = null;
+
+    /**
+     * Shape &#xC744; &#xAD6C;&#xBD84;&#xD558;&#xB294; Shape ID(Shape &#xD074;&#xB798;&#xC2A4;&#xBA85;&#xACFC; &#xC77C;&#xCE58;)
+     * @type String
+     */
+    this.SHAPE_ID = null;
+
+    /**
+     * Shape &#xBAA8;&#xC591;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB294; &#xACF5;&#xAC04;&#xAE30;&#xD558;&#xAC1D;&#xCCB4;(Geometry)
+     * @type OG.geometry.Geometry
+     */
+    this.geom = null;
+
+    /**
+     * Shape &#xB77C;&#xBCA8; &#xD14D;&#xC2A4;&#xD2B8;
+     * @type String
+     */
+    this.label = null;
+
+    /**
+     * Shape &#xC758; Collapse &#xC5EC;&#xBD80;
+     * @type Boolean
+     */
+    this.isCollapsed = false;
+
+//   &#xC774;&#xBCA4;&#xD2B8; &#xC18D;&#xC131;
+    /**
+     * &#xC120;&#xD0DD; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+     * @type Boolean
+     */
+    this.SELECTABLE = true;
+
+    /**
+     * &#xC774;&#xB3D9; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+     * @type Boolean
+     */
+    this.MOVABLE = true;
+
+    /**
+     * &#xB9AC;&#xC0AC;&#xC774;&#xC988; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+     * @type Boolean
+     */
+    this.RESIZABLE = true;
+
+    /**
+     * &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+     * @type Boolean
+     */
+    this.CONNECTABLE = true;
+
+    /**
+     * From &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80; (From(Shape) =&gt; To)
+     * @type Boolean
+     */
+    this.ENABLE_FROM = true;
+
+    /**
+     * To &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80; (From =&gt; To(Shape))
+     * @type Boolean
+     */
+    this.ENABLE_TO = true;
+
+    /**
+     * TO &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+     * @type Boolean
+     */
+    this.ENABLE_FROM = true;
+
+    /**
+     * Self &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+     * @type Boolean
+     */
+    this.SELF_CONNECTABLE = true;
+
+    /**
+     * &#xAC00;&#xC774;&#xB4DC;&#xC5D0; &#xC790;&#xAE30;&#xC790;&#xC2E0;&#xC744; &#xBCF5;&#xC0AC;&#xD558;&#xB294; &#xCEE8;&#xD2B8;&#xB864;&#xB7EC; &#xC5EC;&#xBD80;.
+     * @type Boolean
+     */
+    this.CONNECT_CLONEABLE = true;
+
+    /**
+     * &#xB4DC;&#xB798;&#xADF8;&#xD558;&#xC5EC; &#xC5F0;&#xACB0;&#xC2DC; &#xC5F0;&#xACB0;&#xB300;&#xC0C1; &#xC788;&#xB294; &#xACBD;&#xC6B0;&#xC5D0;&#xB9CC; Edge &#xB4DC;&#xB85C;&#xC789; &#xCC98;&#xB9AC; &#xC5EC;&#xBD80;
+     * @type Boolean
+     */
+    this.CONNECT_REQUIRED = true;
+
+    /**
+     * &#xB4DC;&#xB798;&#xADF8;&#xD558;&#xC5EC; &#xC5F0;&#xACB0;&#xC2DC; &#xADF8;&#xB8F9;&#xC744; &#xAC74;&#xB108;&#xB6F8;&#xB54C; &#xC2A4;&#xD0C0;&#xC77C; &#xBCC0;&#xACBD; &#xC5EC;&#xBD80;
+     * @type Boolean
+     */
+    this.CONNECT_STYLE_CHANGE = true;
+
+    /**
+     * &#xAC00;&#xC774;&#xB4DC;&#xC5D0; &#xC0AD;&#xC81C; &#xCEE8;&#xD2B8;&#xB864;&#xB7EC; &#xC5EC;&#xBD80;
+     * @type Boolean
+     */
+    this.DELETABLE = true;
+
+    /**
+     * &#xB77C;&#xBCA8; &#xC218;&#xC815;&#xC5EC;&#xBD80;
+     * @type Boolean
+     */
+    this.LABEL_EDITABLE = true;
+
+
+    this.exceptionType = &apos;&apos;;
+};
+OG.shape.IShape.prototype = {
+
+    /**
+     * &#xB4DC;&#xB85C;&#xC789;&#xD560; Shape &#xB97C; &#xC0DD;&#xC131;&#xD558;&#xC5EC; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.
+     *
+     * @return {*} Shape &#xC815;&#xBCF4;
+     * @abstract
+     */
+    createShape: function () {
+        throw new OG.NotImplementedException(&quot;OG.shape.IShape.createShape&quot;);
+    },
+
+    /**
+     * Shape &#xC744; &#xBCF5;&#xC0AC;&#xD558;&#xC5EC; &#xC0C8;&#xB85C;&#xC778; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB85C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.
+     *
+     * @return {OG.shape.IShape} &#xBCF5;&#xC0AC;&#xB41C; &#xC778;&#xC2A4;&#xD134;&#xC2A4;
+     * @abstract
+     */
+    clone: function () {
+        throw new OG.NotImplementedException(&quot;OG.shape.IShape.clone&quot;);
+    },
+    addEve : function(){
+    },
+
+    // (void) &#xD2B9;&#xC218;&#xD55C; &#xCEE8;&#xD2B8;&#xB864;&#xC744; &#xC0DD;&#xC131;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xD568;&#xC218;
+    drawCustomControl: function(){
+    }
+};
+OG.shape.IShape.prototype.constructor = OG.shape.IShape;
+OG.IShape = OG.shape.IShape;
+</code></pre>
+<h2 id="configuration">Configuration</h2>
+<p>&#xC544;&#xB798; &#xD45C;&#xB294; OG.shape.IShape &#xAC00; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xC774;&#xBCA4;&#xD2B8; &#xD578;&#xB4E4;&#xB9C1; Configuration &#xBC0F; Object &#xC815;&#xBCF4;&#xB97C; &#xB2F4;&#xB2F9;&#xD558;&#xB294; &#xD504;&#xB85C;&#xD37C;&#xD2F0; &#xB9AC;&#xC2A4;&#xD2B8;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<table class="w-table w-fixed w-stripe">
+<thead>
+<tr>
+<th>Property &#xBA85;</th>
+<th>&#xC5ED;&#xD560;</th>
+<th>&#xD0C0;&#xC785;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TYPE</td>
+<td>Shape &#xC720;&#xD615;(GEOM, TEXT, HTML, IMAGE, EDGE, GROUP)</td>
+<td>String</td>
+</tr>
+<tr>
+<td>SHAPE_ID</td>
+<td>Shape &#xC744; &#xAD6C;&#xBD84;&#xD558;&#xB294; Shape ID(Shape &#xD074;&#xB798;&#xC2A4;&#xBA85;&#xACFC; &#xC77C;&#xCE58;)</td>
+<td>String</td>
+</tr>
+<tr>
+<td>geom</td>
+<td>Shape &#xBAA8;&#xC591;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB294; &#xACF5;&#xAC04;&#xAE30;&#xD558;&#xAC1D;&#xCCB4;(Geometry)</td>
+<td>OG.geometry.Geometry</td>
+</tr>
+<tr>
+<td>label</td>
+<td>Shape &#xB77C;&#xBCA8; &#xD14D;&#xC2A4;&#xD2B8;</td>
+<td>String</td>
+</tr>
+<tr>
+<td>isCollapsed</td>
+<td>Shape &#xC758; Collapse &#xC5EC;&#xBD80;</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>SELECTABLE</td>
+<td>&#xC120;&#xD0DD; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>MOVABLE</td>
+<td>&#xC774;&#xB3D9; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>RESIZABLE</td>
+<td>&#xB9AC;&#xC0AC;&#xC774;&#xC988; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>CONNECTABLE</td>
+<td>&#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>ENABLE_FROM</td>
+<td>From &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80; (From(Shape) =&gt; To)</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>ENABLE_TO</td>
+<td>To &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80; (From =&gt; To(Shape))</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>SELF_CONNECTABLE</td>
+<td>Self &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>CONNECT_CLONEABLE</td>
+<td>&#xAC00;&#xC774;&#xB4DC;&#xC5D0; &#xC790;&#xAE30;&#xC790;&#xC2E0;&#xC744; &#xBCF5;&#xC0AC;&#xD558;&#xB294; &#xCEE8;&#xD2B8;&#xB864;&#xB7EC; &#xC5EC;&#xBD80;.</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>CONNECT_REQUIRED</td>
+<td>&#xB4DC;&#xB798;&#xADF8;&#xD558;&#xC5EC; &#xC5F0;&#xACB0;&#xC2DC; &#xC5F0;&#xACB0;&#xB300;&#xC0C1; &#xC788;&#xB294; &#xACBD;&#xC6B0;&#xC5D0;&#xB9CC; Edge &#xB4DC;&#xB85C;&#xC789; &#xCC98;&#xB9AC; &#xC5EC;&#xBD80;</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>CONNECT_STYLE_CHANGE</td>
+<td>&#xB4DC;&#xB798;&#xADF8;&#xD558;&#xC5EC; &#xC5F0;&#xACB0;&#xC2DC; &#xADF8;&#xB8F9;&#xC744; &#xAC74;&#xB108;&#xB6F8;&#xB54C; &#xC2A4;&#xD0C0;&#xC77C; &#xBCC0;&#xACBD; &#xC5EC;&#xBD80;</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>DELETABLE</td>
+<td>&#xAC00;&#xC774;&#xB4DC;&#xC5D0; &#xC0AD;&#xC81C; &#xCEE8;&#xD2B8;&#xB864;&#xB7EC; &#xC5EC;&#xBD80;</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>LABEL_EDITABLE</td>
+<td>&#xB77C;&#xBCA8; &#xC218;&#xC815;&#xC5EC;&#xBD80;</td>
+<td>Boolean</td>
+</tr>
+</tbody>
+</table>
+<p>&#xC704;&#xC758; &#xD504;&#xB85C;&#xD37C;&#xD2F0; &#xAC12;&#xC744; &#xC774;&#xC6A9;&#xD574;&#xC11C; &#xBA87;&#xAC00;&#xC9C0; &#xC774;&#xBCA4;&#xD2B8;&#xB97C; &#xB9C9;&#xC544;&#xB193;&#xC740; RectShape &#xB3C4;&#xD615;&#xC744; &#xADF8;&#xB9AC;&#xB294; &#xC608;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+//Block Edit Shape &#xB9CC;&#xB4E4;&#xAE30;
+var shape = new OG.RectangleShape(&apos;Block Edit&apos;);
+
+//&#xC774;&#xB3D9; &#xBD88;&#xAC00;
+shape.MOVABLE = false;
+
+//&#xB9AC;&#xC0AC;&#xC774;&#xC9D5; &#xBD88;&#xAC00;
+shape.RESIZABLE = false;
+
+//&#xC5F0;&#xACB0; &#xBD88;&#xAC00;
+shape.CONNECTABLE = false;
+
+//&#xC0AD;&#xC81C; &#xBD88;&#xAC00;
+shape.DELETABLE = false;
+
+//&#xC790;&#xAE30; &#xC790;&#xC2E0; &#xBCF5;&#xC0AC; &#xBD88;&#xAC00;
+shape.CONNECT_CLONEABLE = false;
+
+canvas.drawShape([200, 200], shape, [150, 150]);
+
+canvas.drawShape([500, 200], new OG.RectangleShape(&apos;Enable Edit&apos;), [150, 150]);
+
+</code></pre>
+<p><img src="images/shape/shape-conf.png" alt=""></p>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC5D0;&#xC11C; &#xC81C;&#xACF5;&#xD558;&#xACE0; &#xC788;&#xB294; IShape &#xB97C; &#xD655;&#xC7A5;&#xD55C; 5&#xAC00;&#xC9C0; &#xAE30;&#xBCF8; Shape &#xB97C; &#xC54C;&#xC544;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h2 id="geomshape">GeomShape</h2>
+<p>OG.shape.GeomShape &#xD074;&#xB798;&#xC2A4;&#xB294; geometry &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xB4DC;&#xB85C;&#xC789;&#xD558;&#xB294; Shape &#xC758; &#xAE30;&#xBCF8; &#xD074;&#xB798;&#xC2A4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>OG.shape.GeomShape &#xB97C; &#xBC14;&#xB85C; &#xC0C1;&#xC18D;&#xBC1B;&#xC544; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294;, &#xC544;&#xB798; &#xC608;&#xC81C;&#xC640; &#xAC19;&#xC774; SHAPE_ID &#xB97C; &#xBD80;&#xC5EC;&#xD574;&#xC8FC;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+ * Geometry Shape
+ *
+ * @class
+ * @extends OG.shape.IShape
+ * @requires OG.common.*
+ * @requires OG.geometry.*
+ *
+ * @author &lt;a href=&quot;mailto:sppark@uengine.org&quot;&gt;Seungpil Park&lt;/a&gt;
+ */
+ 
+Example)
+var shape = new OG.GeomShape();
+shape.SHAPE_ID = &apos;OG.shape.CircleExample&apos;;
+shape.createShape = function () {
+    if (this.geom) {
+        return this.geom;
+    }
+    this.geom = new OG.geometry.Circle([50, 50], 100);
+
+    this.geom.style = new OG.geometry.Style({
+        &apos;cursor&apos;: &apos;default&apos;,
+        &apos;stroke&apos;: &apos;#d9534f&apos;,
+        &apos;stroke-width&apos;: &apos;1&apos;,
+        &apos;fill&apos;: &apos;none&apos;,
+        &apos;fill-opacity&apos;: 0
+    });
+    return this.geom;
+};
+var customShape = canvas.drawShape([300, 200], shape, [200, 200]);
+</code></pre>
+<h2 id="edgeshape">EdgeShape</h2>
+<p>OG.shape.EdgeShape &#xD074;&#xB798;&#xC2A4;&#xB294; &#xC120;&#xBD84; &#xBC0F; &#xB3C4;&#xD615;&#xAC04;&#xC758; &#xC120;&#xC5F0;&#xACB0;&#xC744; &#xD560; &#xC218; &#xC788;&#xB294; Shape &#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+ * Edge Shape
+ *
+ * @class
+ * @extends OG.shape.IShape
+ * @requires OG.common.*
+ * @requires OG.geometry.*
+ *
+ * @param {Number[]} from &#xC640;&#xC774;&#xC5B4; &#xC2DC;&#xC791; &#xC88C;&#xD45C;
+ * @param {Number[]} to &#xC640;&#xC774;&#xC5B4; &#xB05D; &#xC88C;&#xD45C;
+ * @param {String} label &#xB77C;&#xBCA8; [Optional]
+ * @param {String} fromLabel &#xC2DC;&#xC791;&#xC810; &#xB77C;&#xBCA8; [Optional]
+ * @param {String} toLabel &#xB05D;&#xC810; &#xB77C;&#xBCA8; [Optional]
+ * @author &lt;a href=&quot;mailto:sppark@uengine.org&quot;&gt;Seungpil Park&lt;/a&gt;
+ */
+ 
+Example)
+var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+var edgeShape = new OG.shape.EdgeShape([100, 200], [600, 450], &apos;label&apos;);
+canvas.drawShape(null, edgeShape, null, {&apos;edge-type&apos;: &apos;plain&apos;, &quot;arrow-start&quot;: &quot;none&quot;, &quot;arrow-end&quot;: &quot;open-wide-long&quot;});
+</code></pre>
+<p><img src="images/shape/shape-edge1.png" alt=""></p>
+<p>&#xB3C4;&#xD615;&#xB07C;&#xB9AC;&#xC758; &#xC120; &#xC5F0;&#xACB0;&#xC744; &#xC218;&#xD589;&#xD588;&#xC744; &#xACBD;&#xC6B0; &#xB9AC;&#xD134;&#xB418;&#xB294; &#xAC83;&#xB3C4; EdgeShape &#xC778;&#xB370;, &#xC774;&#xB807;&#xAC8C; &#xC0DD;&#xC131;&#xB41C; &#xC5F0;&#xACB0; &#xB3C4;&#xD615;&#xB4E4;&#xC740; Dom &#xAC1D;&#xCCB4;&#xC758; attribute &#xC5D0; &#xD2B9;&#xC815;&#xD55C; &#xAC12;&#xC744; &#xAC00;&#xC9C0;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C; &#xC608;&#xC81C;&#xB97C; &#xC2E4;&#xD589;&#xD574;&#xBD05;&#xB2C8;&#xB2E4;.</p>
+<pre><code>//From &#xB3C4;&#xD615;
+var element1 = canvas.drawShape([200,200],new OG.RectangleShape(&apos;From&apos;),[150,150]);
+
+//To &#xB3C4;&#xD615;
+var element2 = canvas.drawShape([600,200],new OG.RectangleShape(&apos;To&apos;),[150,150]);
+
+//connect &#xC2DC;&#xD0AC; &#xACBD;&#xC6B0; edgeShape Dom &#xAC1D;&#xCCB4;&#xAC00; &#xB9AC;&#xD134;&#xB41C;&#xB2E4;.
+var edge = canvas.connect(element1, element2, null, &apos;edge&apos;);
+
+//&#xAC01; &#xC5B4;&#xD2B8;&#xB9AC;&#xBDF0;&#xD2B8; &#xD655;&#xC778;
+console.log($(element1).attr(&apos;_toedge&apos;));
+console.log($(element2).attr(&apos;_fromedge&apos;));
+console.log($(edge).attr(&apos;_from&apos;));
+console.log($(edge).attr(&apos;_to&apos;));
+</code></pre>
+<p><img src="images/shape/shape-edge2.png" alt=""></p>
+<table class="w-table w-fixed w-stripe">
+<thead>
+<tr>
+<th>Dom &#xAC1D;&#xCCB4;</th>
+<th>&#xC5B4;&#xD2B8;&#xB9AC;&#xBDF0;&#xD2B8;</th>
+<th>&#xAC12; &#xC608;&#xC2DC;</th>
+<th>&#xC124;&#xBA85;</th>
+<th>&#xBA40;&#xD2F0; value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>From element</td>
+<td>_toedge</td>
+<td>OG_1277_8</td>
+<td>&#xC790;&#xC2E0;&#xC73C;&#xB85C; &#xBD80;&#xD130; &#xC678;&#xBD80;&#xB85C; &#xB098;&#xAC04; edge &#xC544;&#xC774;&#xB514;</td>
+<td>&#xCF64;&#xB9C8; &#xC138;&#xD37C;&#xB808;&#xC774;&#xD130;</td>
+</tr>
+<tr>
+<td>To element</td>
+<td>_fromedge</td>
+<td>OG_1277_8</td>
+<td>&#xC790;&#xC2E0;&#xC744; &#xD5A5;&#xD574; &#xC548;&#xC73C;&#xB85C; &#xB4E4;&#xC5B4;&#xC628; edge &#xC544;&#xC774;&#xB514;</td>
+<td>&#xCF64;&#xB9C8; &#xC138;&#xD37C;&#xB808;&#xC774;&#xD130;</td>
+</tr>
+<tr>
+<td>Edge element</td>
+<td>_from</td>
+<td>OG_1277_2_TERMINAL_50_50</td>
+<td>&#xC120;&#xBD84;&#xACFC; from &#xC73C;&#xB85C; &#xC5F0;&#xACB0;&#xB41C; &#xB3C4;&#xD615;&#xC758; &#xC544;&#xC774;&#xB514; &#xC640; &#xADF8; &#xB3C4;&#xD615;&#xC758; &#xC811;&#xC810;&#xC758; &#xD37C;&#xC13C;&#xD14C;&#xC774;&#xC9C0; &#xD3EC;&#xC778;&#xD2B8;</td>
+<td>&#xB2E8;&#xC77C;&#xAC12;</td>
+</tr>
+<tr>
+<td></td>
+<td>_to</td>
+<td>OG_1277_5_TERMINAL_50_50</td>
+<td>&#xC120;&#xBD84;&#xACFC; to &#xC73C;&#xB85C; &#xC5F0;&#xACB0;&#xB41C; &#xB3C4;&#xD615;&#xC758; &#xC544;&#xC774;&#xB514; &#xC640; &#xADF8; &#xB3C4;&#xD615;&#xC758; &#xC811;&#xC810;&#xC758; &#xD37C;&#xC13C;&#xD14C;&#xC774;&#xC9C0; &#xD3EC;&#xC778;&#xD2B8;</td>
+<td>&#xB2E8;&#xC77C;&#xAC12;</td>
+</tr>
+</tbody>
+</table>
+<p>&#xC774;&#xBC88;&#xC5D0;&#xB294;, &#xD654;&#xBA74;&#xC5D0; &#xC774;&#xBBF8; &#xADF8;&#xB824;&#xC9C4; Edge &#xC640; &#xB450; &#xB450;&#xD615;&#xC744; &#xC5F0;&#xACB0;&#xD558;&#xB294; &#xC608;&#xC81C;&#xB97C; &#xC2E4;&#xD589;&#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xBBF8; &#xADF8;&#xB824;&#xC9C4; Edge &#xB97C; &#xC5F0;&#xACB0;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; canvas.getRenderer().connect(fromTerminal,toTerminal,edgeElement) &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>fromTerminal &#xACFC; toTerminal &#xC740; Edge &#xC758; _from &#xC5B4;&#xD2B8;&#xB9AC;&#xBDF0;&#xD2B8;&#xC640; _to &#xC5B4;&#xD2B8;&#xB9AC;&#xBDF0;&#xD130; &#xAC12;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>terminal &#xC2A4;&#xD2B8;&#xB9C1;&#xC744; &#xB9CC;&#xB4DC;&#xB294; &#xAC83;&#xC740; &#xC704;&#xC758; &#xD45C;&#xCC98;&#xB7FC; &#xC9C1;&#xC811; &#xC2A4;&#xD2B8;&#xB9C1;&#xC744; &#xB9CC;&#xB4DC;&#xC2E4; &#xC218;&#xB3C4; &#xC788;&#xACE0;, canvas.getRenderer().createDefaultTerminalString(fromElement|toElement) &#xB97C; &#xD638;&#xCD9C;&#xD560; &#xC218; &#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var fromElement = canvas.drawShape([200,200],new OG.RectangleShape(&apos;From&apos;),[150,150]);
+var toElement = canvas.drawShape([600,200],new OG.RectangleShape(&apos;To&apos;),[150,150]);
+
+var edgeShape = new OG.shape.EdgeShape([100, 100], [700, 300], &apos;edge&apos;);
+var edgeElement = canvas.drawShape(null, edgeShape);
+
+//fromTerminal &#xC2A4;&#xD2B8;&#xB9C1; &#xB9CC;&#xB4E4;&#xAE30;
+var fromTerminal = canvas.getRenderer().createDefaultTerminalString(fromElement);
+
+//toTerminal &#xC2A4;&#xD2B8;&#xB9C1; &#xB9CC;&#xB4E4;&#xAE30;
+var toTerminal = canvas.getRenderer().createDefaultTerminalString(toElement);
+
+//fromTerminal,toTerminal,edgeElement &#xB97C; &#xC5F0;&#xACB0;&#xD558;&#xAE30;
+canvas.getRenderer().connect(fromTerminal,toTerminal,edgeElement);
+</code></pre>
+<p><img src="images/shape/shape-edge3.png" alt=""></p>
+<h2 id="groupshape">GroupShape</h2>
+<p>OG.shape.GroupShape &#xD074;&#xB798;&#xC2A4;&#xB294; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; OG.geometry.Rectangle &#xC744; &#xADF8;&#xB9AC;&#xAC8C; &#xB418;&#xBA70;, &#xC790;&#xC2E0; &#xC548;&#xC5D0; &#xB2E4;&#xB978; &#xB3C4;&#xD615;&#xC744; &#xD3EC;&#xD568;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC55E;&#xC11C; <a href="document/canvas.md#group">Canvas Drawing - group</a> &#xD30C;&#xD2B8;&#xC5D0;&#xC11C; canvas.group([&#xB3C4;&#xD615;1,&#xB3C4;&#xD615;2...]) &#xBA54;&#xC18C;&#xB4DC;&#xB85C; &#xADF8;&#xB8F9;&#xD551;&#xC744; &#xD560;&#xB54C; &#xB9AC;&#xD134;&#xB418;&#xB294; Dom &#xAC1D;&#xCCB4;&#xAC00;
+OG.shape.GroupShape &#xD074;&#xB798;&#xC2A4;&#xB97C; shape &#xC73C;&#xB85C; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+ * Group Shape
+ *
+ * @class
+ * @extends OG.shape.IShape
+ * @requires OG.common.*
+ * @requires OG.geometry.*
+ *
+ * @param {String} label &#xB77C;&#xBCA8; [Optional]
+ * @author &lt;a href=&quot;mailto:sppark@uengine.org&quot;&gt;Seungpil Park&lt;/a&gt;
+ */
+
+Example)
+var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+var rectangleShape = canvas.drawShape([100, 100], new OG.RectangleShape(&apos;1&apos;), [100, 100]);
+var circleShape = canvas.drawShape([300, 200], new OG.RectangleShape(&apos;2&apos;), [80, 80]);
+
+//create OG.shape.GroupShape Dom Element
+var group = canvas.group([rectangleShape,circleShape]);
+
+var addShape1 = canvas.drawShape([300, 100], new OG.CircleShape(&apos;add1&apos;), [50, 50]);
+var addShape2 = canvas.drawShape([100, 200], new OG.CircleShape(&apos;add2&apos;), [50, 50]);
+canvas.addToGroup(group,[addShape1,addShape2]);
+</code></pre>
+<p>OG.geometry.Rectangle &#xC0AC;&#xAC01;&#xD615; &#xD2C0; &#xC774;&#xC678;&#xC758; &#xB2E4;&#xB978; &#xD2B9;&#xC218;&#xD55C; &#xBAA8;&#xC591;&#xB4E4;&#xB3C4; GroupShape &#xB85C; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C;&#xC758; &#xC608;&#xC81C;&#xB97C; &#xC9C4;&#xD589;&#xD558;&#xC5EC; &#xBD05;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var shape = new OG.GroupShape();
+shape.createShape = function () {
+    if (this.geom) {
+        return this.geom;
+    }
+    this.geom = new OG.geometry.PolyLine([[0,0],[50,50],[150,50],[75,100],[-75,100],[-150,50],[-50,50],[0,0]]);
+
+    this.geom.style = new OG.geometry.Style({
+        &apos;cursor&apos;: &apos;default&apos;,
+        &apos;stroke&apos;: &apos;#d9534f&apos;,
+        &apos;stroke-width&apos;: &apos;1&apos;,
+        &apos;fill&apos;: &apos;none&apos;,
+        &apos;fill-opacity&apos;: 0
+    });
+    return this.geom;
+};
+var customShape = canvas.drawShape([300, 200], shape, [200, 200]);
+</code></pre>
+<p>&#xC704;&#xC758; &#xCF54;&#xB4DC;&#xB85C; &#xC0DD;&#xC131;&#xB41C; &#xB3C4;&#xD615;&#xC740; &#xB2E4;&#xB978; &#xB3C4;&#xD615;&#xC744; &#xC790;&#xC2DD;&#xC73C;&#xB85C; &#xAC00;&#xC9C8; &#xC218; &#xC788;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; UI &#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xB4DC;&#xB798;&#xADF8; &#xD558;&#xC5EC; &#xB2E4;&#xB978; &#xB3C4;&#xD615;&#xC744; &#xC9D1;&#xC5B4;&#xB123;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><img src="images/shape/shape-group.png" alt=""></p>
+<h2 id="imageshape">ImageShape</h2>
+<p>OG.shape.ImageShape &#xB294; &#xC774;&#xBBF8;&#xC9C0;&#xB97C; &#xB4DC;&#xB85C;&#xC789; &#xD560; &#xC218; &#xC788;&#xB294; shape &#xD074;&#xB798;&#xC2A4; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>new OG.ImageShape(&#xC774;&#xBBF8;&#xC9C0; url) &#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var imageShape1 = new OG.ImageShape(&apos;resources/images/router/Api.png&apos;);
+var imageShape2 = new OG.ImageShape(&apos;resources/images/router/Function.svg&apos;);
+var imageShape3 = new OG.ImageShape(&apos;resources/images/router/Oauth.png&apos;);
+var imageShape4 = new OG.ImageShape(&apos;resources/images/router/Proxy.png&apos;);
+var imageShape5 = new OG.ImageShape(&apos;resources/images/router/Request.png&apos;);
+var imageShape6 = new OG.ImageShape(&apos;resources/images/router/Response.png&apos;);
+
+canvas.drawShape([100, 100], imageShape1, [200, 150]);
+canvas.drawShape([300, 100], imageShape2, [200, 150]);
+canvas.drawShape([500, 100], imageShape3, [100, 100]);
+canvas.drawShape([100, 300], imageShape4, [200, 150]);
+canvas.drawShape([300, 300], imageShape5, [100, 100]);
+canvas.drawShape([500, 300], imageShape6, [100, 100]);
+</code></pre>
+<p><img src="images/shape/shape-image.png" alt=""></p>
+<h2 id="textshape">TextShape</h2>
+<p>OG.shape.TextShape &#xB294; &#xD14D;&#xC2A4;&#xD2B8;&#xB97C; &#xB4DC;&#xB85C;&#xC789; &#xD560; &#xC218; &#xC788;&#xB294; shape &#xD074;&#xB798;&#xC2A4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var textShape1 = new OG.TextShape(&quot;Text Here, Hello World!&quot;);
+var textShape2 = new OG.TextShape(&quot;Text Here, Hello World!&quot;);
+var textShape3 = new OG.TextShape(&quot;Text Here, Hello World!&quot;);
+var textShape4 = new OG.TextShape(&quot;Text Here, Hello World!&quot;);
+var textShape5 = new OG.TextShape(&quot;Text Here, Hello World!&quot;);
+
+canvas.drawShape([300, 100], textShape1, [200, 100, 45], {&apos;font-size&apos;: 10, &apos;text-anchor&apos;: &apos;start&apos;, &apos;vertical-align&apos;: &apos;middle&apos;});
+canvas.drawShape([300, 150], textShape2, [200, 100], {&apos;font-size&apos;: 15, &apos;text-anchor&apos;: &apos;middle&apos;, &apos;vertical-align&apos;: &apos;top&apos;});
+canvas.drawShape([300, 200], textShape3, [200, 100], {&apos;font-size&apos;: 20, &apos;text-anchor&apos;: &apos;end&apos;, &apos;vertical-align&apos;: &apos;top&apos;});
+canvas.drawShape([300, 250], textShape4, [200, 100], {&apos;font-size&apos;: 25, &apos;text-anchor&apos;: &apos;middle&apos;, &apos;vertical-align&apos;: &apos;bottom&apos;});
+canvas.drawShape([300, 300], textShape5, [200, 100], {&apos;font-size&apos;: 30, &apos;text-anchor&apos;: &apos;end&apos;, &apos;vertical-align&apos;: &apos;bottom&apos;});
+</code></pre>
+<p><img src="images/shape/shape-text.png" alt=""></p>
+</div></div></section>
+
+ <footer>
+  <div><p class="w-fixed-width"><span id="dg-web-footer">Version 0.1.1 released on 10/17/2016.</span></p></div>
+  <div class="w-fixed-width">
+    <p><span id="dg-copyright">&#xA9; 2016 <a href="sppark@uengine.org">Seunpil park</a></span></p>
+    <p>
+      <span id="dg-marking"></span>
+      <span id="dg-legalese"></span>
+      <span id="dg-attribution">Created by DocGen 2.1.3 on 29/10/2016 at 21:53:02.</span>
+    </p>
+  </div>
+ </footer>
+ 
+ </body>
+</html>

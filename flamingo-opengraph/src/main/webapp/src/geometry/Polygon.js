@@ -3,7 +3,9 @@
  *
  * @class
  * @extends OG.geometry.PolyLine
- * @requires OG.geometry.Coordinate, OG.geometry.Envelope, OG.geometry.Geometry
+ * @requires OG.geometry.Coordinate
+ * @requires OG.geometry.Envelope
+ * @requires OG.geometry.Geometry
  *
  * @example
  * var geom = new OG.geometry.Polygon([[20, 5], [30, 15], [40, 25], [50, 15], [60, 5], [20, 5]]);

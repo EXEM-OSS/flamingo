@@ -7,7 +7,7 @@
  * @example
  * var boundingBox = new OG.geometry.Envelope([50, 50], 200, 100);
  *
- * @param {OG.geometry.Coordinate,Number[]} upperLeft 기준 좌상단 좌표
+ * @param {OG.geometry.Coordinate|Number[]} upperLeft 기준 좌상단 좌표
  * @param {Number} width 너비
  * @param {Number} height 높이
  * @author <a href="mailto:sppark@uengine.org">Seungpil Park</a>
@@ -108,7 +108,7 @@ OG.geometry.Envelope.prototype = {
 	/**
 	 * 주어진 좌표로 기준 좌상단 좌표를 설정한다. 새로 설정된 값으로 이동된다.
 	 *
-	 * @param {OG.geometry.Coordinate,Number[]} upperLeft 좌상단 좌표
+	 * @param {OG.geometry.Coordinate|Number[]} upperLeft 좌상단 좌표
 	 */
 	setUpperLeft: function (upperLeft) {
 		if (upperLeft.constructor === Array) {
@@ -220,7 +220,7 @@ OG.geometry.Envelope.prototype = {
 	/**
 	 * 주어진 좌표로 중심 좌표를 설정한다. 새로 설정된 값으로 이동된다.
 	 *
-	 * @param {OG.geometry.Coordinate,Number[]} centroid 중심좌표
+	 * @param {OG.geometry.Coordinate|Number[]} centroid 중심좌표
 	 */
 	setCentroid: function (centroid) {
 		if (centroid.constructor === Array) {
@@ -293,7 +293,7 @@ OG.geometry.Envelope.prototype = {
 	/**
 	 * 주어진 좌표값이 Envelope 영역에 포함되는지 비교한다.
 	 *
-	 * @param {OG.geometry.Coordinate,Number[]} coordinate 좌표값
+	 * @param {OG.geometry.Coordinate|Number[]} coordinate 좌표값
 	 * @return {Boolean} true:포함, false:비포함
 	 */
 	isContains: function (coordinate) {

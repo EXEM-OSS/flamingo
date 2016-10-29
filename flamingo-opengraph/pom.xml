@@ -44,19 +44,21 @@
         <plugins>
             <!-- JsDoc Maven Plugin : JavaScript Documentation Tool -->
             <plugin>
-                <groupId>nl.windgazer</groupId>
-                <artifactId>jsdoctk-plugin</artifactId>
-                <version>2.3.2</version>
+                <groupId>com.phasebash.jsdoc</groupId>
+                <artifactId>jsdoc3-maven-plugin</artifactId>
+                <version>1.2.0</version>
                 <configuration>
-                    <srcDir>${javascript.src.dir}</srcDir>
-                    <recurse>5</recurse>
+                    <recursive>true</recursive>
+                    <directoryRoots>
+                        <directoryRoot>${javascript.src.dir}</directoryRoot>
+                    </directoryRoots>
                 </configuration>
                 <executions>
                     <execution>
                         <id>run-jsdoctk</id>
                         <phase>site</phase>
                         <goals>
-                            <goal>jsdoc</goal>
+                            <goal>jsdoc3</goal>
                         </goals>
                     </execution>
                 </executions>

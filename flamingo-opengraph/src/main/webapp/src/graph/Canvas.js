@@ -2,7 +2,13 @@
  * OpenGraph 캔버스 클래스
  *
  * @class
- * @requires OG.common.*, OG.geometry.*, OG.shape.*, OG.renderer.*, OG.handler.*, OG.layout.*, raphael-2.1.0
+ * @requires OG.common.*
+ * @requires OG.geometry.*
+ * @requires OG.shape.*
+ * @requires OG.renderer.*
+ * @requires OG.handler.*
+ * @requires OG.layout.*
+ * @requires raphael-2.1.0
  *
  * @example
  * var canvas = new OG.Canvas('canvas', [1000, 800], 'white', 'url(./images/grid.gif)');
@@ -12,7 +18,7 @@
  *
  * var edge = canvas.connect(circleShape, ellipseShape);
  *
- * @param {HTMLElement,String} container 컨테이너 DOM element or ID
+ * @param {HTMLElement|String} container 컨테이너 DOM element or ID
  * @param {Number[]} containerSize 컨테이너 Width, Height
  * @param {String} backgroundColor 캔버스 배경색
  * @param {String} backgroundImage 캔버스 배경이미지
@@ -21,6 +27,14 @@
 OG.graph.Canvas = function (container, containerSize, backgroundColor, backgroundImage) {
 
     this._CONFIG = {
+        /**
+         * 연결된 두 오브젝트의 소속에 따른 연결선 스타일 변화 여부
+         */
+        CHECK_BRIDGE_EDGE: true,
+        /**
+         * 스틱 가이드 생성 여부
+         */
+        STICK_GUIDE: true,
         /**
          * 슬라이더
          */
@@ -375,6 +389,16 @@ OG.graph.Canvas = function (container, containerSize, backgroundColor, backgroun
         GROUP_INNER_SAPCE: 10,
 
         /**
+         * 라벨 최소 크기(IE)
+         */
+        LABEL_MIN_SIZE: 100,
+
+        /**
+         * 라벨 최대 크기(IE)
+         */
+        LABEL_MAX_SIZE: 300,
+
+        /**
          * 디폴트 스타일 정의
          */
         DEFAULT_STYLE: {
@@ -398,7 +422,6 @@ OG.graph.Canvas = function (container, containerSize, backgroundColor, backgroun
                 "stroke-width": 1.5,
                 "stroke-opacity": 1,
                 "edge-type": "plain",
-                "edge-direction": "c c",
                 "arrow-start": "none",
                 "arrow-end": "block",
                 "stroke-dasharray": "",
@@ -696,6 +719,8 @@ OG.graph.Canvas.prototype = {
      * - enableContextMenu  : 마우스 우클릭 메뉴 가능여부(디폴트 true)
      * - autoExtensional    : 캔버스 자동 확장 기능(디폴트 true)
      * - useSlider          : 확대축소 슬라이더 사용 여부
+     * - stickGuide         : 스틱 가이드 표시 여부
+     * - checkBridgeEdge    : 연결된 두 오브젝트의 소속에 따른 연결선 스타일 변화 여부
      * </pre>
      *
      * @param {Object} config JSON 포맷의 configuration
@@ -718,6 +743,8 @@ OG.graph.Canvas.prototype = {
             this._CONFIG.ENABLE_CONTEXTMENU = config.enableContextMenu === undefined ? this._CONFIG.ENABLE_CONTEXTMENU : config.enableContextMenu;
             this._CONFIG.AUTO_EXTENSIONAL = config.autoExtensional === undefined ? this._CONFIG.AUTO_EXTENSIONAL : config.autoExtensional;
             this._CONFIG.USE_SLIDER = config.useSlider === undefined ? this._CONFIG.USE_SLIDER : config.useSlider;
+            this._CONFIG.STICK_GUIDE = config.stickGuide === undefined ? this._CONFIG.STICK_GUIDE : config.stickGuide;
+            this._CONFIG.CHECK_BRIDGE_EDGE = config.checkBridgeEdge === undefined ? this._CONFIG.CHECK_BRIDGE_EDGE : config.checkBridgeEdge;
         }
 
         this._HANDLER.setDragSelectable(this._CONFIG.SELECTABLE && this._CONFIG.DRAG_SELECTABLE);
@@ -1052,7 +1079,7 @@ OG.graph.Canvas.prototype = {
      * @param {Number[]} position 드로잉할 위치 좌표(중앙 기준)
      * @param {OG.shape.IShape} shape Shape
      * @param {Number[]} size Shape Width, Height
-     * @param {OG.geometry.Style,Object} style 스타일 (Optional)
+     * @param {OG.geometry.Style|Object} style 스타일 (Optional)
      * @param {String} id Element ID 지정 (Optional)
      * @param {String} parentId 부모 Element ID 지정 (Optional)
      * @param {Boolean} preventDrop Lane, Pool 생성 drop 모드 수행 방지
@@ -1203,14 +1230,14 @@ OG.graph.Canvas.prototype = {
     /**
      * Shape 의 Label 을 캔버스에 위치 및 사이즈 지정하여 드로잉한다.
      *
-     * @param {Element,String} shapeElement Shape DOM element or ID
+     * @param {Element|String} shapeElement Shape DOM element or ID
      * @param {String} text 텍스트
-     * @param {OG.geometry.Style,Object} style 스타일
+     * @param {OG.geometry.Style|Object} style 스타일
      * @return {Element} DOM Element
      * @override
      */
-    drawLabel: function (shapeElement, text, style, position) {
-        return this._RENDERER.drawLabel(shapeElement, text, style, position);
+    drawLabel: function (shapeElement, text, style) {
+        return this._RENDERER.drawLabel(shapeElement, text, style);
     }
     ,
 
@@ -1241,11 +1268,15 @@ OG.graph.Canvas.prototype = {
      *
      * @param {Element} fromElement from Shape Element
      * @param {Element} toElement to Shape Element
-     * @param {OG.geometry.Style,Object} style 스타일
+     * @param {OG.geometry.Style|Object} style 스타일
      * @param {String} label Label
-     * @return {Element} 연결된 Edge 엘리먼트
+     * @param fromP fromElement 와 연결될 터미널 좌표 [x,y](optional)
+     * @param toP toElement 와 연결될 터미널 좌표 [x,y](optional)
+     * @param preventTrigger 참 일 경우 이벤트 발생을 방지
+     * @param id 연결선의 아이디
+     * @returns {*|Element}
      */
-    connect: function (fromElement, toElement, style, label, fromP, toP, preventTrigger) {
+    connect: function (fromElement, toElement, style, label, fromP, toP, preventTrigger, id) {
         var fromTerminal, toTerminal, edge, fromPosition, toPosition;
 
         if (fromP) {
@@ -1266,7 +1297,7 @@ OG.graph.Canvas.prototype = {
         toPosition = [toPosition.x, toPosition.y];
 
         // draw edge
-        edge = this._RENDERER.drawShape(null, new OG.EdgeShape(fromPosition, toPosition));
+        edge = this._RENDERER.drawShape(null, new OG.EdgeShape(fromPosition, toPosition), null, style, id);
         edge = this._RENDERER.trimEdgeDirection(edge, fromElement, toElement);
 
         // connect
@@ -1290,7 +1321,7 @@ OG.graph.Canvas.prototype = {
      *
      * @param {String} fromTerminal from Terminal Id
      * @param {String} toTerminal to Terminal Id
-     * @param {OG.geometry.Style,Object} style 스타일
+     * @param {OG.geometry.Style|Object} style 스타일
      * @param {String} label Label
      * @return {String} id 부여 할 아이디
      * @return {String} shapeId shapeId
@@ -1427,7 +1458,7 @@ OG.graph.Canvas.prototype = {
     /**
      * Shape 을 캔버스에서 관련된 모두를 삭제한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     removeShape: function (element) {
         this._RENDERER.removeShape(element);
@@ -1437,7 +1468,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 하위 엘리먼트만 제거한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     removeChild: function (element) {
         this._RENDERER.removeChild(element);
@@ -1447,7 +1478,7 @@ OG.graph.Canvas.prototype = {
     /**
      * ID에 해당하는 Element 의 Move & Resize 용 가이드를 제거한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     removeGuide: function (element) {
         this._RENDERER.removeGuide(element);
@@ -1508,7 +1539,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 엘리먼트에 속성값을 설정한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Object} attribute 속성값
      */
     setAttr: function (element, attribute) {
@@ -1519,7 +1550,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 엘리먼트 속성값을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {String} attrName 속성이름
      * @return {Object} attribute 속성값
      */
@@ -1531,7 +1562,7 @@ OG.graph.Canvas.prototype = {
     /**
      * ID에 해당하는 Element 를 최상단 레이어로 이동한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     toFront: function (element) {
         this._RENDERER.toFront(element);
@@ -1541,7 +1572,7 @@ OG.graph.Canvas.prototype = {
     /**
      * ID에 해당하는 Element 를 최하단 레이어로 이동한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     toBack: function (element) {
         this._RENDERER.toBack(element);
@@ -1549,12 +1580,30 @@ OG.graph.Canvas.prototype = {
     ,
 
     /**
+     * ID에 해당하는 Element 를 앞으로 한단계 이동한다.
+     *
+     * @param {Element|String} element Element 또는 ID
+     */
+    bringForward: function (element) {
+        this._RENDERER.bringForward(element);
+    },
+
+    /**
+     * ID에 해당하는 Element 를 뒤로 한단계 이동한다.
+     *
+     * @param {Element|String} element Element 또는 ID
+     */
+    sendBackward: function (element) {
+        this._RENDERER.sendBackward(element);
+    },
+
+    /**
      * 랜더러 캔버스의 사이즈(Width, Height)를 반환한다.
      *
      * @return {Number[]} Canvas Width, Height
      */
     getCanvasSize: function () {
-        this._RENDERER.getCanvasSize();
+        return this._RENDERER.getCanvasSize();
     }
     ,
 
@@ -1614,7 +1663,7 @@ OG.graph.Canvas.prototype = {
     /**
      * ID에 해당하는 Element 를 캔버스에서 show 한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     show: function (element) {
         this._RENDERER.show(element);
@@ -1624,7 +1673,7 @@ OG.graph.Canvas.prototype = {
     /**
      * ID에 해당하는 Element 를 캔버스에서 hide 한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      */
     hide: function (element) {
         this._RENDERER.hide(element);
@@ -1634,8 +1683,8 @@ OG.graph.Canvas.prototype = {
     /**
      * Source Element 를 Target Element 아래에 append 한다.
      *
-     * @param {Element,String} srcElement Element 또는 ID
-     * @param {Element,String} targetElement Element 또는 ID
+     * @param {Element|String} srcElement Element 또는 ID
+     * @param {Element|String} targetElement Element 또는 ID
      * @return {Element} Source Element
      */
     appendChild: function (srcElement, targetElement) {
@@ -1646,8 +1695,8 @@ OG.graph.Canvas.prototype = {
     /**
      * Source Element 를 Target Element 이후에 insert 한다.
      *
-     * @param {Element,String} srcElement Element 또는 ID
-     * @param {Element,String} targetElement Element 또는 ID
+     * @param {Element|String} srcElement Element 또는 ID
+     * @param {Element|String} targetElement Element 또는 ID
      * @return {Element} Source Element
      */
     insertAfter: function (srcElement, targetElement) {
@@ -1658,8 +1707,8 @@ OG.graph.Canvas.prototype = {
     /**
      * Source Element 를 Target Element 이전에 insert 한다.
      *
-     * @param {Element,String} srcElement Element 또는 ID
-     * @param {Element,String} targetElement Element 또는 ID
+     * @param {Element|String} srcElement Element 또는 ID
+     * @param {Element|String} targetElement Element 또는 ID
      * @return {Element} Source Element
      */
     insertBefore: function (srcElement, targetElement) {
@@ -1670,7 +1719,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 해당 Element 를 가로, 세로 Offset 만큼 이동한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Number[]} offset [가로, 세로]
      * @return {Element} Element
      */
@@ -1682,7 +1731,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 주어진 중심좌표로 해당 Element 를 이동한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Number[]} position [x, y]
      * @return {Element} Element
      */
@@ -1694,7 +1743,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 중심 좌표를 기준으로 주어진 각도 만큼 회전한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Number} angle 각도
      * @return {Element} Element
      */
@@ -1706,7 +1755,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 상, 하, 좌, 우 외곽선을 이동한 만큼 리사이즈 한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Number[]} offset [상, 하, 좌, 우] 각 방향으로 + 값
      * @return {Element} Element
      */
@@ -1718,7 +1767,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 중심좌표는 고정한 채 Bounding Box 의 width, height 를 리사이즈 한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @param {Number[]} size [Width, Height]
      * @return {Element} Element
      */
@@ -1730,13 +1779,23 @@ OG.graph.Canvas.prototype = {
     /**
      * 노드 Element 를 복사한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element} Element
      */
     clone: function (element) {
         return this._RENDERER.clone(element);
     }
     ,
+
+    /**
+     * ID에 해당하는 Element 의 바운더리 영역을 리턴한다.
+     *
+     * @param {Element|String} element Element 또는 ID
+     * @return {OG.geometry.Envelope} Envelope 영역
+     */
+    getBoundary: function (element) {
+        return this._RENDERER.getBoundary(element);
+    },
 
     /**
      * ID로 Node Element 를 반환한다.
@@ -1776,7 +1835,7 @@ OG.graph.Canvas.prototype = {
     /**
      * Edge 엘리먼트와 연결된 fromShape, toShape 엘리먼트를 반환한다.
      *
-     * @param {Element,String} edgeElement Element 또는 ID
+     * @param {Element|String} edgeElement Element 또는 ID
      * @return {Object}
      */
     getRelatedElementsFromEdge: function (edgeElement) {
@@ -1804,11 +1863,48 @@ OG.graph.Canvas.prototype = {
         }
     }
     ,
+    /**
+     * 부모 엘리먼트를 반환한다. 부모가 루트일때는 반환하지 않는다.
+     *
+     * @param {Element} Element  엘리먼트
+     * @return {Element} Element  엘리먼트
+     */
+    getParent: function (element) {
+        return this._RENDERER.getParent(element);
+    },
+
+    /**
+     * 그룹의 하위 엘리먼트를 반환한다.
+     *
+     * @param {Element} element  엘리먼트
+     * @returns {Array} Elements
+     */
+    getChilds: function (element) {
+        return this._RENDERER.getChilds(element);
+    },
+
+    /**
+     * 캔버스의 모든 Shape 들을 리턴
+     *
+     * @return {Array} Elements
+     */
+    getAllShapes: function () {
+        return this._RENDERER.getAllShapes();
+    },
+
+    /**
+     * 캔버스의 모든 Edge를 리턴
+     *
+     * @return {Array} Edge Elements
+     */
+    getAllEdges: function () {
+        return this._RENDERER.getAllEdges();
+    },
 
     /**
      * 해당 엘리먼트의 BoundingBox 영역 정보를 반환한다.
      *
-     * @param {Element,String} element
+     * @param {Element|String} element
      * @return {Object} {width, height, x, y, x2, y2}
      */
     getBBox: function (element) {
@@ -1859,7 +1955,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 주어진 Shape 엘리먼트에 커스텀 데이타를 저장한다.
      *
-     * @param {Element,String} shapeElement Shape DOM Element or ID
+     * @param {Element|String} shapeElement Shape DOM Element or ID
      * @param {Object} data JSON 포맷의 Object
      */
     setCustomData: function (shapeElement, data) {
@@ -1871,7 +1967,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 주어진 Shape 엘리먼트에 저장된 커스텀 데이터를 반환한다.
      *
-     * @param {Element,String} shapeElement Shape DOM Element or ID
+     * @param {Element|String} shapeElement Shape DOM Element or ID
      * @return {Object} JSON 포맷의 Object
      */
     getCustomData: function (shapeElement) {
@@ -1883,7 +1979,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 주어진 Shape 엘리먼트에 확장 커스텀 데이타를 저장한다.
      *
-     * @param {Element,String} shapeElement Shape DOM Element or ID
+     * @param {Element|String} shapeElement Shape DOM Element or ID
      * @param {Object} data JSON 포맷의 Object
      */
     setExtCustomData: function (shapeElement, data) {
@@ -1895,7 +1991,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 주어진 Shape 엘리먼트에 저장된 확장 커스텀 데이터를 반환한다.
      *
-     * @param {Element,String} shapeElement Shape DOM Element or ID
+     * @param {Element|String} shapeElement Shape DOM Element or ID
      * @return {Object} JSON 포맷의 Object
      */
     getExtCustomData: function (shapeElement) {
@@ -2060,7 +2156,7 @@ OG.graph.Canvas.prototype = {
     /**
      * OpenGraph XML 문자열로 부터 Shape 을 드로잉한다.
      *
-     * @param {String, Element} xml XML 문자열 또는 DOM Element
+     * @param {String| Element} xml XML 문자열 또는 DOM Element
      * @return {Object} {width, height, x, y, x2, y2}
      */
     loadXML: function (xml) {
@@ -2282,7 +2378,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 연결된 이전 Edge Element 들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element[]} Previous Element's Array
      */
     getPrevEdges: function (element) {
@@ -2293,7 +2389,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 연결된 이후 Edge Element 들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element[]} Previous Element's Array
      */
     getNextEdges: function (element) {
@@ -2304,7 +2400,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 연결된 이전 노드 Element 들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element[]} Previous Element's Array
      */
     getPrevShapes: function (element) {
@@ -2315,7 +2411,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 연결된 이전 노드 Element ID들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {String[]} Previous Element Id's Array
      */
     getPrevShapeIds: function (element) {
@@ -2326,7 +2422,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 연결된 이후 노드 Element 들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {Element[]} Previous Element's Array
      */
     getNextShapes: function (element) {
@@ -2337,7 +2433,7 @@ OG.graph.Canvas.prototype = {
     /**
      * 연결된 이후 노드 Element ID들을 반환한다.
      *
-     * @param {Element,String} element Element 또는 ID
+     * @param {Element|String} element Element 또는 ID
      * @return {String[]} Previous Element Id's Array
      */
     getNextShapeIds: function (element) {
@@ -2370,7 +2466,7 @@ OG.graph.Canvas.prototype = {
     ,
 
     /**
-     * Undo 되었을때의 이벤트 리스너
+     * Redo 되었을때의 이벤트 리스너
      *
      * @param {Function} callbackFunc 콜백함수(event)
      */
@@ -2384,11 +2480,11 @@ OG.graph.Canvas.prototype = {
     /**
      * Lane 이 divide 되었을 때의 이벤트 리스너
      *
-     * @param {Function} callbackFunc 콜백함수(event, shapeElement)
+     * @param {Function} callbackFunc 콜백함수(event, dividedLane)
      */
     onDivideLane: function (callbackFunc) {
-        $(this.getRootElement()).bind('divideLane', function (event, divideLanes) {
-            callbackFunc(event, divideLanes);
+        $(this.getRootElement()).bind('divideLane', function (event, dividedLane) {
+            callbackFunc(event, dividedLane);
         });
     }
     ,

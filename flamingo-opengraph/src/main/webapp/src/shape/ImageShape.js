@@ -3,7 +3,8 @@
  *
  * @class
  * @extends OG.shape.IShape
- * @requires OG.common.*, OG.geometry.*
+ * @requires OG.common.*
+ * @requires OG.geometry.*
  *
  * @param {String} image 이미지 URL
  * @param {String} label 라벨 [Optional]

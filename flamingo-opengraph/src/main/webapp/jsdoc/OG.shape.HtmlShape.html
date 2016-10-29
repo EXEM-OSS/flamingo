@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: HtmlShape</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: HtmlShape</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="OG.html">OG</a><a href="OG.shape.html">.shape</a>.</span>
+        
+        HtmlShape
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="HtmlShape"><span class="type-signature"></span>new HtmlShape<span class="signature">(html, label)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    ForeignObject HTML Shape
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>html</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">임베드 HTML String</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">라벨 [Optional]</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>&lt;a href="mailto:sppark@uengine.org">Seungpil Park&lt;/a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_HtmlShape.js.html">shape/HtmlShape.js</a>, <a href="shape_HtmlShape.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+<h5>Requires:</h5>
+<ul>
+    <li>module:OG.common.*</li>
+
+    <li>module:OG.geometry.*</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="OG.shape.IShape.html">OG.shape.IShape</a></li>
+    </ul>
+
+
+    
+
+    
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li>module:OG.common.*</li>
+        
+            <li>module:OG.geometry.*</li>
+        </ul>
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="angle"><span class="type-signature"></span>angle<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    회전각도
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_HtmlShape.js.html">shape/HtmlShape.js</a>, <a href="shape_HtmlShape.js.html#line30">line 30</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="CONNECT_CLONEABLE"><span class="type-signature"></span>CONNECT_CLONEABLE<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    가이드에 자기자신을 복사하는 컨트롤러 여부.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#CONNECT_CLONEABLE">OG.shape.IShape#CONNECT_CLONEABLE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line88">line 88</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="CONNECT_REQUIRED"><span class="type-signature"></span>CONNECT_REQUIRED<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    드래그하여 연결시 연결대상 있는 경우에만 Edge 드로잉 처리 여부
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#CONNECT_REQUIRED">OG.shape.IShape#CONNECT_REQUIRED</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line94">line 94</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="CONNECT_STYLE_CHANGE"><span class="type-signature"></span>CONNECT_STYLE_CHANGE<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    드래그하여 연결시 그룹을 건너뛸때 스타일 변경 여부
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#CONNECT_STYLE_CHANGE">OG.shape.IShape#CONNECT_STYLE_CHANGE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line100">line 100</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="CONNECTABLE"><span class="type-signature"></span>CONNECTABLE<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    연결 가능여부
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#CONNECTABLE">OG.shape.IShape#CONNECTABLE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line64">line 64</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="DELETABLE"><span class="type-signature"></span>DELETABLE<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    가이드에 삭제 컨트롤러 여부
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#DELETABLE">OG.shape.IShape#DELETABLE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line106">line 106</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="ENABLE_FROM"><span class="type-signature"></span>ENABLE_FROM<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    From 연결 가능여부 (From(Shape) => To)
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#ENABLE_FROM">OG.shape.IShape#ENABLE_FROM</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line70">line 70</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="ENABLE_TO"><span class="type-signature"></span>ENABLE_TO<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    To 연결 가능여부 (From => To(Shape))
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#ENABLE_TO">OG.shape.IShape#ENABLE_TO</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line76">line 76</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="geom"><span class="type-signature"></span>geom<span class="type-signature"> :<a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a></span></h4>
+
+
+
+
+<div class="description">
+    Shape 모양을 나타내는 공간기하객체(Geometry)
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#geom">OG.shape.IShape#geom</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line27">line 27</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="html"><span class="type-signature"></span>html<span class="type-signature"> :String</span></h4>
+
+
+
+
+<div class="description">
+    드로잉할 임베드 HTML String
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">String</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_HtmlShape.js.html">shape/HtmlShape.js</a>, <a href="shape_HtmlShape.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="isCollapsed"><span class="type-signature"></span>isCollapsed<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    Shape 의 Collapse 여부
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#isCollapsed">OG.shape.IShape#isCollapsed</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="label"><span class="type-signature"></span>label<span class="type-signature"> :String</span></h4>
+
+
+
+
+<div class="description">
+    Shape 라벨 텍스트
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">String</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#label">OG.shape.IShape#label</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line33">line 33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="LABEL_EDITABLE"><span class="type-signature"></span>LABEL_EDITABLE<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    라벨 수정여부
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#LABEL_EDITABLE">OG.shape.IShape#LABEL_EDITABLE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line112">line 112</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="MOVABLE"><span class="type-signature"></span>MOVABLE<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    이동 가능여부
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#MOVABLE">OG.shape.IShape#MOVABLE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="RESIZABLE"><span class="type-signature"></span>RESIZABLE<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    리사이즈 가능여부
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#RESIZABLE">OG.shape.IShape#RESIZABLE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line58">line 58</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="SELECTABLE"><span class="type-signature"></span>SELECTABLE<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    선택 가능여부
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#SELECTABLE">OG.shape.IShape#SELECTABLE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="SELF_CONNECTABLE"><span class="type-signature"></span>SELF_CONNECTABLE<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    Self 연결 가능여부
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#SELF_CONNECTABLE">OG.shape.IShape#SELF_CONNECTABLE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line82">line 82</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="SHAPE_ID"><span class="type-signature"></span>SHAPE_ID<span class="type-signature"> :String</span></h4>
+
+
+
+
+<div class="description">
+    Shape 을 구분하는 Shape ID(Shape 클래스명과 일치)
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">String</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#SHAPE_ID">OG.shape.IShape#SHAPE_ID</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="TYPE"><span class="type-signature"></span>TYPE<span class="type-signature"> :String</span></h4>
+
+
+
+
+<div class="description">
+    Shape 유형(GEOM, TEXT, HTML, IMAGE, EDGE, GROUP)
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">String</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#TYPE">OG.shape.IShape#TYPE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="clone"><span class="type-signature"></span>clone<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="OG.shape.IShape.html">OG.shape.IShape</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Shape 을 복사하여 새로인 인스턴스로 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#clone">OG.shape.IShape#clone</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line135">line 135</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    복사된 인스턴스
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.shape.IShape.html">OG.shape.IShape</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="createShape"><span class="type-signature"></span>createShape<span class="signature">()</span><span class="type-signature"> &rarr; {*}</span></h4>
+
+    
+
+
+
+<div class="description">
+    드로잉할 Shape 를 생성하여 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="OG.shape.IShape.html#createShape">OG.shape.IShape#createShape</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="shape_IShape.js.html">shape/IShape.js</a>, <a href="shape_IShape.js.html#line125">line 125</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Shape 정보
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="OG.common.Constants.html">Constants</a></li><li><a href="OG.common.CurveUtil.html">CurveUtil</a></li><li><a href="OG.common.HashMap.html">HashMap</a></li><li><a href="OG.common.JSON.html">JSON</a></li><li><a href="OG.common.Util.html">Util</a></li><li><a href="OG.geometry.BezierCurve.html">BezierCurve</a></li><li><a href="OG.geometry.Circle.html">Circle</a></li><li><a href="OG.geometry.Coordinate.html">Coordinate</a></li><li><a href="OG.geometry.Curve.html">Curve</a></li><li><a href="OG.geometry.Ellipse.html">Ellipse</a></li><li><a href="OG.geometry.Envelope.html">Envelope</a></li><li><a href="OG.geometry.Geometry.html">Geometry</a></li><li><a href="OG.geometry.GeometryCollection.html">GeometryCollection</a></li><li><a href="OG.geometry.Line.html">Line</a></li><li><a href="OG.geometry.Point.html">Point</a></li><li><a href="OG.geometry.Polygon.html">Polygon</a></li><li><a href="OG.geometry.PolyLine.html">PolyLine</a></li><li><a href="OG.geometry.Rectangle.html">Rectangle</a></li><li><a href="OG.geometry.Style.html">Style</a></li><li><a href="OG.graph.Canvas.html">Canvas</a></li><li><a href="OG.handler.EventHandler.html">EventHandler</a></li><li><a href="OG.renderer.IRenderer.html">IRenderer</a></li><li><a href="OG.renderer.RaphaelRenderer.html">RaphaelRenderer</a></li><li><a href="OG.shape.CircleShape.html">CircleShape</a></li><li><a href="OG.shape.EdgeShape.html">EdgeShape</a></li><li><a href="OG.shape.EllipseShape.html">EllipseShape</a></li><li><a href="OG.shape.GeomShape.html">GeomShape</a></li><li><a href="OG.shape.GroupShape.html">GroupShape</a></li><li><a href="OG.shape.HorizontalLaneShape.html">HorizontalLaneShape</a></li><li><a href="OG.shape.HorizontalPoolShape.html">HorizontalPoolShape</a></li><li><a href="OG.shape.HtmlShape.html">HtmlShape</a></li><li><a href="OG.shape.ImageShape.html">ImageShape</a></li><li><a href="OG.shape.IShape.html">IShape</a></li><li><a href="OG.shape.RectangleShape.html">RectangleShape</a></li><li><a href="OG.shape.SpotShape.html">SpotShape</a></li><li><a href="OG.shape.TextShape.html">TextShape</a></li><li><a href="OG.shape.VerticalLaneShape.html">VerticalLaneShape</a></li><li><a href="OG.shape.VerticalPoolShape.html">VerticalPoolShape</a></li></ul><h3>Namespaces</h3><ul><li><a href="OG.html">OG</a></li><li><a href="OG.common.html">common</a></li><li><a href="OG.geometry.html">geometry</a></li><li><a href="OG.graph.html">graph</a></li><li><a href="OG.handler.html">handler</a></li><li><a href="OG.layout.html">layout</a></li><li><a href="OG.renderer.html">renderer</a></li><li><a href="OG.shape.html">shape</a></li><li><a href="OG.shape.bpmn.html">bpmn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#override">override</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sat Oct 29 2016 21:11:54 GMT+0900 (KST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -3,7 +3,9 @@
  *
  * @class
  * @extends OG.geometry.Geometry
- * @requires OG.geometry.Coordinate, OG.geometry.Envelope, OG.geometry.Geometry
+ * @requires OG.geometry.Coordinate
+ * @requires OG.geometry.Envelope
+ * @requires OG.geometry.Geometry
  *
  * @example
  * var geom1 = new OG.geometry.Point([20, 5]),
@@ -49,7 +51,7 @@ OG.geometry.GeometryCollection.prototype.getVertices = function () {
 	return vertices;
 };
 OG.geometry.GeometryCollection.prototype.getVerticess = function(){
-	console.log(1231234);
+
 };
 
 /**

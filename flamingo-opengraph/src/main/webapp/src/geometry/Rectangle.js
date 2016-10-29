@@ -3,7 +3,9 @@
  *
  * @class
  * @extends OG.geometry.Polygon
- * @requires OG.geometry.Coordinate, OG.geometry.Envelope, OG.geometry.Geometry
+ * @requires OG.geometry.Coordinate
+ * @requires OG.geometry.Envelope
+ * @requires OG.geometry.Geometry
  *
  * @example
  * var geom = new OG.geometry.Rectangle([20, 5], 10, 10);

@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
+  <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
+  <meta charset="UTF-8">
+  <title>Opengraph Documentation</title>
+
+  <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
+  <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
+  <link rel="stylesheet" href="require/webknife/highlight.min.css" type="text/css">
+  <link rel="stylesheet" href="require/docgen.css" type="text/css">
+  <link rel="stylesheet" href="require/print.css" media="print">
+
+  <!--load scripts second-->
+
+  <script src="require/webknife/framework.min.js"></script>
+  <script src="require/webknife/framework.icons.js"></script>
+  <script src="require/webknife/highlight.min.js"></script>
+
+  <!--inline scripts last-->
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+  $("#dg-toc").hide(); //hide the table of contents
+
+  //instantiate an svg injector to show SVG icons
+  var injector = new svgInject();
+  injector.inject();
+
+  //code syntax highlighting
+  $('pre code, .w-inline-code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  //toggle visibility of table of contents
+  $("#dg-navigator").click(function()
+  {
+    $("#dg-toc").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
+
+});
+</script>
+
+<script type="text/x-mathjax-config">
+//MathJax configuration is the same as used by math.stackexchange.com
+MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+  tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+  TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+  messageStyle: "none"
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="dg-toc"><div><table class="unstyled"><tr><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Overview</li><li><a href="README.html">Overview</a></li><li><a href="getting-start.html">Getting Started</a></li><li><a href="examples.html">Examples</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Canvas</li><li><a href="canvas.html">Canvas Drawing</a></li><li><a href="selector.html">Canvas Selector</a></li><li><a href="data.html">Canvas Data</a></li><li><a href="event.html">Canvas Event</a></li><li><a href="renderer.html">Developer - Renderer</a></li><li><a href="handler.html">Developer - Handler</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Element</li><li><a href="element.html">Element</a></li><li><a href="geometry.html">Geometry</a></li><li><a href="shapes.html">Shape</a></li><li><a href="extend-shape.html">Extend Shape</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Api reference</li><li><a href="jsdoc.html">Api reference</a></li></ul></td><td class="dg-tocGroup" id="dg-tocFixedColumn"><ul><li><span class="w-icon dg-tocIcon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon dg-tocIcon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div></div></td></tr></table></div></div>
+<div id="dg-navigator">Table of contents</div>
+
+<header>
+ <div class="w-fixed-width">
+  <a id="dg-homelink" href="README.html">
+    <div id="dg-logo" style="background-image: url(files/images/logo.png); height: 84px; line-height: 84px; padding-left: 109px;">
+      <span id="dg-title">Opengraph Documentation</span> <span id="dg-web-title-version" style="font-weight:normal;">(0.1.1)</span>
+    </div>
+  </a>
+  <div>
+    <span id="dg-backlink"></span>
+  </div>
+ </div>
+</header>
+
+<section id="dg-content"><div class="w-fixed-width"><div id="dg-innerContent"><h1 id="dg-autoTitle">Element</h1><h1 id="element">Element</h1>
+<h2 id="structure">Structure</h2>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xB3C4;&#xD615;&#xC744; &#xD558;&#xB098; &#xADF8;&#xB824;&#xBCF4;&#xACE0;, &#xB3C4;&#xD615;&#xC744; &#xCF58;&#xC194;&#xB85C; &#xCD9C;&#xB825;&#xD558;&#xC5EC; &#xBD05;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+var element = canvas.drawShape([200, 200], new OG.RectangleShape(), [150, 150]);
+console.log(element);
+</code></pre>
+<p><img src="images/element/element-1.png" alt=""></p>
+<p>&#xCD9C;&#xB825;&#xB41C; element &#xAC1D;&#xCCB4;&#xB97C; &#xC0B4;&#xD3B4;&#xBCF4;&#xBA74;, &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; Dom &#xAC1D;&#xCCB4;&#xB85C; &#xC774;&#xB8E8;&#xC5B4;&#xC838; &#xC788;&#xB294; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>&lt;g x=&quot;0&quot; y=&quot;0&quot; fill=&quot;none&quot; stroke=&quot;#000&quot; id=&quot;OG_4648_2&quot; _type=&quot;SHAPE&quot; _shape=&quot;GEOM&quot; style=&quot;-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: move; position: relative;&quot; _shape_id=&quot;OG.shape.RectangleShape&quot;&gt;
+    &lt;path fill=&quot;#ffffff&quot; stroke=&quot;#000000&quot; d=&quot;M125,125L275,125L275,275L125,275L125,125&quot; style=&quot;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);&quot; fill-r=&quot;.5&quot; fill-cx=&quot;.5&quot; fill-cy=&quot;.5&quot; fill-opacity=&quot;0&quot; id=&quot;OG_4648_3&quot;&gt;&lt;/path&gt;&lt;path fill=&quot;none&quot; stroke=&quot;#ffffff&quot; d=&quot;M125,125L275,125L275,275L125,275L125,125&quot; fill-opacity=&quot;0&quot; stroke-width=&quot;20&quot; stroke-opacity=&quot;0&quot; id=&quot;OG_4648_4&quot; name=&quot;CONNECT_GUIDE&quot; style=&quot;-webkit-tap-highlight-color: rgba(0, 0, 0, 0); stroke-opacity: 0;&quot;&gt;
+    &lt;/path&gt;
+&lt;/g&gt;
+</code></pre>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xB3C4;&#xD615;&#xC740; Dom &#xAC1D;&#xCCB4;&#xC758; &#xB0B4;&#xC6A9;&#xB300;&#xB85C;, g &#xD0DC;&#xADF8; &#xADF8;&#xB8F9;&#xC774; &#xC788;&#xACE0; &#xD558;&#xC704;&#xC5D0; &#xC2E4;&#xC81C; &#xD654;&#xBA74;&#xC5D0; &#xD45C;&#xD604;&#xB418;&#xB294; path / image / text svg &#xC694;&#xC18C;&#xB4E4;&#xB85C; &#xC774;&#xB8E8;&#xC5B4;&#xC838; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC2E4;&#xC81C; &#xD654;&#xBA74;&#xC5D0; &#xD45C;&#xD604;&#xB418;&#xB294; &#xAC83;&#xC740; g &#xD0DC;&#xADF8; &#xADF8;&#xB8F9; &#xC548;&#xC758; &#xB0B4;&#xC6A9;&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0;, &#xD654;&#xBA74; &#xD45C;&#xD604;&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xBC14;&#xAFB8;&#xAE30; &#xC704;&#xD574; element &#xC758; &#xC694;&#xC18C;&#xB97C; &#xC9C1;&#xC811; &#xCEE8;&#xD2B8;&#xB864; &#xD574;&#xB3C4; &#xC801;&#xC6A9;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC544;&#xB798;&#xB294; &#xC798;&#xBABB;&#xB41C; &#xC811;&#xADFC; &#xBC29;&#xC2DD;&#xC758; &#xC608;&#xC81C;&#xC640; &#xC62C;&#xBC14;&#xB978; &#xC811;&#xADFC; &#xBC29;&#xBC95;&#xC758; &#xC608;&#xC81C; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>//&#xC798;&#xBABB;&#xB41C; &#xC811;&#xADFC; &#xBC29;&#xC2DD;: element &#xB97C; Jquery &#xB85C; &#xC9C1;&#xC811; &#xC2A4;&#xD0C0;&#xC77C; &#xBCC0;&#xACBD;&#xC744; &#xC8FC;&#xC5B4;&#xB3C4; &#xD654;&#xBA74;&#xC5D0; &#xC801;&#xC6A9;&#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.
+var element = canvas.drawShape([200, 200], new OG.RectangleShape(), [150, 150]);
+$(element).css(&apos;stroke&apos;,&apos;red&apos;);
+$(element).attr(&apos;x&apos;,200);
+
+//&#xC62C;&#xBC14;&#xB978; &#xC811;&#xADFC; &#xBC29;&#xC2DD;
+canvas.setShapeStyle(element,{&apos;stroke&apos;:&apos;red&apos;});
+canvas.move(element, [200,0]);
+</code></pre>
+<p>&#xC704;&#xC640; &#xAC19;&#xC740; &#xD6A8;&#xACFC;&#xB97C; &#xB0B4;&#xBA74;&#xC11C; &#xB2E4;&#xB978;&#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB294; &#xBC29;&#xBC95;&#xC744; &#xC54C;&#xC544;&#xBCF4;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var element = canvas.drawShape([200, 200], new OG.RectangleShape(), [150, 150]);
+
+element.shape.geom.style.map.stroke = &apos;red&apos;;
+element.shape.geom.move(200,0);
+canvas.getRenderer().redrawShape(element);
+</code></pre>
+<p><img src="images/element/element-2.png" alt=""></p>
+<p>&#xC704;&#xC758; &#xC608;&#xC81C;&#xB97C; &#xC0B4;&#xD3B4;&#xBCF4;&#xBA74;, element &#xD558;&#xC704;&#xC5D0; shape &#xAC1D;&#xCCB4;&#xAC00; &#xC788;&#xACE0;, &#xB2E4;&#xC2DC; geom &#xAC1D;&#xCCB4;, style &#xAC1D;&#xCCB4;&#xAC00; &#xC788;&#xB294; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xAC01;&#xAC01;&#xC758; &#xAC1D;&#xCCB4;&#xB97C; &#xCD9C;&#xB825;&#xD574;&#xBCF4;&#xACE0;, &#xADF8; &#xACB0;&#xACFC;&#xB97C; &#xC0B4;&#xD3B4;&#xBD05;&#xC2DC;&#xB2E4;.</p>
+<pre><code>var element = canvas.drawShape([200, 200], new OG.RectangleShape(), [150, 150]);
+
+console.log(element.shape);
+console.log(element.shape.geom);
+console.log(element.shape.geom.style);
+</code></pre>
+<p>&#xAC01;&#xAC01;&#xC758; &#xAC1D;&#xCCB4;&#xB97C; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xD074;&#xB798;&#xC2A4;&#xC5D0; &#xB300;&#xC785;&#xD558;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>element.shape = OG.shape.RectangleShape
+element.shape.geom = OG.geometry.Rectangle
+element.shape.geom.style = OG.geometry.Style
+</code></pre>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xACE0;&#xAE09; &#xAE30;&#xB2A5;&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xACE0; &#xD604;&#xC5C5;&#xC758; &#xB2E4;&#xC591;&#xD55C; &#xC694;&#xAD6C;&#xC5D0; &#xC218;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; &#xC704;&#xC758; &#xAD6C;&#xC870;&#xB97C; &#xC774;&#xD574;&#xD560; &#xD544;&#xC694;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBCF8; &#xBB38;&#xC11C;&#xC758; <a href="./geometry.md">Geometry</a>, <a href="./shape.md">Shape</a> , <a href="./extend-shape.md">Extend Shape</a> &#xD398;&#xC774;&#xC9C0;&#xB97C; &#xD1B5;&#xD574; &#xB354; &#xC790;&#xC138;&#xD788; &#xC0B4;&#xD3B4;&#xBCF4;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<h2 id="event-binding">Event binding</h2>
+<p>&#xC704;&#xC5D0;&#xC11C; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xB3C4;&#xD615;&#xC758; Dom &#xAC1D;&#xCCB4;&#xB97C; &#xD1B5;&#xD574; &#xD654;&#xBA74;&#xC0C1;&#xC758; &#xC2A4;&#xD0C0;&#xC77C;&#xB9C1;&#xC5D0; &#xBCC0;&#xD654;&#xB97C; &#xC904; &#xC218; &#xC5C6;&#xB294; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xB2E4;&#xB978; UI &#xD504;&#xB808;&#xC784;&#xC6CC;&#xD06C;&#xB97C; &#xD65C;&#xC6A9;&#xD55C; &#xC774;&#xBCA4;&#xD2B8; &#xBC14;&#xC778;&#xB529;&#xC740; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xBCA4;&#xD2B8; &#xBC14;&#xC778;&#xB529;&#xC740; &#xC911;&#xCCA9;&#xB420; &#xC218; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0;, &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xAC00; &#xC774;&#xBBF8; Dom &#xC5D0; &#xBC14;&#xC778;&#xB529;&#xD55C; &#xACBD;&#xC6B0;&#xB77C;&#xB3C4; &#xBC14;&#xC778;&#xB529; &#xC694;&#xC18C;&#xB97C; &#xCD94;&#xAC00;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h3 id="case">case</h3>
+<ul>
+<li>&#xB3C4;&#xD615;&#xC744; &#xD074;&#xB9AD;&#xC2DC; &#xC120;&#xC2A4;&#xD0C0;&#xC77C;&#xACFC; &#xCC44;&#xC6C0;&#xC0C9; &#xBCC0;&#xACBD;</li>
+</ul>
+<pre><code>var element = canvas.drawShape([200, 200], new OG.RectangleShape(), [150, 150]);
+$(element).click(function () {
+    canvas.setShapeStyle(this, {&apos;stroke&apos;: &apos;red&apos;,fill: &apos;blue&apos;, &apos;fill-opacity&apos;: 1})
+});
+</code></pre>
+</div></div></section>
+
+ <footer>
+  <div><p class="w-fixed-width"><span id="dg-web-footer">Version 0.1.1 released on 10/17/2016.</span></p></div>
+  <div class="w-fixed-width">
+    <p><span id="dg-copyright">&#xA9; 2016 <a href="sppark@uengine.org">Seunpil park</a></span></p>
+    <p>
+      <span id="dg-marking"></span>
+      <span id="dg-legalese"></span>
+      <span id="dg-attribution">Created by DocGen 2.1.3 on 29/10/2016 at 21:53:02.</span>
+    </p>
+  </div>
+ </footer>
+ 
+ </body>
+</html>

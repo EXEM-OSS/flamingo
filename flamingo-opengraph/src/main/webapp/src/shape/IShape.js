@@ -2,7 +2,8 @@
  * 도형, 텍스트, 이미지 등의 드로잉 될 Object 의 정보를 저장하는 Shape 정보 최상위 인터페이스
  *
  * @class
- * @requires OG.common.*, OG.geometry.*
+ * @requires OG.common.*
+ * @requires OG.geometry.*
  *
  * @author <a href="mailto:sppark@uengine.org">Seungpil Park</a>
  */
@@ -75,16 +76,10 @@ OG.shape.IShape = function () {
 	this.ENABLE_TO = true;
 
 	/**
-	 * TO 연결 가능여부
-	 * @type Boolean
-	 */
-	this.ENABLE_FROM = true;
-
-	/**
 	 * Self 연결 가능여부
 	 * @type Boolean
 	 */
-	this.SELF_CONNECTABLE = true;
+	this.SELF_CONNECTABLE = false;
 
 	/**
 	 * 가이드에 자기자신을 복사하는 컨트롤러 여부.

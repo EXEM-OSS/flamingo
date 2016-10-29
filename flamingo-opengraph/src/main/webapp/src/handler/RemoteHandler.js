@@ -1,12 +1,19 @@
 /**
+ * Remote Repository
+ *
+ * @type {{}}
+ * @private
+ */
+OG.handler.RemoteRepo = {};
+/**
  * Remote Handler
  *
  * @class
  * @requires OG.*
  *
  * @author <a href="mailto:sppark@uengine.org">Seungpil Park</a>
+ * @private
  */
-OG.handler.RemoteRepo = {};
 OG.handler.RemoteHandler = function () {
     this._REPO = OG.handler.RemoteRepo;
     this._CLASSNAME = 'org.uengine.opengraph.RemoteService';

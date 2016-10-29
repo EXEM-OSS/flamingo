@@ -4,7 +4,10 @@
  *
  * @class
  * @extends OG.geometry.PolyLine
- * @requires OG.geometry.Coordinate, OG.geometry.Envelope, OG.geometry.Geometry, OG.common.CurveUtil
+ * @requires OG.geometry.Coordinate
+ * @requires OG.geometry.Envelope
+ * @requires OG.geometry.Geometry
+ * @requires OG.common.CurveUtil
  *
  * @example
  * var geom = new OG.geometry.Curve([[200, 100], [100, 300], [-100, -100], [-200, 100]]);

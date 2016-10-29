@@ -2,7 +2,8 @@
  * 공간 기하 객체(Spatial Geometry Object)의 최상위 추상 클래스
  *
  * @class
- * @requires OG.geometry.Coordinate, OG.geometry.Envelope
+ * @requires OG.geometry.Coordinate
+ * @requires OG.geometry.Envelope
  *
  * @author <a href="mailto:sppark@uengine.org">Seungpil Park</a>
  */
@@ -259,7 +260,7 @@ OG.geometry.Geometry.prototype = {
     /**
      * 파라미터가 [x, y] 형식의 좌표 Array 이면 OG.geometry.Coordinate 인스턴스를 new 하여 반환한다.
      *
-     * @param {OG.geometry.Coordinate,Number[]} coordinate [x, y] 형식의 좌표 Array 또는 OG.geometry.Coordinate 인스턴스
+     * @param {OG.geometry.Coordinate|Number[]} coordinate [x, y] 형식의 좌표 Array 또는 OG.geometry.Coordinate 인스턴스
      * @return {OG.geometry.Coordinate}
      */
     convertCoordinate: function (coordinate) {
@@ -281,7 +282,7 @@ OG.geometry.Geometry.prototype = {
      * 포인트 P 로부터 라인 AB의 거리를 계산한다.
      * Note: NON-ROBUST!
      *
-     * @param {OG.geometry.Coordinate,Number[]} p 기준좌표
+     * @param {OG.geometry.Coordinate|Number[]} p 기준좌표
      * @param {OG.geometry.Coordinate[]} line 라인 시작좌표, 끝좌표 Array
      * @return {Number} 거리
      */
@@ -546,7 +547,7 @@ OG.geometry.Geometry.prototype = {
      * 포인트 P 로부터 라인 AB의 교차점을 계산한다.
      * Note: NON-ROBUST!
      *
-     * @param {OG.geometry.Coordinate,Number[]} p 기준좌표
+     * @param {OG.geometry.Coordinate|Number[]} p 기준좌표
      * @param {OG.geometry.Coordinate[]} line 라인 시작좌표, 끝좌표 Array
      * @return {OG.geometry.Coordinate} 교차점
      */

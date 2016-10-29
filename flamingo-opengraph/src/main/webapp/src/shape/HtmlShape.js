@@ -3,7 +3,8 @@
  *
  * @class
  * @extends OG.shape.IShape
- * @requires OG.common.*, OG.geometry.*
+ * @requires OG.common.*
+ * @requires OG.geometry.*
  *
  * @param {String} html 임베드 HTML String
  * @param {String} label 라벨 [Optional]
