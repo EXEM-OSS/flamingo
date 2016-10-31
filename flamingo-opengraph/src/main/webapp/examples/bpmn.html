@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+    <title>BPMN Modeler Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+
+
+    <!-- jquery -->
+    <script type="text/javascript" src="./lib/jquery-1.11.1/jquery-1.11.1.min.js"></script>
+
+    <!-- jquery ui -->
+    <script type="text/javascript" src="./lib/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./lib/jquery-ui-1.11.0.custom/jquery-ui.css"/>
+
+    <!-- jquery Context Menu -->
+    <link rel="stylesheet" type="text/css" href="./lib/contextmenu/jquery.contextMenu.css"/>
+    <script type="text/javascript" src="./lib/contextmenu/jquery.contextMenu-min.js"></script>
+
+    <!-- jquery.layout -->
+    <link rel="stylesheet" type="text/css" href="./layout/css/layout-default-latest.css"/>
+    <script type="text/javascript" src="./layout/js/jquery.layout-latest.js"></script>
+
+    <!-- Opengraph -->
+    <script type="text/javascript" src="./lib/opengraph/OpenGraph-0.1.1-SNAPSHOT.js"></script>
+
+    <style type="text/css">
+        .ui-layout-center {
+            padding: 0;
+            overflow: scroll;
+        }
+
+        .ui-layout-west {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .ui-accordion .ui-accordion-content {
+            padding: 2px;
+            top: 0;
+            border-top: 0;
+            margin-top: 2px;
+            margin-bottom: -2px;
+            position: relative;
+            height: 600px;
+        }
+
+        .icon_shape {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .ui-accordion-content img {
+            border: none;
+            overflow: hidden;
+        }
+
+        .ui-accordion-content img:hover {
+            border: 2px solid blue;
+            margin: -2px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var canvas = null, opengraphJSON, ele1;
+        $(document).ready(function () {
+            // layout
+            $('body').layout({
+                west__size: 160,
+                enableCursorHotkey: false
+            });
+            $("#accordion").accordion({
+                fillSpace: false,
+                autoHeight: false
+            });
+
+            // Canvas
+            canvas = new OG.Canvas('canvas', [1000, 800], 'white', 'url(resources/images/symbol/grid.gif)');
+            canvas._CONFIG.DEFAULT_STYLE.EDGE["edge-type"] = "plain";
+            //plain , bezier , straight
+
+            canvas.initConfig({
+                selectable: true,
+                dragSelectable: true,
+                movable: true,
+                resizable: true,
+                connectable: true,
+                selfConnectable: true,
+                connectCloneable: true,
+                connectRequired: true,
+                labelEditable: true,
+                groupDropable: true,
+                collapsible: true,
+                enableHotKey: true,
+                enableContextMenu: true,
+                useSlider: true,
+                stickGuide: true,
+                checkBridgeEdge: true
+            });
+
+            canvas.addSlider({
+                slider: $("#canvas_slider"),
+                width: 200,
+                height: 300,
+                appendTo: "body"
+            });
+
+            $(".icon_shape").draggable({
+                start: function () {
+                    $('#canvas').data('DRAG_SHAPE', {
+                        '_shape_type': $(this).attr('_shape_type'),
+                        '_shape_id': $(this).attr('_shape_id'),
+                        '_width': $(this).attr('_width'),
+                        '_height': $(this).attr('_height')
+                    });
+                },
+                helper: 'clone',
+                appendTo: "#canvas"
+            });
+            $("#canvas").droppable({
+                drop: function (event, ui) {
+                    var shapeInfo = $('#canvas').data('DRAG_SHAPE'), shape, element;
+                    if (shapeInfo) {
+                        shape = eval('new ' + shapeInfo._shape_id + '()');
+                        var dropX = event.pageX - $('#canvas').offset().left + $('#canvas')[0].scrollLeft;
+                        var dropY = event.pageY - $('#canvas').offset().top + $('#canvas')[0].scrollTop;
+                        dropX = dropX / canvas._CONFIG.SCALE;
+                        dropY = dropY / canvas._CONFIG.SCALE;
+                        element = canvas.drawShape([dropX, dropY],
+                                shape, [parseInt(shapeInfo._width, 10), parseInt(shapeInfo._height, 10)]);
+                        $('#canvas').removeData('DRAG_SHAPE');
+                    }
+                }
+            });
+
+            //라벨이 Draw 되었을 때의 이벤트 리스너
+            canvas.onDrawLabel(function (event, shapeElement, labelText) {
+
+            });
+
+            //라벨이 Change 되었을 때의 이벤트 리스너
+            canvas.onLabelChanged(function(event, shapeElement, afterText, beforeText){
+
+            });
+
+            //라벨이 Change 되기전 이벤트 리스너
+            canvas.onBeforeLabelChange(function(event, shapeElement, afterText, beforeText){
+
+            });
+
+            //Shape 이 Rotate 될 때의 이벤트 리스너
+            canvas.onRotateShape(function(event, element, angle){
+
+            });
+
+            //Shape 이 Connect 되기전 이벤트 리스너
+            canvas.onBeforeConnectShape(function(event, edgeElement, fromElement, toElement){
+
+            });
+
+            //Shape 이 Remove 되기전 이벤트 리스너
+            canvas.onBeforeRemoveShape(function(event, element){
+
+            });
+
+            //Shape 이 Grouping 되었을 때의 이벤트 리스너
+            canvas.onGroup(function(event, groupElement){
+
+            });
+
+            //Shape 이 UnGrouping 되었을 때의 이벤트 리스너
+            canvas.onUnGroup(function(event, ungroupedElements){
+
+            });
+
+            //Lane 이 divide 되었을 때의 이벤트 리스너
+            canvas.onDivideLane(function (event, divideLane) {
+            });
+
+            // Shape 이 처음 Draw 되었을 때의 이벤트 리스너
+            canvas.onDrawShape(function (event, shapeElement) {
+            });
+
+            // Undo 되었을 때의 이벤트 리스너
+            canvas.onUndo(function (event) {
+            });
+
+            // Redo 되었을 때의 이벤트 리스너
+            canvas.onRedo(function (event) {
+            });
+
+            // Shape 이 Redraw 되었을 때의 이벤트 리스너
+            canvas.onRedrawShape(function (event, shapeElement) {
+            });
+
+            // Shape 이 Remove 될 때의 이벤트 리스너
+            canvas.onRemoveShape(function (event, shapeElement) {
+            });
+
+            // Shape 이 Move 되었을 때의 이벤트 리스너
+            canvas.onMoveShape(function (event, shapeElement, offset) {
+            });
+
+            // Shape 이 Resize 되었을 때의 이벤트 리스너
+            canvas.onResizeShape(function (event, shapeElement, offset) {
+            });
+
+            // Shape 이 Connect 되었을 때의 이벤트 리스너
+            canvas.onConnectShape(function (event, edgeElement, fromElement, toElement) {
+            });
+
+            // Shape 이 Disconnect 되었을 때의 이벤트 리스너
+            canvas.onDisconnectShape(function (event, edgeElement, fromElement, toElement) {
+            });
+
+            //Simple example
+            var circleShape = canvas.drawShape([101, 107], new OG.CircleShape(), [101, 102]);
+            var ellipseShape = canvas.drawShape([203, 405], new OG.EllipseShape('label'), [103, 53]);
+            var edge = canvas.connect(circleShape, ellipseShape, null, '');
+
+            canvas.setTextListInController(circleShape, ['200123', '40012323']);
+
+            var textShape1 = new OG.TextShape("Text Here, Hello World!");
+            canvas.drawShape([300, 100], textShape1, [200, 100, 45], {
+                'font-size': 10,
+                'text-anchor': 'start',
+                'vertical-align': 'middle'
+            });
+
+        });
+
+        function save() {
+            opengraphJSON = canvas.toJSON();
+        }
+    </script>
+</head>
+<body oncontextmenu="return false;">
+<div class="ui-layout-north">
+    <input type="button" value="printXML" onclick="console.log($.parseXML(canvas.toXML()));"/>
+    <input type="button" value="printJSON" onclick="console.log(canvas.toJSON());"/>
+    <input type="button" value="clear" onclick="canvas.clear();"/>
+    <input type="button" value="saveJSON" onclick="save();"/>
+    <input type="button" value="loadJSON" onclick="canvas.loadJSON(opengraphJSON);"/>
+    <input type="button" value="undo" onclick="canvas.undo();"/>
+    <input type="button" value="redo" onclick="canvas.redo();"/>
+</div>
+<div class="ui-layout-west">
+    <div id="accordion">
+        <h3><a href="#">BPMN</a></h3>
+
+        <div id="imgGroup">
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Start"
+                 _width="30" _height="30"/>
+            <img src="resources/images/symbol/event_intermediate.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Intermediate" _width="30" _height="30"/>
+            <img src="resources/images/symbol/event_end.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_End"
+                 _width="30" _height="30"/>
+            <img src="resources/images/symbol/message_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Start_Message" _width="30" _height="30"/>
+            <img src="resources/images/symbol/message_intermediate.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Intermediate_Message" _width="30" _height="30"/>
+            <img src="resources/images/symbol/message_end.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_End_Message" _width="30" _height="30"/><br/>
+            <img src="resources/images/symbol/link_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Start_Link" _width="30" _height="30"/>
+            <img src="resources/images/symbol/link_intermediate.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Intermediate_Link" _width="30" _height="30"/>
+            <img src="resources/images/symbol/link_end.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_End_Link"
+                 _width="30" _height="30"/>
+            <img src="resources/images/symbol/multiple_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Start_Multiple" _width="30" _height="30"/>
+            <img src="resources/images/symbol/multiple_intermediate.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Intermediate_Multiple" _width="30" _height="30"/>
+            <img src="resources/images/symbol/multiple_end.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_End_Multiple" _width="30" _height="30"/><br/>
+            <img src="resources/images/symbol/timer_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Start_Timer" _width="30" _height="30"/>
+            <img src="resources/images/symbol/timer_intermediate.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Intermediate_Timer" _width="30" _height="30"/>
+            <img src="resources/images/symbol/rule_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Start_Rule" _width="30" _height="30"/>
+            <img src="resources/images/symbol/rule_intermediate.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Intermediate_Rule" _width="30" _height="30"/>
+            <img src="resources/images/symbol/compensation_intermediate.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Intermediate_Compensation" _width="30" _height="30"/>
+            <img src="resources/images/symbol/compensation_end.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_End_Compensation" _width="30" _height="30"/><br/>
+            <img src="resources/images/symbol/error_intermediate.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Intermediate_Error" _width="30" _height="30"/>
+            <img src="resources/images/symbol/error_end.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_End_Error"
+                 _width="30" _height="30"/>
+            <img src="resources/images/symbol/cancel_end.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_End_Cancel" _width="30" _height="30"/>
+            <img src="resources/images/symbol/event_terminate.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Terminate" _width="30" _height="30"/><br/>
+            <img src="resources/images/symbol/gateway.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.G_Gateway"
+                 _width="40" _height="40"/>
+            <img src="resources/images/symbol/gateway_exclusive.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.G_Exclusive" _width="40" _height="40"/>
+            <img src="resources/images/symbol/gateway_parallel.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.G_Parallel" _width="40" _height="40"/>
+            <img src="resources/images/symbol/gateway_complex.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.G_Complex" _width="40" _height="40"/>
+            <img src="resources/images/symbol/gateway_inclusive.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.G_Inclusive" _width="40" _height="40"/><br/>
+            <img src="resources/images/symbol/task.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.A_Task"
+                 _width="70" _height="50"/>
+            <img src="resources/images/symbol/subprocess.png" class="icon_shape" _shape_type="GROUP"
+                 _shape_id="OG.shape.bpmn.A_Subprocess" _width="200" _height="150"/>
+            <img src="resources/images/symbol/data_object.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.D_Data"
+                 _width="50" _height="50"/>
+            <img src="resources/images/symbol/data_store.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.D_Store"
+                 _width="50" _height="50"/>
+            <img src="resources/images/symbol/group.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.M_Group"
+                 _width="50" _height="50"/><br/>
+            <img src="resources/images/symbol/connector_sequence.png" class="icon_shape" _shape_type="EDGE"
+                 _shape_id="OG.shape.bpmn.C_Sequence" _width="200" _height="150"/>
+            <img src="resources/images/symbol/connector_message.png" class="icon_shape" _shape_type="EDGE"
+                 _shape_id="OG.shape.bpmn.C_Message" _width="200" _height="150"/>
+            <img src="resources/images/symbol/connector_conditional.png" class="icon_shape" _shape_type="EDGE"
+                 _shape_id="OG.shape.bpmn.C_Conditional" _width="200" _height="150"/>
+            <img src="resources/images/symbol/connector_dataassociation.png" class="icon_shape" _shape_type="EDGE"
+                 _shape_id="OG.shape.bpmn.C_DataAssociation" _width="200" _height="150"/>
+            <img src="resources/images/symbol/connector_association.png" class="icon_shape" _shape_type="EDGE"
+                 _shape_id="OG.shape.bpmn.C_Association" _width="200" _height="150"/><br/>
+            <img src="resources/images/symbol/annotation.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.M_Annotation" _width="70" _height="30"/>
+            <img src="resources/images/symbol/text.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.M_Text"
+                 _width="50" _height="30"/>
+            <img src="resources/images/symbol/horizontal_lane.png" class="icon_shape" _shape_type="GROUP"
+                 _shape_id="OG.shape.HorizontalLaneShape" _width="100" _height="100"/>
+            <img src="resources/images/symbol/horizontal_lane.png" class="icon_shape" _shape_type="GROUP"
+                 _shape_id="OG.shape.HorizontalPoolShape" _width="100" _height="100"/>
+            <img src="resources/images/symbol/vertical_lane.png" class="icon_shape" _shape_type="GROUP"
+                 _shape_id="OG.shape.VerticalLaneShape" _width="100" _height="100"/>
+            <img src="resources/images/symbol/vertical_lane.png" class="icon_shape" _shape_type="GROUP"
+                 _shape_id="OG.shape.VerticalPoolShape" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GROUP"
+                 _shape_id="OG.shape.Transformer" _width="100" _height="100"/>
+
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.A_MapperTask" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.A_HumanTask" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.A_ManualTask" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.A_LoopTask" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.A_ServiceTask" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.A_WebServiceTask" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.ParallelMultiple" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.Signal" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.Value_Chain" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.Value_Chain_Module" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Start_Connector" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_End_Connector" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Intermediate_MessageFill" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Intermediate_Escalation" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.E_Start_Error" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.bpmn.ScopeActivity" _width="100" _height="100"/>
+            <!--에센시아-->
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.essencia.Alpha" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.essencia.State" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.essencia.LevelOfDetail" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.essencia.Competency" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.essencia.Practice" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.essencia.ActivitySpace" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.essencia.Activity" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.essencia.WorkProduct" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.essencia.CompetencyLevel" _width="100" _height="100"/>
+            <img src="resources/images/symbol/event_start.png" class="icon_shape" _shape_type="GEOM"
+                 _shape_id="OG.shape.essencia.ActivityArrow" _width="100" _height="100"/>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="ui-layout-center" id="canvas" style="cursor: default;"/>
+<div id="canvas_slider"></div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#imgGroup').find('img').each(function (index, img) {
+            var _shape_id = $(img).attr('_shape_id');
+            _shape_id = _shape_id.split('.');
+            _shape_id = _shape_id[_shape_id.length - 1];
+            var text = $('<p>' + _shape_id + '</p>');
+            var clearfix = $('<div></div>');
+
+            $(img).after(text);
+            text.after(clearfix);
+            $(img).css('float', 'left');
+
+            text.css('font-size', 10);
+            text.css('float', 'left');
+            clearfix.css('clear', 'both');
+        });
+        $('.ui-layout-west').css('overflow', 'auto');
+    })
+</script>
+</body>
+</html>

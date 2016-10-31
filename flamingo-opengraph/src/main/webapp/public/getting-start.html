@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
+  <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
+  <meta charset="UTF-8">
+  <title>Opengraph Documentation</title>
+
+  <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
+  <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
+  <link rel="stylesheet" href="require/webknife/highlight.min.css" type="text/css">
+  <link rel="stylesheet" href="require/docgen.css" type="text/css">
+  <link rel="stylesheet" href="require/print.css" media="print">
+
+  <!--load scripts second-->
+
+  <script src="require/webknife/framework.min.js"></script>
+  <script src="require/webknife/framework.icons.js"></script>
+  <script src="require/webknife/highlight.min.js"></script>
+
+  <!--inline scripts last-->
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+  $("#dg-toc").hide(); //hide the table of contents
+
+  //instantiate an svg injector to show SVG icons
+  var injector = new svgInject();
+  injector.inject();
+
+  //code syntax highlighting
+  $('pre code, .w-inline-code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  //toggle visibility of table of contents
+  $("#dg-navigator").click(function()
+  {
+    $("#dg-toc").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
+
+});
+</script>
+
+<script type="text/x-mathjax-config">
+//MathJax configuration is the same as used by math.stackexchange.com
+MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+  tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+  TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+  messageStyle: "none"
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="dg-toc"><div><table class="unstyled"><tr><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Overview</li><li><a href="README.html">Overview</a></li><li><a href="getting-start.html">Getting Started</a></li><li><a href="examples.html">Examples</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Canvas</li><li><a href="canvas.html">Canvas Drawing</a></li><li><a href="selector.html">Canvas Selector</a></li><li><a href="data.html">Canvas Data</a></li><li><a href="event.html">Canvas Event</a></li><li><a href="renderer.html">Developer - Renderer</a></li><li><a href="handler.html">Developer - Handler</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Element</li><li><a href="element.html">Element</a></li><li><a href="geometry.html">Geometry</a></li><li><a href="shapes.html">Shape</a></li><li><a href="extend-shape.html">Extend Shape</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Api reference</li><li><a href="jsdoc.html">Api reference</a></li></ul></td><td class="dg-tocGroup" id="dg-tocFixedColumn"><ul><li><span class="w-icon dg-tocIcon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon dg-tocIcon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div></div></td></tr></table></div></div>
+<div id="dg-navigator">Table of contents</div>
+
+<header>
+ <div class="w-fixed-width">
+  <a id="dg-homelink" href="README.html">
+    <div id="dg-logo" style="background-image: url(files/images/logo.png); height: 84px; line-height: 84px; padding-left: 109px;">
+      <span id="dg-title">Opengraph Documentation</span> <span id="dg-web-title-version" style="font-weight:normal;">(0.1.1)</span>
+    </div>
+  </a>
+  <div>
+    <span id="dg-backlink"></span>
+  </div>
+ </div>
+</header>
+
+<section id="dg-content"><div class="w-fixed-width"><div id="dg-innerContent"><h1 id="dg-autoTitle">Getting Started</h1><h1 id="getting-start">Getting Start</h1>
+<h2 id="&#xB514;&#xD39C;&#xB358;&#xC2DC;">&#xB514;&#xD39C;&#xB358;&#xC2DC;</h2>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xB514;&#xD39C;&#xB358;&#xC2DC;&#xB294; Jquery, Jquery UI, Jquery context menu &#xC785;&#xB2C8;&#xB2E4;.</p>
+<ul>
+<li><a href="https://jquery.com/">Jquery</a></li>
+<li><a href="https://jqueryui.com/">Jquery UI</a></li>
+<li><a href="http://swisnl.github.io/jQuery-contextMenu/index.html">Jquery context menu</a></li>
+</ul>
+<h2 id="&#xC778;&#xC2A4;&#xD1A8;&#xACFC;-&#xC2DC;&#xC791;-&#xC608;&#xC81C;">&#xC778;&#xC2A4;&#xD1A8;&#xACFC; &#xC2DC;&#xC791; &#xC608;&#xC81C;</h2>
+<h3 id="html-&#xC900;&#xBE44;">html &#xC900;&#xBE44;</h3>
+<p>&#xBA3C;&#xC800; &#xBE48; html &#xD398;&#xC774;&#xC9C0; &#xD558;&#xB098;&#xB97C; &#xC900;&#xBE44;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+        &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;ko&quot; lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;BPMN Modeler Example&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE8&quot;&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="&#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;-&#xC778;&#xC2A4;&#xD1A8;">&#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC; &#xC778;&#xC2A4;&#xD1A8;</h3>
+<p>&#xB2E4;&#xC74C;&#xC740; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC5D0;&#xC11C; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xC81C;&#xACF5;&#xD558;&#xB294; Symbol &#xC774;&#xBBF8;&#xC9C0;&#xB4E4;&#xACFC; &#xB514;&#xD39C;&#xB358;&#xC2DC;&#xB4E4;&#xC744; &#xC608;&#xC81C; html &#xC774; &#xBD88;&#xB7EC;&#xC62C; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBCF8; &#xD504;&#xB85C;&#xC81D;&#xD2B8;&#xC758; webapp/examples &#xD558;&#xC704;&#xC5D0; &#xC704;&#xCE58;&#xD55C; resources/images/symbol &#xC640; webapp/examples/lib &#xD3F4;&#xB354; &#xD558;&#xC704;&#xC5D0; &#xC704;&#xCE58;&#xD55C; opengraph,jquery,jquery-ui,contextmenu &#xD3F4;&#xB354;&#xB4E4;&#xC744; &#xCC3E;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774; &#xD3F4;&#xB354;&#xB4E4;&#xC744; &#xC608;&#xC81C; html &#xACFC; &#xB3D9;&#xC77C;&#xD55C; &#xB514;&#xB809;&#xD1A0;&#xB9AC; &#xAD6C;&#xC870;(&#xB610;&#xB294; url &#xD328;&#xC2A4;)&#xB85C; &#xBCF5;&#xC0AC;&#xD558;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>--- /a directory/resources/images/symbol
+                /lib/opengraph
+                /lib/jquery
+                /lib/jquery-ui
+                /lib/contextmenu
+                /your-html-file
+</code></pre>
+<p>&#xC704;&#xC5D0;&#xC11C; &#xC5B8;&#xAE09;&#xD55C; &#xB514;&#xD39C;&#xB358;&#xC2DC; &#xD30C;&#xC77C;&#xB4E4;&#xACFC; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC; js &#xB97C; &#xC608;&#xC81C; html &#xB85C; &#xC784;&#xD3EC;&#xD2B8;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC784;&#xD3EC;&#xD2B8;&#xB97C; &#xC644;&#xB8CC;&#xD55C; &#xD398;&#xC774;&#xC9C0;&#xC758; &#xC0D8;&#xD50C; &#xCF54;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+        &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;ko&quot; lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;BPMN Modeler Example&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE8&quot;&gt;
+
+    &lt;!-- jquery --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/jquery-1.11.1/jquery-1.11.1.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- jquery ui --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/jquery-ui-1.11.0.custom/jquery-ui.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/jquery-ui-1.11.0.custom/jquery-ui.css&quot;/&gt;
+
+    &lt;!-- jquery Context Menu --&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/contextmenu/jquery.contextMenu.css&quot;/&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/contextmenu/jquery.contextMenu-min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- Opengraph --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/opengraph/OpenGraph-0.1.1-SNAPSHOT.js&quot;&gt;&lt;/script&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="&#xCE94;&#xBC84;&#xC2A4;-&#xB80C;&#xB354;&#xB9C1;">&#xCE94;&#xBC84;&#xC2A4; &#xB80C;&#xB354;&#xB9C1;</h3>
+<p>&#xACC4;&#xC18D;&#xD574;&#xC11C;, &#xC2DC;&#xC791; &#xC608;&#xC81C;&#xB97C; &#xADF8;&#xB9B4; &#xCE94;&#xBC84;&#xC2A4; Div &#xD558;&#xB098;&#xB97C; &#xD654;&#xBA74;&#xC5D0; &#xC120;&#xC5B8;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>&lt;body&gt;
+
+&lt;div id=&quot;canvas&quot; style=&quot;cursor: default;&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+</code></pre>
+<p>&#xC120;&#xC5B8;&#xD55C; div &#xB97C; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504; &#xCE94;&#xBC84;&#xC2A4;&#xB85C; &#xB80C;&#xB354;&#xB9C1;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>new OG.Canvas(div &#xC544;&#xC774;&#xB514;, &#xCE94;&#xBC84;&#xC2A4; &#xC0AC;&#xC774;&#xC988;, &#xBC31;&#xADF8;&#xB77C;&#xC6B4;&#xB4DC; &#xCEEC;&#xB7EC;, &#xBC31;&#xADF8;&#xB77C;&#xC6B4;&#xB4DC; &#xC774;&#xBBF8;&#xC9C0;) &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD638;&#xCD9C;&#xD568;&#xC73C;&#xB85C;&#xC368; &#xCE94;&#xBC84;&#xC2A4;&#xB97C; &#xB80C;&#xB354;&#xB9C1; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+        $(document).ready(function () {
+            var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+        });
+&lt;/script&gt;
+</code></pre>
+<p><img src="images/tutorial/tu-1.png" alt=""></p>
+<h3 id="&#xB3C4;&#xD615;-&#xADF8;&#xB9AC;&#xAE30;">&#xB3C4;&#xD615; &#xADF8;&#xB9AC;&#xAE30;</h3>
+<p>&#xC6D0;&#xD615;&#xC758; &#xB3C4;&#xD615;&#xC744; &#xCE94;&#xBC84;&#xC2A4;&#xC5D0; &#xD558;&#xB098; &#xADF8;&#xB824;&#xBCF4;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>canvas.drawShape(&#xC88C;&#xD45C;[x,y], &#xB3C4;&#xD615; , &#xB3C4;&#xD615; &#xC0AC;&#xC774;&#xC988;[&#xAC00;&#xB85C;,&#xC138;&#xB85C;]);</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+        $(document).ready(function () {
+            var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+            var circleShape = canvas.drawShape([100, 100], new OG.CircleShape(), [100, 100]);
+        });
+&lt;/script&gt;
+</code></pre>
+<p><img src="images/tutorial/tu-2.png" alt=""></p>
+<p>&#xC5EC;&#xAE30;&#xC11C; &#xCE94;&#xBC84;&#xC2A4;&#xC758; drawShape &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD1B5;&#xD574;&#xC11C; &#xB3C4;&#xD615;&#xC744; &#xADF8;&#xB9B4;&#xB54C;, &#xADF8;&#xB824;&#xC57C; &#xD560; &#xB3C4;&#xD615;&#xC73C;&#xB85C; new OG.CircleShape() &#xB97C; &#xC120;&#xC5B8;&#xD558;&#xC600;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Shape &#xC740; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC5D0;&#xC11C; &#xAE30;&#xBCF8; &#xC81C;&#xACF5;&#xD558;&#xB294; Shape &#xB4E4; &#xC774;&#xC678;&#xC5D0;&#xB3C4; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC9C1;&#xC811; &#xCEE4;&#xC2A4;&#xD130;&#xB9C8;&#xC774;&#xC9D5; &#xD558;&#xC5EC; &#xC815;&#xC758;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Shape &#xC5D0; &#xB300;&#xD55C; &#xC885;&#xB958;&#xC640; &#xCEE4;&#xC2A4;&#xD130;&#xB9C8;&#xC774;&#xC9D5;&#xC5D0; &#xB300;&#xD574;&#xC11C;&#xB294; <a href="shape.md">Shape</a> &#xD398;&#xC774;&#xC9C0;&#xB97C; &#xCC38;&#xC870;&#xD558;&#xC2ED;&#xC2DC;&#xC624;.</p>
+<h3 id="&#xC120;-&#xC5F0;&#xACB0;">&#xC120; &#xC5F0;&#xACB0;</h3>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xB3C4;&#xD615;&#xB4E4;&#xC740; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; UI &#xC0C1;&#xC5D0;&#xC11C; Copy, &#xC120; &#xC5F0;&#xACB0;, &#xC0AD;&#xC81C; &#xD560; &#xC218; &#xC788;&#xB294; &#xC544;&#xC774;&#xCF58;&#xC744; &#xC81C;&#xACF5;&#xD558;&#xACE0;, &#xC0AC;&#xC774;&#xC988; &#xC7AC;&#xC870;&#xC815; &#xBC0F; &#xC774;&#xB3D9;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCC98;&#xC74C; circleShape &#xB97C; &#xD074;&#xB9AD;&#xD558;&#xC5EC; &#xBCF4;&#xBA74; &#xB2E4;&#xC74C;&#xC758; &#xC544;&#xC774;&#xCF58;&#xB4E4;&#xC774; &#xB098;&#xD0C0;&#xB0A9;&#xB2C8;&#xB2E4;.</p>
+<p><img src="images/tutorial/tu-3.png" alt=""></p>
+<p>&#xB450; &#xAC1C;&#xC758; &#xB3C4;&#xD615;&#xC744; &#xC5F0;&#xACB0;&#xD558;&#xAE30; &#xC704;&#xD574; &#xD558;&#xB098;&#xC758; &#xB3C4;&#xD615;&#xC744; &#xCE94;&#xBC84;&#xC2A4;&#xC5D0; &#xB354; &#xADF8;&#xB824;&#xBCF4;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+        $(document).ready(function () {
+            var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+            var circleShape = canvas.drawShape([100, 100], new OG.CircleShape(), [100, 100]);
+            var ellipseShape = canvas.drawShape([200, 300], new OG.EllipseShape(&apos;label&apos;), [100, 50]);
+        });
+&lt;/script&gt;
+</code></pre>
+<p>&#xCC98;&#xC74C; circleShape &#xC758; &#xD074;&#xB9AD;&#xD558;&#xC5EC; &#xC120;&#xC5F0;&#xACB0; &#xBAA8;&#xC591;&#xC758; &#xC544;&#xC774;&#xCF58;&#xC744; &#xD074;&#xB9AD; &#xB610;&#xB294; &#xB4DC;&#xB798;&#xADF8; &#xD558;&#xC5EC;, ellipseShape &#xB97C; &#xD074;&#xB9AD;&#xD558;&#xAC70;&#xB098; &#xB9C8;&#xC6B0;&#xC2A4; &#xC5C5;&#xC744; &#xC2E4;&#xD589;&#xD558;&#xC5EC; &#xBCF4;&#xC2ED;&#xC2DC;&#xC624;.</p>
+<p><img src="images/tutorial/tu-4.png" alt=""></p>
+<p>&#xC704;&#xC640; &#xAC19;&#xC740; &#xC774;&#xBCA4;&#xD2B8;&#xB97C; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC801;&#xC73C;&#xB85C; &#xCC98;&#xB9AC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>canvas.connect(&#xC120;&#xD589; &#xB3C4;&#xD615;, &#xD6C4;&#xD589; &#xB3C4;&#xD615;);</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+        $(document).ready(function () {
+            var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+            var circleShape = canvas.drawShape([100, 100], new OG.CircleShape(), [100, 100]);
+            var ellipseShape = canvas.drawShape([200, 300], new OG.EllipseShape(&apos;label&apos;), [100, 50]);
+            var edge = canvas.connect(circleShape, ellipseShape);
+        });
+&lt;/script&gt;
+</code></pre>
+<h3 id="&#xC90C;-&#xD328;&#xB110;">&#xC90C; &#xD328;&#xB110;</h3>
+<p>&#xC90C; &#xD328;&#xB110;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; &#xC90C; &#xD328;&#xB110;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; div &#xB97C; &#xD558;&#xB098; &#xC120;&#xC5B8;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>&lt;body&gt;
+
+&lt;div id=&quot;canvas&quot; style=&quot;cursor: default;&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;canvas_slider&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>&#xC774;&#xD6C4;&#xC5D0; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C; &#xC2AC;&#xB77C;&#xC774;&#xB354;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xB294; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xC218;&#xD589;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+        $(document).ready(function () {
+            var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+            canvas.addSlider({
+                            slider: $(&quot;#canvas_slider&quot;),
+                            width: 200,
+                            height: 300,
+                            appendTo: &quot;body&quot;
+                        });
+            
+            var circleShape = canvas.drawShape([100, 100], new OG.CircleShape(), [100, 100]);
+            var ellipseShape = canvas.drawShape([200, 300], new OG.EllipseShape(&apos;label&apos;), [100, 50]);
+            var edge = canvas.connect(circleShape, ellipseShape);
+        });
+&lt;/script&gt;
+</code></pre>
+<p><img src="images/tutorial/tu-5.png" alt=""></p>
+<p>&#xC90C; &#xD328;&#xB110;&#xC758; &#xAE30;&#xB2A5;&#xC744; canvas.setScale(0 ~ 1) &#xC744; &#xD1B5;&#xD574; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC801;&#xC73C;&#xB85C; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+        $(document).ready(function () {
+            var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+            canvas.addSlider({
+                            slider: $(&quot;#canvas_slider&quot;),
+                            width: 200,
+                            height: 300,
+                            appendTo: &quot;body&quot;
+                        });
+            canvas.setScale(0.51);
+        });
+&lt;/script&gt;
+</code></pre>
+<p><img src="images/tutorial/tu-6.png" alt=""></p>
+</div></div></section>
+
+ <footer>
+  <div><p class="w-fixed-width"><span id="dg-web-footer">Version 0.1.1 released on 10/17/2016.</span></p></div>
+  <div class="w-fixed-width">
+    <p><span id="dg-copyright">&#xA9; 2016 <a href="sppark@uengine.org">Seunpil park</a></span></p>
+    <p>
+      <span id="dg-marking"></span>
+      <span id="dg-legalese"></span>
+      <span id="dg-attribution">Created by DocGen 2.1.3 on 29/10/2016 at 21:53:02.</span>
+    </p>
+  </div>
+ </footer>
+ 
+ </body>
+</html>

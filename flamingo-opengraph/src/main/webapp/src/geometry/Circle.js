@@ -3,7 +3,9 @@
  *
  * @class
  * @extends OG.geometry.Ellipse
- * @requires OG.geometry.Coordinate, OG.geometry.Envelope, OG.geometry.Geometry
+ * @requires OG.geometry.Coordinate
+ * @requires OG.geometry.Envelope
+ * @requires OG.geometry.Geometry
  *
  * @example
  * var geom = new OG.geometry.Circle([10, 10], 5);

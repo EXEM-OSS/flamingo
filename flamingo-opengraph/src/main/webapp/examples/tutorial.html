@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+    <title>BPMN Modeler Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+
+
+    <!-- jquery -->
+    <script type="text/javascript" src="./lib/jquery-1.11.1/jquery-1.11.1.min.js"></script>
+
+    <!-- jquery ui -->
+    <script type="text/javascript" src="./lib/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./lib/jquery-ui-1.11.0.custom/jquery-ui.css"/>
+
+    <!-- jquery Context Menu -->
+    <link rel="stylesheet" type="text/css" href="./lib/contextmenu/jquery.contextMenu.css"/>
+    <script type="text/javascript" src="./lib/contextmenu/jquery.contextMenu-min.js"></script>
+
+    <!-- Opengraph -->
+    <script type="text/javascript" src="./lib/opengraph/OpenGraph-0.1.1-SNAPSHOT.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            OG.shape.CustomCollection = function (label) {
+                OG.shape.CustomCollection.superclass.call(this);
+
+                this.SHAPE_ID = 'OG.shape.CustomCollection';
+                this.label = label;
+            };
+            OG.shape.CustomCollection.prototype = new OG.shape.GeomShape();
+            OG.shape.CustomCollection.superclass = OG.shape.GeomShape;
+            OG.shape.CustomCollection.prototype.constructor = OG.shape.CustomCollection;
+            OG.CustomCollection = OG.shape.CustomCollection;
+
+            OG.shape.CustomCollection.prototype.createShape = function () {
+                if (this.geom) {
+                    return this.geom;
+                }
+
+                var geomCollection = [];
+                if (this.geom) {
+                    return this.geom;
+                }
+
+                for (var i = 0; i < 36; i++) {
+                    var geom = new OG.geometry.Curve([[500, 200], [400, 400 - i * 2], [200, 0 + i * 2], [100, 200]]);
+                    geomCollection.push(geom);
+                }
+                for (var i = 0; i < 15; i++) {
+                    geomCollection.push(new OG.geometry.Circle([300, 200], i * 2));
+                }
+
+                this.geom = new OG.geometry.GeometryCollection(geomCollection);
+
+                this.geom.style = new OG.geometry.Style({
+                    'cursor': 'default',
+                    'stroke': '#d9534f',
+                    'stroke-width': '1',
+                    'fill': 'none',
+                    'fill-opacity': 0
+                });
+                return this.geom;
+            };
+
+            OG.shape.CustomCollection.prototype.animation = function(canvas, element){
+                var count = 0;
+                var command = 'plus';
+                var interval = setInterval(function(){
+                    if(command == 'plus' && count > 10){
+                        command = 'minus';
+                    }else if(command == 'minus' && count < 1){
+                        command = 'plus';
+                    }
+                    if(command == 'plus'){
+                        count++;
+                    }else{
+                        count--;
+                    }
+                    var geomCollection = [];
+                    for (var i = 0; i < 36; i++) {
+                        var geom = new OG.geometry.Curve([[500, 200], [400, 400 - i * count], [200, 0 + i * count], [100, 200]]);
+                        geomCollection.push(geom);
+                    }
+                    for (var i = 0; i < 15; i++) {
+                        geomCollection.push(new OG.geometry.Circle([300, 200], i * count));
+                    }
+                    element.shape.geom = new OG.geometry.GeometryCollection(geomCollection);
+                    element.shape.geom.style = new OG.geometry.Style({
+                        'cursor': 'default',
+                        'stroke': '#d9534f',
+                        'stroke-width': '1',
+                        'fill': 'none',
+                        'fill-opacity': 0
+                    });
+
+                    canvas.getRenderer().redrawShape(element);
+                },100);
+            };
+
+            var canvas = new OG.Canvas('canvas', [1000, 800], 'white', 'url(resources/images/symbol/grid.gif)');
+
+            var shape = new OG.CustomCollection();
+            var customShape = canvas.drawShape([400, 300], shape, [400, 300]);
+            //customShape.shape.animation(canvas, customShape);
+
+        });
+
+    </script>
+</head>
+<body>
+
+<div id="canvas" style="cursor: default;"></div>
+
+</body>
+</html>

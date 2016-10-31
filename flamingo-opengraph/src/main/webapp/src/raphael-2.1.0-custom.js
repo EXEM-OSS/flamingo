@@ -4389,6 +4389,9 @@ window.Raphael.svg && function (R) {
             }
         },
         setFillAndStroke = function (o, params, size) {
+            if(!o.node.style){
+                o.node.style = {};
+            }
             var node = o.node,
                 attrs = o.attrs,
                 vis = node.style.visibility;

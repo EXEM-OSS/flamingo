@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
+  <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
+  <meta charset="UTF-8">
+  <title>Opengraph Documentation</title>
+
+  <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
+  <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
+  <link rel="stylesheet" href="require/webknife/highlight.min.css" type="text/css">
+  <link rel="stylesheet" href="require/docgen.css" type="text/css">
+  <link rel="stylesheet" href="require/print.css" media="print">
+
+  <!--load scripts second-->
+
+  <script src="require/webknife/framework.min.js"></script>
+  <script src="require/webknife/framework.icons.js"></script>
+  <script src="require/webknife/highlight.min.js"></script>
+
+  <!--inline scripts last-->
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+  $("#dg-toc").hide(); //hide the table of contents
+
+  //instantiate an svg injector to show SVG icons
+  var injector = new svgInject();
+  injector.inject();
+
+  //code syntax highlighting
+  $('pre code, .w-inline-code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  //toggle visibility of table of contents
+  $("#dg-navigator").click(function()
+  {
+    $("#dg-toc").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
+
+});
+</script>
+
+<script type="text/x-mathjax-config">
+//MathJax configuration is the same as used by math.stackexchange.com
+MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+  tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+  TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+  messageStyle: "none"
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="dg-toc"><div><table class="unstyled"><tr><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Overview</li><li><a href="README.html">Overview</a></li><li><a href="getting-start.html">Getting Started</a></li><li><a href="examples.html">Examples</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Canvas</li><li><a href="canvas.html">Canvas Drawing</a></li><li><a href="selector.html">Canvas Selector</a></li><li><a href="data.html">Canvas Data</a></li><li><a href="event.html">Canvas Event</a></li><li><a href="renderer.html">Developer - Renderer</a></li><li><a href="handler.html">Developer - Handler</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Element</li><li><a href="element.html">Element</a></li><li><a href="geometry.html">Geometry</a></li><li><a href="shapes.html">Shape</a></li><li><a href="extend-shape.html">Extend Shape</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Api reference</li><li><a href="jsdoc.html">Api reference</a></li></ul></td><td class="dg-tocGroup" id="dg-tocFixedColumn"><ul><li><span class="w-icon dg-tocIcon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon dg-tocIcon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div></div></td></tr></table></div></div>
+<div id="dg-navigator">Table of contents</div>
+
+<header>
+ <div class="w-fixed-width">
+  <a id="dg-homelink" href="README.html">
+    <div id="dg-logo" style="background-image: url(files/images/logo.png); height: 84px; line-height: 84px; padding-left: 109px;">
+      <span id="dg-title">Opengraph Documentation</span> <span id="dg-web-title-version" style="font-weight:normal;">(0.1.1)</span>
+    </div>
+  </a>
+  <div>
+    <span id="dg-backlink"></span>
+  </div>
+ </div>
+</header>
+
+<section id="dg-content"><div class="w-fixed-width"><div id="dg-innerContent"><h1 id="dg-autoTitle">Canvas Data</h1><h1 id="canvas-data">Canvas Data</h1>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xC804;&#xCCB4; &#xCE94;&#xBC84;&#xC2A4;&#xC758; &#xB370;&#xC774;&#xD130; &#xC785;&#xCD9C;&#xB825;&#xACFC; &#xAC01; &#xB3C4;&#xD615;&#xBCC4; &#xB370;&#xC774;&#xD130; &#xCEE8;&#xD2B8;&#xB864;&#xC5D0; &#xB300;&#xD574; &#xC54C;&#xC544;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h2 id="toxml-&amp;&amp;-tojson">toXML &amp;&amp; toJSON</h2>
+<p>toXML &amp;&amp; toJSON &#xC740; &#xCE94;&#xBC84;&#xC2A4;&#xC5D0; &#xADF8;&#xB824;&#xC9C4; &#xBAA8;&#xB4E0; &#xB3C4;&#xD615;&#xC744; &#xD3EC;&#xD568;&#xD55C; &#xB808;&#xC774;&#xC544;&#xC6C3; &#xB370;&#xC774;&#xD130;&#xB97C; xml &#xB610;&#xB294; Json &#xC73C;&#xB85C; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+*    Canvas &#xC5D0; &#xADF8;&#xB824;&#xC9C4; Shape &#xB4E4;&#xC744; OpenGraph XML &#xBB38;&#xC790;&#xC5F4;&#xB85C; export &#xD55C;&#xB2E4;.
+*
+* @return {String} XML &#xBB38;&#xC790;&#xC5F4;
+*/
+canvas.toXML();
+
+/**
+* Canvas &#xC5D0; &#xADF8;&#xB824;&#xC9C4; Shape &#xB4E4;&#xC744; OpenGraph JSON &#xAC1D;&#xCCB4;&#xB85C; export &#xD55C;&#xB2E4;.
+*
+* @return {Object} JSON &#xD3EC;&#xB9F7;&#xC758; Object
+*/
+canvas.toJSON();
+</code></pre>
+<h2 id="loadxml-&amp;&amp;-loadjson">loadXML &amp;&amp; loadJSON</h2>
+<p>toXML &amp;&amp; toJSON &#xC774; &#xCE94;&#xBC84;&#xC2A4;&#xC758; &#xB808;&#xC774;&#xC544;&#xC6C3; &#xB370;&#xC774;&#xD130;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB77C;&#xBA74;, loadXML &amp;&amp; loadJSON &#xC740; &#xC5ED;&#xC73C;&#xB85C; &#xC774; &#xB370;&#xC774;&#xD130;&#xB97C; &#xCE94;&#xBC84;&#xC2A4;&#xC5D0; &#xB4DC;&#xB85C;&#xC789; &#xD574; &#xC8FC;&#xB294; &#xBA54;&#xC18C;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB54C; &#xAE30;&#xC874;&#xC5D0; &#xCE94;&#xBC84;&#xC2A4;&#xC5D0; &#xADF8;&#xB824;&#xC9C4; &#xBAA8;&#xB4E0; &#xB3C4;&#xD615;&#xB4E4;&#xC740; clear &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* OpenGraph XML &#xBB38;&#xC790;&#xC5F4;&#xB85C; &#xBD80;&#xD130; Shape &#xC744; &#xB4DC;&#xB85C;&#xC789;&#xD55C;&#xB2E4;.
+*
+* @param {String| Element} xml XML &#xBB38;&#xC790;&#xC5F4; &#xB610;&#xB294; DOM Element
+* @return {Object} {width, height, x, y, x2, y2}
+*/
+canvas.loadXML(xml);
+
+/**
+* JSON &#xAC1D;&#xCCB4;&#xB85C; &#xBD80;&#xD130; Shape &#xC744; &#xB4DC;&#xB85C;&#xC789;&#xD55C;&#xB2E4;.
+*
+* @param {Object} json JSON &#xD3EC;&#xB9F7;&#xC758; Object
+* @return {Object} {width, height, x, y, x2, y2}
+*/
+canvas.loadJSON(json)
+</code></pre>
+<h2 id="setcustomdata-&amp;&amp;-getcustomdata">setCustomData &amp;&amp; getCustomData</h2>
+<p>&#xC8FC;&#xC5B4;&#xC9C4; &#xB3C4;&#xD615;&#xC5D0; &#xCEE4;&#xC2A4;&#xD140; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xAC70;&#xB098; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC800;&#xC7A5;&#xB41C; &#xCEE4;&#xC2A4;&#xD140; &#xB370;&#xC774;&#xD130;&#xB294; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; toJSON &#xBA54;&#xC18C;&#xB4DC; &#xB610;&#xB294; toXML &#xBA54;&#xC18C;&#xB4DC;&#xB85C; &#xC804;&#xCCB4; &#xCE94;&#xBC84;&#xC2A4;&#xC758; &#xB808;&#xC774;&#xC544;&#xC6C3;&#xC744; &#xCD9C;&#xB825;&#xD560; &#xB54C; &#xD568;&#xAED8; &#xCEE4;&#xC2A4;&#xD140; &#xB370;&#xC774;&#xD130; &#xC5ED;&#xC2DC; &#xC800;&#xC7A5;&#xB418;&#xBA70;,
+loadJSON &#xB610;&#xB294; loadXML &#xBA54;&#xC18C;&#xB4DC;&#xB85C; &#xCE94;&#xBC84;&#xC2A4;&#xC758; &#xB808;&#xC774;&#xC544;&#xC6C3;&#xC744; &#xAC00;&#xC838;&#xC62C; &#xB54C; &#xCEE4;&#xC2A4;&#xD140; &#xB370;&#xC774;&#xD130; &#xC5ED;&#xC2DC; &#xBCF5;&#xC6D0;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* &#xC8FC;&#xC5B4;&#xC9C4; Shape &#xC5D8;&#xB9AC;&#xBA3C;&#xD2B8;&#xC5D0; &#xCEE4;&#xC2A4;&#xD140; &#xB370;&#xC774;&#xD0C0;&#xB97C; &#xC800;&#xC7A5;&#xD55C;&#xB2E4;.
+*
+* @param {Element|String} shapeElement Shape DOM Element or ID
+* @param {Object} data JSON &#xD3EC;&#xB9F7;&#xC758; Object
+*/
+canvas.setCustomData(element,data);
+/**
+* &#xC8FC;&#xC5B4;&#xC9C4; Shape &#xC5D8;&#xB9AC;&#xBA3C;&#xD2B8;&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xCEE4;&#xC2A4;&#xD140; &#xB370;&#xC774;&#xD130;&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.
+*
+* @param {Element|String} shapeElement Shape DOM Element or ID
+* @return {Object} JSON &#xD3EC;&#xB9F7;&#xC758; Object
+*/
+canvas.getCustomData(element,data);
+
+var element = canvas.drawShape([100, 100], new OG.CircleShape(), [50, 50], null, &apos;CircleShape&apos;);
+
+//&#xCEE4;&#xC2A4;&#xD140; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC800;&#xC7A5;&#xD55C;&#xB2E4;.
+canvas.setCustomData(element, {index: 0, name: &apos;myShape&apos;});
+
+//&#xCE94;&#xBC84;&#xC2A4; &#xB808;&#xC774;&#xC544;&#xC6C3;&#xC744; &#xCD9C;&#xB825;&#xD55C;&#xB2E4;.
+var json = canvas.toJSON();
+
+//&#xCE94;&#xBC84;&#xC2A4;&#xC758; &#xAE30;&#xC874; &#xC694;&#xC18C;&#xB97C; &#xC0AD;&#xC81C;&#xD558;&#xACE0; &#xB808;&#xC774;&#xC544;&#xC6C3; &#xB370;&#xC774;&#xD130;&#xB85C; &#xC7AC;&#xAD6C;&#xC131;&#xD55C;&#xB2E4;.
+canvas.loadJSON(json);
+
+//&#xC8FC;&#xC5B4;&#xC9C4; &#xC544;&#xC774;&#xB514;&#xB85C; &#xB3C4;&#xD615;&#xC744; &#xBD88;&#xB7EC;&#xC628;&#xB2E4;.
+var reloadedShape = canvas.getElementById(&apos;CircleShape&apos;);
+
+if (reloadedShape) {
+    //&#xCEE4;&#xC2A4;&#xD140; &#xB370;&#xC774;&#xD130;&#xAC00; &#xBCF5;&#xC6D0;&#xB418;&#xC5B4; &#xBD88;&#xB7EC;&#xC640;&#xC9C4;&#xB2E4;.
+    var customData = canvas.getCustomData(reloadedShape);
+    console.log(customData);
+}
+</code></pre>
+<h2 id="setextcustomdata-&amp;&amp;-getextcustomdata">setExtCustomData &amp;&amp; getExtCustomData</h2>
+<p>setCustomData &amp;&amp; getCustomData &#xC640; &#xBCC4;&#xAC1C;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xD655;&#xC7A5; &#xCEE4;&#xC2A4;&#xD140; &#xB370;&#xC774;&#xD130; &#xBA54;&#xC18C;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xB85C; &#xCE94;&#xBC84;&#xC2A4;&#xC758; &#xB808;&#xC774;&#xC544;&#xC6C3;&#xC744; &#xAC00;&#xC838;&#xC624;&#xAC70;&#xB098; &#xBD88;&#xB7EC;&#xC62C; &#xB54C; &#xBCF5;&#xC6D0;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* &#xC8FC;&#xC5B4;&#xC9C4; Shape &#xC5D8;&#xB9AC;&#xBA3C;&#xD2B8;&#xC5D0; &#xD655;&#xC7A5; &#xCEE4;&#xC2A4;&#xD140; &#xB370;&#xC774;&#xD0C0;&#xB97C; &#xC800;&#xC7A5;&#xD55C;&#xB2E4;.
+*
+* @param {Element|String} shapeElement Shape DOM Element or ID
+* @param {Object} data JSON &#xD3EC;&#xB9F7;&#xC758; Object
+*/
+canvas.setExtCustomData(element,data);
+
+/**
+* &#xC8FC;&#xC5B4;&#xC9C4; Shape &#xC5D8;&#xB9AC;&#xBA3C;&#xD2B8;&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xD655;&#xC7A5; &#xCEE4;&#xC2A4;&#xD140; &#xB370;&#xC774;&#xD130;&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.
+*
+* @param {Element|String} shapeElement Shape DOM Element or ID
+* @return {Object} JSON &#xD3EC;&#xB9F7;&#xC758; Object
+*/
+canvas.getExtCustomData(element,data);
+</code></pre>
+</div></div></section>
+
+ <footer>
+  <div><p class="w-fixed-width"><span id="dg-web-footer">Version 0.1.1 released on 10/17/2016.</span></p></div>
+  <div class="w-fixed-width">
+    <p><span id="dg-copyright">&#xA9; 2016 <a href="sppark@uengine.org">Seunpil park</a></span></p>
+    <p>
+      <span id="dg-marking"></span>
+      <span id="dg-legalese"></span>
+      <span id="dg-attribution">Created by DocGen 2.1.3 on 29/10/2016 at 21:53:02.</span>
+    </p>
+  </div>
+ </footer>
+ 
+ </body>
+</html>

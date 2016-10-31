@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+    <title>BPMN Modeler Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+
+
+    <!-- jquery -->
+    <script type="text/javascript" src="./lib/jquery-1.11.1/jquery-1.11.1.min.js"></script>
+
+    <!-- jquery ui -->
+    <script type="text/javascript" src="./lib/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./lib/jquery-ui-1.11.0.custom/jquery-ui.css"/>
+
+    <!-- jquery Context Menu -->
+    <link rel="stylesheet" type="text/css" href="./lib/contextmenu/jquery.contextMenu.css"/>
+    <script type="text/javascript" src="./lib/contextmenu/jquery.contextMenu-min.js"></script>
+
+    <!-- Opengraph -->
+    <script type="text/javascript" src="./lib/opengraph/OpenGraph-0.1.1-SNAPSHOT.js"></script>
+
+    <!-- Tree js -->
+    <script type="text/javascript" src="./tree/shape/Area.js"></script>
+    <script type="text/javascript" src="./tree/shape/Activity.js"></script>
+    <script type="text/javascript" src="./tree/shape/Folder.js"></script>
+    <script type="text/javascript" src="./tree/shape/Ed.js"></script>
+    <script type="text/javascript" src="./tree/shape/Expander.js"></script>
+    <script type="text/javascript" src="./tree/shape/MLabel.js"></script>
+    <script type="text/javascript" src="./tree/shape/SLabel.js"></script>
+    <script type="text/javascript" src="./tree/tree.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var mode = 'sample';
+            var tree = new Tree('canvas');
+            tree._CONFIG.MOVE_SORTABLE = true;
+            tree._CONFIG.MAPPING_ENABLE = true;
+            tree._CONFIG.CREATE_FOLDER = true;
+            tree._CONFIG.CREATE_ED = true;
+            tree._CONFIG.PICK_ED = true;
+            tree._CONFIG.DELETABLE = true;
+            tree._CONFIG.AREA.lAc.display = true;
+            tree._CONFIG.AREA.lOut.display = true;
+            tree._CONFIG.AREA.rIn.display = true;
+            tree._CONFIG.AREA.rAc.display = true;
+            tree._CONFIG.AREA.rOut.display = true;
+
+            tree.init();
+
+            var randomData = function (type) {
+                var data = {};
+                var randomCount = function (min, max) {
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                };
+                var randomType = function () {
+                    var number = Math.floor(Math.random() * (2));
+                    if (number == 0) {
+                        return 'folder';
+                    } else {
+                        return 'ed';
+                    }
+                };
+
+                //var random = randomCount() + 1;
+                for (var i = 0; i < 10; i++) {
+                    console.log('=====Activity : ' + i + ' ===========');
+
+                    var id = type + "-ac-" + i;
+                    var activity = {
+                        "type": "activity",
+                        "id": id,
+                        "name": type + "-ac-" + i + "-Activity",
+                        "position": type,
+                        "parentId": "",
+                        "expand": true,
+                        "extData": {}
+                    };
+                    if (i < 9) {
+                        activity.next = type + "-ac-" + (i + 1);
+                    }
+                    if (i > 0) {
+                        activity.prev = type + "-ac-" + (i - 1);
+                    }
+                    data[id] = activity;
+                    var maxDepth = 7;
+                    var createdData = [activity];
+                    for (var c = 0; c < maxDepth; c++) {
+                        var copyData = JSON.parse(JSON.stringify(createdData));
+                        createdData = [];
+                        for (var g = 0; g < copyData.length; g++) {
+                            var child, childId;
+                            var parent = copyData[g];
+                            var childType = randomType();
+                            if (c == 0) {
+                                childType = 'folder';
+                            }
+                            var randomChildNum = randomCount(1, 3);
+                            if (childType != 'folder') {
+                                randomChildNum = randomCount(1, 5);
+                            }
+                            for (var m = 0; m < randomChildNum; m++) {
+                                if (childType == 'folder') {
+                                    childId = type + "-fd-" + i + '-' + c + '-' + g + '-' + m;
+                                    child = {
+                                        "type": childType,
+                                        "id": childId,
+                                        "name": type + "-fd-" + i + '-' + c + '-' + g + '-' + m + "-Folder",
+                                        "position": type + "-out",
+                                        "parentId": parent.id,
+                                        "expand": true,
+                                        "extData": {}
+                                    };
+                                    createdData.push(child);
+                                    data[childId] = child;
+                                } else {
+                                    childId = type + "-ed-" + i + '-' + c + '-' + g + '-' + m;
+                                    child = {
+                                        "type": childType,
+                                        "id": childId,
+                                        "name": type + "-ed-" + i + '-' + c + '-' + g + '-' + m + "-Ed",
+                                        "position": type + "-out",
+                                        "parentId": parent.id,
+                                        "expand": true,
+                                        "extData": {}
+                                    };
+                                    data[childId] = child;
+                                }
+                            }
+                        }
+                    }
+                }
+                return data;
+            };
+
+            var renderSampleData = function () {
+                $.getJSON("tree/sample/myData.json", function (myData) {
+
+                    tree._INCOLLAPSE = [];
+                    tree.removeDataByFilter({position: tree.Constants.POSITION.MY});
+                    tree.removeDataByFilter({position: tree.Constants.POSITION.MY_IN});
+                    tree.removeDataByFilter({position: tree.Constants.POSITION.MY_OUT});
+                    tree.updateData(myData, true);
+
+                    $.getJSON("tree/sample/otherData.json", function (otherData) {
+                        tree.removeDataByFilter({position: tree.Constants.POSITION.OTHER});
+                        tree.removeDataByFilter({position: tree.Constants.POSITION.OTHER_OUT});
+                        tree.updateData(otherData);
+                    });
+                });
+            };
+
+            var renderRandomData = function () {
+                var otherData = randomData('other');
+                var myData = randomData('my');
+                tree.updateData(otherData, true);
+                tree.updateData(myData);
+            };
+
+            if (mode == 'random') {
+                renderRandomData();
+            } else {
+                renderSampleData();
+            }
+        });
+
+    </script>
+</head>
+<body>
+
+<div id="canvas" style="cursor: default;width: 100%;overflow: scroll;"/></div>
+<div id="canvas_slider"></div>
+
+</body>
+</html>

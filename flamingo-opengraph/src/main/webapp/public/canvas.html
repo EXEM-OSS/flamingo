@@ -1,0 +1,1370 @@
+<!doctype html>
+<html>
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
+  <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
+  <meta charset="UTF-8">
+  <title>Opengraph Documentation</title>
+
+  <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
+  <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
+  <link rel="stylesheet" href="require/webknife/highlight.min.css" type="text/css">
+  <link rel="stylesheet" href="require/docgen.css" type="text/css">
+  <link rel="stylesheet" href="require/print.css" media="print">
+
+  <!--load scripts second-->
+
+  <script src="require/webknife/framework.min.js"></script>
+  <script src="require/webknife/framework.icons.js"></script>
+  <script src="require/webknife/highlight.min.js"></script>
+
+  <!--inline scripts last-->
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+  $("#dg-toc").hide(); //hide the table of contents
+
+  //instantiate an svg injector to show SVG icons
+  var injector = new svgInject();
+  injector.inject();
+
+  //code syntax highlighting
+  $('pre code, .w-inline-code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  //toggle visibility of table of contents
+  $("#dg-navigator").click(function()
+  {
+    $("#dg-toc").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
+
+});
+</script>
+
+<script type="text/x-mathjax-config">
+//MathJax configuration is the same as used by math.stackexchange.com
+MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+  tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+  TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+  messageStyle: "none"
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="dg-toc"><div><table class="unstyled"><tr><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Overview</li><li><a href="README.html">Overview</a></li><li><a href="getting-start.html">Getting Started</a></li><li><a href="examples.html">Examples</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Canvas</li><li><a href="canvas.html">Canvas Drawing</a></li><li><a href="selector.html">Canvas Selector</a></li><li><a href="data.html">Canvas Data</a></li><li><a href="event.html">Canvas Event</a></li><li><a href="renderer.html">Developer - Renderer</a></li><li><a href="handler.html">Developer - Handler</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Element</li><li><a href="element.html">Element</a></li><li><a href="geometry.html">Geometry</a></li><li><a href="shapes.html">Shape</a></li><li><a href="extend-shape.html">Extend Shape</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Api reference</li><li><a href="jsdoc.html">Api reference</a></li></ul></td><td class="dg-tocGroup" id="dg-tocFixedColumn"><ul><li><span class="w-icon dg-tocIcon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon dg-tocIcon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div></div></td></tr></table></div></div>
+<div id="dg-navigator">Table of contents</div>
+
+<header>
+ <div class="w-fixed-width">
+  <a id="dg-homelink" href="README.html">
+    <div id="dg-logo" style="background-image: url(files/images/logo.png); height: 84px; line-height: 84px; padding-left: 109px;">
+      <span id="dg-title">Opengraph Documentation</span> <span id="dg-web-title-version" style="font-weight:normal;">(0.1.1)</span>
+    </div>
+  </a>
+  <div>
+    <span id="dg-backlink"></span>
+  </div>
+ </div>
+</header>
+
+<section id="dg-content"><div class="w-fixed-width"><div id="dg-innerContent"><h1 id="dg-autoTitle">Canvas Drawing</h1><h1 id="canvas-drawing">Canvas Drawing</h1>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xCE94;&#xBC84;&#xC2A4; &#xAC1D;&#xCCB4;&#xB294; &#xB2E4;&#xC74C;&#xC744; &#xC120;&#xC5B8;&#xD568;&#xC73C;&#xB85C;&#xC368; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+</code></pre>
+<h2 id="configuration">Configuration</h2>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504; &#xCE94;&#xBC84;&#xC2A4;&#xC758; Configuration &#xC744; &#xC54C;&#xC544;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>* - selectable         : &#xD074;&#xB9AD;&#xC120;&#xD0DD; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - dragSelectable     : &#xB9C8;&#xC6B0;&#xC2A4;&#xB4DC;&#xB798;&#xADF8;&#xC120;&#xD0DD; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - movable            : &#xC774;&#xB3D9; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - resizable          : &#xB9AC;&#xC0AC;&#xC774;&#xC988; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - connectable        : &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - selfConnectable    : Self &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - connectCloneable   : &#xB4DC;&#xB798;&#xADF8;&#xD558;&#xC5EC; &#xC5F0;&#xACB0;&#xC2DC; &#xB300;&#xC0C1; &#xC5C6;&#xC744; &#xACBD;&#xC6B0; &#xC790;&#xB3D9;&#xC73C;&#xB85C; Shape &#xBCF5;&#xC0AC;&#xD558;&#xC5EC; &#xC5F0;&#xACB0; &#xCC98;&#xB9AC; &#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - connectRequired    : &#xB4DC;&#xB798;&#xADF8;&#xD558;&#xC5EC; &#xC5F0;&#xACB0;&#xC2DC; &#xC5F0;&#xACB0;&#xB300;&#xC0C1; &#xC788;&#xB294; &#xACBD;&#xC6B0;&#xC5D0;&#xB9CC; Edge &#xB4DC;&#xB85C;&#xC789; &#xCC98;&#xB9AC; &#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - labelEditable      : &#xB77C;&#xBCA8; &#xC218;&#xC815;&#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - groupDropable      : &#xADF8;&#xB8F9;&#xD551; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - collapsible        : &#xCD5C;&#xC18C;&#xD654; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - enableHotKey       : &#xD56B;&#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - enableContextMenu  : &#xB9C8;&#xC6B0;&#xC2A4; &#xC6B0;&#xD074;&#xB9AD; &#xBA54;&#xB274; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - autoExtensional    : &#xCE94;&#xBC84;&#xC2A4; &#xC790;&#xB3D9; &#xD655;&#xC7A5; &#xAE30;&#xB2A5;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - useSlider          : &#xD655;&#xB300;&#xCD95;&#xC18C; &#xC2AC;&#xB77C;&#xC774;&#xB354; &#xC0AC;&#xC6A9; &#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - stickGuide         : &#xC2A4;&#xD2F1; &#xAC00;&#xC774;&#xB4DC; &#xD45C;&#xC2DC; &#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+* - checkBridgeEdge    : &#xC5F0;&#xACB0;&#xB41C; &#xB450; &#xC624;&#xBE0C;&#xC81D;&#xD2B8;&#xC758; &#xC18C;&#xC18D;&#xC5D0; &#xB530;&#xB978; &#xC5F0;&#xACB0;&#xC120; &#xC2A4;&#xD0C0;&#xC77C; &#xBCC0;&#xD654; &#xC5EC;&#xBD80;(&#xB514;&#xD3F4;&#xD2B8; true)
+</code></pre>
+<p>Configuration &#xC124;&#xC815;&#xC740; canvas &#xB97C; &#xC120;&#xC5B8;&#xD55C; &#xD6C4; initConfig &#xBA54;&#xC18C;&#xB4DC;&#xB85C; &#xC870;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>canvas.initConfig({
+                selectable: true,
+                dragSelectable: true,
+                movable: true,
+                resizable: true,
+                connectable: true,
+                selfConnectable: true,
+                connectCloneable: true,
+                connectRequired: true,
+                labelEditable: true,
+                groupDropable: true,
+                collapsible: true,
+                enableHotKey: true,
+                enableContextMenu: true,
+                useSlider: true,
+                stickGuide: true,
+                checkBridgeEdge: true
+            });
+</code></pre>
+<p>&#xC608;&#xB97C; &#xB4E4;&#xC5B4;, &#xB3C4;&#xD615;&#xC758; &#xC774;&#xB3D9; &#xBC0F; &#xC0AC;&#xC774;&#xC988; &#xC870;&#xC808;&#xC774; &#xBD88;&#xAC00;&#xB2A5;&#xD55C; &#xCE94;&#xBC84;&#xC2A4;&#xB97C; &#xB9CC;&#xB4E4;&#xACE0;&#xC2F6;&#xB2E4;&#xBA74;, &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xCF54;&#xB4DC;&#xB85C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+        &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;ko&quot; lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;BPMN Modeler Example&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE8&quot;&gt;
+
+
+    &lt;!-- jquery --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/jquery-1.11.1/jquery-1.11.1.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- jquery ui --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/jquery-ui-1.11.0.custom/jquery-ui.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/jquery-ui-1.11.0.custom/jquery-ui.css&quot;/&gt;
+
+    &lt;!-- jquery Context Menu --&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/contextmenu/jquery.contextMenu.css&quot;/&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/contextmenu/jquery.contextMenu-min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- Opengraph --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/opengraph/OpenGraph-0.1.1-SNAPSHOT.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        $(document).ready(function () {
+            var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+            canvas.initConfig({
+                selectable: true,
+                dragSelectable: true,
+                movable: true,
+                resizable: true,
+                connectable: true,
+                selfConnectable: true,
+                connectCloneable: true,
+                connectRequired: true,
+                labelEditable: true,
+                groupDropable: true,
+                collapsible: true,
+                enableHotKey: true,
+                enableContextMenu: true,
+                useSlider: true,
+                stickGuide: true,
+                checkBridgeEdge: true
+            });
+
+            //Simple example
+            var circleShape = canvas.drawShape([100, 100], new OG.CircleShape(), [100, 100]);
+            var ellipseShape = canvas.drawShape([200, 300], new OG.EllipseShape(&apos;label&apos;), [100, 50]);
+            var edge = canvas.connect(circleShape, ellipseShape);
+        });
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;canvas&quot; style=&quot;cursor: default;&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;canvas_slider&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="more-detail-configuration">More Detail Configuration</h2>
+<p>&#xB354; &#xC790;&#xC138;&#xD55C; Configuration &#xC124;&#xC815;&#xAC12;&#xC5D0; &#xB300;&#xD574; &#xC54C;&#xC544;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCE94;&#xBC84;&#xC2A4; &#xAC1D;&#xCCB4;&#xC758; _CONFIG &#xC624;&#xBE0C;&#xC81D;&#xD2B8; &#xAC12;&#xC744; &#xC9C1;&#xC811; &#xC124;&#xC815;&#xD568;&#xC73C;&#xB85C;&#xC368; Configuration &#xC744; &#xBC14;&#xAFC0; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC608;&#xB97C; &#xB4E4;&#xBA74;, &#xC120; &#xC5F0;&#xACB0;&#xC774; &#xBD88;&#xAC00;&#xB2A5;&#xD55C; &#xCE94;&#xBC84;&#xC2A4;&#xB97C; _CONFIG &#xC624;&#xBE0C;&#xC81D;&#xD2B8; &#xC124;&#xC815;&#xC73C;&#xB85C; &#xB9CC;&#xB4E4;&#xACE0;&#xC2F6;&#xC744; &#xB54C;, CONNECTABLE &#xAC12;&#xC744; false &#xB85C; &#xC9C0;&#xC815;&#xD568;&#xC73C;&#xB85C;&#xC368; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+canvas._CONFIG.CONNECTABLE = false;
+</code></pre>
+<p>&#xC544;&#xB798;&#xC758; &#xBAA9;&#xB85D;&#xC740; _CONFIG &#xB97C; &#xD1B5;&#xD574; &#xC870;&#xC808;&#xD560; &#xC218; &#xC788;&#xB294; Configuration &#xC758; &#xBAA9;&#xB85D;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>{
+        /**
+         * &#xC5F0;&#xACB0;&#xB41C; &#xB450; &#xC624;&#xBE0C;&#xC81D;&#xD2B8;&#xC758; &#xC18C;&#xC18D;&#xC5D0; &#xB530;&#xB978; &#xC5F0;&#xACB0;&#xC120; &#xC2A4;&#xD0C0;&#xC77C; &#xBCC0;&#xD654; &#xC5EC;&#xBD80;
+         */
+        CHECK_BRIDGE_EDGE: true,
+        
+        /**
+         * &#xC2A4;&#xD2F1; &#xAC00;&#xC774;&#xB4DC; &#xC0DD;&#xC131; &#xC5EC;&#xBD80;
+         */
+        STICK_GUIDE: true,
+        
+        /**
+         * &#xC2AC;&#xB77C;&#xC774;&#xB354;
+         */
+        SLIDER: null,
+        
+        /**
+         * &#xC11C;&#xBC84; &#xC218;&#xC2E0; &#xB370;&#xC774;&#xD130; &#xCC98;&#xB9AC;&#xC911;
+         */
+        REMOTE_PERFORMED_DURING: false,
+        
+        /**
+         * &#xB9AC;&#xBAA8;&#xD2B8; &#xB370;&#xD53C;&#xB2C8;&#xC158;
+         */
+        REMOTE_IDENTIFIER: null,
+        
+        /**
+         * &#xB9AC;&#xBAA8;&#xD2B8; &#xBAA8;&#xB4DC;
+         */
+        REMOTEABLE: false,
+        
+        /**
+         * &#xB9AC;&#xBAA8;&#xD2B8; &#xBAA8;&#xB4DC; &#xC218;&#xC815;&#xAD8C;&#xD55C;
+         */
+        REMOTE_EDITABLE: false,
+        
+        /**
+         * &#xB9AC;&#xBAA8;&#xD2B8; &#xBAA8;&#xB4DC; &#xB9C8;&#xC2A4;&#xD130;&#xBAA8;&#xB4DC;
+         */
+        REMOTE_ISMASTER: false,
+        
+        /**
+         * &#xD788;&#xC2A4;&#xD1A0;&#xB9AC; &#xC778;&#xB371;&#xC2A4;
+         */
+        HISTORY_INDEX: 0,
+        
+        /**
+         * &#xD788;&#xC2A4;&#xD1A0;&#xB9AC; &#xC800;&#xC7A5;&#xC18C;
+         */
+        HISTORY: [],
+        
+        /**
+         * &#xD788;&#xC2A4;&#xD1A0;&#xB9AC; &#xC800;&#xC7A5; &#xD69F;&#xC218;
+         */
+        HISTORY_SIZE: 100,
+
+        /**
+         * &#xD655;&#xB300;/&#xCD95;&#xC18C; &#xC2AC;&#xB77C;&#xC774;&#xB354;
+         */
+        USE_SLIDER: true,
+
+        /**
+         * &#xD074;&#xB9AD;&#xC120;&#xD0DD; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        SELECTABLE: true,
+
+        /**
+         * &#xB9C8;&#xC6B0;&#xC2A4;&#xB4DC;&#xB798;&#xADF8;&#xC120;&#xD0DD; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        DRAG_SELECTABLE: true,
+
+        /**
+         * &#xC774;&#xB3D9; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        MOVABLE: true,
+        MOVABLE_: {
+            GEOM: true,
+            TEXT: true,
+            HTML: true,
+            IMAGE: true,
+            EDGE: true,
+            GROUP: true
+        },
+
+        /**
+         * &#xB9AC;&#xC0AC;&#xC774;&#xC988; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        RESIZABLE: true,
+        RESIZABLE_: {
+            GEOM: true,
+            TEXT: true,
+            HTML: true,
+            IMAGE: true,
+            EDGE: true,
+            GROUP: true
+        },
+
+        /**
+         * &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        CONNECTABLE: true,
+
+        /**
+         * Self &#xC5F0;&#xACB0; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        SELF_CONNECTABLE: true,
+
+        /**
+         * &#xAC00;&#xC774;&#xB4DC;&#xC5D0; &#xC790;&#xAE30;&#xC790;&#xC2E0;&#xC744; &#xBCF5;&#xC0AC;&#xD558;&#xB294; &#xCEE8;&#xD2B8;&#xB864;&#xB7EC; &#xC5EC;&#xBD80;.
+         */
+        CONNECT_CLONEABLE: true,
+
+        /**
+         * &#xB4DC;&#xB798;&#xADF8;&#xD558;&#xC5EC; &#xC5F0;&#xACB0;&#xC2DC; &#xC5F0;&#xACB0;&#xB300;&#xC0C1; &#xC788;&#xB294; &#xACBD;&#xC6B0;&#xC5D0;&#xB9CC; Edge &#xB4DC;&#xB85C;&#xC789; &#xCC98;&#xB9AC; &#xC5EC;&#xBD80;
+         */
+        CONNECT_REQUIRED: true,
+
+        /**
+         * &#xB4DC;&#xB798;&#xADF8;&#xD558;&#xC5EC; &#xC5F0;&#xACB0;&#xC2DC; &#xADF8;&#xB8F9;&#xC744; &#xAC74;&#xB108;&#xB6F8;&#xB54C; &#xC2A4;&#xD0C0;&#xC77C; &#xBCC0;&#xACBD; &#xC5EC;&#xBD80;
+         */
+        CONNECT_STYLE_CHANGE: true,
+        CONNECT_STYLE_CHANGE_: {
+            GEOM: true,
+            TEXT: true,
+            HTML: true,
+            IMAGE: true,
+            EDGE: true,
+            GROUP: true
+        },
+
+        /**
+         * &#xAC00;&#xC774;&#xB4DC;&#xC5D0; &#xC0AD;&#xC81C; &#xCEE8;&#xD2B8;&#xB864;&#xB7EC; &#xC5EC;&#xBD80;
+         */
+        DELETABLE: true,
+        DELETABLE_: {
+            GEOM: true,
+            TEXT: true,
+            HTML: true,
+            IMAGE: true,
+            EDGE: true,
+            GROUP: true
+        },
+
+        /**
+         * &#xB77C;&#xBCA8; &#xC218;&#xC815;&#xC5EC;&#xBD80;
+         */
+        LABEL_EDITABLE: true,
+        LABEL_EDITABLE_: {
+            GEOM: true,
+            TEXT: true,
+            HTML: true,
+            IMAGE: true,
+            EDGE: true,
+            GROUP: true
+        },
+
+        /**
+         * &#xADF8;&#xB8F9;&#xD551; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        GROUP_DROPABLE: true,
+
+        /**
+         * &#xCD5C;&#xC18C;&#xD654; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        GROUP_COLLAPSIBLE: true,
+
+        /**
+         * &#xC774;&#xB3D9;, &#xB9AC;&#xC0AC;&#xC774;&#xC988; &#xB4DC;&#xB798;&#xADF8;&#xC2DC; MOVE_SNAP_SIZE &#xC801;&#xC6A9; &#xC5EC;&#xBD80;
+         */
+        DRAG_GRIDABLE: true,
+
+        /**
+         * &#xD56B;&#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_HOTKEY: true,
+
+        /**
+         * &#xD56B;&#xD0A4; : UNDO REDO &#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_HOTKEY_CTRL_Z: true,
+
+        /**
+         * &#xD56B;&#xD0A4; : DELETE &#xC0AD;&#xC81C; &#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_HOTKEY_DELETE: true,
+
+        /**
+         * &#xD56B;&#xD0A4; : Ctrl+A &#xC804;&#xCCB4;&#xC120;&#xD0DD; &#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_HOTKEY_CTRL_A: true,
+
+        /**
+         * &#xD56B;&#xD0A4; : Ctrl+C &#xBCF5;&#xC0AC; &#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_HOTKEY_CTRL_C: true,
+
+        /**
+         * &#xD56B;&#xD0A4; : Ctrl+V &#xBD99;&#xC5EC;&#xB123;&#xAE30; &#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_HOTKEY_CTRL_V: true,
+
+        /**
+         * &#xD56B;&#xD0A4; : Ctrl+D &#xBCF5;&#xC81C;&#xD558;&#xAE30; &#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_HOTKEY_CTRL_D: true,
+
+        /**
+         * &#xD56B;&#xD0A4; : Ctrl+G &#xADF8;&#xB8F9; &#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_HOTKEY_CTRL_G: true,
+
+        /**
+         * &#xD56B;&#xD0A4; : Ctrl+U &#xC5B8;&#xADF8;&#xB8F9; &#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_HOTKEY_CTRL_U: true,
+
+        /**
+         * &#xD56B;&#xD0A4; : &#xBC29;&#xD5A5;&#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_HOTKEY_ARROW: true,
+
+        /**
+         * &#xD56B;&#xD0A4; : Shift + &#xBC29;&#xD5A5;&#xD0A4; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_HOTKEY_SHIFT_ARROW: true,
+
+        /**
+         * &#xB9C8;&#xC6B0;&#xC2A4; &#xC6B0;&#xD074;&#xB9AD; &#xBA54;&#xB274; &#xAC00;&#xB2A5;&#xC5EC;&#xBD80;
+         */
+        ENABLE_CONTEXTMENU: true,
+
+        /**
+         * &#xCE94;&#xBC84;&#xC2A4; &#xC2A4;&#xCF00;&#xC77C;(&#xB9AC;&#xC5BC; &#xC0AC;&#xC774;&#xC988; : Scale = 1)
+         */
+        SCALE: 1,
+
+        /**
+         * &#xCE94;&#xBC84;&#xC2A4; &#xCD5C;&#xC18C; &#xC2A4;&#xCF00;&#xC77C;
+         */
+        SCALE_MIN: 0.1,
+
+        /**
+         * &#xCE94;&#xBC84;&#xC2A4; &#xCD5C;&#xB300; &#xC2A4;&#xCF00;&#xC77C;
+         */
+        SCALE_MAX: 10,
+
+        /**
+         * Edge &#xAEBD;&#xC740;&#xC120; &#xD328;&#xB529; &#xC0AC;&#xC774;&#xC988;
+         */
+        EDGE_PADDING: 20,
+
+        /**
+         * &#xB77C;&#xBCA8;&#xC758; &#xD328;&#xB529; &#xC0AC;&#xC774;&#xC988;
+         */
+        LABEL_PADDING: 5,
+
+        /**
+         * &#xB77C;&#xBCA8; &#xC5D0;&#xB514;&#xD130;(textarea)&#xC758; &#xB514;&#xD3F4;&#xD2B8; width
+         */
+        LABEL_EDITOR_WIDTH: 500,
+
+        /**
+         * &#xB77C;&#xBCA8; &#xC5D0;&#xB514;&#xD130;(textarea)&#xC758; &#xB514;&#xD3F4;&#xD2B8; height
+         */
+        LABEL_EDITOR_HEIGHT: 16,
+
+        /**
+         * &#xC2DC;&#xC791;, &#xB05D;&#xC810; &#xB77C;&#xBCA8;&#xC758; offsetTop &#xAC12;
+         */
+        FROMTO_LABEL_OFFSET_TOP: 15,
+
+        /**
+         * Move &amp; Resize &#xC6A9; &#xAC00;&#xC774;&#xB4DC; &#xC120; &#xCF58;&#xD2B8;&#xB864; Rect &#xC0AC;&#xC774;&#xC988;
+         */
+        GUIDE_LINE_SIZE: 20,
+        /**
+         * Move &amp; Resize &#xC6A9; &#xAC00;&#xC774;&#xB4DC; &#xC120; &#xCF58;&#xD2B8;&#xB864; &#xB9C8;&#xC9C4; &#xC0AC;&#xC774;&#xC988;
+         */
+        GUIDE_LINE_MARGIN: 10,
+
+        /**
+         * Move &amp; Resize &#xC6A9; &#xAC00;&#xC774;&#xB4DC; &#xCF58;&#xD2B8;&#xB864; Rect &#xC0AC;&#xC774;&#xC988;
+         */
+        GUIDE_RECT_SIZE: 8,
+
+        /**
+         * Move &amp; Resize &#xC6A9; &#xAC00;&#xC774;&#xB4DC; &#xAC00;&#xB85C;, &#xC138;&#xB85C; &#xCD5C;&#xC18C; &#xC0AC;&#xC774;&#xC988;
+         */
+        GUIDE_MIN_SIZE: 18,
+
+        /**
+         * Collapse &amp; Expand &#xC6A9; &#xAC00;&#xC774;&#xB4DC; Rect &#xC0AC;&#xC774;&#xC988;
+         */
+        COLLAPSE_SIZE: 10,
+
+        /**
+         * Shape Move &amp; Resize &#xC2DC; &#xC774;&#xB3D9; &#xAC04;&#xACA9;
+         */
+        MOVE_SNAP_SIZE: 8,
+
+        /**
+         * &#xD130;&#xBBF8;&#xB110; cross &#xC0AC;&#xC774;&#xC988;
+         */
+        TERMINAL_SIZE: 5,
+
+        /**
+         * Shape &#xBCF5;&#xC0AC;&#xC2DC; &#xD328;&#xB529; &#xC0AC;&#xC774;&#xC988;
+         */
+        COPY_PASTE_PADDING: 20,
+
+        /**
+         * Fit Canvas &#xC2DC; &#xD328;&#xB529; &#xC0AC;&#xC774;&#xC988;
+         */
+        FIT_CANVAS_PADDING: 20,
+
+        /**
+         * &#xCE94;&#xBC84;&#xC2A4; &#xC601;&#xC5ED; &#xC790;&#xB3D9; &#xD655;&#xC7A5; &#xC5EC;&#xBD80;
+         */
+        AUTO_EXTENSIONAL: true,
+
+        /**
+         * &#xCE94;&#xBC84;&#xC2A4; &#xC601;&#xC5ED; &#xC790;&#xB3D9; &#xD655;&#xC7A5;&#xC2DC; &#xC99D;&#xAC00; &#xC0AC;&#xC774;&#xC988;
+         */
+        AUTO_EXTENSION_SIZE: 100,
+
+        /**
+         * &#xCE94;&#xBC84;&#xC2A4; &#xBC30;&#xACBD;&#xC0C9;
+         */
+        CANVAS_BACKGROUND: &quot;#f9f9f9&quot;,
+
+        /**
+         * &#xC774;&#xBBF8;&#xC9C0; url &#xC815;&#xBCF4;
+         */
+        IMAGE_USER: &quot;http://processcodi.com/images/opengraph/User.png&quot;,
+        IMAGE_SEND: &quot;http://processcodi.com/images/opengraph/Send.png&quot;,
+        IMAGE_RECEIVE: &quot;http://processcodi.com/images/opengraph/Receive.png&quot;,
+        IMAGE_MANUAL: &quot;http://processcodi.com/images/opengraph/Manual.png&quot;,
+        IMAGE_SERVICE: &quot;http://processcodi.com/images/opengraph/Service.png&quot;,
+        IMAGE_RULE: &quot;http://processcodi.com/images/opengraph/BusinessRule.png&quot;,
+        IMAGE_SCRIPT: &quot;http://processcodi.com/images/opengraph/Script.png&quot;,
+        IMAGE_MAPPER: &quot;http://processcodi.com/images/opengraph/mapper.png&quot;,
+        IMAGE_WEB: &quot;http://processcodi.com/images/opengraph/w_services.png&quot;,
+
+        /**
+         * Edge &#xC120; &#xC790;&#xB3D9;&#xB9C8;&#xCDA4; &#xAC01;&#xB3C4; &#xCD5C;&#xC18C;&#xAC12;
+         */
+        TRIM_EDGE_ANGLE_SIZE: 170,
+        /**
+         * Edge &#xC120; &#xC774;&#xB3D9;&#xB51C;&#xB808;&#xC774; &#xAC70;&#xB9AC;
+         */
+        EDGE_MOVE_DELAY_SIZE: 14,
+
+        /**
+         * swimLane &#xB9AC;&#xC0AC;&#xC774;&#xC988; &#xCD5C;&#xC18C; &#xD3ED;
+         */
+        LANE_MIN_SIZE: 50,
+
+        /**
+         * swimLane &#xD655;&#xC7A5; &#xAE30;&#xBCF8; &#xD3ED;
+         */
+        LANE_DEFAULT_SIZE: 100,
+
+        /**
+         * swimLane, pool &#xC0DD;&#xC131; &#xAE30;&#xBCF8; &#xAC00;&#xB85C;,&#xC138;&#xB85C;
+         */
+        POOL_DEFAULT_SIZE: [300, 200],
+
+        /**
+         * &#xADF8;&#xB8F9; &#xD558;&#xC704; shape &#xC640; &#xADF8;&#xB8F9;&#xC0AC;&#xC774;&#xC758; &#xC5EC;&#xC720;&#xD3ED;
+         */
+        GROUP_INNER_SAPCE: 10,
+
+        /**
+         * &#xB77C;&#xBCA8; &#xCD5C;&#xC18C; &#xD06C;&#xAE30;(IE)
+         */
+        LABEL_MIN_SIZE: 100,
+
+        /**
+         * &#xB77C;&#xBCA8; &#xCD5C;&#xB300; &#xD06C;&#xAE30;(IE)
+         */
+        LABEL_MAX_SIZE: 300,
+
+        /**
+         * &#xB514;&#xD3F4;&#xD2B8; &#xC2A4;&#xD0C0;&#xC77C; &#xC815;&#xC758;
+         */
+        DEFAULT_STYLE: {
+            SHAPE: {cursor: &quot;default&quot;},
+            GEOM: {
+                stroke: &quot;black&quot;,
+                &quot;fill-r&quot;: &quot;.5&quot;,
+                &quot;fill-cx&quot;: &quot;.5&quot;,
+                &quot;fill-cy&quot;: &quot;.5&quot;,
+                fill: &quot;white&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;label-position&quot;: &quot;center&quot;
+            },
+            TEXT: {stroke: &quot;none&quot;, &quot;text-anchor&quot;: &quot;middle&quot;},
+            HTML: {&quot;label-position&quot;: &quot;bottom&quot;, &quot;text-anchor&quot;: &quot;middle&quot;, &quot;vertical-align&quot;: &quot;top&quot;},
+            IMAGE: {&quot;label-position&quot;: &quot;bottom&quot;, &quot;text-anchor&quot;: &quot;middle&quot;, &quot;vertical-align&quot;: &quot;top&quot;},
+            EDGE: {
+                stroke: &quot;black&quot;,
+                fill: &quot;none&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;stroke-width&quot;: 1.5,
+                &quot;stroke-opacity&quot;: 1,
+                &quot;edge-type&quot;: &quot;plain&quot;,
+                &quot;arrow-start&quot;: &quot;none&quot;,
+                &quot;arrow-end&quot;: &quot;block&quot;,
+                &quot;stroke-dasharray&quot;: &quot;&quot;,
+                &quot;label-position&quot;: &quot;center&quot;,
+                &quot;stroke-linejoin&quot;: &quot;round&quot;,
+                cursor: &quot;pointer&quot;
+            },
+            EDGE_SHADOW: {
+                stroke: &quot;#00FF00&quot;,
+                fill: &quot;none&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;stroke-width&quot;: 1,
+                &quot;stroke-opacity&quot;: 1,
+                &quot;arrow-start&quot;: &quot;none&quot;,
+                &quot;arrow-end&quot;: &quot;none&quot;,
+                &quot;stroke-dasharray&quot;: &quot;- &quot;,
+                &quot;edge-type&quot;: &quot;plain&quot;,
+                cursor: &quot;pointer&quot;
+            },
+            EDGE_HIDDEN: {
+                stroke: &quot;white&quot;,
+                fill: &quot;none&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;stroke-width&quot;: 10,
+                &quot;stroke-opacity&quot;: 0,
+                cursor: &quot;pointer&quot;
+            },
+            GROUP: {
+                stroke: &quot;black&quot;,
+                fill: &quot;none&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;label-position&quot;: &quot;bottom&quot;,
+                &quot;text-anchor&quot;: &quot;middle&quot;,
+                &quot;vertical-align&quot;: &quot;top&quot;
+            },
+            GROUP_HIDDEN: {stroke: &quot;black&quot;, fill: &quot;white&quot;, &quot;fill-opacity&quot;: 0, &quot;stroke-opacity&quot;: 0, cursor: &quot;move&quot;},
+            GROUP_SHADOW: {
+                stroke: &quot;white&quot;,
+                fill: &quot;none&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;stroke-width&quot;: 15,
+                &quot;stroke-opacity&quot;: 0,
+                cursor: &quot;pointer&quot;
+            },
+            GROUP_SHADOW_MAPPER: {
+                stroke: &quot;white&quot;,
+                fill: &quot;none&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;stroke-width&quot;: 1,
+                &quot;stroke-opacity&quot;: 0,
+                cursor: &quot;pointer&quot;
+            },
+            GUIDE_BBOX: {
+                stroke: &quot;#00FF00&quot;,
+                fill: &quot;white&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;stroke-dasharray&quot;: &quot;- &quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;,
+                cursor: &quot;move&quot;
+            },
+            GUIDE_UL: {
+                stroke: &quot;#03689a&quot;,
+                fill: &quot;#03689a&quot;,
+                &quot;fill-opacity&quot;: 0.5,
+                cursor: &quot;nwse-resize&quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;
+            },
+            GUIDE_UR: {
+                stroke: &quot;#03689a&quot;,
+                fill: &quot;#03689a&quot;,
+                &quot;fill-opacity&quot;: 0.5,
+                cursor: &quot;nesw-resize&quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;
+            },
+            GUIDE_LL: {
+                stroke: &quot;#03689a&quot;,
+                fill: &quot;#03689a&quot;,
+                &quot;fill-opacity&quot;: 0.5,
+                cursor: &quot;nesw-resize&quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;
+            },
+            GUIDE_LR: {
+                stroke: &quot;#03689a&quot;,
+                fill: &quot;#03689a&quot;,
+                &quot;fill-opacity&quot;: 0.5,
+                cursor: &quot;nwse-resize&quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;
+            },
+            GUIDE_LC: {
+                stroke: &quot;#03689a&quot;,
+                fill: &quot;#03689a&quot;,
+                &quot;fill-opacity&quot;: 0.5,
+                cursor: &quot;ew-resize&quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;
+            },
+            GUIDE_UC: {
+                stroke: &quot;black&quot;,
+                fill: &quot;#03689a&quot;,
+                &quot;fill-opacity&quot;: 0.5,
+                cursor: &quot;ns-resize&quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;
+            },
+            GUIDE_RC: {
+                stroke: &quot;black&quot;,
+                fill: &quot;#03689a&quot;,
+                &quot;fill-opacity&quot;: 0.5,
+                cursor: &quot;ew-resize&quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;
+            },
+            GUIDE_LWC: {
+                stroke: &quot;black&quot;,
+                fill: &quot;#03689a&quot;,
+                &quot;fill-opacity&quot;: 0.5,
+                cursor: &quot;ns-resize&quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;
+            },
+            GUIDE_FROM: {stroke: &quot;black&quot;, fill: &quot;#00FF00&quot;, cursor: &quot;move&quot;, &quot;shape-rendering&quot;: &quot;crispEdges&quot;},
+            GUIDE_TO: {stroke: &quot;black&quot;, fill: &quot;#00FF00&quot;, cursor: &quot;move&quot;, &quot;shape-rendering&quot;: &quot;crispEdges&quot;},
+            GUIDE_CTL_H: {stroke: &quot;black&quot;, fill: &quot;#00FF00&quot;, cursor: &quot;ew-resize&quot;, &quot;shape-rendering&quot;: &quot;crispEdges&quot;},
+            GUIDE_CTL_V: {stroke: &quot;black&quot;, fill: &quot;#00FF00&quot;, cursor: &quot;ns-resize&quot;, &quot;shape-rendering&quot;: &quot;crispEdges&quot;},
+            GUIDE_SHADOW: {stroke: &quot;black&quot;, fill: &quot;none&quot;, &quot;stroke-dasharray&quot;: &quot;- &quot;, &quot;shape-rendering&quot;: &quot;crispEdges&quot;},
+            GUIDE_LINE: {
+                stroke: &quot;black&quot;,
+                fill: &quot;none&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;stroke-width&quot;: 1.2,
+                &quot;stroke-opacity&quot;: 1,
+                &quot;stroke-dasharray&quot;: &quot;&quot;,
+                &quot;arrow-end&quot;: &quot;block&quot;,
+                &quot;stroke-linejoin&quot;: &quot;round&quot;,
+                cursor: &quot;pointer&quot;
+            },
+            GUIDE_LINE_ESSENSIA: {
+                stroke: &quot;black&quot;,
+                fill: &quot;none&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;stroke-width&quot;: 1.2,
+                &quot;stroke-opacity&quot;: 1,
+                &quot;stroke-dasharray&quot;: &quot;&quot;,
+                &quot;arrow-start&quot;: &quot;diamond&quot;,
+                &quot;arrow-end&quot;: &quot;none&quot;,
+                &quot;stroke-linejoin&quot;: &quot;round&quot;,
+                cursor: &quot;pointer&quot;
+            },
+            GUIDE_VIRTUAL_EDGE: {
+                stroke: &quot;black&quot;,
+                fill: &quot;none&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;stroke-width&quot;: 1,
+                &quot;stroke-opacity&quot;: 1,
+                &quot;stroke-dasharray&quot;: &quot;- &quot;,
+                &quot;stroke-linejoin&quot;: &quot;round&quot;,
+                &quot;arrow-start&quot;: &quot;none&quot;,
+                &quot;arrow-end&quot;: &quot;none&quot;
+            },
+            GUIDE_LINE_AREA: {
+                stroke: &quot;#ffffff&quot;,
+                fill: &quot;#ffffff&quot;,
+                &quot;fill-opacity&quot;: 0.1,
+                &quot;stroke-width&quot;: 1,
+                &quot;stroke-opacity&quot;: 0.2,
+                cursor: &quot;pointer&quot;
+            },
+            GUIDE_RECT_AREA: {
+                stroke: &quot;black&quot;,
+                fill: &quot;#ffffff&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;stroke-width&quot;: 1,
+                &quot;stroke-opacity&quot;: 1,
+                cursor: &quot;pointer&quot;
+            },
+            RUBBER_BAND: {stroke: &quot;#0000FF&quot;, opacity: 0.2, fill: &quot;#0077FF&quot;},
+            DROP_OVER_BBOX: {stroke: &quot;#0077FF&quot;, fill: &quot;none&quot;, opacity: 0.3, &quot;shape-rendering&quot;: &quot;crispEdges&quot;},
+            LABEL: {&quot;font-size&quot;: 12, &quot;font-color&quot;: &quot;black&quot;, &quot;fill&quot;: &quot;white&quot;},
+            LABEL_EDITOR: {
+                position: &quot;absolute&quot;,
+                overflow: &quot;visible&quot;,
+                resize: &quot;none&quot;,
+                &quot;text-align&quot;: &quot;center&quot;,
+                display: &quot;block&quot;,
+                padding: 0
+            },
+            COLLAPSE: {
+                stroke: &quot;black&quot;,
+                fill: &quot;none&quot;,
+                &quot;fill-opacity&quot;: 0,
+                cursor: &quot;pointer&quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;
+            },
+            COLLAPSE_BBOX: {stroke: &quot;none&quot;, fill: &quot;none&quot;, &quot;fill-opacity&quot;: 0},
+            BUTTON: {
+                stroke: &quot;#9FD7FF&quot;,
+                fill: &quot;white&quot;,
+                &quot;fill-opacity&quot;: 0,
+                cursor: &quot;pointer&quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;
+            },
+            CONNECT_GUIDE_EVENT_AREA: {
+                stroke: &quot;#ffffff&quot;,
+                fill: &quot;none&quot;,
+                &quot;fill-opacity&quot;: 0,
+                &quot;stroke-width&quot;: 20,
+                &quot;stroke-opacity&quot;: 0
+            },
+            CONNECT_GUIDE_BBOX: {
+                stroke: &quot;#00FF00&quot;,
+                fill: &quot;none&quot;,
+                &quot;stroke-dasharray&quot;: &quot;- &quot;,
+                &quot;shape-rendering&quot;: &quot;crispEdges&quot;
+            },
+            CONNECT_GUIDE_BBOX_EXPEND: 10,
+            CONNECT_GUIDE_SPOT_CIRCLE: {
+                r: 7,
+                stroke: &quot;#A6A6A6&quot;,
+                &quot;stroke-width&quot;: 1,
+                fill: &quot;#FFE400&quot;,
+                &quot;fill-opacity&quot;: 0.5,
+                cursor: &quot;pointer&quot;
+            },
+            CONNECT_GUIDE_SPOT_RECT: {
+                stroke: &quot;#A6A6A6&quot;,
+                &quot;stroke-width&quot;: 1,
+                fill: &quot;#FFE400&quot;,
+                &quot;fill-opacity&quot;: 0.2,
+                cursor: &quot;ns-resize&quot;,
+                w: 20,
+                h: 10
+            },
+            CONNECTABLE_HIGHLIGHT: {
+                &quot;stroke-width&quot;: 2
+            },
+            NOT_CONNECTABLE_HIGHLIGHT: {
+                fill: &quot;#FAAFBE&quot;,
+                &quot;fill-opacity&quot;: 0.5
+            }
+        }
+}
+</code></pre>
+<h2 id="zoom-panel">Zoom Panel</h2>
+<p>&#xC90C; &#xD328;&#xB110;&#xC744; &#xC0DD;&#xC131;&#xD558;&#xACE0; &#xC0AD;&#xC81C;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+//&#xC90C; &#xD328;&#xB110; &#xCD94;&#xAC00;
+canvas.addSlider({
+    slider: $(&quot;#canvas_slider&quot;),
+    width: 200,
+    height: 300,
+    appendTo: &quot;body&quot;
+});
+
+//&#xC90C; &#xD328;&#xB110; &#xC0AD;&#xC81C;
+canvas.removeSlider();
+</code></pre>
+<h2 id="drawshape">drawShape</h2>
+<p>&#xCE94;&#xBC84;&#xC2A4;&#xC5D0; &#xB3C4;&#xD615;&#xC744; &#xC704;&#xCE58; &#xBC0F; &#xC0AC;&#xC774;&#xC988; &#xC9C0;&#xC815;&#xD558;&#xC5EC; &#xB4DC;&#xB85C;&#xC789;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBA54;&#xC18C;&#xB4DC;&#xC758; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<ul>
+<li>@param {Number[]} position &#xB4DC;&#xB85C;&#xC789;&#xD560; &#xC704;&#xCE58; &#xC88C;&#xD45C;(&#xC911;&#xC559; &#xAE30;&#xC900;)</li>
+<li>@param {OG.shape.IShape} shape Shape</li>
+<li>@param {Number[]} size Shape Width, Height</li>
+<li>@param {OG.geometry.Style|Object} style &#xC2A4;&#xD0C0;&#xC77C; (Optional)</li>
+<li>@param {String} id Element ID &#xC9C0;&#xC815; (Optional)</li>
+<li>@param {String} parentId &#xBD80;&#xBAA8; Element ID &#xC9C0;&#xC815; (Optional)</li>
+<li>@param {Boolean} preventDrop Lane, Pool &#xC0DD;&#xC131; drop &#xBAA8;&#xB4DC; &#xC218;&#xD589; &#xBC29;&#xC9C0;</li>
+<li>@return {Element} Group DOM Element with geometry</li>
+</ul>
+<h3 id="style">style</h3>
+<p>&#xC608;&#xB97C; &#xB4E4;&#xC5B4; &#xBE68;&#xAC04;&#xC0C9; &#xD14C;&#xB450;&#xB9AC;&#xC758; &#xC6D0; &#xB3C4;&#xD615;&#xC744; &#xCE94;&#xBC84;&#xC2A4;&#xC5D0; &#xADF8;&#xB9B4; &#xB54C;, &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC2A4;&#xD0C0;&#xC77C;&#xC740; Json &#xC624;&#xBE0C;&#xC81D;&#xD2B8; &#xD615;&#xC2DD;&#xC73C;&#xB85C; &#xC9C0;&#xC815;&#xD558;&#xBA70;, &#xC77C;&#xBC18;&#xC801;&#xC778; css &#xC2A4;&#xD0C0;&#xC77C;&#xC774; &#xC544;&#xB2CC; svg &#xC2A4;&#xD0C0;&#xC77C; &#xD45C;&#xC900;&#xC744; &#xB530;&#xB985;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+canvas.drawShape([100, 100], new OG.CircleShape(), [50, 50], {stroke:&apos;red&apos;});
+</code></pre>
+<p><img src="images/canvas/canvas-1.png" alt=""></p>
+<h3 id="set-id">set Id</h3>
+<p>&#xB3C4;&#xD615;&#xC744; &#xADF8;&#xB9B4; &#xB54C; &#xC544;&#xC774;&#xB514;&#xB97C; &#xBD80;&#xC5EC;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xB79C;&#xB364;&#xD55C; &#xC544;&#xC774;&#xB514;&#xAC00; &#xC0DD;&#xC131;&#xB418;&#xB098;, &#xADF8;&#xB9B4; &#xB54C; &#xC544;&#xC774;&#xB514;&#xB97C; &#xC9C0;&#xC815;&#xD558;&#xAC8C; &#xB418;&#xBA74; &#xD574;&#xB2F9; &#xB3C4;&#xD615;&#xC758; &#xC544;&#xC774;&#xB514;&#xB85C; &#xC9C0;&#xC815;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+var element = canvas.drawShape([100, 100], new OG.CircleShape(), [50, 50], {stroke: &apos;red&apos;}, &apos;CircleShape&apos;);
+alert(element.id);
+</code></pre>
+<p><img src="images/canvas/canvas-2.png" alt=""></p>
+<h3 id="set-parent">set Parent</h3>
+<p>parentId &#xB97C; &#xC9C0;&#xC815;&#xD558;&#xAC8C; &#xB418;&#xBA74; &#xD574;&#xB2F9; &#xB3C4;&#xD615;&#xC740; parentId &#xAC00; id &#xC778; &#xB3C4;&#xD615;&#xC758; &#xC790;&#xC2DD;&#xC73C;&#xB85C; &#xADF8;&#xB824;&#xC9C0;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+var parent = canvas.drawShape([100, 100], new OG.GroupShape(), [80, 80], {stroke: &apos;blue&apos;}, &apos;parentShape&apos;);
+var element = canvas.drawShape([100, 100], new OG.CircleShape(), [50, 50], {stroke: &apos;red&apos;}, &apos;CircleShape&apos;,&apos;parentShape&apos;);
+</code></pre>
+<p>&#xC774;&#xB584; parent &#xAC00; &#xB418;&#xB294; &#xB3C4;&#xD615;&#xC740; GroupShape &#xC774;&#xAC70;&#xB098; GroupShape &#xB97C; &#xC0C1;&#xC18D;&#xBC1B;&#xB294; &#xB3C4;&#xD615;&#xC774;&#xC5EC;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>GroupShape &#xC758; &#xC790;&#xC2DD;&#xC73C;&#xB85C; &#xB4F1;&#xB85D; &#xB420; &#xACBD;&#xC6B0; &#xD574;&#xB2F9; GroupShape &#xB3C4;&#xD615;&#xC744; &#xC6C0;&#xC9C1;&#xC774;&#xAC70;&#xB098; &#xC0AD;&#xC81C; &#xB610;&#xB294; &#xBCF5;&#xC0AC; &#xD560; &#xB54C;, &#xC790;&#xC2DD;&#xC73C;&#xB85C; &#xB4F1;&#xB85D;&#xB41C; &#xB3C4;&#xD615;&#xB3C4; &#xD568;&#xAED8; &#xC801;&#xC6A9;&#xB418;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<ul>
+<li>&#xD30C;&#xB780;&#xC0C9; &#xD14C;&#xB450;&#xB9AC;&#xC758; GroupShape &#xB97C; &#xC774;&#xB3D9;&#xC2DC; &#xBE68;&#xAC04;&#xC0C9; CircleShape &#xAC00; &#xD568;&#xAED8; &#xC6C0;&#xC9C1;&#xC778;&#xB2E4;.</li>
+</ul>
+<p><img src="images/canvas/canvas-3.png" alt=""></p>
+<p><img src="images/canvas/canvas-4.png" alt=""></p>
+<h2 id="setshapestyle">setShapeStyle</h2>
+<p>setShapeStyle &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xB3C4;&#xD615;&#xC758; &#xC2A4;&#xD0C0;&#xC77C;&#xC744; &#xBCC0;&#xACBD; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+var element = canvas.drawShape([100, 100], new OG.CircleShape(), [50, 50], {stroke: &apos;red&apos;}, &apos;CircleShape&apos;, &apos;parentShape&apos;);
+canvas.setShapeStyle(element, {
+    stroke: &apos;blue&apos;,
+    &apos;stroke-width&apos;: &apos;5&apos;,
+    fill: &apos;yellow&apos;,
+    &apos;fill-opacity&apos;: &apos;1&apos;
+});
+</code></pre>
+<p><img src="images/canvas/canvas-5.png" alt=""></p>
+<h2 id="settextlistincontroller">setTextListInController</h2>
+<p>setTextListInController &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; &#xB3C4;&#xD615;&#xC758; &#xC5F0;&#xACB0;&#xC120;&#xC5D0; &#xB300;&#xD55C; &#xB77C;&#xBCA8;&#xB9C1;&#xC744; &#xC9C0;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>getTextListInController &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; &#xB3C4;&#xD615;&#xC758; &#xC5F0;&#xACAC;&#xC120;&#xC5D0; &#xB300;&#xD55C; &#xB77C;&#xBCA8;&#xB9C1; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xAC00;&#xC838;&#xC62C; &#xC218;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+var rectangleShape = canvas.drawShape([100, 100], new OG.RectangleShape(&apos;Rectangle&apos;), [100, 100]);
+var ellipseShape = canvas.drawShape([300, 100], new OG.CircleShape(&apos;Circle&apos;), [100, 100]);
+
+canvas.setTextListInController(rectangleShape,[&apos;One&apos;,&apos;Two&apos;,&apos;Three&apos;]);
+
+console.log(canvas.getTextListInController(rectangleShape));
+
+</code></pre>
+<p><img src="images/canvas/canvas-6.png" alt=""></p>
+<h2 id="drawlabel">drawLabel</h2>
+<p>&#xB3C4;&#xD615;&#xC5D0; &#xB77C;&#xBCA8;&#xC744; &#xBD99;&#xC77C; &#xB54C;&#xB294; &#xB3C4;&#xD615;&#xC744; &#xC815;&#xC758; &#xD560; &#xB54C; &#xB77C;&#xBCA8;&#xC744; &#xC815;&#xC758;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xACFC; canvas &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD1B5;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+//case1)
+var rectangleShape = canvas.drawShape([100, 100], new OG.RectangleShape(&apos;Rectangle&apos;), [100, 100]);
+
+//case2)
+canvas.drawLabel(rectangleShape, &apos;Redraw Label&apos;, {&apos;font-size&apos;: 30});
+</code></pre>
+<p><img src="images/canvas/canvas-7.png" alt=""></p>
+<h2 id="connect">connect</h2>
+<p>&#xB450;&#xAC1C;&#xC758; Shape &#xC744; Edge &#xB85C; &#xC5F0;&#xACB0;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<ul>
+<li>@param {Element} fromElement from Shape Element</li>
+<li>@param {Element} toElement to Shape Element</li>
+<li>@param {OG.geometry.Style|Object} style &#xC2A4;&#xD0C0;&#xC77C;</li>
+<li>@param {String} label Label</li>
+<li>@param fromP fromElement &#xC640; &#xC5F0;&#xACB0;&#xB420; &#xD130;&#xBBF8;&#xB110; &#xC88C;&#xD45C; <a href="optional">x,y</a></li>
+<li>@param toP toElement &#xC640; &#xC5F0;&#xACB0;&#xB420; &#xD130;&#xBBF8;&#xB110; &#xC88C;&#xD45C; <a href="optional">x,y</a></li>
+<li>@param preventTrigger &#xCC38; &#xC77C; &#xACBD;&#xC6B0; &#xC774;&#xBCA4;&#xD2B8; &#xBC1C;&#xC0DD;&#xC744; &#xBC29;&#xC9C0;</li>
+<li>@param id &#xC5F0;&#xACB0;&#xC120;&#xC758; &#xC544;&#xC774;&#xB514;</li>
+<li>@returns {*|Element}</li>
+</ul>
+<p>&#xC5F0;&#xACB0;&#xC120;&#xACFC; &#xB3C4;&#xD615;&#xC758; &#xC811;&#xC810; &#xC9C0;&#xC810;&#xC744; &#xD130;&#xBBF8;&#xB110;&#xC774;&#xB77C; &#xD558;&#xB294;&#xB370;, &#xC774; &#xD130;&#xBBF8;&#xB110;&#xC758; &#xC88C;&#xD45C;&#xB97C; &#xB530;&#xB85C; &#xC124;&#xC815;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xD130;&#xBBF8;&#xB110;&#xC740; &#xB3C4;&#xD615;&#xC758; &#xC13C;&#xD130;&#xAC00; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+var rectangleShape = canvas.drawShape([100, 100], new OG.RectangleShape(&apos;1&apos;), [100, 100]);
+var circleShape = canvas.drawShape([300, 100], new OG.RectangleShape(&apos;2&apos;), [80, 80]);
+
+/**
+ * connect at default center position
+ */
+canvas.connect(rectangleShape, circleShape, {
+    stroke: &apos;red&apos;,
+    &apos;arrow-start&apos;: &apos;diamond&apos;,
+    &apos;arrow-end&apos;: &apos;block&apos;
+}, &apos;1-2&apos;);
+
+/**
+ * connect at custom position
+ */
+canvas.connect(rectangleShape, circleShape, {
+    stroke: &apos;red&apos;,
+    &apos;arrow-start&apos;: &apos;diamond&apos;,
+    &apos;arrow-end&apos;: &apos;block&apos;
+}, &apos;1-2&apos;, [100, 60], [300, 130]);
+</code></pre>
+<p><img src="images/canvas/canvas-8.png" alt=""></p>
+<h2 id="disconnect">disconnect</h2>
+<p>&#xC5F0;&#xACB0;&#xC18D;&#xC131;&#xC815;&#xBCF4;&#xB97C; &#xC0AD;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;. Edge &#xC778; &#xACBD;&#xC6B0;&#xB294; &#xC5F0;&#xACB0; &#xC18D;&#xC131; &#xC815;&#xBCF4;&#xB97C; &#xC0AD;&#xC81C;&#xD558;&#xACE0;, &#xC77C;&#xBC18; Shape &#xC778; &#xACBD;&#xC6B0;&#xB294; &#xC5F0;&#xACB0;&#xB41C; &#xBAA8;&#xB4E0; Edge &#xB97C; &#xC0AD;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+var rectangleShape = canvas.drawShape([100, 100], new OG.RectangleShape(&apos;1&apos;), [100, 100]);
+var circleShape = canvas.drawShape([300, 200], new OG.RectangleShape(&apos;2&apos;), [80, 80]);
+
+var edge = canvas.connect(rectangleShape, circleShape, null, &apos;1-2&apos;);
+
+//case1
+canvas.disconnect(edge);
+
+//case2
+canvas.disconnect(rectangleShape);
+</code></pre>
+<ul>
+<li>case1) &#xC5F0;&#xACB0;&#xC120;&#xC744; disconnect &#xD55C; &#xACBD;&#xC6B0; &#xC5F0;&#xACB0; &#xC18D;&#xC131; &#xC815;&#xBCF4;&#xAC00; &#xC0AC;&#xB824;&#xC84C;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xB3C4;&#xD615;&#xC744; &#xC774;&#xB3D9;&#xC2DC;&#xCF1C;&#xB3C4; &#xC7AC;&#xC5F0;&#xACB0; &#xCC98;&#xB9AC;&#xAC00; &#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</li>
+</ul>
+<p><img src="images/canvas/canvas-9.png" alt=""></p>
+<ul>
+<li>case2) &#xB3C4;&#xD615;&#xC744; disconnect &#xD55C; &#xACBD;&#xC6B0; &#xB3C4;&#xD615;&#xACFC; &#xC5F0;&#xACB0;&#xB41C; &#xBAA8;&#xB4E0; &#xC5F0;&#xACB0;&#xC120;&#xC774; &#xC0AD;&#xC81C;&#xB41C;&#xB2E4;.</li>
+</ul>
+<p><img src="images/canvas/canvas-10.png" alt=""></p>
+<h2 id="group">group</h2>
+<p>&#xC8FC;&#xC5B4;&#xC9C4; &#xB3C4;&#xD615;&#xB4E4;&#xC744; &#xADF8;&#xB8F9;&#xD551;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB584;, &#xC5F0;&#xACB0;&#xC120;&#xC740; &#xADF8;&#xB8F9;&#xD551; &#xD558;&#xB294; &#xB300;&#xC0C1;&#xC5D0; &#xB123;&#xC9C0; &#xC54A;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xADF8;&#xB8F9;&#xD551;&#xC758; &#xB300;&#xC0C1;&#xC740; &#xC5F0;&#xACB0;&#xC120;&#xC774; &#xC544;&#xB2CC; &#xB3C4;&#xD615;&#xB4E4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+var rectangleShape = canvas.drawShape([100, 100], new OG.RectangleShape(&apos;1&apos;), [100, 100]);
+var circleShape = canvas.drawShape([300, 200], new OG.RectangleShape(&apos;2&apos;), [80, 80]);
+
+var edge = canvas.connect(rectangleShape, circleShape, null, &apos;1-2&apos;);
+
+//Do not insert edge in array
+canvas.group([rectangleShape,circleShape]);
+
+</code></pre>
+<p><img src="images/canvas/canvas-11.png" alt=""></p>
+<p>&#xADF8;&#xB8F9;&#xD551;&#xC744; &#xD574;&#xC81C;&#xD558;&#xB294; &#xC608;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var group = canvas.group([rectangleShape,circleShape]);
+canvas.ungroup([group]);
+</code></pre>
+<p>&#xC874;&#xC7AC;&#xD558;&#xB294; &#xADF8;&#xB8F9;&#xC5D0; &#xB2E4;&#xB978; &#xB3C4;&#xD615;&#xC744; &#xC9D1;&#xC5B4;&#xB123;&#xB294; &#xC608;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+var rectangleShape = canvas.drawShape([100, 100], new OG.RectangleShape(&apos;1&apos;), [100, 100]);
+var circleShape = canvas.drawShape([300, 200], new OG.RectangleShape(&apos;2&apos;), [80, 80]);
+
+var group = canvas.group([rectangleShape,circleShape]);
+
+var addShape1 = canvas.drawShape([300, 100], new OG.CircleShape(&apos;add1&apos;), [50, 50]);
+var addShape2 = canvas.drawShape([100, 200], new OG.CircleShape(&apos;add2&apos;), [50, 50]);
+canvas.addToGroup(group,[addShape1,addShape2]);
+</code></pre>
+<p><img src="images/canvas/canvas-12.png" alt=""></p>
+<h2 id="clear">clear</h2>
+<p>&#xD654;&#xBA74;&#xC0C1;&#xC758; &#xBAA8;&#xB4E0; &#xB3C4;&#xD615;&#xB4E4;&#xC744; &#xC0AD;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>canvas.clear();
+</code></pre>
+<h2 id="removeshape">removeShape</h2>
+<p>&#xC8FC;&#xC5B4;&#xC9C4; &#xB3C4;&#xD615;&#xC744; &#xCE94;&#xBC84;&#xC2A4;&#xC5D0;&#xC11C; &#xC0AD;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; &#xB3C4;&#xD615;&#xACFC; &#xC5F0;&#xACB0;&#xB41C; &#xC5F0;&#xACB0;&#xC120;&#xC774; &#xC788;&#xB2E4;&#xBA74; &#xD568;&#xAED8; &#xC0AD;&#xC81C;&#xB418;&#xACE0;, &#xC790;&#xC2DD; &#xC694;&#xC18C;&#xAC00; &#xC788;&#xC5B4;&#xB3C4; &#xD568;&#xAED8; &#xC0AD;&#xC81C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var rectangleShape = canvas.drawShape([100, 100], new OG.RectangleShape(&apos;1&apos;), [100, 100]);
+canvas.removeShape(rectangleShape);
+</code></pre>
+<h2 id="removechild">removeChild</h2>
+<p>&#xC8FC;&#xC5B4;&#xC9C4; &#xB3C4;&#xD615;&#xC758; &#xD558;&#xC704;&#xC694;&#xC18C;&#xB9CC; &#xC0AD;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var rectangleShape = canvas.drawShape([100, 100], new OG.RectangleShape(&apos;1&apos;), [100, 100]);
+var circleShape = canvas.drawShape([300, 200], new OG.RectangleShape(&apos;2&apos;), [80, 80]);
+
+var group = canvas.group([rectangleShape,circleShape]);
+canvas.removeShape(group);
+
+</code></pre>
+<h2 id="getroot">getRoot</h2>
+<h3 id="getrootelement">getRootElement</h3>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xCE94;&#xBC84;&#xC2A4; &#xAC1D;&#xCCB4;&#xB97C; &#xC0DD;&#xC131;&#xC2DC;&#xD0A4;&#xB294; var canvas = new OG.Canvas(&apos;canvas&apos;, [1000, 800]); &#xB97C; &#xC2E4;&#xD589;&#xD560; &#xB54C;,
+&apos;canvas&apos; &#xC544;&#xC774;&#xB514;&#xB97C; &#xAC00;&#xC9C4; Div &#xC5D8;&#xB9AC;&#xBA3C;&#xD2B8;&#xB97C; &#xC778;&#xC790;&#xAC12;&#xC73C;&#xB85C; &#xC8FC;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xAC00; &#xC0DD;&#xC131;&#xB420; &#xB54C;&#xB294; &#xC774; &apos;canvas&apos; &#xC544;&#xC774;&#xB514; &#xD558;&#xC704; &#xC5D8;&#xB9AC;&#xBA3C;&#xD2B8;&#xB85C; SVG &#xCE94;&#xBC84;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xC2DC;&#xD0A4;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>getRootElement &#xB97C; &#xD1B5;&#xD574; SVG &#xCE94;&#xBC84;&#xC2A4; &#xC5D8;&#xB9AC;&#xBA3C;&#xD2B8;&#xB97C; &#xAC00;&#xC838;&#xC640;&#xC11C;, &#xC774; &#xCE94;&#xBC84;&#xC2A4;&#xC5D0; &#xC774;&#xBCA4;&#xD2B8; &#xBC14;&#xC778;&#xB529; &#xB4F1;&#xC758; &#xCEE4;&#xC2A4;&#xD140; &#xD55C; &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var rootElement = canvas.getRootElement();
+</code></pre>
+<p><img src="images/canvas/canvas-13.png" alt=""></p>
+<h3 id="getrootgroup">getRootGroup</h3>
+<p>&#xACC4;&#xC18D;&#xD574;&#xC11C;, &apos;canvas&apos; &#xD558;&#xC704;&#xC758; SVG &#xC568;&#xB9AC;&#xBA3C;&#xD2B8;&#xD55C;&#xC5D0;, g &#xD0DC;&#xADF8;&#xB85C; &#xB418;&#xC5B4;&#xC788;&#xB294; &#xC5D8;&#xB9AC;&#xBA3C;&#xD2B8;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>SVG &#xC2A4;&#xD399;&#xC5D0;&#xC11C;&#xB294; g &#xD0DC;&#xADF8;&#xB97C; &#xADF8;&#xB8F9; &#xC5D8;&#xB9AC;&#xBA3C;&#xD2B8;&#xB77C;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBAA8;&#xB4E0; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504; &#xB3C4;&#xD615;&#xB4E4;&#xC740; g &#xD0DC;&#xADF8;&#xB97C; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xACE0;, g &#xD0DC;&#xADF8; &#xC548;&#xC5D0; &#xBCA1;&#xD130; &#xD328;&#xC2A4;&#xB85C; &#xAD6C;&#xC131;&#xB41C; &#xAE30;&#xD558;&#xD559; &#xB3C4;&#xD615; &#xB610;&#xB294; Image &#xC694;&#xC18C;&#xB4E4;&#xB85C; &#xC774;&#xB8E8;&#xC5B4;&#xC838; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774; &#xC911;&#xC5D0;&#xC11C; &#xAC00;&#xC7A5; &#xCD5C;&#xC0C1;&#xB2E8;&#xC758; g &#xD0DC;&#xADF8;&#xB97C; RootGroup &#xC774;&#xB77C; &#xD558;&#xACE0;, &#xBAA8;&#xB4E0; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xB3C4;&#xD615;&#xB4E4;&#xC740; &#xC774; RootGroup &#xC548;&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>RootGroup &#xC778; g &#xD0DC;&#xADF8;&#xB294; getRootGroup &#xBA54;&#xC18C;&#xB4DC;&#xB85C; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var rootGroup = canvas.getRootGroup();
+</code></pre>
+<p><img src="images/canvas/canvas-14.png" alt=""></p>
+<h2 id="attribute">attribute</h2>
+<p>setAttr &#xC640; getAttr &#xBA54;&#xC18C;&#xB4DC;&#xB85C; &#xB3C4;&#xD615;&#xC5D0; &#xC18D;&#xC131;&#xAC12;&#xC744; &#xC124;&#xC815;&#xD558;&#xACE0; &#xAC00;&#xC838;&#xC62C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var canvas = new OG.Canvas(&apos;canvas&apos;, [400, 400], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+var rectangleShape = canvas.drawShape([100, 100], new OG.RectangleShape(&apos;1&apos;), [100, 100]);
+var id = canvas.getAttr(rectangleShape, &apos;id&apos;);
+
+//&#xC624;&#xBE0C;&#xC81D;&#xD2B8;&#xB85C; Attribute &#xC124;&#xC815;
+canvas.setAttr(rectangleShape, {
+    cursor: &apos;none&apos;,
+    fill: &apos;red&apos;
+});
+
+var attr1 = canvas.getAttr(rectangleShape, &apos;cursor&apos;);
+var attr2 = canvas.getAttr(rectangleShape, &apos;fill&apos;);
+
+alert(id + &apos;,&apos; + attr1 + &apos;,&apos; + attr2);
+</code></pre>
+<p><strong>&#xC8FC;&#xC758;</strong></p>
+<pre><code>setAttr &#xC740; Svg &#xC2A4;&#xD0C0;&#xC77C; &#xC694;&#xC18C;&#xAC00; &#xC544;&#xB2CC;&#xACBD;&#xC6B0; &#xC801;&#xC6A9;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. (cursor,fill,stroke etc...)
+&#xB530;&#xB77C;&#xC11C;, &#xB2E4;&#xB978; &#xC885;&#xB958;&#xC758; &#xC5B4;&#xD2B8;&#xB9AC;&#xD29C;&#xBE0C; &#xC694;&#xC18C;&#xB97C; &#xC138;&#xD305;&#xD558;&#xACE0; &#xC2F6;&#xC73C;&#xC2E0; &#xACBD;&#xC6B0; Jquery &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC2DC;&#xAE38; &#xBC14;&#xB78D;&#xB2C8;&#xB2E4;.
+
+ex) $(rectangleShape).attr(attr, value);
+</code></pre>
+<h2 id="front-and-back">front and back</h2>
+<p>&#xB2E4;&#xC74C; &#xC608;&#xC81C;&#xB4E4;&#xC740; &#xB3C4;&#xD615;&#xC744; &#xC55E;&#xC73C;&#xB85C; &#xB610;&#xB294; &#xB4A4;&#xB85C; &#xC774;&#xB3D9;&#xC2DC;&#xD0A4;&#xB294; &#xBA54;&#xC18C;&#xB4DC; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var circleShape = canvas.drawShape([101, 107], new OG.CircleShape(), [101, 102]);
+var ellipseShape = canvas.drawShape([203, 405], new OG.EllipseShape(&apos;label&apos;), [103, 53]);
+
+//ID&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; Element &#xB97C; &#xC55E;&#xC73C;&#xB85C; &#xD55C;&#xB2E8;&#xACC4; &#xC774;&#xB3D9;&#xD55C;&#xB2E4;.
+canvas.bringForward(circleShape);
+
+//ID&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; Element &#xB97C; &#xB4A4;&#xB85C; &#xD55C;&#xB2E8;&#xACC4; &#xC774;&#xB3D9;&#xD55C;&#xB2E4;.
+canvas.sendBackward(circleShape);
+
+//ID&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; Element &#xB97C; &#xCD5C;&#xC0C1;&#xB2E8; &#xB808;&#xC774;&#xC5B4;&#xB85C; &#xC774;&#xB3D9;&#xD55C;&#xB2E4;.
+canvas.toFront(circleShape);
+
+//ID&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; Element &#xB97C; &#xCD5C;&#xD558;&#xB2E8; &#xB808;&#xC774;&#xC5B4;&#xB85C; &#xC774;&#xB3D9;&#xD55C;&#xB2E4;.
+canvas.toBack(circleShape);
+
+</code></pre>
+<h2 id="canvas-size">canvas size</h2>
+<p>&#xB2E4;&#xC74C; &#xC608;&#xC81C;&#xB4E4;&#xC740; &#xCE94;&#xBC84;&#xC2A4;&#xC758; &#xC804;&#xCCB4; &#xC0AC;&#xC774;&#xC988;&#xC5D0; &#xAD00;&#xD55C; &#xBA54;&#xC18C;&#xB4DC; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* &#xB79C;&#xB354;&#xB7EC; &#xCE94;&#xBC84;&#xC2A4;&#xC758; &#xC0AC;&#xC774;&#xC988;(Width, Height)&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.
+*
+* @return {Number[]} Canvas Width, Height
+*/
+canvas.getCanvasSize();
+
+
+/**
+* &#xB79C;&#xB354;&#xB7EC; &#xCE94;&#xBC84;&#xC2A4;&#xC758; &#xC0AC;&#xC774;&#xC988;(Width, Height)&#xB97C; &#xBCC0;&#xACBD;&#xD55C;&#xB2E4;.
+*
+* @param {Number[]} size Canvas Width, Height
+*/
+canvas.setCanvasSize([1000,500]);
+
+
+/**
+* &#xB79C;&#xB354;&#xB7EC; &#xCE94;&#xBC84;&#xC2A4;&#xC758; &#xC0AC;&#xC774;&#xC988;(Width, Height)&#xB97C; &#xC2E4;&#xC81C; &#xC874;&#xC7AC;&#xD558;&#xB294; Shape &#xC758; &#xC601;&#xC5ED;&#xC5D0; &#xB9DE;&#xAC8C; &#xBCC0;&#xACBD;&#xD55C;&#xB2E4;.
+*
+* @param {Number[]} minSize Canvas &#xCD5C;&#xC18C; Width, Height
+* @param {Boolean} fitScale &#xC8FC;&#xC5B4;&#xC9C4; minSize &#xC5D0; &#xB9DE;&#xAC8C; fit &#xC5EC;&#xBD80;(Default:false)
+*/
+canvas.fitCanvasSize([200,200],false);
+</code></pre>
+<h2 id="scale">scale</h2>
+<p>&#xB2E4;&#xC74C; &#xC608;&#xC81C;&#xB4E4;&#xC740; &#xCE94;&#xBC84;&#xC2A4;&#xC758; Scale &#xC5D0; &#xAD00;&#xD55C; &#xBA54;&#xC18C;&#xB4DC; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* Scale &#xC744; &#xBC18;&#xD658;&#xD55C;&#xB2E4;. (&#xB9AC;&#xC5BC; &#xC0AC;&#xC774;&#xC988; : Scale = 1)
+*
+* @return {Number} &#xC2A4;&#xCF00;&#xC77C;&#xAC12;
+*/
+canvas.getScale();
+
+
+/**
+* Scale &#xC744; &#xC124;&#xC815;&#xD55C;&#xB2E4;. (&#xB9AC;&#xC5BC; &#xC0AC;&#xC774;&#xC988; : Scale = 1)
+*
+* @param {Number} scale &#xC2A4;&#xCF00;&#xC77C;&#xAC12;
+*/
+canvas.setScale(0.5);
+</code></pre>
+<h2 id="show-and-hide">show and hide</h2>
+<p>&#xB2E4;&#xC74C; &#xC608;&#xC81C;&#xB4E4;&#xC740; &#xB3C4;&#xD615;&#xC758; &#xC228;&#xAE40; / &#xBCF4;&#xC784; &#xCC98;&#xB9AC;&#xC5D0; &#xAD00;&#xD55C; &#xBA54;&#xC18C;&#xB4DC; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var circleShape = canvas.drawShape([101, 107], new OG.CircleShape(), [101, 102]);
+
+/**
+* ID&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; Element &#xB97C; &#xCE94;&#xBC84;&#xC2A4;&#xC5D0;&#xC11C; show &#xD55C;&#xB2E4;.
+*
+* @param {Element|String} element Element &#xB610;&#xB294; ID
+*/
+canvas.show(circleShape);
+,
+
+/**
+* ID&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; Element &#xB97C; &#xCE94;&#xBC84;&#xC2A4;&#xC5D0;&#xC11C; hide &#xD55C;&#xB2E4;.
+*
+* @param {Element|String} element Element &#xB610;&#xB294; ID
+*/
+canvas.hide(circleShape);
+</code></pre>
+<h2 id="append-and-insert">append and insert</h2>
+<p>&#xB2E4;&#xC74C; &#xC608;&#xC81C;&#xB4E4;&#xC740; &#xC8FC;&#xC5B4;&#xC9C4; &#xB3C4;&#xD615;&#xC744; &#xB2E4;&#xB978; &#xB3C4;&#xD615;&#xC758; &#xC790;&#xC2DD;&#xC73C;&#xB85C; append &#xD558;&#xAC70;&#xB098;, &#xB2E4;&#xB978; &#xB3C4;&#xD615;&#xC758; &#xC55E; &#xB610;&#xB294; &#xB4A4;&#xC5D0; insert &#xD558;&#xB294; &#xC608;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var parent = canvas.drawShape([100, 100], new OG.GroupShape(), [80, 80], {stroke: &apos;blue&apos;}, &apos;parentShape&apos;);
+var element = canvas.drawShape([100, 100], new OG.CircleShape(), [50, 50], {stroke: &apos;red&apos;}, &apos;CircleShape&apos;);
+
+/**
+* Source Element &#xB97C; Target Element &#xC544;&#xB798;&#xC5D0; append &#xD55C;&#xB2E4;.
+*
+* @param {Element|String} srcElement Element &#xB610;&#xB294; ID
+* @param {Element|String} targetElement Element &#xB610;&#xB294; ID
+* @return {Element} Source Element
+*/
+canvas.appendChild(element,parent);
+
+/**
+* Source Element &#xB97C; Target Element &#xC774;&#xD6C4;&#xC5D0; insert &#xD55C;&#xB2E4;.
+*
+* @param {Element|String} srcElement Element &#xB610;&#xB294; ID
+* @param {Element|String} targetElement Element &#xB610;&#xB294; ID
+* @return {Element} Source Element
+*/
+canvas.insertAfter(element,parent);
+
+/**
+* Source Element &#xB97C; Target Element &#xC774;&#xC804;&#xC5D0; insert &#xD55C;&#xB2E4;.
+*
+* @param {Element|String} srcElement Element &#xB610;&#xB294; ID
+* @param {Element|String} targetElement Element &#xB610;&#xB294; ID
+* @return {Element} Source Element
+*/
+canvas.insertBefore(element,parent);
+</code></pre>
+<h2 id="move">move</h2>
+<p>&#xB3C4;&#xD615;&#xC744; &#xC774;&#xB3D9;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xB294; &#xBC29;&#xBC95;&#xC740; &#xB450;&#xAC00;&#xC9C0;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD558;&#xB098;&#xB294; move &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; x,y &#xAC01;&#xAC01; &#xC774;&#xB3D9;&#xD560; &#xC99D;&#xBD84;&#xC744; &#xC124;&#xC815;&#xD558;&#xB294; &#xBC29;&#xBC95; &#xC785;&#xB2C8;&#xB2E4;. (- &#xAC12;&#xB3C4; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.)</p>
+<pre><code>var rectShape = canvas.drawShape([100, 100], new OG.RectangleShape(), [100, 100]);
+canvas.move(rectShape,[30,50]);
+</code></pre>
+<p><img src="images/canvas/move-1.png" alt=""></p>
+<p>&#xB610; &#xB2E4;&#xB978; &#xD558;&#xB098;&#xB294; moveCentroid &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; &#xC911;&#xC2EC; &#xC88C;&#xD45C;&#xB97C; &#xC124;&#xC815;&#xD558;&#xBA74;, &#xB3C4;&#xD615;&#xC774; &#xC911;&#xC2EC;&#xC88C;&#xD45C;&#xAC00; &#xC8FC;&#xC5B4;&#xC9C4; &#xC911;&#xC2EC;&#xC88C;&#xD45C;&#xC640; &#xC77C;&#xCE58;&#xD558;&#xAC8C; &#xC774;&#xB3D9;&#xB418;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var rectShape = canvas.drawShape([100, 100], new OG.RectangleShape(), [100, 100]);
+canvas.moveCentroid(rectShape,[150,130]);
+</code></pre>
+<p><img src="images/canvas/move-2.png" alt=""></p>
+<h2 id="rotate">rotate</h2>
+<p>&#xB3C4;&#xD615;&#xC758; &#xAE30;&#xC6B8;&#xAE30;&#xC5D0; &#xAD00;&#xD55C; &#xBA54;&#xC18C;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* &#xC911;&#xC2EC; &#xC88C;&#xD45C;&#xB97C; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xC8FC;&#xC5B4;&#xC9C4; &#xAC01;&#xB3C4; &#xB9CC;&#xD07C; &#xD68C;&#xC804;&#xD55C;&#xB2E4;.
+*
+* @param {Element|String} element Element &#xB610;&#xB294; ID
+* @param {Number} angle &#xAC01;&#xB3C4;
+* @return {Element} Element
+*/
+var rectShape = canvas.drawShape([100, 100], new OG.RectangleShape(), [100, 100]);
+canvas.rotate(rectShape,30);
+</code></pre>
+<p><img src="images/canvas/rotate.png" alt=""></p>
+<h2 id="resize">resize</h2>
+<p>&#xB3C4;&#xD615;&#xC758; &#xD06C;&#xAE30; &#xC870;&#xC808;&#xC5D0; &#xAD00;&#xD55C; &#xBA54;&#xC18C;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* &#xC0C1;, &#xD558;, &#xC88C;, &#xC6B0; &#xC678;&#xACFD;&#xC120;&#xC744; &#xC774;&#xB3D9;&#xD55C; &#xB9CC;&#xD07C; &#xB9AC;&#xC0AC;&#xC774;&#xC988; &#xD55C;&#xB2E4;.
+*
+* @param {Element|String} element Element &#xB610;&#xB294; ID
+* @param {Number[]} offset [&#xC0C1;, &#xD558;, &#xC88C;, &#xC6B0;] &#xAC01; &#xBC29;&#xD5A5;&#xC73C;&#xB85C; + &#xAC12;
+* @return {Element} Element
+*/
+
+var rectShape = canvas.drawShape([200, 200], new OG.RectangleShape(), [200, 200]);
+canvas.resize(rectShape,[50,50,-50,-50]);
+</code></pre>
+<p><img src="images/canvas/resize.png" alt=""></p>
+<p>&#xB610; &#xB2E4;&#xB978; &#xBC29;&#xBC95;&#xC73C;&#xB85C;&#xB294; resizeBox &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC911;&#xC2EC;&#xC88C;&#xD45C;&#xB294; &#xACE0;&#xC815;&#xD55C; &#xCC44;, &#xAC00;&#xB85C;&#xC640; &#xC138;&#xB85C; &#xD06C;&#xAE30;&#xB97C; &#xBCC0;&#xACBD;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var rectShape = canvas.drawShape([200, 200], new OG.RectangleShape(), [200, 200]);
+canvas.resizeBox(rectShape,[150,150]);
+</code></pre>
+<p><img src="images/canvas/resize-2.png" alt=""></p>
+<h2 id="align">align</h2>
+<p>&#xB2E4;&#xC74C;&#xC740; &#xCE94;&#xBC84;&#xC2A4;&#xC758; &#xB3C4;&#xD615;&#xB4E4;&#xC758; align &#xC0C1;&#xD0DC;&#xC5D0; &#xAD00;&#xD55C; &#xC608;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>align &#xAD00;&#xB828; &#xBA54;&#xC18C;&#xB4DC;&#xB4E4;&#xC740; &#xC120;&#xD0DD;&#xB41C; &#xB3C4;&#xD615;&#xB4E4; &#xAE30;&#xC900;&#xC73C;&#xB85C;&#xB9CC; &#xC801;&#xC6A9;&#xB418;&#xBA70;, &#xC120;&#xD0DD;&#xB41C; &#xB3C4;&#xD615;&#xB4E4; &#xC911; &#xC0C1;,&#xD558;,&#xC88C;,&#xC6B0; &#xC5D0; &#xAC00;&#xC7A5; &#xAC00;&#xAE4C;&#xC6B4; &#xB3C4;&#xD615; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xC120;&#xD0DD;&#xB41C; &#xB3C4;&#xD615;&#xB4E4;&#xC774; &#xC77C;&#xAD04; &#xC815;&#xB82C;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+        &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;ko&quot; lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;BPMN Modeler Example&lt;/title&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE8&quot;&gt;
+
+
+    &lt;!-- jquery --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/jquery-1.11.1/jquery-1.11.1.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- jquery ui --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/jquery-ui-1.11.0.custom/jquery-ui.min.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/jquery-ui-1.11.0.custom/jquery-ui.css&quot;/&gt;
+
+    &lt;!-- jquery Context Menu --&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;./lib/contextmenu/jquery.contextMenu.css&quot;/&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/contextmenu/jquery.contextMenu-min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- Opengraph --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./lib/opengraph/OpenGraph-0.1.1-SNAPSHOT.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        $(document).ready(function () {
+            var canvas = new OG.Canvas(&apos;canvas&apos;, [400, 400], &apos;white&apos;, &apos;url(resources/images/symbol/grid.gif)&apos;);
+
+            var circleShape = canvas.drawShape([101, 107], new OG.CircleShape(), [101, 102]);
+            var ellipseShape = canvas.drawShape([203, 205], new OG.EllipseShape(&apos;label&apos;), [103, 53]);
+            var edge = canvas.connect(circleShape, ellipseShape, null, &apos;&apos;);
+
+            canvas._HANDLER.selectShapes([circleShape,ellipseShape]);
+
+            $(&apos;#alignLeft&apos;).click(function(){
+                canvas.alignLeft();
+            });
+
+            $(&apos;#alignRight&apos;).click(function(){
+                canvas.alignRight();
+            });
+
+            $(&apos;#alignTop&apos;).click(function(){
+                canvas.alignTop();
+            });
+
+            $(&apos;#alignBottom&apos;).click(function(){
+                canvas.alignBottom();
+            });
+
+        });
+
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;button id=&quot;alignLeft&quot;&gt;alignLeft&lt;/button&gt;
+&lt;button id=&quot;alignRight&quot;&gt;alignRight&lt;/button&gt;
+&lt;button id=&quot;alignTop&quot;&gt;alignTop&lt;/button&gt;
+&lt;button id=&quot;alignBottom&quot;&gt;alignBottom&lt;/button&gt;
+&lt;div id=&quot;canvas&quot; style=&quot;cursor: default;&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;canvas_slider&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>&#xC608;&#xC81C;&#xB97C; &#xC2E4;&#xD589;&#xC2DC;&#xD0A8; &#xBAA8;&#xC2B5;</li>
+</ul>
+<p><img src="images/canvas/algin-1.png" alt=""></p>
+<ul>
+<li>alignLeft</li>
+</ul>
+<p><img src="images/canvas/algin-2.png" alt=""></p>
+<ul>
+<li>alignRight</li>
+</ul>
+<p><img src="images/canvas/algin-3.png" alt=""></p>
+<ul>
+<li>alignTop</li>
+</ul>
+<p><img src="images/canvas/algin-4.png" alt=""></p>
+<ul>
+<li>alignBottom</li>
+</ul>
+<p><img src="images/canvas/algin-5.png" alt=""></p>
+<h2 id="undo-&amp;&amp;-redo">undo &amp;&amp; redo</h2>
+<p>&#xC0AC;&#xC6A9;&#xC790;&#xC5D0; &#xC758;&#xD574; &#xD3B8;&#xC9D1;&#xB41C; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xC0C1;&#xD0DC;&#xB97C; undo , redo &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC801;&#xC73C;&#xB85C; &#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC5D0; &#xADF8;&#xB824;&#xC9C4; &#xAC1D;&#xCCB4;&#xB4E4;&#xC740; undo , redo &#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* &#xCE94;&#xBC84;&#xC2A4; undo.
+*/
+canvas.undo();
+
+/**
+* &#xCE94;&#xBC84;&#xC2A4; redo.
+*/
+canvas.redo();
+</code></pre>
+<h2 id="getboundary">getBoundary</h2>
+<p>getBoundary &#xBA54;&#xC18C;&#xB4DC;&#xB294; OG.geometry.Envelope &#xB77C;&#xB294; &#xB3C4;&#xD615;&#xC758; &#xBC14;&#xC6B4;&#xB354;&#xB9AC; &#xC601;&#xC5ED; &#xAC1D;&#xCCB4;&#xB97C; &#xB9AC;&#xD134;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBC14;&#xC6B4;&#xB354;&#xB9AC; &#xC601;&#xC5ED;&#xC740; &#xB3C4;&#xD615;&#xC744; &#xB458;&#xB7EC;&#xC2FC; &#xCD5C;&#xC18C;&#xD06C;&#xAE30;&#xC758; &#xC9C1;&#xC0AC;&#xAC01;&#xD615; &#xC601;&#xC5ED;&#xC744; &#xC758;&#xBBF8;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C; &#xC608;&#xC81C;&#xB294; getBoundary &#xBA54;&#xC18C;&#xB4DC; &#xB97C; &#xD1B5;&#xD574; &#xC5BB;&#xC740; OG.geometry.Envelope &#xAC1D;&#xCCB4;&#xC5D0;&#xC11C; &#xC5B4;&#xB5BB;&#xAC8C; &#xAC12;&#xB4E4;&#xC744; &#xAC00;&#xC838;&#xC62C; &#xC218; &#xC788;&#xB294;&#xC9C0;&#xC5D0; &#xB300;&#xD55C; &#xC608;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>var element = canvas.drawShape([400, 300], new OG.EllipseShape(), [400, 300]);
+var boundary = canvas.getBoundary(element);
+console.log(boundary.getWidth());
+console.log(boundary.getHeight());
+console.log(boundary.getCentroid().x, boundary.getCentroid().y);
+console.log(boundary.getUpperLeft().x,boundary.getUpperLeft().y);
+console.log(boundary.getUpperCenter().x,boundary.getUpperCenter().y);
+console.log(boundary.getUpperRight().x,boundary.getUpperRight().y);
+console.log(boundary.getLeftCenter().x,boundary.getLeftCenter().y);
+console.log(boundary.getRightCenter().x,boundary.getRightCenter().y);
+console.log(boundary.getLowerLeft().x,boundary.getLowerLeft().y);
+console.log(boundary.getLowerCenter().x,boundary.getLowerCenter().y);
+console.log(boundary.getLowerRight().x,boundary.getLowerRight().y);
+</code></pre>
+<p><img src="images/canvas/boundary.png" alt=""></p>
+</div></div></section>
+
+ <footer>
+  <div><p class="w-fixed-width"><span id="dg-web-footer">Version 0.1.1 released on 10/17/2016.</span></p></div>
+  <div class="w-fixed-width">
+    <p><span id="dg-copyright">&#xA9; 2016 <a href="sppark@uengine.org">Seunpil park</a></span></p>
+    <p>
+      <span id="dg-marking"></span>
+      <span id="dg-legalese"></span>
+      <span id="dg-attribution">Created by DocGen 2.1.3 on 29/10/2016 at 21:53:02.</span>
+    </p>
+  </div>
+ </footer>
+ 
+ </body>
+</html>

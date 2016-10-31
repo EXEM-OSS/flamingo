@@ -1,0 +1,5578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Polygon</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: Polygon</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="OG.html">OG</a><a href="OG.geometry.html">.geometry</a>.</span>
+        
+        Polygon
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="Polygon"><span class="type-signature"></span>new Polygon<span class="signature">(vertices)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Polygon 공간 기하 객체(Spatial Geometry Object)
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>vertices</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Line Vertex 좌표 Array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>&lt;a href="mailto:sppark@uengine.org">Seungpil Park&lt;/a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Polygon.js.html">geometry/Polygon.js</a>, <a href="geometry_Polygon.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+<h5>Requires:</h5>
+<ul>
+    <li>module:OG.geometry.Coordinate</li>
+
+    <li>module:OG.geometry.Envelope</li>
+
+    <li>module:OG.geometry.Geometry</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var geom = new OG.geometry.Polygon([[20, 5], [30, 15], [40, 25], [50, 15], [60, 5], [20, 5]]);</code></pre>
+
+
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="OG.geometry.PolyLine.html">OG.geometry.PolyLine</a></li>
+    </ul>
+
+
+    
+
+    
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li>module:OG.geometry.Coordinate</li>
+        
+            <li>module:OG.geometry.Envelope</li>
+        
+            <li>module:OG.geometry.Geometry</li>
+        </ul>
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="boundary"><span class="type-signature"></span>boundary<span class="type-signature"> :<a href="OG.geometry.Envelope.html">OG.geometry.Envelope</a></span></h4>
+
+
+
+
+<div class="description">
+    공간기하객체를 포함하는 사각형의 Boundary 영역
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="OG.geometry.Envelope.html">OG.geometry.Envelope</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#boundary">OG.geometry.Geometry#boundary</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line34">line 34</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="IS_CLOSED"><span class="type-signature"></span>IS_CLOSED<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    닫힌 기하 객체 인지 여부
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="OG.geometry.PolyLine.html#IS_CLOSED">OG.geometry.PolyLine#IS_CLOSED</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line22">line 22</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="style"><span class="type-signature"></span>style<span class="type-signature"> :<a href="OG.geometry.Style.html">OG.geometry.Style</a></span></h4>
+
+
+
+
+<div class="description">
+    스타일 속성
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="OG.geometry.Style.html">OG.geometry.Style</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="OG.geometry.PolyLine.html#style">OG.geometry.PolyLine#style</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line28">line 28</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="TYPE"><span class="type-signature"></span>TYPE<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    공간 기하 객체 타입
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="OG.geometry.PolyLine.html#TYPE">OG.geometry.PolyLine#TYPE</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vertices"><span class="type-signature"></span>vertices<span class="type-signature"> :Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span></h4>
+
+
+
+
+<div class="description">
+    Line Vertex 좌표 Array
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.PolyLine.html#vertices">OG.geometry.PolyLine#vertices</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_PolyLine.js.html">geometry/PolyLine.js</a>, <a href="geometry_PolyLine.js.html#line27">line 27</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="angleBetweenPoints"><span class="type-signature"></span>angleBetweenPoints<span class="signature">(prev, next)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    공간기하객체의 두 꼭지점 사이에 가상의 선을 그렸을때, 그 기울기를 구한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>prev</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">꼭지점 1</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>next</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">꼭지점 2</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.PolyLine.html#angleBetweenPoints">OG.geometry.PolyLine#angleBetweenPoints</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_PolyLine.js.html">geometry/PolyLine.js</a>, <a href="geometry_PolyLine.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    기울기
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="angleBetweenThreePoints"><span class="type-signature"></span>angleBetweenThreePoints<span class="signature">(prev, next)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    공간기하객체의 세 꼭지점 사이의 각도 중 작은 각도를 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>prev</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">꼭지점 1</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>next</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">꼭지점 2</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.PolyLine.html#angleBetweenThreePoints">OG.geometry.PolyLine#angleBetweenThreePoints</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_PolyLine.js.html">geometry/PolyLine.js</a>, <a href="geometry_PolyLine.js.html#line208">line 208</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    기울기
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="convertCoordinate"><span class="type-signature"></span>convertCoordinate<span class="signature">(coordinate)</span><span class="type-signature"> &rarr; {<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    파라미터가 [x, y] 형식의 좌표 Array 이면 OG.geometry.Coordinate 인스턴스를 new 하여 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>coordinate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+|
+
+<span class="param-type">Array.&lt;Number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">[x, y] 형식의 좌표 Array 또는 OG.geometry.Coordinate 인스턴스</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#convertCoordinate">OG.geometry.Geometry#convertCoordinate</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line266">line 266</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="distance"><span class="type-signature"></span>distance<span class="signature">(_geometry)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    주어진 공간기하객체와의 중심점 간의 거리를 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>_geometry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">공간 기하 객체</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#distance">OG.geometry.Geometry#distance</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line153">line 153</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    거리
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="distanceLineToLine"><span class="type-signature"></span>distanceLineToLine<span class="signature">(line1, line2)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    라인1 로부터 라인2 의 거리를 계산한다.
+Note: NON-ROBUST!
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>line1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">line1 라인 시작좌표, 끝좌표 Array</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>line2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">line2 라인 시작좌표, 끝좌표 Array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#distanceLineToLine">OG.geometry.Geometry#distanceLineToLine</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line343">line 343</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    거리
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="distanceToLine"><span class="type-signature"></span>distanceToLine<span class="signature">(p, line)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    포인트 P 로부터 라인 AB의 거리를 계산한다.
+Note: NON-ROBUST!
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>p</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+|
+
+<span class="param-type">Array.&lt;Number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">기준좌표</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>line</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">라인 시작좌표, 끝좌표 Array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#distanceToLine">OG.geometry.Geometry#distanceToLine</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line289">line 289</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    거리
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="fitToBoundary"><span class="type-signature"></span>fitToBoundary<span class="signature">(envelope)</span><span class="type-signature"> &rarr; {<a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    주어진 Boundary 영역 안으로 공간 기하 객체를 적용한다.(이동 & 리사이즈)
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>envelope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Envelope.html">OG.geometry.Envelope</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Envelope 영역</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#fitToBoundary">OG.geometry.Geometry#fitToBoundary</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line246">line 246</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    적용된 공간 기하 객체
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getBoundary"><span class="type-signature"></span>getBoundary<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="OG.geometry.Envelope.html">OG.geometry.Envelope</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    공간기하객체를 포함하는 사각형의 Boundary 영역을 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#getBoundary">OG.geometry.Geometry#getBoundary</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line76">line 76</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Envelope 영역
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.geometry.Envelope.html">OG.geometry.Envelope</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getCentroid"><span class="type-signature"></span>getCentroid<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    공간기하객체의 중심좌표를 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#getCentroid">OG.geometry.Geometry#getCentroid</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line105">line 105</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    중심좌표
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getLength"><span class="type-signature"></span>getLength<span class="signature">()</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    공간기하객체의 길이를 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#getLength">OG.geometry.Geometry#getLength</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line162">line 162</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    길이
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getPercentageDistanceFromPoint"><span class="type-signature"></span>getPercentageDistanceFromPoint<span class="signature">(_coordinate)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    주어진 좌표에 대해 공간기하객체의 퍼센테이지 비율을 구한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>_coordinate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">좌표</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#getPercentageDistanceFromPoint">OG.geometry.Geometry#getPercentageDistanceFromPoint</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line587">line 587</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    {px , py}
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getPointFromPercentageDistance"><span class="type-signature"></span>getPointFromPercentageDistance<span class="signature">(pXpY)</span><span class="type-signature"> &rarr; {<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    공간기하객체에 대한 퍼센테이지 좌표의 실제 좌표를 구한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pXpY</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">퍼센테이지 좌표</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#getPointFromPercentageDistance">OG.geometry.Geometry#getPointFromPercentageDistance</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line643">line 643</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    실 좌표
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getVertices"><span class="type-signature"></span>getVertices<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    공간기하객체의 모든 꼭지점을 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#getVertices">OG.geometry.Geometry#getVertices</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line115">line 115</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    꼭지점 좌표 Array
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="intersectCircleToLine"><span class="type-signature"></span>intersectCircleToLine<span class="signature">(center, radius, from, to)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    라인1 로부터 라인2 의 교차점을 계산한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>center</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">중심점</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>radius</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">반경</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>from</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">line 라인 시작좌표</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>to</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">line 라인 끝좌표</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#intersectCircleToLine">OG.geometry.Geometry#intersectCircleToLine</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line496">line 496</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    교차점
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="intersectLineToLine"><span class="type-signature"></span>intersectLineToLine<span class="signature">(line1, line2)</span><span class="type-signature"> &rarr; {<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    라인1 로부터 라인2 의 교차점을 계산한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>line1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">line1 라인 시작좌표, 끝좌표 Array</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>line2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">line2 라인 시작좌표, 끝좌표 Array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#intersectLineToLine">OG.geometry.Geometry#intersectLineToLine</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line445">line 445</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    교차점
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="intersectPointToLine"><span class="type-signature"></span>intersectPointToLine<span class="signature">(p, line)</span><span class="type-signature"> &rarr; {<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    포인트 P 로부터 라인 AB의 교차점을 계산한다.
+Note: NON-ROBUST!
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>p</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+|
+
+<span class="param-type">Array.&lt;Number></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">기준좌표</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>line</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">라인 시작좌표, 끝좌표 Array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#intersectPointToLine">OG.geometry.Geometry#intersectPointToLine</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line554">line 554</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    교차점
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="intersectToLine"><span class="type-signature"></span>intersectToLine<span class="signature">(line)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    주어진 라인과 교차하는 좌표를 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>line</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">라인 시작좌표, 끝좌표 Array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#intersectToLine">OG.geometry.Geometry#intersectToLine</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line389">line 389</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isContains"><span class="type-signature"></span>isContains<span class="signature">(_geometry)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    주어진 공간기하객체를 포함하는지 비교한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>_geometry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Geometry 객체</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#isContains">OG.geometry.Geometry#isContains</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line56">line 56</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    포함하면 true
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isContainsPoint"><span class="type-signature"></span>isContainsPoint<span class="signature">(_coordinate)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    공간기하객체가 주어진 좌표를 포함하는지를 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>_coordinate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">좌표</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#isContainsPoint">OG.geometry.Geometry#isContainsPoint</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line615">line 615</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    true,false
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isEquals"><span class="type-signature"></span>isEquals<span class="signature">(_geometry)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    주어진 Geometry 객체와 같은지 비교한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>_geometry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Geometry 객체</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#isEquals">OG.geometry.Geometry#isEquals</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    true:같음, false:다름
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isRightAngleBetweenPoints"><span class="type-signature"></span>isRightAngleBetweenPoints<span class="signature">(prev, next)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    공간기하객체의 두 꼭지점 사이의 기울기가 수평또는 수직인지 판별한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>prev</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">꼭지점 1</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>next</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">꼭지점 2</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.PolyLine.html#isRightAngleBetweenPoints">OG.geometry.PolyLine#isRightAngleBetweenPoints</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_PolyLine.js.html">geometry/PolyLine.js</a>, <a href="geometry_PolyLine.js.html#line176">line 176</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    {flag : true or false, type: horizontal or vertical or none}
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isWithin"><span class="type-signature"></span>isWithin<span class="signature">(_geometry)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    주어진 공간기하객체에 포함되는지 비교한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>_geometry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Geometry 객체</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#isWithin">OG.geometry.Geometry#isWithin</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line66">line 66</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    포함되면 true
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="minDistance"><span class="type-signature"></span>minDistance<span class="signature">(_coordinate)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    주어진 좌표와의 최단거리를 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>_coordinate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">좌표</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#minDistance">OG.geometry.Geometry#minDistance</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line125">line 125</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    최단거리
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="move"><span class="type-signature"></span>move<span class="signature">(offsetX, offsetY)</span><span class="type-signature"> &rarr; {<a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    가로, 세로 Offset 만큼 좌표를 이동한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>offsetX</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">가로 Offset</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>offsetY</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">세로 Offset</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#move">OG.geometry.Geometry#move</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line181">line 181</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    이동된 공간 기하 객체
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="moveCentroid"><span class="type-signature"></span>moveCentroid<span class="signature">(중심)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    주어진 중심좌표로 공간기하객체를 이동한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>중심</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">좌표</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#moveCentroid">OG.geometry.Geometry#moveCentroid</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line190">line 190</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="reset"><span class="type-signature"></span>reset<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    저장된 boundary 를 클리어하여 새로 계산하도록 한다.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#reset">OG.geometry.Geometry#reset</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line665">line 665</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="resize"><span class="type-signature"></span>resize<span class="signature">(upper, lower, left, right)</span><span class="type-signature"> &rarr; {<a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    상, 하, 좌, 우 외곽선을 이동하여 Envelope 을 리사이즈 한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>upper</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">상단 라인 이동 Offset(위 방향으로 +)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lower</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">하단 라인 이동 Offset(아래 방향으로 +)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>left</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">좌측 라인 이동 Offset(좌측 방향으로 +)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>right</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">우측 라인 이동 Offset(우측 방향으로 +)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#resize">OG.geometry.Geometry#resize</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line207">line 207</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    리사이즈된 공간 기하 객체
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="resizeBox"><span class="type-signature"></span>resizeBox<span class="signature">(width, height)</span><span class="type-signature"> &rarr; {<a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    중심좌표는 고정한 채 Bounding Box 의 width, height 를 리사이즈 한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">너비</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">높이</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#resizeBox">OG.geometry.Geometry#resizeBox</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line218">line 218</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    리사이즈된 공간 기하 객체
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="rotate"><span class="type-signature"></span>rotate<span class="signature">(angle, origin)</span><span class="type-signature"> &rarr; {<a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    기준 좌표를 기준으로 주어진 각도 만큼 회전한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>angle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">회전 각도</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>origin</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">기준 좌표(default:중심좌표)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#rotate">OG.geometry.Geometry#rotate</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line236">line 236</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    회전된 공간 기하 객체
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="OG.geometry.Geometry.html">OG.geometry.Geometry</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="shortestIntersectToLine"><span class="type-signature"></span>shortestIntersectToLine<span class="signature">(line)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    주어진 라인과 교차하는 좌표중 시작좌표에 가장 가까운 좌표를 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>line</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">라인 시작좌표, 끝좌표 Array</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.Geometry.html#shortestIntersectToLine">OG.geometry.Geometry#shortestIntersectToLine</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_Geometry.js.html">geometry/Geometry.js</a>, <a href="geometry_Geometry.js.html#line417">line 417</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="OG.geometry.Coordinate.html">OG.geometry.Coordinate</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    객체 프라퍼티 정보를 JSON 스트링으로 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="OG.geometry.PolyLine.html#toString">OG.geometry.PolyLine#toString</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="geometry_PolyLine.js.html">geometry/PolyLine.js</a>, <a href="geometry_PolyLine.js.html#line132">line 132</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    프라퍼티 정보
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="OG.common.Constants.html">Constants</a></li><li><a href="OG.common.CurveUtil.html">CurveUtil</a></li><li><a href="OG.common.HashMap.html">HashMap</a></li><li><a href="OG.common.JSON.html">JSON</a></li><li><a href="OG.common.Util.html">Util</a></li><li><a href="OG.geometry.BezierCurve.html">BezierCurve</a></li><li><a href="OG.geometry.Circle.html">Circle</a></li><li><a href="OG.geometry.Coordinate.html">Coordinate</a></li><li><a href="OG.geometry.Curve.html">Curve</a></li><li><a href="OG.geometry.Ellipse.html">Ellipse</a></li><li><a href="OG.geometry.Envelope.html">Envelope</a></li><li><a href="OG.geometry.Geometry.html">Geometry</a></li><li><a href="OG.geometry.GeometryCollection.html">GeometryCollection</a></li><li><a href="OG.geometry.Line.html">Line</a></li><li><a href="OG.geometry.Point.html">Point</a></li><li><a href="OG.geometry.Polygon.html">Polygon</a></li><li><a href="OG.geometry.PolyLine.html">PolyLine</a></li><li><a href="OG.geometry.Rectangle.html">Rectangle</a></li><li><a href="OG.geometry.Style.html">Style</a></li><li><a href="OG.graph.Canvas.html">Canvas</a></li><li><a href="OG.handler.EventHandler.html">EventHandler</a></li><li><a href="OG.renderer.IRenderer.html">IRenderer</a></li><li><a href="OG.renderer.RaphaelRenderer.html">RaphaelRenderer</a></li><li><a href="OG.shape.CircleShape.html">CircleShape</a></li><li><a href="OG.shape.EdgeShape.html">EdgeShape</a></li><li><a href="OG.shape.EllipseShape.html">EllipseShape</a></li><li><a href="OG.shape.GeomShape.html">GeomShape</a></li><li><a href="OG.shape.GroupShape.html">GroupShape</a></li><li><a href="OG.shape.HorizontalLaneShape.html">HorizontalLaneShape</a></li><li><a href="OG.shape.HorizontalPoolShape.html">HorizontalPoolShape</a></li><li><a href="OG.shape.HtmlShape.html">HtmlShape</a></li><li><a href="OG.shape.ImageShape.html">ImageShape</a></li><li><a href="OG.shape.IShape.html">IShape</a></li><li><a href="OG.shape.RectangleShape.html">RectangleShape</a></li><li><a href="OG.shape.SpotShape.html">SpotShape</a></li><li><a href="OG.shape.TextShape.html">TextShape</a></li><li><a href="OG.shape.VerticalLaneShape.html">VerticalLaneShape</a></li><li><a href="OG.shape.VerticalPoolShape.html">VerticalPoolShape</a></li></ul><h3>Namespaces</h3><ul><li><a href="OG.html">OG</a></li><li><a href="OG.common.html">common</a></li><li><a href="OG.geometry.html">geometry</a></li><li><a href="OG.graph.html">graph</a></li><li><a href="OG.handler.html">handler</a></li><li><a href="OG.layout.html">layout</a></li><li><a href="OG.renderer.html">renderer</a></li><li><a href="OG.shape.html">shape</a></li><li><a href="OG.shape.bpmn.html">bpmn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#override">override</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sat Oct 29 2016 21:11:50 GMT+0900 (KST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

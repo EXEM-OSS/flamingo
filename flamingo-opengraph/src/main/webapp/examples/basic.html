@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+    <title>BPMN Modeler Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+
+
+    <!-- jquery -->
+    <script type="text/javascript" src="./lib/jquery-1.11.1/jquery-1.11.1.min.js"></script>
+
+    <!-- jquery ui -->
+    <script type="text/javascript" src="./lib/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./lib/jquery-ui-1.11.0.custom/jquery-ui.css"/>
+
+    <!-- jquery Context Menu -->
+    <link rel="stylesheet" type="text/css" href="./lib/contextmenu/jquery.contextMenu.css"/>
+    <script type="text/javascript" src="./lib/contextmenu/jquery.contextMenu-min.js"></script>
+
+    <!-- Opengraph -->
+    <script type="text/javascript" src="./lib/opengraph/OpenGraph-0.1.1-SNAPSHOT.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Canvas
+            var canvas = new OG.Canvas('canvas', [1000, 800], 'white', 'url(resources/images/symbol/grid.gif)');
+            canvas.initConfig({
+                selectable: true,
+                dragSelectable: true,
+                movable: true,
+                resizable: true,
+                connectable: true,
+                selfConnectable: true,
+                connectCloneable: true,
+                connectRequired: true,
+                labelEditable: true,
+                groupDropable: true,
+                collapsible: true,
+                enableHotKey: true,
+                enableContextMenu: true,
+                useSlider: true,
+                stickGuide: true,
+                checkBridgeEdge: true
+            });
+
+            canvas.addSlider({
+                slider: $("#canvas_slider"),
+                width: 200,
+                height: 300,
+                appendTo: "body"
+            });
+
+            //Simple example
+            var circleShape = canvas.drawShape([101, 107], new OG.CircleShape(), [101, 102]);
+            var ellipseShape = canvas.drawShape([203, 405], new OG.EllipseShape('label'), [103, 53]);
+            var edge = canvas.connect(circleShape, ellipseShape, null, '');
+        });
+
+    </script>
+</head>
+<body>
+
+<div id="canvas" style="cursor: default;"></div>
+<div id="canvas_slider"></div>
+
+</body>
+</html>

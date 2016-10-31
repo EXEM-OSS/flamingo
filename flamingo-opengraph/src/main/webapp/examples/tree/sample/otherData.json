@@ -1,0 +1,181 @@
+[
+  {
+    "type": "activity",
+    "id": "other-ac-1",
+    "name": "other-ac-1-Activity",
+    "position": "other",
+    "parentId": "",
+    "expand": true,
+    "extData": {},
+    "color": "#5bc0de"
+  },
+  {
+    "type": "activity",
+    "id": "other-ac-2",
+    "name": "other-ac-2-Activity",
+    "position": "other",
+    "parentId": "",
+    "expand": true,
+    "extData": {},
+    "color": "#5bc0de"
+  },
+  {
+    "type": "activity",
+    "id": "other-ac-3",
+    "name": "other-ac-3-Activity",
+    "position": "other",
+    "parentId": "",
+    "expand": true,
+    "extData": {},
+    "color": "#5bc0de"
+  },
+  {
+    "type": "folder",
+    "id": "other-fd-1",
+    "name": "other-fd-1-Folder",
+    "position": "other-out",
+    "parentId": "other-ac-1",
+    "expand": true,
+    "extData": {},
+    "color": "#5bc0de"
+  },
+  {
+    "type": "folder",
+    "id": "other-fd-2",
+    "name": "other-fd-2-Folder",
+    "position": "other-out",
+    "parentId": "other-ac-1",
+    "expand": true,
+    "extData": {},
+    "color": "#5bc0de"
+  },
+  {
+    "type": "folder",
+    "id": "other-fd-3",
+    "name": "other-fd-3-Folder",
+    "position": "other-out",
+    "parentId": "other-ac-2",
+    "expand": true,
+    "extData": {},
+    "color": "#5bc0de"
+  },
+  {
+    "type": "folder",
+    "id": "other-fd-4",
+    "name": "other-fd-4-Folder",
+    "position": "other-out",
+    "parentId": "other-ac-2",
+    "expand": true,
+    "extData": {},
+    "color": "#5bc0de"
+  },
+  {
+    "type": "folder",
+    "id": "other-fd-5",
+    "name": "other-fd-5-Folder",
+    "position": "other-out",
+    "parentId": "other-ac-3",
+    "expand": true,
+    "extData": {},
+    "color": "#5bc0de"
+  },
+  {
+    "type": "folder",
+    "id": "other-fd-6",
+    "name": "other-fd-6-Folder",
+    "position": "other-out",
+    "parentId": "other-ac-3",
+    "expand": true,
+    "extData": {},
+    "color": "#5bc0de"
+  },
+  {
+    "type": "folder",
+    "id": "other-fd-2-1",
+    "name": "other-fd-2-1-Folder",
+    "position": "other-out",
+    "parentId": "other-fd-2",
+    "expand": true,
+    "extData": {},
+    "color": "#5bc0de"
+  },
+  {
+    "type": "folder",
+    "id": "other-fd-2-2",
+    "name": "other-fd-2-2-Folder",
+    "position": "other-out",
+    "parentId": "other-fd-2",
+    "expand": true,
+    "extData": {}
+  },
+  {
+    "type": "folder",
+    "id": "other-fd-2-1-1",
+    "name": "other-fd-2-1-1-Folder",
+    "position": "other-out",
+    "parentId": "other-fd-2-1",
+    "expand": true,
+    "extData": {}
+  },
+  {
+    "type": "folder",
+    "id": "other-fd-2-1-2",
+    "name": "other-fd-2-1-2-Folder",
+    "position": "other-out",
+    "parentId": "other-fd-2-1",
+    "expand": true,
+    "extData": {}
+  },
+  {
+    "type": "folder",
+    "id": "other-fd-2-1-2-1",
+    "name": "other-fd-2-1-2-1-Folder",
+    "position": "other-out",
+    "parentId": "other-fd-2-1-2",
+    "expand": true,
+    "extData": {}
+  },
+  {
+    "type": "ed",
+    "id": "other-ed-2-1-1-1",
+    "name": "other-ed-2-1-1-1-Ed",
+    "position": "other-out",
+    "parentId": "other-fd-2-1-1",
+    "extData": {},
+    "color": "#5bc0de"
+  },
+  {
+    "type": "ed",
+    "id": "other-ed-2-1-1-2",
+    "name": "other-ed-2-1-1-2-Ed",
+    "position": "other-out",
+    "parentId": "other-fd-2-1-1",
+    "extData": {}
+  },
+  {
+    "type": "ed",
+    "id": "other-ed-1-1",
+    "name": "other-ed-1-1-Ed",
+    "position": "other-out",
+    "parentId": "other-fd-1",
+    "extData": {}
+  },
+  {
+    "type": "ed",
+    "id": "other-ed-2-1-2-1-1",
+    "name": "other-ed-2-1-2-1-1-Ed",
+    "position": "other-out",
+    "parentId": "other-fd-2-1-2-1",
+    "expand": true,
+    "extData": {}
+  },
+  {
+    "type": "ed",
+    "id": "other-ed-2-1-2-1-2",
+    "name": "other-ed-2-1-2-1-2-Ed",
+    "position": "other-out",
+    "parentId": "other-fd-2-1-2-1",
+    "expand": true,
+    "extData": {}
+  }
+]

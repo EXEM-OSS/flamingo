@@ -3,7 +3,8 @@
  *
  * @class
  * @extends OG.shape.IShape
- * @requires OG.common.*, OG.geometry.*
+ * @requires OG.common.*
+ * @requires OG.geometry.*
  *
  * @param {Number[]} from 와이어 시작 좌표
  * @param {Number[]} to 와이어 끝 좌표

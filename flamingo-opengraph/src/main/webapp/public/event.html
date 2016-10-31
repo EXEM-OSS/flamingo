@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+ <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Prevent IE using compatibility mode on local or intranet pages. Do not put scripts before this line.-->
+  <meta name="viewport" content="width=device-width, user-scalable=yes"><!--Mobile device scaling-->
+  <meta charset="UTF-8">
+  <title>Opengraph Documentation</title>
+
+  <!--load stylesheets first (rationale: https://developers.google.com/speed/docs/best-practices/rtt#PutStylesBeforeScripts)-->
+  <link rel="stylesheet" href="require/webknife/framework.min.css" type="text/css">
+  <link rel="stylesheet" href="require/webknife/highlight.min.css" type="text/css">
+  <link rel="stylesheet" href="require/docgen.css" type="text/css">
+  <link rel="stylesheet" href="require/print.css" media="print">
+
+  <!--load scripts second-->
+
+  <script src="require/webknife/framework.min.js"></script>
+  <script src="require/webknife/framework.icons.js"></script>
+  <script src="require/webknife/highlight.min.js"></script>
+
+  <!--inline scripts last-->
+
+<script type="text/javascript">
+
+$(document).ready( function () {
+  $("#dg-toc").hide(); //hide the table of contents
+
+  //instantiate an svg injector to show SVG icons
+  var injector = new svgInject();
+  injector.inject();
+
+  //code syntax highlighting
+  $('pre code, .w-inline-code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  //toggle visibility of table of contents
+  $("#dg-navigator").click(function()
+  {
+    $("#dg-toc").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
+
+});
+</script>
+
+<script type="text/x-mathjax-config">
+//MathJax configuration is the same as used by math.stackexchange.com
+MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+  tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+  TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+  messageStyle: "none"
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="dg-toc"><div><table class="unstyled"><tr><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Overview</li><li><a href="README.html">Overview</a></li><li><a href="getting-start.html">Getting Started</a></li><li><a href="examples.html">Examples</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Canvas</li><li><a href="canvas.html">Canvas Drawing</a></li><li><a href="selector.html">Canvas Selector</a></li><li><a href="data.html">Canvas Data</a></li><li><a href="event.html">Canvas Event</a></li><li><a href="renderer.html">Developer - Renderer</a></li><li><a href="handler.html">Developer - Handler</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Element</li><li><a href="element.html">Element</a></li><li><a href="geometry.html">Geometry</a></li><li><a href="shapes.html">Shape</a></li><li><a href="extend-shape.html">Extend Shape</a></li></ul></td><td class="dg-tocGroup"><ul><li class="dg-tocHeading">Api reference</li><li><a href="jsdoc.html">Api reference</a></li></ul></td><td class="dg-tocGroup" id="dg-tocFixedColumn"><ul><li><span class="w-icon dg-tocIcon" data-name="person_group" title="archive"></span><a href="ownership.html">Ownership</a></li><li><span class="w-icon dg-tocIcon" data-name="refresh" title="archive"></span><a href="release-notes.html">Release Notes</a></li></ul><div></div></td></tr></table></div></div>
+<div id="dg-navigator">Table of contents</div>
+
+<header>
+ <div class="w-fixed-width">
+  <a id="dg-homelink" href="README.html">
+    <div id="dg-logo" style="background-image: url(files/images/logo.png); height: 84px; line-height: 84px; padding-left: 109px;">
+      <span id="dg-title">Opengraph Documentation</span> <span id="dg-web-title-version" style="font-weight:normal;">(0.1.1)</span>
+    </div>
+  </a>
+  <div>
+    <span id="dg-backlink"></span>
+  </div>
+ </div>
+</header>
+
+<section id="dg-content"><div class="w-fixed-width"><div id="dg-innerContent"><h1 id="dg-autoTitle">Canvas Event</h1><h1 id="event">Event</h1>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC758; &#xCE94;&#xBC84;&#xC2A4;&#xAC00; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xC774;&#xBCA4;&#xD2B8;&#xC5D0; &#xB300;&#xD574; &#xC54C;&#xC544;&#xBCF4;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<h2 id="ondrawshape-&amp;&amp;-onredrawshape">onDrawShape &amp;&amp; onRedrawShape</h2>
+<p>onDrawShape &amp;&amp; onRedrawShape &#xB294; &#xB3C4;&#xD615;&#xC774; &#xCE94;&#xBC84;&#xC2A4;&#xC5D0; draw &#xB418;&#xC5C8;&#xC744;&#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>onDrawShape &#xB294; canvas.drawShape &#xB97C; &#xD1B5;&#xD574; draw &#xB418;&#xC5C8;&#xC744; &#xB54C;&#xC758; &#xB9AC;&#xC2A4;&#xB108;&#xC774;&#xBA70;,
+onRedrawShape &#xB294; move &#xD639;&#xC740; resize, &#xB610;&#xB294; &#xADF8;&#xB8F9; &#xB3C4;&#xD615; &#xC774;&#xB3D9;&#xC2DC; &#xB0B4;&#xBD80; &#xB3C4;&#xD615;&#xC758; &#xC774;&#xB3D9; &#xB4F1; &#xAE30;&#xC874;&#xC758; &#xADF8;&#xB824;&#xC9C4; &#xB3C4;&#xD615;&#xC774; &#xC0AC;&#xC6A9;&#xC790;&#xC5D0; &#xC758;&#xD574; &#xB2E4;&#xC2DC; draw &#xB418;&#xC5C8;&#xC744; &#xACBD;&#xC6B0; &#xB9AC;&#xC2A4;&#xB108;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* Shape &#xC774; &#xCC98;&#xC74C; Draw &#xB418;&#xC5C8;&#xC744; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, shapeElement)
+*/
+canvas.onDrawShape(function(event,element){
+   console.log(&apos;onDrawShape&apos;, element);
+});
+
+/**
+* Shape &#xC774; Redraw &#xB418;&#xC5C8;&#xC744; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, shapeElement)
+*/
+canvas.onRedrawShape(function(event,element){
+    console.log(&apos;onRedrawShape&apos;, element);
+});
+
+//onDrawShape &#xB9AC;&#xC2A4;&#xB108;&#xAC00; &#xC2E4;&#xD589;&#xB428;.
+var element = canvas.drawShape([100, 100], new OG.CircleShape(), [50, 50], null, &apos;CircleShape1&apos;);
+
+//onRedrawShape &#xB9AC;&#xC2A4;&#xB108;&#xAC00; &#xC2E4;&#xD589;&#xB428;.
+canvas.move(element,[-30,0]);
+
+//onRedrawShape &#xB9AC;&#xC2A4;&#xB108;&#xAC00; &#xC2E4;&#xD589;&#xB428;.
+canvas.resize(element,[5,5,5,5]);
+</code></pre>
+<h2 id="onundo-&amp;&amp;-onredo">onUndo &amp;&amp; onRedo</h2>
+<p>&#xCE94;&#xBC84;&#xC2A4;&#xAC00; undo &#xB610;&#xB294; redo &#xB418;&#xC5C8;&#xC744;&#xB568;&#xC758; &#xB9AC;&#xC2A4;&#xB108; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* Undo &#xB418;&#xC5C8;&#xC744;&#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event)
+*/
+canvas.onUndo(function(event){
+    console.log(&apos;onUndo&apos;);
+});
+
+/**
+* Redo &#xB418;&#xC5C8;&#xC744;&#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event)
+*/
+canvas.onRedo(function(event){
+    console.log(&apos;onRedo&apos;);
+});
+</code></pre>
+<h2 id="ondividelane">onDivideLane</h2>
+<p>&#xC624;&#xD508;&#xADF8;&#xB798;&#xD504;&#xC5D0;&#xB294; Lane &#xB3C4;&#xD615;&#xC774; &#xAE30;&#xBCF8;&#xC73C;&#xB85C; &#xC81C;&#xACF5;&#xB418;&#xB294;&#xB370;, &#xC774; Lane &#xB3C4;&#xD615;&#xC740; &#xBD84;&#xAE30;&#xB97C; &#xD560; &#xC218; &#xC788;&#xB294; ui &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB97C; &#xC81C;&#xACF5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC0AC;&#xC6A9;&#xC790;&#xAC00; gui &#xC0C1;&#xC5D0;&#xC11C; &#xBD84;&#xAE30; &#xC2E4;&#xD589;&#xC744; &#xD558;&#xC600;&#xC744; &#xACBD;&#xC6B0; &#xC77C;&#xC5B4;&#xB098;&#xB294; &#xC774;&#xBCA4;&#xD2B8; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBD84;&#xAE30;&#xD558;&#xC5EC; &#xC0C8;&#xB85C; &#xC0DD;&#xC131;&#xB41C; Lane &#xB3C4;&#xD615;&#xB9C8;&#xB2E4; &#xC774;&#xBCA4;&#xD2B8;&#xB97C; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>canvas.onDivideLane(function (event, dividedLane) {
+    canvas.drawLabel(dividedLane, &apos;d&apos;);
+    canvas.setShapeStyle(dividedLane, {stroke: &apos;red&apos;});
+});
+
+var laneElement = canvas.drawShape([200, 200], new OG.HorizontalLaneShape(), [200, 200]);
+</code></pre>
+<ul>
+<li>&#xBD84;&#xAE30; &#xB418;&#xAE30; &#xC804;</li>
+</ul>
+<p><img src="images/canvas/divideLane-1.png" alt=""></p>
+<ul>
+<li>&#xBD84;&#xAE30; &#xB41C; &#xD6C4;, &#xC774;&#xBCA4;&#xD2B8;&#xC5D0; &#xC758;&#xD574; stroke &#xBC14; &#xBC14;&#xB00C;&#xC5C8;&#xB2E4;.</li>
+</ul>
+<p><img src="images/canvas/divideLane-2.png" alt=""></p>
+<h2 id="ondrawlabel">onDrawLabel</h2>
+<p>&#xB77C;&#xBCA8;&#xC774; Draw &#xB418;&#xC5C8;&#xC744; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>canvas.onDrawLabel(function (event, shapeElement, labelText) {
+    console.log(shapeElement,labelText);
+    setTimeout(function(){
+        alert(labelText);
+    },1000);
+});
+
+var circleShape = canvas.drawShape([200, 200], new OG.CircleShape(), [150, 150]);
+canvas.drawLabel(circleShape,&apos;accept Label&apos;);
+</code></pre>
+<p><img src="images/canvas/label-1.png" alt=""></p>
+<h2 id="onlabelchanged">onLabelChanged</h2>
+<p>&#xC0AC;&#xC6A9;&#xC790;&#xAC00; UI &#xC0C1;&#xC5D0;&#xC11C; &#xB77C;&#xBCA8;&#xC744; &#xBC14;&#xAFB8;&#xAC70;&#xB098;, &#xD55C;&#xBC88; &#xADF8;&#xB824;&#xC9C4; &#xB77C;&#xBCA8;&#xC744; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC801;&#xC73C;&#xB85C; redraw &#xD560; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* &#xB77C;&#xBCA8;&#xC774; Change &#xB418;&#xC5C8;&#xC744; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, shapeElement, afterText, beforeText)
+*/
+canvas.onLabelChanged(function(event, shapeElement, afterText, beforeText){
+    console.log(shapeElement, afterText, beforeText);
+    canvas.drawShape([200, 300], new OG.RectangleShape(beforeText + &apos; changed &apos; + afterText), [200, 50]);
+});
+
+
+var circleShape = canvas.drawShape([200, 200], new OG.CircleShape(), [150, 150]);
+
+canvas.drawLabel(circleShape,&apos;Label1&apos;);
+
+canvas.drawLabel(circleShape,&apos;Label2&apos;);
+</code></pre>
+<p><img src="images/canvas/label-2.png" alt=""></p>
+<h2 id="onbeforelabelchange">onBeforeLabelChange</h2>
+<p>&#xC0AC;&#xC6A9;&#xC790;&#xAC00; UI &#xC0C1;&#xC5D0;&#xC11C; &#xB77C;&#xBCA8;&#xC744; &#xBC14;&#xAFB8;&#xAC70;&#xB098;, &#xD55C;&#xBC88; &#xADF8;&#xB824;&#xC9C4; &#xB77C;&#xBCA8;&#xC744; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC801;&#xC73C;&#xB85C; redraw &#xD560; &#xB54C; &#xB77C;&#xBCA8;&#xC744; &#xBCC0;&#xACBD;&#xD558;&#xAE30; &#xC804; &#xBC1C;&#xC0DD;&#xB418;&#xB294; &#xB9AC;&#xC2A4;&#xB108; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774; &#xB9AC;&#xC2A4;&#xB108;&#xC5D0;&#xC11C; return &#xC744; false &#xB85C; &#xC8FC;&#xAC8C; &#xB418;&#xBA74; &#xB77C;&#xBCA8;&#xC774; &#xBCC0;&#xACBD;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>canvas.onBeforeLabelChange(function(event, shapeElement, afterText, beforeText){
+    if(afterText == &apos;blackList&apos;){
+        console.log(shapeElement, afterText, beforeText);
+        canvas.drawShape([200, 300], new OG.RectangleShape(beforeText + &apos; cancel change &apos; + afterText), [200, 50]);
+        return false;
+    }
+});
+
+var circleShape = canvas.drawShape([200, 200], new OG.CircleShape(), [150, 150]);
+canvas.drawLabel(circleShape,&apos;Label1&apos;);
+canvas.drawLabel(circleShape,&apos;blackList&apos;);
+
+</code></pre>
+<p><img src="images/canvas/label-3.png" alt=""></p>
+<h2 id="onremoveshape-&amp;&amp;-onbeforeremoveshape">onRemoveShape &amp;&amp; onBeforeRemoveShape</h2>
+<p>&#xC0AC;&#xC6A9;&#xC790;&#xAC00; UI &#xC0C1;&#xC5D0;&#xC11C; &#xB3C4;&#xD615;&#xC744; &#xC0AD;&#xC81C;&#xD558;&#xAC70;&#xB098;, &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC801;&#xC73C;&#xB85C; &#xC0AD;&#xC81C;&#xD560; &#xACBD;&#xC6B0; onRemoveShape &#xB9AC;&#xC2A4;&#xB108;&#xAC00; &#xD638;&#xCD9C;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC0AD;&#xC81C;&#xD558;&#xAE30; &#xC804; &#xBC1C;&#xC0DD;&#xB418;&#xB294; &#xB9AC;&#xC2A4;&#xB108;&#xB294; onBeforeRemoveShape &#xC785;&#xB2C8;&#xB2E4;. &#xB9AC;&#xD134; &#xAC12;&#xC744; false &#xB85C; &#xC904; &#xACBD;&#xC6B0; &#xC0AD;&#xC81C;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* Shape &#xC774; Remove &#xB420; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, shapeElement)
+*/
+canvas.onRemoveShape(function(event, shapeElement){
+    
+});
+
+canvas.onBeforeRemoveShape(function(event, shapeElement){
+    
+});
+</code></pre>
+<h2 id="onrotateshape">onRotateShape</h2>
+<p>&#xB3C4;&#xD615;&#xC774; Rotate &#xB418;&#xC5C8;&#xC744; &#xACBD;&#xC6B0; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* Shape &#xC774; Rotate &#xB420; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, element, angle)
+*/
+canvas.onRotateShape(function(event, element, angle){
+    
+});
+</code></pre>
+<h2 id="onmoveshape">onMoveShape</h2>
+<p>&#xB3C4;&#xD615;&#xC774; &#xC774;&#xB3D9;&#xB418;&#xC5C8;&#xC744; &#xACBD;&#xC6B0; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C;&#xC740; &#xB9AC;&#xC2A4;&#xB108;&#xB97C; &#xD1B5;&#xD574; &#xC774;&#xB3D9;&#xB418;&#xC5C8;&#xB358; &#xB3C4;&#xD615;&#xC744; &#xC774;&#xB3D9;&#xB418;&#xC5C8;&#xB358; x,y &#xAC12; &#xB9CC;&#xD07C; &#xC5ED;&#xC73C;&#xB85C; &#xC774;&#xB3D9;&#xC2DC;&#xD0A8; &#xB3C4;&#xD615;&#xC744; &#xC0C8;&#xB85C; &#xADF8;&#xB9AC;&#xB294; &#xC608;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* Shape &#xC774; Move &#xB418;&#xC5C8;&#xC744; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, shapeElement, offset)
+*/
+var originalShape = canvas.drawShape([200, 200], new OG.CircleShape(), [150, 150]);
+
+canvas.onMoveShape(function(event, shapeElement, offset){
+    var boundary = canvas.getBoundary(shapeElement);
+    var copyShape = canvas.drawShape(
+            [boundary.getCentroid().x - (offset[0] * 2), boundary.getCentroid().y - (offset[1] * 2)],
+            new OG.CircleShape(),
+            [150, 150]);
+    canvas.setShapeStyle(copyShape, {stroke: &apos;blue&apos;});
+});
+var circleShape = canvas.drawShape([200, 200], new OG.CircleShape(), [150, 150]);
+canvas.move(circleShape,[30,30]);
+canvas.setShapeStyle(circleShape, {stroke: &apos;red&apos;});
+</code></pre>
+<p><img src="images/canvas/event-move.png" alt=""></p>
+<h2 id="onresizeshape">onResizeShape</h2>
+<p>&#xB3C4;&#xD615;&#xC774; &#xB9AC;&#xC0AC;&#xC774;&#xC988; &#xB418;&#xC5C8;&#xC744; &#xACBD;&#xC6B0;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCF5C;&#xBC31; &#xAC12;&#xC758; offset &#xC740; &#xC0C1;, &#xD558;, &#xC88C;, &#xC6B0; &#xAC01; &#xBC29;&#xD5A5;&#xC73C;&#xB85C; &#xC774;&#xB3D9;&#xB41C; + &#xAC12;&#xC744; &#xB9AC;&#xD134;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* Shape &#xC774; Resize &#xB418;&#xC5C8;&#xC744; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, shapeElement, offset)
+*/
+canvas.onResizeShape(function (event, shapeElement, offset) {
+    
+});
+</code></pre>
+<h2 id="onbeforeconnectshape">onBeforeConnectShape</h2>
+<p>&#xB3C4;&#xD615;&#xC774; &#xC5F0;&#xACB0;&#xB418;&#xAE30; &#xC804; &#xB9AC;&#xC2A4;&#xB108;&#xC774;&#xBA70;, false &#xB9AC;&#xD134;&#xC744; &#xC8FC;&#xAC8C; &#xB418;&#xBA74; &#xC5F0;&#xACB0;&#xC774; &#xCDE8;&#xC18C;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code>/**
+* Shape &#xC774; Connect &#xB418;&#xAE30;&#xC804; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, edgeElement, fromElement, toElement)
+*/
+canvas.onBeforeConnectShape(function(event, edgeElement, fromElement, toElement){
+
+});
+</code></pre>
+<h2 id="onconnectshape">onConnectShape</h2>
+<pre><code>/**
+* Shape &#xC774; Connect &#xB418;&#xC5C8;&#xC744; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, edgeElement, fromElement, toElement)
+*/
+canvas.onConnectShape(function(event, edgeElement, fromElement, toElement){
+
+});
+</code></pre>
+<h2 id="ondisconnectshape">onDisconnectShape</h2>
+<pre><code>/**
+* Shape &#xC774; Disconnect &#xB418;&#xC5C8;&#xC744; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, edgeElement, fromElement, toElement)
+*/
+canvas.onDisconnectShape(function(event, edgeElement, fromElement, toElement){
+    
+});
+</code></pre>
+<h2 id="ongroup">onGroup</h2>
+<pre><code>/**
+* Shape &#xC774; Grouping &#xB418;&#xC5C8;&#xC744; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, groupElement)
+*/
+canvas.onGroup(function(event, groupElement){
+    
+});
+</code></pre>
+<h2 id="onungroup">onUnGroup</h2>
+<pre><code>/**
+* Shape &#xC774; UnGrouping &#xB418;&#xC5C8;&#xC744; &#xB54C;&#xC758; &#xC774;&#xBCA4;&#xD2B8; &#xB9AC;&#xC2A4;&#xB108;
+*
+* @param {Function} callbackFunc &#xCF5C;&#xBC31;&#xD568;&#xC218;(event, ungroupedElements)
+*/
+canvas.onUnGroup(function(event, ungroupedElements){
+    
+});
+</code></pre>
+</div></div></section>
+
+ <footer>
+  <div><p class="w-fixed-width"><span id="dg-web-footer">Version 0.1.1 released on 10/17/2016.</span></p></div>
+  <div class="w-fixed-width">
+    <p><span id="dg-copyright">&#xA9; 2016 <a href="sppark@uengine.org">Seunpil park</a></span></p>
+    <p>
+      <span id="dg-marking"></span>
+      <span id="dg-legalese"></span>
+      <span id="dg-attribution">Created by DocGen 2.1.3 on 29/10/2016 at 21:53:02.</span>
+    </p>
+  </div>
+ </footer>
+ 
+ </body>
+</html>

@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Util</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: Util</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="OG.html">OG</a><a href="OG.common.html">.common</a>.</span>
+        
+        Util
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="Util"><span class="type-signature"></span>new Util<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    공통 유틸리티 Javascript 클래스
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>&lt;a href="mailto:sppark@uengine.org">Seungpil Park&lt;/a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_Util.js.html">common/Util.js</a>, <a href="common_Util.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".extend"><span class="type-signature">(static) </span>extend<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Extends one class to create a subclass and optionally overrides members with the passed literal. This method
+also adds the function "override()" to the subclass that can be used to override members of the class.</p>
+For example, to create a subclass of Ext GridPanel:
+<pre><code>
+     MyGridPanel = Ext.extend(Ext.grid.GridPanel, {
+	 constructor: function(config) {
+
+	 //      Create configuration for this Grid.
+	 var store = new Ext.data.Store({...});
+	 var colModel = new Ext.grid.ColumnModel({...});
+
+	 //      Create a new config object containing our computed properties
+	 //      *plus* whatever was in the config parameter.
+	 config = Ext.apply({
+	 store: store,
+	 colModel: colModel
+	 }, config);
+
+	 MyGridPanel.superclass.constructor.call(this, config);
+
+	 //      Your postprocessing here
+	 },
+
+	 yourMethod: function() {
+	 // etc.
+	 }
+	 });
+     </code></pre>
+
+<p>This function also supports a 3-argument call in which the subclass's constructor is
+passed as an argument. In this form, the parameters are as follows:</p>
+<div class="mdetail-params"><ul>
+<li><code>subclass</code> : Function <div class="sub-desc">The subclass constructor.</div></li>
+<li><code>superclass</code> : Function <div class="sub-desc">The constructor of class being extended</div></li>
+<li><code>overrides</code> : Object <div class="sub-desc">A literal with members which are copied into the subclass's
+prototype, and are therefore shared among all instances of the new class.</div></li>
+</ul></div>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_Util.js.html">common/Util.js</a>, <a href="common_Util.js.html#line261">line 261</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".apply"><span class="type-signature">(static) </span>apply<span class="signature">(obj, config, defaults)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Copies all the properties of config to obj.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The receiver of the properties</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The source of the properties</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defaults</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A different object that will also be applied for default values</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_Util.js.html">common/Util.js</a>, <a href="common_Util.js.html#line198">line 198</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    returns obj
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(obj)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Object 를 복사한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">복사할 Object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_Util.js.html">common/Util.js</a>, <a href="common_Util.js.html#line105">line 105</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    복사된 Object
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".round"><span class="type-signature">(static) </span>round<span class="signature">(val)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    디폴트로 지정된 소숫점 자리수로 Round 한 값을 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">반올림할 값</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_Util.js.html">common/Util.js</a>, <a href="common_Util.js.html#line159">line 159</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    지정한 소숫점 자리수에 따른 반올림 값
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".roundGrid"><span class="type-signature">(static) </span>roundGrid<span class="signature">(val, snapSize)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Shape Move & Resize 이동 간격으로 Round 한 값을 반환한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">반올림할 값</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>snapSize</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">이동간격</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_Util.js.html">common/Util.js</a>, <a href="common_Util.js.html#line185">line 185</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    지정한 간격으로 반올림 값
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".roundPrecision"><span class="type-signature">(static) </span>roundPrecision<span class="signature">(val, precision)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    입력된 숫자값을 지정된 소숫점 자릿수로 Round해서 값을 리턴한다.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">반올림할 값</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>precision</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">소숫점 자리수</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_Util.js.html">common/Util.js</a>, <a href="common_Util.js.html#line173">line 173</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    지정한 소숫점 자리수에 따른 반올림 값
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>OG.Util.roundPrecision(300.12345678, 3);
+Result ) 300.123</code></pre>
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="OG.common.Constants.html">Constants</a></li><li><a href="OG.common.CurveUtil.html">CurveUtil</a></li><li><a href="OG.common.HashMap.html">HashMap</a></li><li><a href="OG.common.JSON.html">JSON</a></li><li><a href="OG.common.Util.html">Util</a></li><li><a href="OG.geometry.BezierCurve.html">BezierCurve</a></li><li><a href="OG.geometry.Circle.html">Circle</a></li><li><a href="OG.geometry.Coordinate.html">Coordinate</a></li><li><a href="OG.geometry.Curve.html">Curve</a></li><li><a href="OG.geometry.Ellipse.html">Ellipse</a></li><li><a href="OG.geometry.Envelope.html">Envelope</a></li><li><a href="OG.geometry.Geometry.html">Geometry</a></li><li><a href="OG.geometry.GeometryCollection.html">GeometryCollection</a></li><li><a href="OG.geometry.Line.html">Line</a></li><li><a href="OG.geometry.Point.html">Point</a></li><li><a href="OG.geometry.Polygon.html">Polygon</a></li><li><a href="OG.geometry.PolyLine.html">PolyLine</a></li><li><a href="OG.geometry.Rectangle.html">Rectangle</a></li><li><a href="OG.geometry.Style.html">Style</a></li><li><a href="OG.graph.Canvas.html">Canvas</a></li><li><a href="OG.handler.EventHandler.html">EventHandler</a></li><li><a href="OG.renderer.IRenderer.html">IRenderer</a></li><li><a href="OG.renderer.RaphaelRenderer.html">RaphaelRenderer</a></li><li><a href="OG.shape.CircleShape.html">CircleShape</a></li><li><a href="OG.shape.EdgeShape.html">EdgeShape</a></li><li><a href="OG.shape.EllipseShape.html">EllipseShape</a></li><li><a href="OG.shape.GeomShape.html">GeomShape</a></li><li><a href="OG.shape.GroupShape.html">GroupShape</a></li><li><a href="OG.shape.HorizontalLaneShape.html">HorizontalLaneShape</a></li><li><a href="OG.shape.HorizontalPoolShape.html">HorizontalPoolShape</a></li><li><a href="OG.shape.HtmlShape.html">HtmlShape</a></li><li><a href="OG.shape.ImageShape.html">ImageShape</a></li><li><a href="OG.shape.IShape.html">IShape</a></li><li><a href="OG.shape.RectangleShape.html">RectangleShape</a></li><li><a href="OG.shape.SpotShape.html">SpotShape</a></li><li><a href="OG.shape.TextShape.html">TextShape</a></li><li><a href="OG.shape.VerticalLaneShape.html">VerticalLaneShape</a></li><li><a href="OG.shape.VerticalPoolShape.html">VerticalPoolShape</a></li></ul><h3>Namespaces</h3><ul><li><a href="OG.html">OG</a></li><li><a href="OG.common.html">common</a></li><li><a href="OG.geometry.html">geometry</a></li><li><a href="OG.graph.html">graph</a></li><li><a href="OG.handler.html">handler</a></li><li><a href="OG.layout.html">layout</a></li><li><a href="OG.renderer.html">renderer</a></li><li><a href="OG.shape.html">shape</a></li><li><a href="OG.shape.bpmn.html">bpmn</a></li></ul><h3>Global</h3><ul><li><a href="global.html#override">override</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sat Oct 29 2016 21:11:49 GMT+0900 (KST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

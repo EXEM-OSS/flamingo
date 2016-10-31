@@ -3,7 +3,8 @@
  *
  * @class
  * @extends OG.shape.GeomShape
- * @requires OG.common.*, OG.geometry.*
+ * @requires OG.common.*
+ * @requires OG.geometry.*
  *
  * @param {String} label 라벨 [Optional]
  * @author <a href="mailto:sppark@uengine.org">Seungpil Park</a>
