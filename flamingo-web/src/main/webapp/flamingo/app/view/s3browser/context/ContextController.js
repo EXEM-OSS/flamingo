@@ -13,19 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-Ext.application({
-    name: 'Flamingo',
+Ext.define('Flamingo.view.s3browser.context.ContextController', {
+    extend: 'Ext.app.ViewController',
+    alias: 'controller.s3context',
 
-    extend: 'Flamingo.Application',
-
-    requires: [
-        'util.*',
-        'Flamingo.view.main.Main',
-        'Flamingo.view.hdfsbrowser.HdfsBrowser',
-        'Flamingo.view.ooziemonitoring.Oozie',
-        'Flamingo.view.workflowdesigner.Designer',
-        'Flamingo.view.s3browser.S3Browser'
-    ],
-
-    mainView: 'Flamingo.view.main.Main'
+    onMenuitemClick : function(item) {
+        this.fireEvent(item.itemId);
+    }
 });

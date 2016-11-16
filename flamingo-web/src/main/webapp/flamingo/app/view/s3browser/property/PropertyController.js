@@ -13,19 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-Ext.application({
-    name: 'Flamingo',
+Ext.define('Flamingo.view.s3browser.property.PropertyController', {
+    extend: 'Ext.app.ViewController',
+    alias: 'controller.propertyViewController',
 
-    extend: 'Flamingo.Application',
-
-    requires: [
-        'util.*',
-        'Flamingo.view.main.Main',
-        'Flamingo.view.hdfsbrowser.HdfsBrowser',
-        'Flamingo.view.ooziemonitoring.Oozie',
-        'Flamingo.view.workflowdesigner.Designer',
-        'Flamingo.view.s3browser.S3Browser'
-    ],
-
-    mainView: 'Flamingo.view.main.Main'
+    /**
+     * 속성창을 화면에 표시한 후 서버로부터 가져온 속성정보를 표시한다.
+     *
+     * @param window Window 속성창
+     */
+    onAfterRender: function (window) {
+        var refs = this.getReferences();
+        refs.objectProperty.getForm().setValues(window.propertyData);
+    }
 });

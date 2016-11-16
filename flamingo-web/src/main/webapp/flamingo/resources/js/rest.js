@@ -52,3 +52,24 @@ CONSTANTS.FS.HDFS_COPY_TO_LOCAL                 = '/fs/hdfs/copyToLocal';
 CONSTANTS.FS.HDFS_SAVE_MAX                      = '/fs/hdfs/saveMax';
 CONSTANTS.FS.GET_HDFS_TOP5                      = '/fs/top5.json';
 CONSTANTS.FS.CHECK_FILEINFO                     = '/fs/hdfs/checkFileInfo';
+
+
+///////////////////////////////////////
+// File System > S3
+///////////////////////////////////////
+CONSTANTS.FS.S3_LIST_OBJECT                     = '/fs/s3/listObjects.json';
+CONSTANTS.FS.S3_LIST_FOLDER                     = '/fs/s3/listFolders.json';
+CONSTANTS.FS.S3_CREATE_BUCKET                   = '/fs/s3/createBucket.json';
+CONSTANTS.FS.S3_DELETE_BUCKET                   = '/fs/s3/deleteBucket.json';
+CONSTANTS.FS.S3_GET_BUCKET_ACL                  = '/fs/s3/getBucketAcl.json';
+CONSTANTS.FS.S3_GET_BUCKET_LOCATION             = '/fs/s3/getBucketLocation.json';
+CONSTANTS.FS.S3_CREATE_FOLDER                   = '/fs/s3/createFolder.json';
+CONSTANTS.FS.S3_COPY_OBJECT                     = '/fs/s3/copyObject.json';
+CONSTANTS.FS.S3_MOVE_OBJECT                     = '/fs/s3/moveObject.json';
+CONSTANTS.FS.S3_RENAME_OBJECT                   = '/fs/s3/renameObject.json';
+CONSTANTS.FS.S3_DELETE_OBJECT                   = '/fs/s3/deleteObject.json';
+CONSTANTS.FS.S3_UPLOAD_OBJECT                   = '/fs/s3/upload.json';
+CONSTANTS.FS.S3_DOWNLOAD_OBJECT                 = '/fs/s3/download.json';
+CONSTANTS.FS.S3_GET_OBJECT_PROPERTY             = '/fs/s3/getObjectProperty.json';
+CONSTANTS.FS.S3_GET_OBJECT_ACL                  = '/fs/s3/getObjectAcl.json';
+CONSTANTS.FS.S3_PREVIEW_OBJECT                  = '/fs/s3/getObjectAsString.json';

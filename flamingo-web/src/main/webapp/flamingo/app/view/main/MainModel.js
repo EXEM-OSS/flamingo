@@ -33,6 +33,11 @@ Ext.define('Flamingo.view.main.MainModel', {
                 text: 'HDFS Browser',
                 icon: 'fa fa-file-text-o',
                 view: 'hdfsbrowser'
+            },
+            {
+                text: 'S3 Browser',
+                icon: 'fa fa-file-text-o',
+                view: 's3browser'
             }]
         }
     }
