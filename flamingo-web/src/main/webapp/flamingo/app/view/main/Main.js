@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 Ext.define('Flamingo.view.main.Main', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.container.Viewport',
     xtype: 'app-main',
 
     requires: [
