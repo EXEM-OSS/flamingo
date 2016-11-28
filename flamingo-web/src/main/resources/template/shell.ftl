@@ -1,6 +1,10 @@
     <shell xmlns="${version!"uri:oozie:shell-action:0.3"}">
-        <job-tracker>${action.data.jobTracker}</job-tracker>
-        <name-node>${action.data.nameNode}</name-node>
+        <#if (action.data.jobTracker)??>
+            <job-tracker>${action.data.jobTracker}</job-tracker>
+        </#if>
+        <#if (action.data.nameNode)??>
+            <name-node>${action.data.nameNode}</name-node>
+        </#if>
         <#if (action.data.prepares)??>
             <prepare>
                 <#list action.data.prepares as prepare>
@@ -25,14 +29,15 @@
                     <property>
                         <name>${configuration.name}</name>
                         <value>${configuration.value}</value>
+                        <#if (configuration.description) ??>
+                            <description>${configuration.description}</description>
+                        </#if>
                     </property>
                 </#list>
             </configuration>
         </#if>
 
-        <#if (action.data.exec)??>
-            <exec>${action.data.exec}</exec>
-        </#if>
+        <exec>${action.data.exec}</exec>
 
         <#if (action.data.args)??>
             <#list action.data.args as arg>
