@@ -62,6 +62,9 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
   @Value("#{config['oozie.hdfs.workflow.path']}")
   private String oozieHdfsWorkflowPath;
 
+  @Value("#{config['oozie.site.url']}")
+  private String oozieSiteUrl;
+
   public String makeShellActionXml(Map param) throws IOException {
     String result = "";
 
@@ -87,10 +90,9 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
   public String localOozieJobSend(String xmlString){
     try {
       FileUtils.writeStringToFile(new File(xmlStorePath + "/testShell.xml"), xmlString, "UTF-8");
-      HdfsUtils.localFileToHdfs(xmlStorePath + "/testShell.xml", oozieHdfsWorkflowPath + "/testShell.xml");
+      HdfsUtils.localFileToHdfs(xmlStorePath + "/testShell.xml", oozieHdfsWorkflowPath + "/workflow.xml");
 
-      LocalOozie.start();
-      OozieClient wc = LocalOozie.getClient();
+      OozieClient wc = new OozieClient(oozieSiteUrl);
 
       Properties conf = wc.createConfiguration();
       conf.setProperty(OozieClient.APP_PATH, new Path(oozieHdfsWorkflowPath, "workflow.xml").toString());
