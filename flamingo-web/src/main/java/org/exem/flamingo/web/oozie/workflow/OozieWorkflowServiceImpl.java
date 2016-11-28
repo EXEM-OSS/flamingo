@@ -20,16 +20,11 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.fs.Path;
-import org.apache.oozie.local.LocalOozie;
-import org.exem.flamingo.web.filesystem.hdfs.HdfsBrowserRepository;
-import org.exem.flamingo.web.filesystem.hdfs.HdfsBrowserService;
 import org.exem.flamingo.web.util.FreeMarkerUtils;
 import org.exem.flamingo.web.util.HdfsUtils;
 import org.exem.flamingo.web.util.XmlFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.apache.oozie.client.OozieClient;
@@ -108,9 +103,8 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     } catch (Exception e) {
       e.printStackTrace();
       return "fail";
-    } finally{
-      LocalOozie.stop();
     }
+
     return "Success!";
   }
 }
