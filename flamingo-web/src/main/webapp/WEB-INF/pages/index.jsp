@@ -40,6 +40,8 @@
     <script type="text/javascript" src="/resources/js/util/UI.js"></script>
     <script type="text/javascript" src="/resources/js/util/WebBrowser.js"></script>
 
+    <!-- Code Mirror -->
+    <script type="text/javascript" src="/resources/lib/codemirror-5.1/lib/codemirror.js"></script>
 
     <script type="text/javascript" src="/app.js"></script>
 </head>
