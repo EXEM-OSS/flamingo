@@ -18,6 +18,7 @@ CONSTANTS.CONTEXT_PATH                  = '';
 CONSTANTS.FS                            = {};
 CONSTANTS.DESIGNER                      = {};
 CONSTANTS.DESIGNER.TREE                 = {};
+CONSTANTS.OOZIE                         = {};
 
 CONSTANTS.DESIGNER.TREE.GET             = '/tree/get.json';
 
@@ -52,3 +53,8 @@ CONSTANTS.FS.HDFS_COPY_TO_LOCAL                 = '/fs/hdfs/copyToLocal';
 CONSTANTS.FS.HDFS_SAVE_MAX                      = '/fs/hdfs/saveMax';
 CONSTANTS.FS.GET_HDFS_TOP5                      = '/fs/top5.json';
 CONSTANTS.FS.CHECK_FILEINFO                     = '/fs/hdfs/checkFileInfo';
+
+///////////////////////////////////////
+// Workflow Designer
+///////////////////////////////////////
+CONSTANTS.OOZIE.WORKFLOW_ACTION                 = '/oozie/workflow/action.json';
