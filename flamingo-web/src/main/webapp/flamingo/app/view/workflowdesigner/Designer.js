@@ -35,25 +35,35 @@ Ext.define('Flamingo.view.workflowdesigner.Designer', {
         align: 'stretch'
     },
 
-    flex: 1,
-    border: false,
+    bodyStyle: {
+        background: '#dcdcdc'
+    },
+
+    defaults: {
+        frame: true
+    },
+
     items: [
         {
-            region: 'center',
-            layout: 'fit',
-            height: 160,
-            collapseMode: 'mini',
-            collapsible: true,
-            split: false,
-            header: false,
-            items: {
-                xtype: 'nodeTab'
-            }
+            xtype: 'component',
+            height: 60,
+            style: {
+                background: '#FFFFFF'
+            },
+            html: '<h2 style="padding: 0; margin:22px 0 0 30px;">Workflow Designer</h2>',
+            margin: '0 0 20 0'
         },
         {
-            region: 'south',
+            xtype: 'nodeTab',
+            height: 160,
+            header: false,
+            margin: '0 20 0 20'
+        },
+        {
+            xtype: 'container',
             layout: 'border',
             flex: 1,
+            margin: '10 20 0 20',
             items: [
                 {
                     region: 'center',
@@ -64,34 +74,28 @@ Ext.define('Flamingo.view.workflowdesigner.Designer', {
                     }
                 },
                 {
+                    xtype: 'variableGrid',
                     title: 'Workflow Variable',
                     region: 'east',
-                    layout: 'fit',
                     width: 250,
                     minWidth: 250,
                     maxWidth: 500,
                     collapsible: true,
                     split: true,
                     border: true,
-                    collapsed: true,
-                    items: {
-                        xtype: 'variableGrid'
-                    }
+                    collapsed: true
                 },
                 {
+                    xtype: 'workflowTree',
                     title: 'Workflow',
                     region: 'west',
-                    layout: 'fit',
                     width: 250,
                     minWidth: 200,
                     maxWidth: 300,
                     collapsible: true,
                     collapsed: false,
                     border: true,
-                    split: true,
-                    items: {
-                        xtype: 'workflowTree'
-                    }
+                    split: true
                 }
             ]
         }
