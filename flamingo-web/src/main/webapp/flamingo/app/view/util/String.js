@@ -265,13 +265,13 @@ Ext.define('Flamingo.view.util.String', {
     }
 });
 
-var wrap = util.String.wrap;
-var trim = util.String.trim;
-var escapeHTML = util.String.escapeHTML;
-var isBlank = util.String.isBlank;
-var replaceAll = util.String.replaceAll;
-var startsWith = util.String.startsWith;
-var endsWith = util.String.endsWith;
-var occurrence = util.String.occurrence;
-var toCommaNumber = util.String.toCommaNumber;
-var fileSize = util.String.fileSize;
+var wrap = Flamingo.view.util.String.wrap;
+var trim = Flamingo.view.util.String.trim;
+var escapeHTML = Flamingo.view.util.String.escapeHTML;
+var isBlank = Flamingo.view.util.String.isBlank;
+var replaceAll = Flamingo.view.util.String.replaceAll;
+var startsWith = Flamingo.view.util.String.startsWith;
+var endsWith = Flamingo.view.util.String.endsWith;
+var occurrence = Flamingo.view.util.String.occurrence;
+var toCommaNumber = Flamingo.view.util.String.toCommaNumber;
+var fileSize = Flamingo.view.util.String.fileSize;

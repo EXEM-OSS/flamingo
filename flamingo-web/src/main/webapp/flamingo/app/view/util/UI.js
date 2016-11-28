@@ -236,15 +236,15 @@ Ext.define('Flamingo.view.util.UI', {
     }
 });
 
-var log = util.UI.log;
-var query = util.UI.query;
-var autoSize = util.UI.autoSize;
-var msg = util.UI.msgPopup;
-var info = util.UI.infomsg;
-var error = util.UI.errormsg;
-var updateNode = util.UI.updateNode;
-var updateParentNode = util.UI.updateParentNode;
-var getTabItem = util.UI.getTabItem;
-var getTabIndex = util.UI.getTabIndex;
-var updateSelectedNode = util.UI.updateSelectedNode;
+var log = Flamingo.view.util.UI.log;
+var query = Flamingo.view.util.UI.query;
+var autoSize = Flamingo.view.util.UI.autoSize;
+var msg = Flamingo.view.util.UI.msgPopup;
+var info = Flamingo.view.util.UI.infomsg;
+var error = Flamingo.view.util.UI.errormsg;
+var updateNode = Flamingo.view.util.UI.updateNode;
+var updateParentNode = Flamingo.view.util.UI.updateParentNode;
+var getTabItem = Flamingo.view.util.UI.getTabItem;
+var getTabIndex = Flamingo.view.util.UI.getTabIndex;
+var updateSelectedNode = Flamingo.view.util.UI.updateSelectedNode;
 var progressStore;

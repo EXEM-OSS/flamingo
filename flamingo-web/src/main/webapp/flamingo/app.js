@@ -19,12 +19,7 @@ Ext.application({
     extend: 'Flamingo.Application',
 
     requires: [
-        'Flamingo.view.util.*',
-        'Flamingo.view.main.Main',
-        'Flamingo.view.hdfsbrowser.HdfsBrowser',
-        'Flamingo.view.ooziemonitoring.Oozie',
-        'Flamingo.view.workflowdesigner.Designer',
-        'Flamingo.view.s3browser.S3Browser'
+        'Flamingo.*'
     ],
 
     mainView: 'Flamingo.view.main.Main'

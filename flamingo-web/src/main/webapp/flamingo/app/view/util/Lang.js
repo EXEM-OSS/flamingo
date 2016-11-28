@@ -59,4 +59,4 @@ Ext.define('Flamingo.view.util.Lang', {
     }
 });
 
-var toBoolean = util.Lang.toBoolean;
+var toBoolean = Flamingo.view.util.Lang.toBoolean;

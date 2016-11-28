@@ -91,6 +91,6 @@ Ext.define('Flamingo.view.util.Date', {
     }    
 });
 
-var dateFormat = util.Date.format;
-var dateFormat2 = util.Date.dateFormat;
-var toHumanReadableTime = util.Date.toHumanReadableTime;
+var dateFormat = Flamingo.view.util.Date.format;
+var dateFormat2 = Flamingo.view.util.Date.dateFormat;
+var toHumanReadableTime = Flamingo.view.util.Date.toHumanReadableTime;

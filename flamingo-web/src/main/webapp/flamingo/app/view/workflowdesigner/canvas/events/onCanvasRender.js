@@ -16,6 +16,11 @@
 Ext.define('Flamingo.view.workflowdesigner.canvas.events.onCanvasRender', {
     extend: 'Ext.app.ViewController',
 
+    requires: [
+        'Flamingo.view.workflowdesigner.canvas.events.onCanvasActionController',
+        'Flamingo.view.workflowdesigner.canvas.events._drawDefaultNodeController'
+    ],
+
     /**
      * 캔버스 패널 Render 핸들러 :
      * - 내부 SVG 그래프 캔버스 인스턴스를 생성한다.
