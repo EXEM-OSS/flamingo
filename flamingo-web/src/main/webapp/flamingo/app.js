@@ -19,7 +19,7 @@ Ext.application({
     extend: 'Flamingo.Application',
 
     requires: [
-        'util.*',
+        'Flamingo.view.util.*',
         'Flamingo.view.main.Main',
         'Flamingo.view.hdfsbrowser.HdfsBrowser',
         'Flamingo.view.ooziemonitoring.Oozie',
