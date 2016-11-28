@@ -1,6 +1,7 @@
-<workflow-app xmlns="${version!"uri:oozie:workflow:0.5"}" name="${name}">
+<workflow-app xmlns="${workflow.version!"uri:oozie:workflow:0.5"}" name="${workflow.name}">
 
-    <#list actions as action>
+    <start to="${workflow.startTo}"/>
+    <#list workflow.actions as action>
         <#switch action.category>
             <#case "parameters">
                 <#include "parameters.ftl">
@@ -11,12 +12,12 @@
             <#case "credentials">
                 <#include "credentials.ftl">
                 <#break>
-            <#case "start">
-                <#include "start.ftl">
-                <#break>
-            <#case "end">
-                <#include "end.ftl">
-                <#break>
+            <#--<#case "start">-->
+                <#--<#include "start.ftl">-->
+                <#--<#break>-->
+            <#--<#case "end">-->
+                <#--<#include "end.ftl">-->
+                <#--<#break>-->
             <#case "kill">
                 <#include "kill.ftl">
                 <#break>
@@ -35,5 +36,5 @@
             <#default>
         </#switch>
     </#list>
-
+    <end name="${workflow.endName}"/>
 </workflow-app>
