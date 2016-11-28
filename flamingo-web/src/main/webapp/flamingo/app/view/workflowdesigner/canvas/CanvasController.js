@@ -97,6 +97,9 @@ Ext.define('Flamingo.view.workflowdesigner.canvas.CanvasController', {
     onRunClick: function () {
         Ext.create('Flamingo.view.workflowdesigner.canvas.events.onCanvasActionController').onRunClick();
     },
+    onActionClick: function () {
+        Ext.create('Flamingo.view.workflowdesigner.canvas.events.onCanvasActionController').onActionClick();
+    },
     onWorkflowXMLClick: function () {
         Ext.create('Flamingo.view.workflowdesigner.canvas.events.onCanvasActionController').onWorkflowXMLClick();
     },
