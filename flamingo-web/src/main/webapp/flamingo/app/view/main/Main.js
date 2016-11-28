@@ -58,6 +58,10 @@ Ext.define('Flamingo.view.main.Main', {
         region: 'center',
         flex: 1,
         layout: 'fit'
+    },{
+        xtype: 'component',
+        region: 'south',
+        height: 20
     }]
 
 });
