@@ -108,27 +108,29 @@ Ext.define('Flamingo.view.workflowdesigner.property.HADOOP_SHELL', {
                         'font-size': '12px'
                     },
                     listeners: {
-                        boxready: function (editor, width, height) {
-                            var codeMirror = CodeMirror.fromTextArea(editor.getEl().query('textarea')[0], {
-                                mode: 'text/x-sh',
-                                layout: 'fit',
-                                theme: 'mdn-like',
-                                indentUnit: 2,
-                                lineWrapping: true,
-                                lineNumbers: true,
-                                matchBrackets: true,
-                                smartIndent: true,
-                                showModes: false,
-                                autofocus: true
-                            });
-
-                            codeMirror.on('blur', function () {
-                                editor.setValue(codeMirror.getValue());
-                            });
-                        },
-                        resize: function (editor, width, height) {
-                            this.getEl().query('.CodeMirror')[0].CodeMirror.setSize('100%', height);
-                        }
+                        // boxready: function (editor, width, height) {
+                        //
+                        //     var codeMirror = CodeMirror.fromTextArea(editor.getEl().query('textarea')[0], {
+                        //         mode: 'text/x-sh',
+                        //         //layout: 'fit',
+                        //         theme: 'mdn-like',
+                        //         indentUnit: 2,
+                        //         lineWrapping: true,
+                        //         lineNumbers: true,
+                        //         matchBrackets: true,
+                        //         smartIndent: true,
+                        //         showModes: false,
+                        //         autofocus: true
+                        //     });
+                        //
+                        //     codeMirror.on('blur', function () {
+                        //         editor.setValue(codeMirror.getValue());
+                        //     });
+                        // },
+                        // resize: function (editor, width, height) {
+                        //     this.getEl().query('.CodeMirror')[0].CodeMirror.setSize('100%', height);
+                        //     //this.getEl().query('.CodeMirror')[0].CodeMirror.setSize(width, height);
+                        // }
                     }
                 }
             ]
