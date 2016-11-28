@@ -14,6 +14,7 @@ public class Action {
   private String retryPolicy;
   private String okTo;
   private String errorTo;
+  private String message;
 
   public Data getData() {
     return data;
@@ -85,5 +86,13 @@ public class Action {
 
   public void setErrorTo(String errorTo) {
     this.errorTo = errorTo;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
   }
 }
