@@ -49,6 +49,7 @@ public class OozieWorkflowController {
     Response response = new Response();
     Map map = new HashMap<String, Object>();
     try {
+      // TODO : 아래 로직을 DB에서 꺼내와야 하며, 리펙토링 필요
       // set workflow
       Workflow workflow = new Workflow();
       workflow.setName(params.get("name").toString());
@@ -57,10 +58,10 @@ public class OozieWorkflowController {
       // set shell action
       ArrayList actions = new ArrayList<Action>();
       Action shellAction = new Action();
-      shellAction.setName("test Shell action");
+      shellAction.setName("testStartTo");
       shellAction.setCategory("action");
-      shellAction.setOkTo("okTo");
-      shellAction.setErrorTo("errorTo");
+      shellAction.setOkTo("testEndName");
+      shellAction.setErrorTo("killAction");
       // set data
       Data data = new Data();
       data.setType("shell");
@@ -69,7 +70,15 @@ public class OozieWorkflowController {
       data.setNameNode(nameNode);
       // make hierarchical object
       shellAction.setData(data);
+      //make kill action
+      Action killAction = new Action();
+      killAction.setCategory("kill");
+      killAction.setName("killAction");
+      killAction.setMessage("fail to shell action!!");
+      // set actions
       actions.add(shellAction);
+      actions.add(killAction);
+      // add actions to workflow
       workflow.setActions(actions);
       // set object to map
       map.put("workflow", workflow);
