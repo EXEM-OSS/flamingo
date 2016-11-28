@@ -55,6 +55,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowser', {
         },
         {
             xtype: 'panel',
+            cls: 'panel-shadow',
             margin: '0 20 0 20',
             title: 'Directory Navigation',
             border: false,
@@ -111,6 +112,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowser', {
         },
         {
             xtype: 'hdfsFilePanel',
+            cls: 'panel-shadow',
             margin: '10 20 0 20',
             minHeight: 400,
             flex: 1,

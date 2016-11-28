@@ -55,12 +55,14 @@ Ext.define('Flamingo.view.workflowdesigner.Designer', {
         },
         {
             xtype: 'nodeTab',
+            cls: 'panel-shadow',
             height: 160,
             header: false,
             margin: '0 20 0 20'
         },
         {
-            xtype: 'container',
+            xtype: 'panel',
+            cls: 'panel-shadow',
             layout: 'border',
             flex: 1,
             margin: '10 20 0 20',
