@@ -14,6 +14,8 @@ import java.net.URI;
 public class HdfsUtils {
   public static void localFileToHdfs(String localFilePath, String hdfsFilePath) throws IOException {
     Configuration conf = new Configuration();
+    conf.set("dfs.namenode.replication.min", "0");
+    //conf.set("dfs.client.use.datanode.hostname", "true");
     FileSystem fs = FileSystem.get(URI.create(hdfsFilePath), conf);
     fs.copyFromLocalFile(new Path(localFilePath), new Path(hdfsFilePath));
   }
