@@ -1,1 +1,1 @@
-    <start name="${action.name}" to="${action.to}"/>
+    <start to="${action.to}"/>

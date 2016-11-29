@@ -18,6 +18,7 @@ CONSTANTS.CONTEXT_PATH                  = '';
 CONSTANTS.FS                            = {};
 CONSTANTS.DESIGNER                      = {};
 CONSTANTS.DESIGNER.TREE                 = {};
+CONSTANTS.OOZIE                         = {};
 
 CONSTANTS.DESIGNER.TREE.GET             = '/tree/get.json';
 
@@ -73,3 +74,8 @@ CONSTANTS.FS.S3_DOWNLOAD_OBJECT                 = '/fs/s3/download.json';
 CONSTANTS.FS.S3_GET_OBJECT_PROPERTY             = '/fs/s3/getObjectProperty.json';
 CONSTANTS.FS.S3_GET_OBJECT_ACL                  = '/fs/s3/getObjectAcl.json';
 CONSTANTS.FS.S3_PREVIEW_OBJECT                  = '/fs/s3/getObjectAsString.json';
+
+///////////////////////////////////////
+// Workflow Designer
+///////////////////////////////////////
+CONSTANTS.OOZIE.WORKFLOW_ACTION                 = '/oozie/workflow/action.json';

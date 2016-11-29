@@ -1,4 +1,4 @@
-    <action name="${action.name}" <#if (action.cred)??>cred="${action.cred}"</#if> <#if (action.retryMax)??>retry-max="${action.retryMax}"</#if> <#if (action.retryInterval)??>retry-interval="${action.retryInterval}"</#if>>
+    <action name="${action.name}" <#if (action.cred)??>cred="${action.cred}"</#if> <#if (action.retryMax)??>retry-max="${action.retryMax}"</#if> <#if (action.retryInterval)??>retry-interval="${action.retryInterval}"</#if><#if (action.retryPolicy)??>retry-policy="${action.retryPolicy}"</#if>>
         <#if (action.data.type)??>
             <#switch action.data.type>
                 <#case "mapreduce">
@@ -34,4 +34,6 @@
                 <#default>
             </#switch>
         </#if>
+        <ok to="${action.okTo}"/>
+        <error to="${action.errorTo}"/>
     </action>

@@ -22,6 +22,8 @@
     <script type="text/javascript" src="/resources/js/const.js"></script>
     <script type="text/javascript" src="/resources/js/rest.js"></script>
 
+    <!-- Code Mirror -->
+    <script type="text/javascript" src="/resources/lib/codemirror-5.1/lib/codemirror.js"></script>
 
     <script id="microloader" data-app="579ca282-9238-45bf-add6-453515670ad7" type="text/javascript" src="bootstrap.js"></script>
 </head>

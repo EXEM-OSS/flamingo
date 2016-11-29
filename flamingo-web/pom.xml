@@ -178,6 +178,11 @@
             <artifactId>oozie-client</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.oozie</groupId>
+            <artifactId>oozie-core</artifactId>
+        </dependency>
+
         <!-- ====================== -->
         <!--  MyBatis Dependencies  -->
         <!-- ====================== -->
