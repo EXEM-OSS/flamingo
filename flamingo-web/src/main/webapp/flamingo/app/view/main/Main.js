@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 Ext.define('Flamingo.view.main.Main', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.container.Viewport',
     xtype: 'app-main',
 
     requires: [
@@ -58,6 +58,10 @@ Ext.define('Flamingo.view.main.Main', {
         region: 'center',
         flex: 1,
         layout: 'fit'
+    },{
+        xtype: 'component',
+        region: 'south',
+        height: 20
     }]
 
 });

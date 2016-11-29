@@ -318,5 +318,5 @@ Ext.define('Flamingo.view.s3browser.simple.SimpleS3BrowserController', {
      */
     setData: function(key, value) {
         this.getViewModel().set(key, value);
-    },
+    }
 });

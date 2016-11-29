@@ -17,7 +17,7 @@ Ext.define('Flamingo.view.hdfsbrowser.viewer.FileViewerForm', {
     extend: 'Ext.form.Panel',
     alias: 'widget.fileViewerForm',
     requires: [
-        'FEM.component.editor.AbstractEditor'
+        'Flamingo.view.editor.AbstractEditor'
     ],
 
     reference: 'fileViewerContentsForm',

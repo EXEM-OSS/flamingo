@@ -381,7 +381,7 @@ Ext.define('Flamingo.view.s3browser.S3BrowserController', {
                 if (btn == 'yes') {
                     var url = CONSTANTS.FS.S3_DELETE_BUCKET;
                     var params = {
-                        bucketName: bucketName, // 삭제할 버킷 명
+                        bucketName: bucketName // 삭제할 버킷 명
                     };
 
                     invokePostByMap(url, params,

@@ -36,7 +36,7 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowser', {
         align: 'stretch'
     },
     bodyStyle: {
-        background: '#EAEAEA'
+        background: '#dcdcdc'
     },
 
     defaults: {
@@ -55,10 +55,9 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowser', {
         },
         {
             xtype: 'panel',
-            minHeight: 400,
+            cls: 'panel-shadow',
             margin: '0 20 0 20',
-            flex: 1,
-            title: 'HDFS File',
+            title: 'Directory Navigation',
             border: false,
             layout: 'fit',
             dockedItems: [{
@@ -109,14 +108,16 @@ Ext.define('Flamingo.view.hdfsbrowser.HdfsBrowser', {
                     iconCls: 'fa fa-terminal fa-lg',
                     handler: 'onInputClick'
                 }]
-            }],
-            items: [
-                {
-                    xtype: 'hdfsFilePanel',
-                    title: 'File Browser',
-                    reference: 'hdfsFilePanel'
-                }
-            ]
+            }]
+        },
+        {
+            xtype: 'hdfsFilePanel',
+            cls: 'panel-shadow',
+            margin: '10 20 0 20',
+            minHeight: 400,
+            flex: 1,
+            title: 'File Browser',
+            reference: 'hdfsFilePanel'
         }
     ]
 });

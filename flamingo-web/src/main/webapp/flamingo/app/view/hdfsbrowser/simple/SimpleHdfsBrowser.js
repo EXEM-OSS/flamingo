@@ -22,10 +22,8 @@ Ext.define('Flamingo.view.hdfsbrowser.simple.SimpleHdfsBrowser', {
         'Flamingo.view.hdfsbrowser.information.HdfsInformation',
         'Flamingo.view.hdfsbrowser.Directory',
         'Flamingo.view.hdfsbrowser.File',
-        'Flamingo.view.hdfsbrowser.Treemap',
         'Flamingo.view.hdfsbrowser.context.Directory',
-        'Flamingo.view.hdfsbrowser.context.File',
-        'FEM.model.filesystem.hdfs.TreemapLegend'
+        'Flamingo.view.hdfsbrowser.context.File'
     ],
 
     config: {
