@@ -29,54 +29,9 @@ Ext.define('Flamingo.view.workflowdesigner.nodeList.NodeTab', {
             xtype: 'nodeList'
         },
         {
-            title: 'Hadoop Ecosystem',
+            title: 'Oozie',
             xtype: 'nodeList',
-            type: 'HADOOP'
-        },
-        {
-            title: 'Statistics',
-            xtype: 'nodeList',
-            type: 'STATISTICS'
-        },
-        {
-            title: 'Data Process',
-            xtype: 'nodeList',
-            type: 'ETL'
-        },
-        {
-            title: 'Ankus',
-            xtype: 'nodeList',
-            type: 'MINING'
-        },
-        {
-            title: 'Mahout',
-            xtype: 'nodeList',
-            type: 'MAHOUT'
-        },
-        {
-            title: 'In-Memory',
-            xtype: 'nodeList',
-            type: 'INMEMORY'
-        },
-        {
-            title: 'Integration',
-            xtype: 'nodeList',
-            type: 'INT'
-        },
-        {
-            title: 'RULES',
-            xtype: 'nodeList',
-            type: 'RULES'
-        },
-        {
-            title: 'ETC',
-            xtype: 'nodeList',
-            type: 'OTHERS'
-        },
-        {
-            title: 'GIS',
-            xtype: 'nodeList',
-            type: 'GIS'
+            type: 'OOZIE'
         }
     ]
 });
