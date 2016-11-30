@@ -22,7 +22,7 @@ body{font-family:'Montserrat', san-serif; font-size:13pt; line-height:1.5em; col
 
 /*헤더*/
 .header{background: #474b57;}
-.header .logo{height:30px; float:left; margin:25px 26px; background: url(../images/logo.png) center left no-repeat; padding-left:25px;}
+.header .logo{height:46px; width:160px; float:left; margin:17px 26px; background: url(../images/logo.png) center left no-repeat; padding-left:25px;}
 .header .logo h1{line-height:10px; font-size:17px; color: #ffffff; }
 .header .logo h1 span{font-size:14px; color:#a0a5b5;}
 .header .topmenu{float:right; margin:25px 26px;}
