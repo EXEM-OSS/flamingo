@@ -10,6 +10,8 @@ public class OozieWorkflowTestFixture {
     public Map createWorkflow(String workflowName) {
         Map workflow = new HashMap();
         workflow.put("name", workflowName);
+        workflow.put("startTo", "Start");
+        workflow.put("endName", "End");
         workflow.put("actions", new ArrayList());
         return workflow;
     }
@@ -186,6 +188,8 @@ public class OozieWorkflowTestFixture {
         node.put("cred", "1");
         node.put("retryMax", "2");
         node.put("retryInterval", "3");
+        node.put("okTo", "okAction");
+        node.put("errorTo", "killAction");
         actions.add(node);
 
         return workflow;
@@ -201,6 +205,8 @@ public class OozieWorkflowTestFixture {
         node.put("retryMax", "2");
         node.put("retryInterval", "3");
         node.put("data", data);
+        node.put("okTo", "okAction");
+        node.put("errorTo", "killAction");
         actions.add(node);
 
         return workflow;
