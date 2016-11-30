@@ -29,6 +29,9 @@ Ext.ns('Flamingo.view.workflowdesigner.shape.gis');
  * @type {string[]}
  */
 var shapes = [
+    // TODO : 추후 다른 컴포넌트도 추가 필요
+    'Flamingo.view.workflowdesigner.shape.OOZIE_SHELL',
+
     'Flamingo.view.workflowdesigner.shape.HADOOP_HIVE',
     'Flamingo.view.workflowdesigner.shape.HADOOP_MR',
     'Flamingo.view.workflowdesigner.shape.HADOOP_JAVA',
