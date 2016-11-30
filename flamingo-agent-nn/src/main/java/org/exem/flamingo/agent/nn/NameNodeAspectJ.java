@@ -27,8 +27,7 @@ import org.slf4j.LoggerFactory;
 /**
  * AspectJ를 사용하여 NameNode의 초기화 메소드가 실행할 때 Namenode Agent를 시작하는 Aspect.
  *
- *
- * @author Kyoung Sik, Kim
+ * @author Kyeong Sik, Kim
  * @since 0.1
  * @see org.apache.hadoop.hdfs.server.namenode.NameNode#initialize(Configuration)
  */

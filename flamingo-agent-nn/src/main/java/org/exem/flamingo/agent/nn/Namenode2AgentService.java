@@ -65,21 +65,21 @@ public interface Namenode2AgentService {
      *
      * @return Live 데이터 노드
      */
-    List<Map<String, Object>> getLiveNodes();
+    List<Map> getLiveNodes();
 
     /**
      * Dead 데이터 노드를 반환한다.
      *
      * @return Dead 데이터 노드
      */
-    List<Map<String, Object>> getDeadNodes();
+    List<Map> getDeadNodes();
 
     /**
      * Decommission 데이터 노드를 반환한다.
      *
      * @return Decommission 데이터 노드
      */
-    List<Map<String, Object>> getDecommissioningNodes();
+    List<Map> getDecommissioningNodes();
 
     /**
      * Namenode의 JVM Heap 정보를 반환한다.
@@ -251,4 +251,12 @@ public interface Namenode2AgentService {
      * @return true or false
      */
     boolean copyToLocal(String srcFullyQualifiedPath, String dstFullyQualifiedPath, String linuxUserHome, String username);
+
+    /**
+     * HDFS 경로에 대한 블락 정보를 가져온다.
+     *
+     * @param path  블락 정보를 볼 경로
+     * @return 블락 정보 구조체
+     */
+    Map getBlockInfo(String path) throws IOException;
 }
