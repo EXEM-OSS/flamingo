@@ -52,7 +52,7 @@ public class OozieWorkflowTestFixtureTest {
 
         String evaluated = FreeMarkerUtils.evaluate(conf, "workflow.ftl", workflow);
         System.out.println(XmlFormatter.format(evaluated));
-        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<start name=\"Start\" to=\"nextAction\"/>"));
+        Assert.assertEquals(1, StringUtils.countOccurrencesOf(evaluated, "<start to=\"Start\"/>"));
     }
 
     @Test
