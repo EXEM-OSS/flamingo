@@ -156,6 +156,8 @@ Ext.define('Flamingo.view.workflowdesigner.canvas.Canvas', {
     requires: [
         'Flamingo.view.workflowdesigner.canvas.CanvasController',
 
+        'Flamingo.view.workflowdesigner.property.OOZIE_SHELL',
+
         'Flamingo.view.workflowdesigner.property.HADOOP_HIVE',
         'Flamingo.view.workflowdesigner.property.HADOOP_MR',
         'Flamingo.view.workflowdesigner.property.HADOOP_JAVA',
