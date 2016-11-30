@@ -1,5 +1,6 @@
 package org.exem.flamingo.web.oozie.workflow;
 
+import org.apache.commons.beanutils.BeanMap;
 import org.exem.flamingo.shared.core.rest.Response;
 import org.exem.flamingo.web.oozie.workflow.model.Action;
 import org.exem.flamingo.web.oozie.workflow.model.Data;
@@ -82,7 +83,8 @@ public class OozieWorkflowController {
       // add actions to workflow
       workflow.setActions(actions);
       // set object to map
-      map.put("workflow", workflow);
+      //map.put("workflow", workflow);
+      map = new BeanMap(workflow);
 
       String xmlString = oozieWorkflowService.makeShellActionXml(map);
       String result = oozieWorkflowService.localOozieJobSend(xmlString);
