@@ -69,8 +69,6 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     cfg.setDefaultEncoding("UTF-8");
     cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
 
-    param.put("action_data_jobTracker", oozieJobTrackerUrl);
-
     try {
       result = FreeMarkerUtils.evaluate(cfg, "workflow.ftl", param);
       result = XmlFormatter.format(result);
