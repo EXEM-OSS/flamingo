@@ -1,7 +1,7 @@
-<workflow-app xmlns="${workflow.version!"uri:oozie:workflow:0.5"}" name="${workflow.name}">
+<workflow-app xmlns="${version!"uri:oozie:workflow:0.5"}" name="${name}">
 
-    <start to="${workflow.startTo}"/>
-    <#list workflow.actions as action>
+    <start to="${startTo}"/>
+    <#list actions as action>
         <#switch action.category>
             <#case "parameters">
                 <#include "parameters.ftl">
@@ -36,5 +36,5 @@
             <#default>
         </#switch>
     </#list>
-    <end name="${workflow.endName}"/>
+    <end name="${endName}"/>
 </workflow-app>
