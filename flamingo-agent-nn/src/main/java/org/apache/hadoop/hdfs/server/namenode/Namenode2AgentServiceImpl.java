@@ -18,19 +18,21 @@ package org.apache.hadoop.hdfs.server.namenode;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
-import org.apache.hadoop.hdfs.protocol.DatanodeInfo;
-import org.apache.hadoop.hdfs.protocol.FSConstants;
-import org.apache.hadoop.hdfs.protocol.HdfsConstants;
-import org.apache.hadoop.hdfs.protocol.HdfsFileStatus;
+import org.apache.hadoop.hdfs.protocol.*;
+import org.apache.hadoop.hdfs.server.blockmanagement.BlockManager;
 import org.apache.hadoop.hdfs.server.blockmanagement.DatanodeDescriptor;
 import org.apache.hadoop.hdfs.server.blockmanagement.DatanodeManager;
+import org.apache.hadoop.hdfs.server.blockmanagement.NumberReplicas;
 import org.apache.hadoop.hdfs.util.ReadOnlyList;
 import org.apache.hadoop.util.Time;
 import org.exem.flamingo.agent.nn.Namenode2AgentService;
+import org.exem.flamingo.agent.nn.hdfs.HdfsBlockInfo;
 import org.exem.flamingo.agent.nn.hdfs.HdfsFileInfo;
 import org.exem.flamingo.shared.model.rest.FileInfo;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.util.*;
 
 import static org.apache.hadoop.hdfs.server.namenode.Namenode2Agent.MEGA_BYTES;
@@ -272,6 +274,101 @@ public class Namenode2AgentServiceImpl extends FileSystemProvider implements Nam
     public ContentSummary getContentSummary(String path) throws IOException {
         FileSystem fs = FileSystem.get(Namenode2Agent.configuration);
         return fs.getContentSummary(new Path(path));
+    }
+
+    @Override
+    public Map getBlockInfo(String path) throws IOException {
+        Map<String, Object> result = new HashMap<>();
+
+        HdfsFileStatus file = Namenode2Agent.namenode.getRpcServer().getFileInfo(path);
+        if (file != null) {
+            FSNamesystem fsNamesystem = Namenode2Agent.namenode.getNamesystem();
+            BlockManager blockManager = fsNamesystem.getBlockManager();
+            int totalDataNodes = fsNamesystem.getNumberOfDatanodes(HdfsConstants.DatanodeReportType.LIVE);
+            Map<String,String[]> parameterMap = new HashMap<>();
+            parameterMap.put("path", new String[]{path});
+            PrintWriter printWriter = new PrintWriter(System.out);
+            InetAddress remoteAddress = InetAddress.getByName(Namenode2Agent.namenode.getNameNodeAddress().getHostName());
+            NamenodeFsck.Result res = new NamenodeFsck.Result(Namenode2Agent.configuration);
+            NamenodeFsck namenodeFsck = new NamenodeFsck(Namenode2Agent.configuration, Namenode2Agent.namenode,
+                    blockManager.getDatanodeManager().getNetworkTopology(), parameterMap, printWriter, totalDataNodes,
+                    remoteAddress);
+
+            namenodeFsck.check(path, file, res);
+
+            long fileLength = file.getLen();
+            fsNamesystem.readLock();
+
+            LocatedBlocks blocks;
+
+            try {
+                blocks = fsNamesystem.getBlockLocations(fsNamesystem.getPermissionChecker(), path, 0, fileLength,
+                        false, false).blocks;
+            } catch (Exception e) {
+                blocks = null;
+            } finally {
+                fsNamesystem.readUnlock();
+            }
+
+            if (blocks != null) {
+
+                List<HdfsBlockInfo> hdfsBlockInfoList = new ArrayList<>();
+                HdfsBlockInfo hdfsBlockInfo;
+
+                for (LocatedBlock locatedBlock : blocks.getLocatedBlocks()) {
+                    hdfsBlockInfo = new HdfsBlockInfo();
+                    ExtendedBlock block = locatedBlock.getBlock();
+
+                    hdfsBlockInfo.setBlockSize(block.getNumBytes());
+                    hdfsBlockInfo.setBlockId(block.getBlockId());
+                    hdfsBlockInfo.setBlockName(block.getBlockName());
+                    hdfsBlockInfo.setBlockPoolId(block.getBlockPoolId());
+                    hdfsBlockInfo.setGenerationStamp(block.getGenerationStamp());
+
+                    NumberReplicas numberReplicas =
+                            Namenode2Agent.namenode.getNamesystem().getBlockManager().countNodes(block.getLocalBlock());
+
+                    hdfsBlockInfo.setLiveReplicas(numberReplicas.liveReplicas());
+
+                    DatanodeInfo[] locations = locatedBlock.getLocations();
+
+                    List<String> nodePathList = new ArrayList<>();
+                    for (DatanodeInfo location : locations) {
+                        nodePathList.add(location.getHostName());
+                    }
+
+                    hdfsBlockInfo.setReplicationNodeList(nodePathList);
+
+                    hdfsBlockInfoList.add(hdfsBlockInfo);
+                }
+
+                result.put("hdfsBlockInfoList", hdfsBlockInfoList);
+            }
+
+            result.put("path", path);
+            result.put("missingSize", res.missingSize);
+            result.put("corruptFiles", res.corruptFiles);
+            result.put("corruptBlocks", res.corruptBlocks);
+            result.put("excessiveReplicas", res.excessiveReplicas);
+            result.put("missingReplicas", res.missingReplicas);
+            result.put("numUnderMinReplicatedBlocks", res.numUnderMinReplicatedBlocks);
+            result.put("numOverReplicatedBlocks", res.numOverReplicatedBlocks);
+            result.put("numUnderReplicatedBlocks", res.numUnderReplicatedBlocks);
+            result.put("numMisReplicatedBlocks", res.numMisReplicatedBlocks);
+            result.put("numMinReplicatedBlocks", res.numMinReplicatedBlocks);
+            result.put("totalBlocks", res.totalBlocks);
+            result.put("numExpectedReplicas", res.numExpectedReplicas);
+            result.put("totalOpenFilesBlocks", res.totalOpenFilesBlocks);
+            result.put("totalFiles", res.totalFiles);
+            result.put("totalOpenFiles", res.totalOpenFiles);
+            result.put("totalDirs", res.totalDirs);
+            result.put("totalSymlinks", res.totalSymlinks);
+            result.put("totalSize", res.totalSize);
+            result.put("totalOpenFilesSize", res.totalOpenFilesSize);
+            result.put("totalReplicas", res.totalReplicas);
+        }
+
+        return result;
     }
 
     private Map toMap(FileSystem fs, FileMetadata file) throws IOException {

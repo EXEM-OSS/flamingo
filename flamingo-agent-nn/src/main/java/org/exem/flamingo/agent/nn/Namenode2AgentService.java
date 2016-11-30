@@ -251,4 +251,12 @@ public interface Namenode2AgentService {
      * @return true or false
      */
     boolean copyToLocal(String srcFullyQualifiedPath, String dstFullyQualifiedPath, String linuxUserHome, String username);
+
+    /**
+     * HDFS 경로에 대한 블락 정보를 가져온다.
+     *
+     * @param path  블락 정보를 볼 경로
+     * @return 블락 정보 구조체
+     */
+    Map getBlockInfo(String path) throws IOException;
 }
