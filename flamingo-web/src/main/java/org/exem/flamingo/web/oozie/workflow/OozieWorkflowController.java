@@ -8,6 +8,8 @@ import org.exem.flamingo.web.oozie.workflow.model.Data;
 import org.exem.flamingo.web.oozie.workflow.model.Workflow;
 import org.exem.flamingo.web.util.FreeMarkerUtils;
 import org.exem.flamingo.web.util.XmlFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,11 @@ import java.util.Map;
 @RestController
 @RequestMapping("/oozie/workflow")
 public class OozieWorkflowController {
+
+  /**
+   * SLF4J Logging
+   */
+  private Logger logger = LoggerFactory.getLogger(OozieWorkflowController.class);
 
   @Autowired
   OozieWorkflowService oozieWorkflowService;
@@ -82,10 +89,10 @@ public class OozieWorkflowController {
       workflow.setActions(actions);
       // set object to map
       map.put("workflow", workflow);
+
       String xmlString = oozieWorkflowService.makeShellActionXml(map);
       String result = oozieWorkflowService.localOozieJobSend(xmlString);
-      // file write
-      FileUtils.writeStringToFile(new File(xmlStorePath + "/testShell.xml"), xmlString, "UTF-8");
+      logger.info("result : {}", result);
 
     } catch (IOException e) {
       e.printStackTrace();
