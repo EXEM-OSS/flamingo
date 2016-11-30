@@ -568,7 +568,7 @@ public class Namenode2AgentServiceImpl extends FileSystemProvider implements Nam
     }
 
     @Override
-    public List<Map<String, Object>> getLiveNodes() {
+    public List<Map> getLiveNodes() {
         List result = new ArrayList();
         NameNode namenode = Namenode2Agent.namenode;
 
@@ -610,7 +610,7 @@ public class Namenode2AgentServiceImpl extends FileSystemProvider implements Nam
     }
 
     @Override
-    public List<Map<String, Object>> getDeadNodes() {
+    public List<Map> getDeadNodes() {
         List result = new ArrayList();
         NameNode namenode = Namenode2Agent.namenode;
 
@@ -631,7 +631,7 @@ public class Namenode2AgentServiceImpl extends FileSystemProvider implements Nam
     }
 
     @Override
-    public List<Map<String, Object>> getDecommissioningNodes() {
+    public List<Map> getDecommissioningNodes() {
         List result = new ArrayList();
         NameNode namenode = Namenode2Agent.namenode;
         DatanodeManager dm = namenode.getNamesystem().getBlockManager().getDatanodeManager();
