@@ -32,7 +32,7 @@ Ext.define('Flamingo.view.main.Main', {
         region: 'north',
         height: 80,
         cls: 'header',
-        html: '<div class="logo"><h1>FLAMINGO</h1></div>'
+        html: '<div class="logo"></div>'
     },{
         xtype: 'dataview',
         region: 'west',
