@@ -26,6 +26,7 @@
 
     <bean id="simpleHttpHandler" class="org.exem.flamingo.agent.nn.SimpleHttpHandler"/>
 
+    <!-- Http Web Server -->
     <bean id="httpServer" class="org.springframework.remoting.support.SimpleHttpServerFactoryBean">
         <property name="contexts">
             <map>
