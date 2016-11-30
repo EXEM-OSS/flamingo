@@ -25,7 +25,7 @@
  * @class
  * @extends Flamingo.view.workflowdesigner.property.OOZIE_SPARK
  */
-Ext.define('Flamingo.view.workflowdesigner.property.HADOOP_SPARK', {
+Ext.define('Flamingo.view.workflowdesigner.property.OOZIE_SPARK', {
     extend: 'Flamingo.view.workflowdesigner.property._NODE_HADOOP',
     alias: 'widget.OOZIE_SPARK',
 
