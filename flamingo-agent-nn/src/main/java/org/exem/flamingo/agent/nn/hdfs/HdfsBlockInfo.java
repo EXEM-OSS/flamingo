@@ -4,6 +4,9 @@ import java.util.List;
 
 /**
  * HDFS Block의 메타 정보
+ *
+ * @author Kyeong Sik, Kim
+ * @since 0.1
  */
 public class HdfsBlockInfo {
     private long blockSize;
