@@ -42,6 +42,11 @@ public class OozieWorkflowRepositoryImpl extends PersistentRepositoryImpl implem
 
   @Override
   public void updateWorkflow(Map param) {
-    this.getSqlSessionTemplate().insert(this.getNamespace() + ".insertWorkflow", param);
+    this.getSqlSessionTemplate().insert(this.getNamespace() + ".updateWorkflow", param);
+  }
+
+  @Override
+  public void deleteWorkflow(int id) {
+    this.getSqlSessionTemplate().delete(this.getNamespace() + ".deleteWorkflow", id);
   }
 }
