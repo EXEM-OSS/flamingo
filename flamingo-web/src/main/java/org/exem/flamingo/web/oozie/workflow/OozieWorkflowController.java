@@ -163,8 +163,8 @@ public class OozieWorkflowController {
     Response response = new Response();
 
     //TODO : param을 통해서 입력 받도록 개발 필요
-    int id = (int)oozieWorkflowService.getRecentWorkflow().get("id");
-
+    Map map = oozieWorkflowService.getRecentWorkflow();
+    long id = (long)map.get("id");
     try{
       oozieWorkflowService.deleteWorkflow(id);
       response.setSuccess(true);
