@@ -131,7 +131,7 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     oozieWorkflowRepository.updateWorkflow(param);
   }
 
-  public void deleteWorkflow(int id){
+  public void deleteWorkflow(long id){
     oozieWorkflowRepository.deleteWorkflow(id);
   }
 }
