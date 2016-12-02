@@ -5,7 +5,7 @@
     <!-- 1. Insert                              -->
     <!-- =======================================-->
 
-    <insert id="insert" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    <insert id="insertWorkflow" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
         INSERT INTO FL_WORKFLOW (
             WORKFLOW_ID,
             WORKFLOW_NAME,
@@ -59,7 +59,7 @@
 		WHERE TREE_ID = #{value}
     </select>
 
-    <select id="list" resultType="map">
+    <select id="listWorkflows" resultType="map">
         SELECT
         ID as id,
         WORKFLOW_ID as workflowId,
