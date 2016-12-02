@@ -17,6 +17,7 @@ package org.exem.flamingo.web.oozie.workflow;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,4 +28,5 @@ public interface OozieWorkflowService {
     //public void doShellWorkflow(String workflowXml) throws FileNotFoundException;
     public String makeShellActionXml(Map param) throws IOException;
     public String localOozieJobSend(String xmlString);
+    public List<Map> getWorkflows();
 }
