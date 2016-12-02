@@ -163,11 +163,10 @@ public class OozieWorkflowController {
     Response response = new Response();
 
     //TODO : param을 통해서 입력 받도록 개발 필요
-    Map tmpMap = new HashMap();
-    tmpMap.put("id", 7);
+    int id = (int)oozieWorkflowService.getRecentWorkflow().get("id");
 
     try{
-      oozieWorkflowService.deleteWorkflow((int)tmpMap.get("id"));
+      oozieWorkflowService.deleteWorkflow(id);
       response.setSuccess(true);
     }catch (Exception e){
       response.setSuccess(false);
