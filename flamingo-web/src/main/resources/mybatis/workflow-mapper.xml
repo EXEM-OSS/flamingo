@@ -5,7 +5,7 @@
     <!-- 1. Insert                              -->
     <!-- =======================================-->
 
-    <insert id="insertWorkflow" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    <insert id="insertWorkflow" parameterType="map">
         INSERT INTO FL_WORKFLOW (
             WORKFLOW_ID,
             WORKFLOW_NAME,
@@ -76,7 +76,7 @@
 
     <!-- =======================================-->
     <!-- 4. Update                              -->
-    <!-- =======================================-->
+    <!-- ======================= ================-->
 
     <update id="update" parameterType="map">
         UPDATE
