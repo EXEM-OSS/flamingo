@@ -109,8 +109,8 @@ public class OozieWorkflowController {
     return response;
   }
 
-  @RequestMapping("/save")
-  public Response saveWorkflow(@RequestParam Map param) {
+  @RequestMapping("/insert")
+  public Response insert(@RequestParam Map param) {
 
     Response response = new Response();
 
@@ -125,7 +125,7 @@ public class OozieWorkflowController {
     tmpMap.put("username", "flamingo");
 
     try{
-      oozieWorkflowService.saveWorkflow(tmpMap);
+      oozieWorkflowService.insert(tmpMap);
       response.setSuccess(true);
     }catch (Exception e){
       response.setSuccess(false);
@@ -171,6 +171,16 @@ public class OozieWorkflowController {
     }catch (Exception e){
       response.setSuccess(false);
     }
+
+    return response;
+  }
+
+  @RequestMapping(value = "save", method = RequestMethod.POST)
+  @ResponseStatus(HttpStatus.OK)
+  public Response Save(@RequestBody Map<String, Object> params) {
+    Response response = new Response();
+
+    response.setSuccess(true);
 
     return response;
   }
