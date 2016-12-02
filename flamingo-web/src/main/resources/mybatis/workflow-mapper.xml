@@ -78,7 +78,7 @@
     <!-- 4. Update                              -->
     <!-- ======================= ================-->
 
-    <update id="update" parameterType="map">
+    <update id="updateWorkflow" parameterType="map">
         UPDATE
         FL_WORKFLOW
         SET
