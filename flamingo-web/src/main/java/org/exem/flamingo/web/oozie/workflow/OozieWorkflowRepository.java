@@ -12,4 +12,5 @@ public interface OozieWorkflowRepository {
   public Map selectTreeId(String jobId);
   public List<Map> listWorkflows();
   public void insertWorkflow(Map param);
+  public void updateWorkflow(Map param);
 }
