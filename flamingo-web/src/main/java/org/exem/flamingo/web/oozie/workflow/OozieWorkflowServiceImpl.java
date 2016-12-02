@@ -116,6 +116,13 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     return topologyList;
   }
 
+  public Map getRecentWorkflow(){
+    Map workflow = new HashMap();
+    workflow = oozieWorkflowRepository.getRecentWorkflow();
+    // TODO : 전처리 필요 시 처리 로직 구현
+    return workflow;
+  }
+
   public void saveWorkflow(Map param){
     oozieWorkflowRepository.insertWorkflow(param);
   }
