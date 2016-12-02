@@ -2,7 +2,6 @@ package org.exem.flamingo.web.oozie.workflow;
 
 import org.apache.commons.beanutils.BeanMap;
 import org.exem.flamingo.shared.core.rest.Response;
-import org.exem.flamingo.shared.core.security.SessionUtils;
 import org.exem.flamingo.web.oozie.workflow.model.Action;
 import org.exem.flamingo.web.oozie.workflow.model.Data;
 import org.exem.flamingo.web.oozie.workflow.model.Workflow;
@@ -106,6 +105,31 @@ public class OozieWorkflowController {
     Response response = new Response();
     List<Map> workflows = oozieWorkflowService.getWorkflows();
     response.getList().addAll(workflows);
+
+    return response;
+  }
+
+  @RequestMapping("/save")
+  public Response saveWorkflow(@RequestParam Map param) {
+
+    Response response = new Response();
+
+    //TODO : param을 통해서 입력 받도록 개발 필요
+    Map tmpMap = new HashMap();
+    tmpMap.put("workflow_id", "workflowTestId");
+    tmpMap.put("workflow_name", "workflowName");
+    tmpMap.put("workflow_xml", "<xmlTest2/>");
+    tmpMap.put("designer_xml", "<xmlTest/>");
+    tmpMap.put("status", "Running");
+    tmpMap.put("tree_id", "1");
+    tmpMap.put("username", "flamingo");
+
+    try{
+      oozieWorkflowService.saveWorkflow(tmpMap);
+      response.setSuccess(true);
+    }catch (Exception e){
+      response.setSuccess(false);
+    }
 
     return response;
   }
