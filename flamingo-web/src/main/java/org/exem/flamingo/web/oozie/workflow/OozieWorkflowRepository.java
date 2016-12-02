@@ -10,5 +10,6 @@ public interface OozieWorkflowRepository {
   public static final String NAMESPACE = OozieWorkflowRepository.class.getName();
 
   public Map selectTreeId(String jobId);
-  public List<Map> list();
+  public List<Map> listWorkflows();
+  public void insertWorkflow(Map param);
 }
