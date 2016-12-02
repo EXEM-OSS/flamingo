@@ -123,15 +123,15 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     return workflow;
   }
 
-  public void saveWorkflow(Map param){
-    oozieWorkflowRepository.insertWorkflow(param);
-  }
-
   public void updateWorkflow(Map param){
     oozieWorkflowRepository.updateWorkflow(param);
   }
 
   public void deleteWorkflow(long id){
     oozieWorkflowRepository.deleteWorkflow(id);
+  }
+
+  public void insert(Map param){
+    oozieWorkflowRepository.insert(param);
   }
 }
