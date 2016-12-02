@@ -123,4 +123,8 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
   public void updateWorkflow(Map param){
     oozieWorkflowRepository.updateWorkflow(param);
   }
+
+  public void deleteWorkflow(int treeId){
+    oozieWorkflowRepository.deleteWorkflow(treeId);
+  }
 }
