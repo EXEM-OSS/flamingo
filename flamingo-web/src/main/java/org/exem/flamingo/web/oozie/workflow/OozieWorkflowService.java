@@ -30,7 +30,8 @@ public interface OozieWorkflowService {
     public String localOozieJobSend(String xmlString);
     public List<Map> getWorkflows();
     public Map getRecentWorkflow();
-    public void saveWorkflow(Map param);
     public void updateWorkflow(Map param);
     public void deleteWorkflow(long id);
+
+    public void insert(Map param);
 }
