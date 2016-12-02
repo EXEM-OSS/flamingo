@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.exem.flamingo.web.oozie.workflow">
+<mapper namespace="org.exem.flamingo.web.oozie.workflow.OozieWorkflowRepository">
     <!-- =======================================-->
     <!-- 1. Insert                              -->
     <!-- =======================================-->
@@ -57,6 +57,21 @@
             USERNAME as username
         FROM FL_WORKFLOW
 		WHERE TREE_ID = #{value}
+    </select>
+
+    <select id="list" resultType="map">
+        SELECT
+        ID as id,
+        WORKFLOW_ID as workflowId,
+        WORKFLOW_NAME as workflowName,
+        VARIABLE as variable,
+        WORKFLOW_XML as workflowXml,
+        DESIGNER_XML as designerXml,
+        CREATE_DT as createDate,
+        STATUS as status,
+        TREE_ID as treeId,
+        USERNAME as username
+        FROM FL_WORKFLOW
     </select>
 
     <!-- =======================================-->
