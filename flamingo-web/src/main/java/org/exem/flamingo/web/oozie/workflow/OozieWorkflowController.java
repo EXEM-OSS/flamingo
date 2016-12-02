@@ -133,4 +133,28 @@ public class OozieWorkflowController {
 
     return response;
   }
+
+  @RequestMapping("/update")
+  public Response updateWorkflow(@RequestParam Map param) {
+    Response response = new Response();
+
+    //TODO : param을 통해서 입력 받도록 개발 필요
+    Map tmpMap = new HashMap();
+    tmpMap.put("workflowId", "UpdateWorkflowTestId");
+    tmpMap.put("workflowName", "UpdateWorkflowName");
+    tmpMap.put("workflowXml", "<xmlTest2Update/>");
+    tmpMap.put("designerXml", "<xmlTestUpdate/>");
+    tmpMap.put("status", "Update");
+    tmpMap.put("treeId", 1);
+    tmpMap.put("username", "flamingo_update");
+
+    try{
+      oozieWorkflowService.updateWorkflow(tmpMap);
+      response.setSuccess(true);
+    }catch (Exception e){
+      response.setSuccess(false);
+    }
+
+    return response;
+  }
 }
