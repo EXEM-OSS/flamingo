@@ -29,4 +29,5 @@ public interface OozieWorkflowService {
     public String makeShellActionXml(Map param) throws IOException;
     public String localOozieJobSend(String xmlString);
     public List<Map> getWorkflows();
+    public String saveWorkflow(Map param);
 }
