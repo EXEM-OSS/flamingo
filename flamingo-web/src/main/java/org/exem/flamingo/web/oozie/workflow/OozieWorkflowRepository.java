@@ -13,4 +13,5 @@ public interface OozieWorkflowRepository {
   public List<Map> listWorkflows();
   public void insertWorkflow(Map param);
   public void updateWorkflow(Map param);
+  public void deleteWorkflow(int id);
 }
