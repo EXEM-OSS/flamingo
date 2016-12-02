@@ -31,7 +31,12 @@ public class OozieWorkflowRepositoryImpl extends PersistentRepositoryImpl implem
   }
 
   @Override
-  public List<Map> list() {
-    return this.getSqlSessionTemplate().selectList(this.getNamespace() + ".list");
+  public List<Map> listWorkflows() {
+    return this.getSqlSessionTemplate().selectList(this.getNamespace() + ".listWorkflows");
+  }
+
+  @Override
+  public void insertWorkflow(Map param) {
+    this.getSqlSessionTemplate().insert(this.getNamespace() + ".insertWorkflow", param);
   }
 }
