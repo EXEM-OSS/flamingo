@@ -34,7 +34,7 @@
     <!-- 2. Delete                              -->
     <!-- =======================================-->
 
-    <update id="deleteWorkflow" parameterType="string">
+    <update id="deleteWorkflow" parameterType="int">
         DELETE FROM FL_WORKFLOW
         WHERE ID = #{value}
     </update>
