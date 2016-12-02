@@ -2,6 +2,7 @@ package org.exem.flamingo.web.oozie.workflow;
 
 import org.apache.commons.beanutils.BeanMap;
 import org.exem.flamingo.shared.core.rest.Response;
+import org.exem.flamingo.shared.core.security.SessionUtils;
 import org.exem.flamingo.web.oozie.workflow.model.Action;
 import org.exem.flamingo.web.oozie.workflow.model.Data;
 import org.exem.flamingo.web.oozie.workflow.model.Workflow;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -95,6 +97,16 @@ public class OozieWorkflowController {
     }
 
     response.setSuccess(true);
+    return response;
+  }
+
+  @RequestMapping("/list")
+  public Response listWorkflow(@RequestParam Map param) {
+
+    Response response = new Response();
+    List<Map> workflows = oozieWorkflowService.getWorkflows();
+    response.getList().addAll(workflows);
+
     return response;
   }
 }
