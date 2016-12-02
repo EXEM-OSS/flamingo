@@ -32,5 +32,5 @@ public interface OozieWorkflowService {
     public Map getRecentWorkflow();
     public void saveWorkflow(Map param);
     public void updateWorkflow(Map param);
-    public void deleteWorkflow(int id);
+    public void deleteWorkflow(long id);
 }
