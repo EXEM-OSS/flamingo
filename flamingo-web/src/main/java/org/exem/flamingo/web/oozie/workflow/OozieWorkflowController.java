@@ -157,4 +157,22 @@ public class OozieWorkflowController {
 
     return response;
   }
+
+  @RequestMapping("/delete")
+  public Response deleteWorkflow(@RequestParam Map param) {
+    Response response = new Response();
+
+    //TODO : param을 통해서 입력 받도록 개발 필요
+    Map tmpMap = new HashMap();
+    tmpMap.put("id", 7);
+
+    try{
+      oozieWorkflowService.deleteWorkflow((int)tmpMap.get("id"));
+      response.setSuccess(true);
+    }catch (Exception e){
+      response.setSuccess(false);
+    }
+
+    return response;
+  }
 }
