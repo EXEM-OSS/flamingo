@@ -116,10 +116,11 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     return topologyList;
   }
 
-  public String saveWorkflow(Map param){
-
+  public void saveWorkflow(Map param){
     oozieWorkflowRepository.insertWorkflow(param);
+  }
 
-    return "success";
+  public void updateWorkflow(Map param){
+    oozieWorkflowRepository.updateWorkflow(param);
   }
 }
