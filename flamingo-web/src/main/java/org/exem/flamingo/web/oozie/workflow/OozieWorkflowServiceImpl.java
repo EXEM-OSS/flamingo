@@ -25,12 +25,15 @@ import org.exem.flamingo.web.util.HdfsUtils;
 import org.exem.flamingo.web.util.XmlFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.apache.oozie.client.OozieClient;
 import org.apache.oozie.client.WorkflowJob;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -44,6 +47,9 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
    * SLF4J Logging
    */
   private Logger logger = LoggerFactory.getLogger(OozieWorkflowServiceImpl.class);
+
+  @Autowired
+  OozieWorkflowRepository oozieWorkflowRepository;
 
   @Value("#{config['oozie.template.path']}")
   private String oozieTemplatePath;
@@ -104,5 +110,11 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     }
 
     return "Success!";
+  }
+
+  public List<Map> getWorkflows(){
+    List<Map> topologyList = new ArrayList<>();
+    topologyList = oozieWorkflowRepository.list();
+    return topologyList;
   }
 }
