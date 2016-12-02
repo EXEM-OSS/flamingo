@@ -59,6 +59,23 @@
 		WHERE TREE_ID = #{value}
     </select>
 
+    <select id="selectRecentWorkflow" resultType="map">
+        SELECT
+        ID as id,
+        WORKFLOW_ID as workflowId,
+        WORKFLOW_NAME as workflowName,
+        VARIABLE as variable,
+        WORKFLOW_XML as workflowXml,
+        DESIGNER_XML as designerXml,
+        CREATE_DT as createDate,
+        STATUS as status,
+        TREE_ID as treeId,
+        USERNAME as username
+        FROM FL_WORKFLOW
+        ORDER BY ID DESC
+        LIMIT 1
+    </select>
+
     <select id="listWorkflows" resultType="map">
         SELECT
         ID as id,
