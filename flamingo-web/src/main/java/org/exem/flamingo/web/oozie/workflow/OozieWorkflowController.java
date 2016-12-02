@@ -116,12 +116,12 @@ public class OozieWorkflowController {
 
     //TODO : param을 통해서 입력 받도록 개발 필요
     Map tmpMap = new HashMap();
-    tmpMap.put("workflow_id", "workflowTestId");
-    tmpMap.put("workflow_name", "workflowName");
-    tmpMap.put("workflow_xml", "<xmlTest2/>");
-    tmpMap.put("designer_xml", "<xmlTest/>");
+    tmpMap.put("workflowId", "workflowTestId");
+    tmpMap.put("workflowName", "workflowName");
+    tmpMap.put("workflowXml", "<xmlTest2/>");
+    tmpMap.put("designerXml", "<xmlTest/>");
     tmpMap.put("status", "Running");
-    tmpMap.put("tree_id", "1");
+    tmpMap.put("treeId", 1);
     tmpMap.put("username", "flamingo");
 
     try{
