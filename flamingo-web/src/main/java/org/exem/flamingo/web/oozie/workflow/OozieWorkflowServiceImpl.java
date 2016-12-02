@@ -32,10 +32,7 @@ import org.apache.oozie.client.OozieClient;
 import org.apache.oozie.client.WorkflowJob;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Created by Sanghyun Bak on 2016. 11. 22..
@@ -114,7 +111,15 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
 
   public List<Map> getWorkflows(){
     List<Map> topologyList = new ArrayList<>();
-    topologyList = oozieWorkflowRepository.list();
+    topologyList = oozieWorkflowRepository.listWorkflows();
+    // TODO : 전처리 필요 시 처리 로직 구현
     return topologyList;
+  }
+
+  public String saveWorkflow(Map param){
+
+    oozieWorkflowRepository.insertWorkflow(param);
+
+    return "success";
   }
 }
