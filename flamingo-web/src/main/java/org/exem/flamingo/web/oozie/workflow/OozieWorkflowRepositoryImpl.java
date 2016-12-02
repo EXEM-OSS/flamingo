@@ -37,7 +37,7 @@ public class OozieWorkflowRepositoryImpl extends PersistentRepositoryImpl implem
 
   @Override
   public Map getRecentWorkflow() {
-    return this.getSqlSessionTemplate().selectOne(this.getNamespace() + ".getRecentWorkflow");
+    return this.getSqlSessionTemplate().selectOne(this.getNamespace() + ".selectRecentWorkflow");
   }
 
   @Override
@@ -51,7 +51,7 @@ public class OozieWorkflowRepositoryImpl extends PersistentRepositoryImpl implem
   }
 
   @Override
-  public void deleteWorkflow(int id) {
+  public void deleteWorkflow(long id) {
     this.getSqlSessionTemplate().delete(this.getNamespace() + ".deleteWorkflow", id);
   }
 }
