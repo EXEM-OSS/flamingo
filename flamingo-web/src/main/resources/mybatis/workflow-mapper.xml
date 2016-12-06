@@ -5,6 +5,31 @@
     <!-- 1. Insert                              -->
     <!-- =======================================-->
 
+    <insert id="insert" parameterType="map">
+        INSERT INTO FL_WORKFLOW (
+        WORKFLOW_ID,
+        WORKFLOW_NAME,
+        VARIABLE,
+        WORKFLOW_XML,
+        DESIGNER_XML,
+        CREATE_DT,
+        STATUS,
+        TREE_ID,
+        USERNAME
+        )
+        VALUES (
+        #{workflowId},
+        #{workflowName},
+        #{variable},
+        #{workflowXml},
+        #{designerXml},
+        #{create},
+        #{status},
+        #{treeId},
+        #{username}
+        )
+    </insert>
+
     <insert id="insertWorkflow" parameterType="map">
         INSERT INTO FL_WORKFLOW (
             WORKFLOW_ID,

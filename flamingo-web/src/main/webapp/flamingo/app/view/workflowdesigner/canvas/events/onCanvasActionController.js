@@ -96,7 +96,7 @@ Ext.define('Flamingo.view.workflowdesigner.canvas.events.onCanvasActionControlle
 
                         info('Saving...', 'Saving workflow<br/>Please wait...');
 
-                        invokePostByXML(CONSTANTS.DESIGNER.SAVE, params, makeXml(),
+                        invokePostByXML(CONSTANTS.OOZIE.WORKFLOW_SAVE, params, makeXml(),
                             function (response) {
                                 var obj = Ext.decode(response.responseText);
                                 if (obj.success) {
@@ -599,6 +599,7 @@ Ext.define('Flamingo.view.workflowdesigner.canvas.events.onCanvasActionControlle
                             // 노드 프라퍼티 유효성 체크한 후 Graph Element 에 커스텀 데이터로 저장
                             var node = popWindow.child(nodextype), isChanged = false;
                             if (node.isFormValid()) {
+
                                 isChanged = Ext.encode(Ext.clone(canvas.graph.getCustomData(graphElement)).properties) !== Ext.encode(node.getNodeProperties());
 
                                 nodeData.properties = node.getNodeProperties();

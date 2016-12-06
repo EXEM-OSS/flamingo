@@ -34,4 +34,5 @@ public interface OozieWorkflowService {
     public void deleteWorkflow(long id);
 
     public void insert(Map param);
+    public Map<String, Object> saveAsNew(String parentTreeId, String xml, String username);
 }

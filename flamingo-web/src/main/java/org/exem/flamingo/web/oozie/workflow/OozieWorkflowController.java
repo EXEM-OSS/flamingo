@@ -1,7 +1,23 @@
+/*
+ * Copyright 2012-2016 the Flamingo Community.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.exem.flamingo.web.oozie.workflow;
 
 import org.apache.commons.beanutils.BeanMap;
 import org.exem.flamingo.shared.core.rest.Response;
+import org.exem.flamingo.web.model.rest.Tree;
 import org.exem.flamingo.web.oozie.workflow.model.Action;
 import org.exem.flamingo.web.oozie.workflow.model.Data;
 import org.exem.flamingo.web.oozie.workflow.model.Workflow;
@@ -13,10 +29,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
 
 /**
  * Oozie workflow controller.
@@ -175,13 +189,18 @@ public class OozieWorkflowController {
     return response;
   }
 
-  @RequestMapping(value = "save", method = RequestMethod.POST)
-  @ResponseStatus(HttpStatus.OK)
-  public Response Save(@RequestBody Map<String, Object> params) {
+  @RequestMapping("/save")
+  public Response save(@RequestParam(defaultValue = "") String clusterName,
+                       @RequestParam(defaultValue = "") String processId,
+                       @RequestParam(defaultValue = "") String treeId,
+                       @RequestParam(defaultValue = "") String parentTreeId,
+                       @RequestBody String xml) {
+
     Response response = new Response();
 
-    response.setSuccess(true);
+    oozieWorkflowService.saveAsNew(treeId, xml, "testUser");
 
+    response.setSuccess(true);
     return response;
   }
 }
