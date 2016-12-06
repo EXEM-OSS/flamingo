@@ -17,6 +17,7 @@ package org.exem.flamingo.web.oozie.workflow;
 
 import org.exem.flamingo.shared.core.repository.PersistentRepositoryImpl;
 import org.exem.flamingo.web.jdbc.FlamingoSessionTemplate;
+import org.exem.flamingo.web.oozie.workflow.model.Workflow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -68,5 +69,9 @@ public class OozieWorkflowRepositoryImpl extends PersistentRepositoryImpl implem
   @Override
   public int update(Map param) {
     return this.getSqlSessionTemplate().update(this.getNamespace() + ".update", param);
+  }
+
+  public Workflow selectByTreeId(long treeId) {
+    return this.getSqlSessionTemplate().selectOne(NAMESPACE + ".selectByTreeId", treeId);
   }
 }

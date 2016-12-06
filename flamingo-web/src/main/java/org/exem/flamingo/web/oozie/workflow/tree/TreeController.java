@@ -85,7 +85,8 @@ public class TreeController implements InitializingBean {
     map.put("id", 1);
     map.put("cls", "file");
     map.put("text", "testName");
-    //map.put("leaf", !NodeType.FOLDER.equals(tree.getNodeType()));
+    map.put("leaf", true);
+    response.getList().add(map);
 
     response.setSuccess(true);
     return response;

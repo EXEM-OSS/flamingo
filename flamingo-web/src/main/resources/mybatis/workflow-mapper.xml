@@ -68,7 +68,7 @@
     <!-- 3. Select                              -->
     <!-- =======================================-->
 
-    <select id="selectByTreeId" resultType="map"  parameterType="string">
+    <select id="selectByTreeId" resultType="map"  parameterType="long">
         SELECT
             ID as id,
             WORKFLOW_ID as workflowId,

@@ -30,6 +30,7 @@ import org.exem.flamingo.web.model.rest.Tree;
 import org.exem.flamingo.web.model.rest.TreeType;
 import org.exem.flamingo.web.model.rest.WorkflowStatusType;
 import org.exem.flamingo.web.oozie.workflow.activiti.task.Transformer;
+import org.exem.flamingo.web.oozie.workflow.model.Workflow;
 import org.exem.flamingo.web.util.FreeMarkerUtils;
 import org.exem.flamingo.web.util.HdfsUtils;
 import org.exem.flamingo.web.util.XmlFormatter;
@@ -265,5 +266,11 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
       }
     }
     return count;
+  }
+
+  @Override
+  public String loadDesignerXml(Long treeId) {
+    Workflow workflow = oozieWorkflowRepository.selectByTreeId(treeId);
+    return workflow.getDesignerXml();
   }
 }

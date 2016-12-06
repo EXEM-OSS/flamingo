@@ -35,4 +35,5 @@ public interface OozieWorkflowService {
 
     public void insert(Map param);
     public Map<String, Object> saveAsNew(String parentTreeId, String xml, String username);
+    public String loadDesignerXml(Long treeId);
 }

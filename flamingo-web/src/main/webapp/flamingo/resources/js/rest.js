@@ -19,10 +19,11 @@ CONSTANTS.FS                            = {};
 CONSTANTS.DESIGNER                      = {};
 CONSTANTS.DESIGNER.TREE                 = {};
 CONSTANTS.OOZIE                         = {};
+CONSTANTS.OOZIE.WORKFLOW                = {};
+CONSTANTS.OOZIE.WORKFLOW.TREE           = {};
 
 CONSTANTS.DESIGNER.TREE.GET             = '/tree/get.json';
-
-
+CONSTANTS.DESIGNER.LOAD                 = "/oozie/workflow/load.json";
 
 ///////////////////////////////////////
 // File System > HDFS
@@ -80,3 +81,4 @@ CONSTANTS.FS.S3_PREVIEW_OBJECT                  = '/fs/s3/getObjectAsString.json
 ///////////////////////////////////////
 CONSTANTS.OOZIE.WORKFLOW_ACTION                 = '/oozie/workflow/action.json';
 CONSTANTS.OOZIE.WORKFLOW_SAVE                   = '/oozie/workflow/save.json';
+CONSTANTS.OOZIE.WORKFLOW.TREE.GET               = '/oozie/workflow/treeGet.json'

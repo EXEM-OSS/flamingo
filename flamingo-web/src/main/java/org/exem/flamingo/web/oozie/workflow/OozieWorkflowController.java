@@ -203,4 +203,16 @@ public class OozieWorkflowController {
     response.setSuccess(true);
     return response;
   }
+
+  @RequestMapping(value = "/load", method = RequestMethod.GET)
+  @ResponseStatus(HttpStatus.OK)
+  //public Response load(@RequestParam String clusterName, @RequestParam Long treeId) {
+  public Response load(@RequestParam Long treeId) {
+    Response response = new Response();
+    String designerXml = oozieWorkflowService.loadDesignerXml(treeId);
+
+    response.setObject(designerXml);
+    response.setSuccess(true);
+    return response;
+  }
 }

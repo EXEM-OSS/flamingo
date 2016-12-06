@@ -15,6 +15,8 @@
  */
 package org.exem.flamingo.web.oozie.workflow;
 
+import org.exem.flamingo.web.oozie.workflow.model.Workflow;
+
 import java.util.List;
 import java.util.Map;
 
@@ -31,4 +33,5 @@ public interface OozieWorkflowRepository {
   public void deleteWorkflow(long id);
   public int insert(Map param);
   public int update(Map param);
+  public Workflow selectByTreeId(long treeId);
 }
