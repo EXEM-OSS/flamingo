@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/util                  http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- ========================= TRANSFORMER DEFINITION ========================= -->
+
+    <!-- 디자이너에서 그린 각 UI 노드를 Task로 변환시 Task 클래스를 매핑하기 위한 정보 -->
+    <bean id="transformer" class="org.exem.flamingo.web.oozie.workflow.activiti.task.Transformer">
+        <property name="defaultTask" value="org.opencloudengine.flamingo2.engine.designer.activiti.task.JavaTask"/>
+    </bean>
+
+    <!-- 디자이너의 XML을 BPM XML로 변환하는 변환기 -->
+    <util:properties id="taskProps">
+        <prop key="OOZIE_SHELL">org.exem.flamingo.engine.designer.activiti.task.ShellTask</prop>
+        <prop key="SUBPROCESS">org.opencloudengine.flamingo2.engine.designer.activiti.task.SubflowTask</prop>
+
+        <prop key="HADOOP_MR">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="HADOOP_PIG">org.opencloudengine.flamingo2.engine.designer.activiti.task.PigTask</prop>
+        <prop key="HADOOP_HIVE">org.opencloudengine.flamingo2.engine.designer.activiti.task.HiveTask</prop>
+        <prop key="HADOOP_JAVA">org.opencloudengine.flamingo2.engine.designer.activiti.task.JavaTask</prop>
+        <prop key="HADOOP_SQOOP_IMPORT">org.opencloudengine.flamingo2.engine.designer.activiti.task.SqoopImportTask</prop>
+        <prop key="HADOOP_SQOOP_EXPORT">org.opencloudengine.flamingo2.engine.designer.activiti.task.SqoopExportTask</prop>
+        <prop key="HADOOP_SHELL">org.opencloudengine.flamingo2.engine.designer.activiti.task.ShellTask</prop>
+        <prop key="HADOOP_PYTHON">org.opencloudengine.flamingo2.engine.designer.activiti.task.PythonTask</prop>
+        <prop key="HADOOP_SPARK">org.opencloudengine.flamingo2.engine.designer.activiti.task.SparkTask</prop>
+        <prop key="HADOOP_R">org.opencloudengine.flamingo2.engine.designer.activiti.task.RTask</prop>
+
+        <prop key="ALG_ANKUS_CERTAIN_FACTOR_SUM">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_CF_ITEM_RECOMMEND">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_CF_SIM">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_CF_USER_RECOMMEND">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_CONTENT_SIM">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_CORR_BOOL">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_CORR_NUMERIC">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_CORR_STRING">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_KMEANS">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_EM">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_ID3">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_NOMINAL_STATISTICS">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_NORMAL">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_ANKUS_NUMERIC_STATISTICS">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+
+        <prop key="ETL_UIMA_APP">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ETL_UIMA_SEQ">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ETL_APACHE_ACCESS">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ETL_CHAR_REMOVER">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+
+        <prop key="ALG_MAHOUT_CF_ITEM">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_KMEANS">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_FUZZY_K_MEANS">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_MINHASH">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_CANOPY">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_PARALLEL_FP_MINING">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_MATRIX_FACT_ALS">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_PARALLEL_ALS">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_NAIVE_MATRIX">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_SPECTRAL_K_MEANS">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_STREAMING_K_MEANS">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_SEQ2SPARSE">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_TESTNB">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_TRAINNB">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_QUALCLUSTER">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_CLUSTER_DUMP">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+        <prop key="ALG_MAHOUT_SEQDIRECTORY">org.opencloudengine.flamingo2.engine.designer.activiti.task.MapreduceTask</prop>
+    </util:properties>
+
+</beans>
