@@ -648,12 +648,6 @@
                 <version>${commons.cli.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>commons-fileupload</groupId>
-                <artifactId>commons-fileupload</artifactId>
-                <version>${commons.fileupload.version}</version>
-            </dependency>
-
             <!-- ====== -->
             <!--  JSON  -->
             <!-- ====== -->
@@ -888,6 +882,12 @@
                         <artifactId>xercesImpl</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.oozie</groupId>
+                <artifactId>oozie-core</artifactId>
+                <version>${oozie.version}</version>
             </dependency>
 
             <!-- =============== -->
