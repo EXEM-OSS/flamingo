@@ -7,14 +7,18 @@ import org.apache.oozie.service.ServiceException;
 import org.apache.oozie.service.Services;
 import org.apache.oozie.util.XLog;
 
+import java.io.IOException;
+import java.util.Properties;
+
 public class JpaNativeQueryExecutorService implements Service {
 
     private static XLog LOG;
 
+    private Properties config;
+
     private JPAService jpaService;
 
     private ObjectMapper objectMapper;
-
 
     @Override
     public void init(Services services) throws ServiceException {
@@ -22,6 +26,10 @@ public class JpaNativeQueryExecutorService implements Service {
         LOG.info("[Flamingo] Start init.");
         objectMapper = new ObjectMapper();
         jpaService = services.get(JPAService.class);
+
+        loadConfig();
+        LOG.info("[Flamingo] Finish init config.");
+        LOG.info("[Flamingo] Finish.");
     }
 
     @Override
@@ -32,5 +40,15 @@ public class JpaNativeQueryExecutorService implements Service {
     @Override
     public Class<? extends Service> getInterface() {
         return null;
+    }
+
+    private void loadConfig() {
+        config = new Properties();
+        try {
+            config.load(getClass().getResourceAsStream("/config.properties"));
+        } catch (IOException e) {
+            config.setProperty("port", "31000");
+            e.printStackTrace();
+        }
     }
 }
