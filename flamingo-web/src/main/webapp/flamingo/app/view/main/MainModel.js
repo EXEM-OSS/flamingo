@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+/* *!/
 Ext.define('Flamingo.view.main.MainModel', {
     extend: 'Ext.app.ViewModel',
 
@@ -28,7 +28,7 @@ Ext.define('Flamingo.view.main.MainModel', {
             },{
                 text: 'Ooozi Monitoring',
                 icon: 'fa fa-area-chart',
-                view: 'monitoring'
+                view: 'ooziedashboard'
             },{
                 text: 'HDFS Browser',
                 icon: 'fa fa-file-text-o',
@@ -42,4 +42,17 @@ Ext.define('Flamingo.view.main.MainModel', {
         }
     }
 
+});*/
+
+Ext.define('Flamingo.view.main.MainModel', {
+    extend: 'Ext.app.ViewModel',
+    alias: 'viewmodel.main',
+
+    data: {
+        currentView: null
+    },
+
+    stores: {
+        navigationTree: Ext.create('Flamingo.store.NavigationTree')
+    }
 });

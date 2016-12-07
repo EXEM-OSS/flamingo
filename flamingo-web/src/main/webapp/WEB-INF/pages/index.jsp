@@ -9,7 +9,12 @@
 
     <title>Flamingo</title>
 
+    <link type="text/css" rel="stylesheet" href="/resources/css/app.css"/>
     <link type="text/css" rel="stylesheet" href="/resources/css/common.css"/>
+    <link type="text/css" rel="stylesheet" href="/resources/css/widget.css"/>
+    <link type="text/css" rel="stylesheet" href="/resources/css/vis.css"/>
+    <link type="text/css" rel="stylesheet" href="/resources/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="/resources/css/timeline-view.css"/>
 
     <script type="text/javascript" src="/config/js.json"></script>
 
@@ -21,6 +26,17 @@
 
     <script type="text/javascript" src="/resources/js/const.js"></script>
     <script type="text/javascript" src="/resources/js/rest.js"></script>
+    <script type="text/javascript" src="/resources/js/patch.js"></script>
+
+    <!-- Ace Editor -->
+    <script src="/resources/js/aceeditor/src-noconflict/ace.js"></script>
+    <script src="/resources/js/aceeditor/src-noconflict/ext-language_tools.js"></script>
+
+    <!-- Vis timeline -->
+    <script type="text/javascript" src="/resources/js/vis/vis.js"></script>
+
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="/resources/js/bootstrap/tooltip.js"></script>
 
     <!-- Code Mirror -->
     <script type="text/javascript" src="/resources/lib/codemirror-5.1/lib/codemirror.js"></script>

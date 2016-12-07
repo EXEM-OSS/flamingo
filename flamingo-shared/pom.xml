@@ -245,5 +245,14 @@
             <artifactId>spring-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- ============ -->
+        <!-- Apache Oozie -->
+        <!-- ============ -->
+
+        <dependency>
+            <groupId>org.apache.oozie</groupId>
+            <artifactId>oozie-client</artifactId>
+        </dependency>
     </dependencies>
 </project>

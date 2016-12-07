@@ -1,0 +1,119 @@
+.headerbar {
+  background-color: #474b57;
+}
+
+.header-logo {
+  height: 36px;
+  width: 500px;
+  float: left;
+  margin: 16px 15px;
+  background: url(/resources/images/logo.png) center left no-repeat;
+  padding-left: 0px;
+}
+
+
+.header-logo h1 {
+  line-height: 7px;
+  font-size: 17px;
+  color: #ffffff;
+}
+
+.header-logo h1 span {
+  font-size: 14px;
+  color: #a0a5b5;
+}
+
+@include treelist-ui(
+  $ui: 'treemenu',
+
+  // Extra padding left/right
+  $padding: 0 25px 0 25px,
+
+    // Black-ish background color
+  $background-color: #2f323a,
+  $toolstrip-background-color: #2f323a,
+
+  $tool-selected-color: #f0f0f0,
+  $tool-selected-background-color: #3e4048,
+
+  $tool-float-indicator-width: 0px,
+
+    // Darker background for expanded subtrees
+  $item-expanded-background-color: #2f323a,
+
+    // Taller line height
+  $item-line-height : 60px,
+
+    // Off-white text
+  $item-icon-color: #ADB3B8,
+  $item-expander-color: #FFFFFF,
+  $item-text-color: #edeff5,
+
+    // Brighter when hovered
+  $row-over-background-color: #3e4048,
+  $item-icon-over-color: #fff,
+  $item-expander-over-color: #fff,
+  $item-text-over-color: #fff,
+
+  $row-indicator-width: 0px,
+
+    // Various sizes for the pieces:
+  $item-text-font-size: 16px,
+  $item-icon-font-size: 16px,
+  $item-icon-width: 30px,
+
+  $item-expander-width: 0px,
+  $item-expander-glyph: none,
+  $item-expander-expanded-glyph: none,
+
+  $row-selected-background-color: #3e4048,
+
+  $item-text-icon-gap: 10px
+)
+
+.#{$prefix}treelist-item-expanded > .#{$prefix}treelist-row > .#{$prefix}treelist-item-wrap > .#{$prefix}treelist-item-icon {
+  border-radius: 15px;
+  background-color: #5093E1;
+  color: #FFFFFF;
+}
+
+.#{$prefix}treelist-item {
+  border-bottom: 1px solid #474b57;
+}
+
+.#{$prefix}treelist-item-text {
+  font-weight: 300;
+}
+
+.#{$prefix}treelist-row .#{$prefix}treelist-item-wrap .#{$prefix}treelist-item-icon {
+  height: 30px;
+  width: 30px;
+  margin-top: 15px;
+}
+
+.#{$prefix}treelist-item-icon:before {
+  line-height: 30px !important;
+}
+
+.#{$prefix}treelist-container .#{$prefix}treelist-item-leaf {
+  border: 0;
+}
+
+.#{$prefix}treelist-container .#{$prefix}treelist-item-leaf .#{$prefix}treelist-row .#{$prefix}treelist-item-wrap {
+  margin: 0;
+}
+
+.#{$prefix}treelist-container .#{$prefix}treelist-item-leaf .#{$prefix}treelist-row .#{$prefix}treelist-item-wrap .#{$prefix}treelist-item-icon {
+  width: 0;
+}
+
+.#{$prefix}treelist-container .#{$prefix}treelist-item-leaf .#{$prefix}treelist-row .#{$prefix}treelist-item-wrap .#{$prefix}treelist-item-text {
+  color: #a0a5b5;
+  margin: 0;
+  font-size: 14px;
+  line-height: 45px;
+}
+
+.#{$prefix}treelist-item-floated .#{$prefix}treelist-item-leaf .#{$prefix}treelist-row .#{$prefix}treelist-item-wrap .#{$prefix}treelist-item-text {
+  margin-left: 35px;
+}

@@ -1,0 +1,52 @@
+.dc_box .flex-ul {overflow:hidden; padding: 0; margin: 0 auto; display: table;}
+
+.block {display: block}
+
+.f4 {font-size: 24px;}
+
+@media screen and (min-width: 800px) {
+    .flex-small{width:75px !important;}
+    .flex-xsmall{width:30px !important;}
+    .dc_box .flex-square{height:60px; border-radius:12px; margin:auto; line-height:58px;}
+    .dc_box .flex-square-xsmall{height:30px; border-radius:12px; margin:auto; line-height:28px;}
+    .dc_box .flex-square-xsmall-o{height:40px; border-radius:12px; margin:auto; line-height:34px;}
+    .dc_box .flex-ul li.flex-size{width:90px; text-align:center; margin:0 3px 13px 3px;}
+    .dc_box .flex-ul li.flex-size-xsmall{width:120px; text-align:center; margin:0 3px 7px 3px;}
+    .dc_box .flex-ul li.flex-width{width:95px !important;}
+    .flex-font{font-size:20px; color:#333333; font-weight:300;}
+    .flex-font-small{font-size:16px; color:#333333; font-weight:300;}
+    .flex-font-head{font-size:13px; color:#a0a5b5; font-weight:bold; line-height:12px;}
+    .flex-font-head-small{font-size:11px; color:#a0a5b5; font-weight:bold; line-height:11px;}
+    .flex-font-head-xsmall{font-size:11px; color:#a0a5b5; font-weight:bold; line-height:11px; margin-bottom: 5px;}
+    .flex-font-widget{font-size:20px; color:#333333; font-weight:300;}
+
+    .dc_box .flex-col {margin-left: auto; margin-right: auto; height: 50px; width: 200px; background-color: #f1f3f7; border-radius: 10px;}
+    .dc_box .flex-col div {position: relative;float: left; width: 80px; margin-top: 8px; margin-left: 20px;}
+    .dc_box .flex-col span {display: block; font-size: 18px; line-height: 20px;}
+    .dc_box .flex-col small {display: block;}
+    .fixed-min-height-22 {min-height: 22px;}
+}
+
+@media screen and (min-width: 1600px) {
+    .flex-small{width:90px !important;}
+    .flex-xsmall{width:60px !important; }
+    .dc_box .flex-square-xsmall{height:60px; border-radius:12px; margin:auto; line-height:59px;}
+    .dc_box .flex-square-xsmall-o{height:60px; border-radius:12px; margin:auto; line-height:59px;}
+    .dc_box .flex-square{height:80px; border-radius:12px; margin:auto; line-height:77px;}
+    .dc_box .flex-ul li.flex-size{width:120px; text-align:center; margin:0 3px 13px 3px;}
+    .dc_box .flex-ul li.flex-size-xsmall{width:120px; text-align:center; margin:0 3px 7px 3px;}
+    .dc_box .flex-ul li.flex-size-xsmall{width:120px; text-align:center; margin:0 3px 7px 3px;}
+    .dc_box .flex-ul li.flex-width{width:120px !important;}
+    .flex-font{font-size:24px; color:#333333; font-weight:300;}
+    .flex-font-small{font-size:20px; color:#333333; font-weight:300;}
+    .flex-font-head{font-size:16px; color:#a0a5b5; font-weight:bold; line-height:11px;}
+    .flex-font-head-small{font-size:14px; color:#a0a5b5; font-weight:bold; line-height:11px;}
+    .flex-font-head-xsmall{font-size:11px; color:#a0a5b5; font-weight:bold; line-height:11px; margin-bottom: 5px;}
+    .flex-font-widget{font-size:24px; color:#333333; font-weight:300;}
+
+    .dc_box .flex-col {margin-left: auto; margin-right: auto; height: 70px; width: 250px; background-color: #f1f3f7; border-radius: 10px;}
+    .dc_box .flex-col div {position: relative;float: left; width: 105px; margin-top: 12px; margin-left: 20px;}
+    .dc_box .flex-col span {display: block; font-size: 24px; line-height: 30px;}
+    .dc_box .flex-col small {display: block;}
+    .fixed-min-height-22 {min-height: 11px;}
+}

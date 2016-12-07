@@ -152,6 +152,9 @@
         </property>
     </bean>
 
+    <!-- ========================= OOZIE CLIENT CONFIG DEFINITION ========================= -->
+    <bean id="oozieClient" class="org.exem.flamingo.shared.util.OozieClientFactoryBean" />
+
     <!-- ========================= APPLICATION CONTEXT SERVICE DEFINITION ========================= -->
 
     <bean id="applicationContextService" class="org.exem.flamingo.shared.util.ApplicationContextRegistry"/>

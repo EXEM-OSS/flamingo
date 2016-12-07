@@ -1,0 +1,408 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+div#application-timeline, div#job-timeline {
+    margin-bottom: 30px;
+}
+
+#application-timeline div.legend-area,
+#job-timeline div.legend-area {
+    margin-top: 5px;
+}
+
+div.task-legend-area {
+    width: 600px;
+}
+
+div.legend-area {
+    width: 150px;
+}
+
+.task-legend-area > svg {
+    width: 100%;
+    height: 55px;
+}
+
+.vis-item.vis-range.task.task-assignment-timeline-object {
+    padding: 0px;
+    height: 26px;
+    border-width: 0;
+}
+
+.task-assignment-timeline-content {
+    width: 100%;
+}
+
+.task-assignment-timeline-duration-bar {
+    width: 100%;
+    height: 26px;
+}
+
+rect.scheduler-delay-proportion {
+    fill: #3399DF;
+    stroke: #0080D7;
+}
+
+rect.deserialization-time-proportion {
+    fill: #E0708D;
+    stroke: #D84C71;
+}
+
+rect.shuffle-read-time-proportion {
+    fill: #FFB169;
+    stroke: #FF9D44;
+}
+
+rect.executor-runtime-proportion {
+    fill: #B0CD34;
+    stroke: #9CC101;
+}
+
+rect.shuffle-write-time-proportion {
+    fill: #FFD134;
+    stroke: #FFC501;
+}
+
+rect.serialization-time-proportion {
+    fill: #BD5BCB;
+    stroke: #AD32BE;
+}
+
+rect.getting-result-time-proportion {
+    fill: #45B5B7;
+    stroke: #17A2A5;
+}
+
+.vis.timeline {
+    line-height: 14px;
+}
+
+.vis.timeline div.content {
+    width: 100%;
+}
+
+/*.vis.timeline .vis-item.stage {*/
+    /*cursor: pointer;*/
+/*}*/
+
+.vis.timeline .vis-item.stage.succeeded {
+    background-color: #99CCFF;
+    border-color: #0080D7;
+}
+
+.vis.timeline .vis-item.stage.succeeded.selected {
+    background-color: #99CCFF;
+    border-color: #0080D7;
+    z-index: auto;
+}
+
+.legend-area rect.completed-stage-legend {
+    fill: #99CCFF;
+    stroke: #0080D7;
+}
+
+.vis.timeline .vis-item.stage.failed {
+    background-color: #FFA1B0;
+    border-color: #FF4D6D;
+}
+
+.vis.timeline .vis-item.stage.failed.selected {
+    background-color: #FFA1B0;
+    border-color: #FF4D6D;
+    z-index: auto;
+}
+
+.legend-area rect.failed-stage-legend {
+    fill: #EFB7C6;
+    stroke: #D84C71;
+}
+
+.vis.timeline .vis-item.stage.running {
+    background-color: #A2FCC0;
+    border-color: #36F572;
+}
+
+.vis.timeline .vis-item.stage.running.selected {
+    background-color: #A2FCC0;
+    border-color: #36F572;
+    z-index: auto;
+}
+
+.legend-area rect.active-stage-legend {
+    fill: #D7E699;
+    stroke: #9CC101;
+}
+
+.vis.timeline .foreground {
+    cursor: move;
+}
+
+/*.vis.timeline .vis-item.job {*/
+    /*cursor: pointer;*/
+/*}*/
+
+.vis.timeline .vis-item.job.succeeded {
+    background-color: #99CCFF;
+    border-color: #0080D7;
+}
+
+.vis.timeline .vis-item.job.succeeded.selected {
+    background-color: #99CCFF;
+    border-color: #0080D7;
+    z-index: auto;
+}
+
+.legend-area rect.succeeded-job-legend {
+    fill: #99CCFF;
+    stroke: #0080D7;
+}
+
+.vis.timeline .vis-item.job.failed {
+    background-color: #FFA1B0;
+    border-color: #FF4D6D;
+}
+
+.vis.timeline .vis-item.job.failed.selected {
+    background-color: #FFA1B0;
+    border-color: #FF4D6D;
+    z-index: auto;
+}
+
+.legend-area rect.failed-job-legend {
+    fill: #EFB7C6;
+    stroke: #D84C71;
+}
+
+.vis.timeline .vis-item.job.running {
+    background-color: #A2FCC0;
+    border-color: #36F572;
+}
+
+.vis.timeline .vis-item.job.running.selected {
+    background-color: #A2FCC0;
+    border-color: #36F572;
+    z-index: auto;
+}
+
+.legend-area rect.running-job-legend {
+    fill: #D7E699;
+    stroke: #9CC101;
+}
+
+.added {
+    background-color: #99CCFF;
+    border-color: #0080D7;
+}
+.removed {
+    background-color: #EFB7C6;
+    border-color: #D84C71;
+}
+.running {
+    background-color: #D7E699;
+    border-color: #9CC101;
+}
+.failed {
+    background-color: #EFB7C6;
+    border-color: #D84C71;
+}
+.succeeded {
+    background-color: #99CCFF;
+    border-color: #0080D7;
+}
+
+.legend-area rect.executor-added-legend {
+    fill: #99CCFF;
+    stroke: #0080D7;
+}
+
+.vis.timeline .vis-item.executor.removed {
+    background-color: #FFA1B0;
+    border-color: #FF4D6D;
+}
+
+.legend-area rect.executor-removed-legend {
+    fill: #EFB7C6;
+    stroke: #D84C71;
+}
+
+.vis.timeline .vis-item.executor.selected {
+    background-color: #A2FCC0;
+    border-color: #36F572;
+    z-index: 2;
+}
+
+tr.corresponding-item-hover > td, tr.corresponding-item-hover > th {
+    background-color: #D6FFE4 !important;
+}
+
+#application-timeline.collapsed {
+    display: none;
+}
+
+#job-timeline.collapsed {
+    display: none;
+}
+
+#task-assignment-timeline.collapsed {
+    display: none;
+}
+
+.control-panel {
+    margin-bottom: 5px;
+}
+
+.control-panel input[type="checkbox"] {
+    margin: 0;
+}
+
+span.expand-application-timeline, span.expand-job-timeline,
+span.expand-task-assignment-timeline {
+    cursor: pointer;
+}
+
+.control-panel input + span {
+    cursor: pointer;
+}
+
+.vis.timeline .vis-item.vis-range .vis-item-content {
+    position: unset;
+    padding: 0;
+    width: 100%;
+}
+
+.vis.timeline .item .tooltip-inner {
+    max-width: unset !important;
+}
+
+.vispanel.center {
+    font-size: 12px;
+    line-height: 12px;
+}
+
+.legend-area text {
+    fill: #4D4D4D;
+}
+
+.additional-metrics ul {
+    list-style: none;
+    margin-left: 15px;
+}
+
+.tooltip {
+    position: absolute;
+    z-index: 20000;
+    display: block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.4;
+    visibility: visible;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+.tooltip.in {
+    filter: alpha(opacity=90);
+    opacity: .9;
+}
+.tooltip.top {
+    padding: 5px 0;
+    margin-top: -3px;
+}
+.tooltip.right {
+    padding: 0 5px;
+    margin-left: 3px;
+}
+.tooltip.bottom {
+    padding: 5px 0;
+    margin-top: 3px;
+}
+.tooltip.left {
+    padding: 0 5px;
+    margin-left: -3px;
+}
+.tooltip-inner {
+    max-width: 260px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #000;
+    border-radius: 4px;
+}
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+.tooltip.top .tooltip-arrow {
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px 5px 0;
+    border-top-color: #000;
+}
+.tooltip.top-left .tooltip-arrow {
+    right: 5px;
+    bottom: 0;
+    margin-bottom: -5px;
+    border-width: 5px 5px 0;
+    border-top-color: #000;
+}
+.tooltip.top-right .tooltip-arrow {
+    bottom: 0;
+    left: 5px;
+    margin-bottom: -5px;
+    border-width: 5px 5px 0;
+    border-top-color: #000;
+}
+.tooltip.right .tooltip-arrow {
+    top: 50%;
+    left: 0;
+    margin-top: -5px;
+    border-width: 5px 5px 5px 0;
+    border-right-color: #000;
+}
+.tooltip.left .tooltip-arrow {
+    top: 50%;
+    right: 0;
+    margin-top: -5px;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #000;
+}
+.tooltip.bottom .tooltip-arrow {
+    top: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #000;
+}
+.tooltip.bottom-left .tooltip-arrow {
+    top: 0;
+    right: 5px;
+    margin-top: -5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #000;
+}
+.tooltip.bottom-right .tooltip-arrow {
+    top: 0;
+    left: 5px;
+    margin-top: -5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #000;
+}

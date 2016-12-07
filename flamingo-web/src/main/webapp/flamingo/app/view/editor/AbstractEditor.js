@@ -20,9 +20,9 @@ Ext.define('Flamingo.view.editor.AbstractEditor', {
     requires: ['Flamingo.view.editor.EditorMixin'],
 
     initComponent: function () {
-        var me = this
-        var wordCount = Ext.create('Ext.toolbar.TextItem', {text: message.msg('common.position') + ': 0'}),
-            lineCount = Ext.create('Ext.toolbar.TextItem', {text: message.msg('common.lines') + ': 0'});
+        var me = this;
+        var wordCount = Ext.create('Ext.toolbar.TextItem', {text: 'position: 0'}),
+            lineCount = Ext.create('Ext.toolbar.TextItem', {text: 'lines: 0'});
 
         //TODO status bar 확인필요.
         /*Ext.apply(me, {
@@ -45,8 +45,8 @@ Ext.define('Flamingo.view.editor.AbstractEditor', {
                 var c = me.editor.selection.getCursor(),
                     l = c.row + 1;
 
-                wordCount.update(message.msg('common.position') + ': ' + c.column);
-                lineCount.update(message.msg('common.lines') + ': ' + l);
+                wordCount.update('position: ' + c.column);
+                lineCount.update('lines: ' + l);
 
             }, me);
 
