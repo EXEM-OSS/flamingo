@@ -1,10 +1,10 @@
 -- Table: flamingo.fl_workflow
 
-DROP TABLE flamingo.fl_workflow;
+DROP TABLE IF EXISTS flamingo.fl_workflow CASCADE;
 
 CREATE TABLE flamingo.fl_workflow
 (
-  id bigint NOT NULL DEFAULT nextval('flamingo."FL_WORKFLOW_ID_seq"'::regclass),
+  id bigserial,
   workflow_id character varying NOT NULL,
   workflow_name character varying NOT NULL, -- Workflow Name
   description character varying DEFAULT ''::character varying, -- Description
