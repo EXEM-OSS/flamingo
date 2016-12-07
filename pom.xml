@@ -16,6 +16,7 @@
         <module>flamingo-shared</module>
         <module>flamingo-opengraph</module>
         <module>flamingo-agent-nn</module>
+        <module>flamingo-agent-oz</module>
         <module>flamingo-collector</module>
         <module>flamingo-web</module>
     </modules>
