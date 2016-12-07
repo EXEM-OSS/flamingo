@@ -147,7 +147,7 @@ Ext.define('Flamingo.view.workflowdesigner.canvas.events.onCanvasActionControlle
 
                                             info('Saving...', 'Saving workflow<br/>Please wait...');
 
-                                            invokePostByXML(CONSTANTS.DESIGNER.SAVE, params, makeXml(),
+                                            invokePostByXML(CONSTANTS.OOZIE.WORKFLOW_SAVE, params, makeXml(),
                                                 function (response) {
                                                     var obj = Ext.decode(response.responseText);
                                                     if (obj.success) {

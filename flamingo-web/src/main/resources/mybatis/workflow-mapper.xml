@@ -68,7 +68,7 @@
     <!-- 3. Select                              -->
     <!-- =======================================-->
 
-    <select id="selectByTreeId" resultType="map"  parameterType="long">
+    <select id="selectByTreeId" parameterType="long" resultType="org.exem.flamingo.web.oozie.workflow.model.Workflow">
         SELECT
             ID as id,
             WORKFLOW_ID as workflowId,
