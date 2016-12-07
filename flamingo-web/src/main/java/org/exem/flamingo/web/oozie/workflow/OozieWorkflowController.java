@@ -65,7 +65,9 @@ public class OozieWorkflowController {
   public Response Action(@RequestBody Map<String, Object> params) {
     Response response = new Response();
     Map map = new HashMap<String, Object>();
+
     try {
+
       // TODO : 아래 로직을 DB에서 꺼내와야 하며, 리펙토링 필요
       // set workflow
       Workflow workflow = new Workflow();
@@ -106,6 +108,65 @@ public class OozieWorkflowController {
       logger.info("result : {}", result);
 
     } catch (IOException e) {
+      e.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    response.setSuccess(true);
+    return response;
+  }
+
+  @RequestMapping(value = "run", method = RequestMethod.POST)
+  @ResponseStatus(HttpStatus.OK)
+  public Response Run(@RequestBody Map<String, Object> params) {
+    Response response = new Response();
+    Map map = new HashMap<String, Object>();
+
+    try {
+      String treeIdString = params.get("treeId").toString();
+      long treeId = Long.parseLong(treeIdString);
+      String designerXml = oozieWorkflowService.loadDesignerXml(treeId);
+      String script = oozieWorkflowService.getLocalVariableParameter(designerXml, "script");
+
+      // TODO : 아래 로직을 DB에서 꺼내와야 하며, 리펙토링 필요
+      // set workflow
+      Workflow workflow = new Workflow();
+      workflow.setName(params.get("name").toString());
+      workflow.setStartTo("testStartTo");
+      workflow.setEndName("testEndName");
+      // set shell action
+      ArrayList actions = new ArrayList<Action>();
+      Action shellAction = new Action();
+      shellAction.setName("testStartTo");
+      shellAction.setCategory("action");
+      shellAction.setOkTo("testEndName");
+      shellAction.setErrorTo("killAction");
+      // set data
+      Data data = new Data();
+      data.setType("shell");
+      data.setExec(script);
+      data.setJobTracker(jobTracker);
+      data.setNameNode(nameNode);
+      // make hierarchical object
+      shellAction.setData(data);
+      //make default kill action
+      Action killAction = new Action("kill", "killAction", "action fail!");
+      // set actions
+      actions.add(shellAction);
+      actions.add(killAction);
+      // add actions to workflow
+      workflow.setActions(actions);
+      // set object to map
+      map = new BeanMap(workflow);
+
+      String xmlString = oozieWorkflowService.makeShellActionXml(map);
+      String result = oozieWorkflowService.localOozieJobSend(xmlString);
+      logger.info("result : {}", result);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (Exception e) {
       e.printStackTrace();
     }
 

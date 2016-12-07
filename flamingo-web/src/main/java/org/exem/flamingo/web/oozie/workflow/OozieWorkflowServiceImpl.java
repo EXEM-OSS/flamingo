@@ -204,6 +204,8 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
       // BPMN 모델을 생성한다.
       BpmnModel bpmnModel = transformer.unmarshall(xml, newProcessId);
 
+      String bpmnXml = transformer.createBpmnXML(bpmnModel);
+
       // 트리 노드를 생성한다.
 //      Tree parent;
 //      if ("/".equals(parentTreeId)) {
@@ -272,5 +274,16 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
   public String loadDesignerXml(Long treeId) {
     Workflow workflow = oozieWorkflowRepository.selectByTreeId(treeId);
     return workflow.getDesignerXml();
+  }
+
+  public Map getLocalvariables(String xml) throws Exception {
+    Map<String, Map<String, Object>> localVariables = transformer.getLocalVariables(xml);
+    return localVariables;
+  }
+
+  public String getLocalVariableParameter(String xml, String key) throws Exception {
+    Map<String, Map<String, Object>> localVariables = transformer.getLocalVariables(xml);
+    Map params = (Map)localVariables.values().toArray()[0];
+    return params.get(key).toString();
   }
 }
