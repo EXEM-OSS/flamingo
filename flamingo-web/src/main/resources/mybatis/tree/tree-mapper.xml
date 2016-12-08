@@ -31,9 +31,9 @@
         ORDER BY ID ASC, NODE ASC
     </sql>
 
-    <select id="select" parameterType="long" resultMap="treeMap">
+    <select id="select" parameterType="long" resultType="org.exem.flamingo.web.model.rest.Tree">
         <include refid="select"/>
-        WHERE ID = 7
+        WHERE ID = #{value}
     </select>
 
     <select id="selectRoot" parameterType="tree" resultMap="treeMap">
