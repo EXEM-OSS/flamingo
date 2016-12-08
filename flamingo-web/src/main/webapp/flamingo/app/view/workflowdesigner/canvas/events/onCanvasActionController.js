@@ -209,7 +209,7 @@ Ext.define('Flamingo.view.workflowdesigner.canvas.events.onCanvasActionControlle
             fn: function (btn, text, eOpts) {
                 if (btn === 'yes') {
                     // 워크플로우를 실행한다.
-                    invokePostByMap(CONSTANTS.DESIGNER.RUN, params,
+                    invokePostByMap(CONSTANTS.OOZIE.WORKFLOW_RUN, params,
                         function (response) {
                             var obj = Ext.decode(response.responseText);
                             if (obj.success) {
