@@ -35,6 +35,7 @@ public interface OozieWorkflowService {
 
     public void insert(Map param);
     public Map<String, Object> saveAsNew(String parentTreeId, String xml, String username);
+    public Map<String, Object> saveAsUpdate(String treeId, String processId, String xml, String username);
     public String loadDesignerXml(Long treeId);
     public Map getLocalvariables(String xml) throws Exception;
     public String getLocalVariableParameter(String xml, String key) throws Exception;

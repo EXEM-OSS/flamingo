@@ -17,6 +17,7 @@ package org.exem.flamingo.web.oozie.workflow;
 
 import org.apache.commons.beanutils.BeanMap;
 import org.exem.flamingo.shared.core.rest.Response;
+import org.exem.flamingo.shared.util.StringUtils;
 import org.exem.flamingo.web.model.rest.Tree;
 import org.exem.flamingo.web.oozie.workflow.model.Action;
 import org.exem.flamingo.web.oozie.workflow.model.Data;
@@ -189,6 +190,8 @@ public class OozieWorkflowController {
 
     Response response = new Response();
 
+//    String treeId = param.get("treeId").toString();
+
     //TODO : param을 통해서 입력 받도록 개발 필요
     Map tmpMap = new HashMap();
     tmpMap.put("workflowId", "workflowTestId");
@@ -198,6 +201,14 @@ public class OozieWorkflowController {
     tmpMap.put("status", "Running");
     tmpMap.put("treeId", 1);
     tmpMap.put("username", "flamingo");
+
+
+//    if (StringUtils.isEmpty(treeId)) {
+//      saved = oozieWorkflowService.saveAsNew(parentTreeId, xml, username);
+//    } else {
+//      saved = oozieWorkflowService.saveAsUpdate(treeId, processId, xml, username);
+//    }
+
 
     try{
       oozieWorkflowService.insert(tmpMap);
@@ -250,6 +261,7 @@ public class OozieWorkflowController {
     return response;
   }
 
+  //TODO : 하드코딩 된 admin 로그인 기능 추가 시 변경해야 함
   @RequestMapping("/save")
   public Response save(@RequestParam(defaultValue = "") String clusterName,
                        @RequestParam(defaultValue = "") String processId,
@@ -259,10 +271,28 @@ public class OozieWorkflowController {
 
     Response response = new Response();
 
-    oozieWorkflowService.saveAsNew(treeId, xml, "testUser");
+    String username = "admin";
+    Map saved = new HashMap();
 
+    if (StringUtils.isEmpty(treeId)) {
+      saved = oozieWorkflowService.saveAsNew(parentTreeId, xml, username);
+    } else {
+      saved = oozieWorkflowService.saveAsUpdate(treeId, processId, xml, username);
+    }
+
+    response.getMap().put("id", saved.get("id"));
+    response.getMap().put("process_id", saved.get("workflowId"));
+    response.getMap().put("process_definition_id", saved.get("definitionId"));
+    response.getMap().put("deployment_id", saved.get("deploymentId"));
+    response.getMap().put("tree_id", saved.get("treeId"));
+    response.getMap().put("status", saved.get("status"));
     response.setSuccess(true);
     return response;
+
+//    oozieWorkflowService.saveAsNew(parentTreeId, xml, "admin");
+//
+//    response.setSuccess(true);
+//    return response;
   }
 
   @RequestMapping(value = "/load", method = RequestMethod.GET)

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.exem.flamingo.web.oozie.workflow.tree.TreeRepository">
+
+    <resultMap id="treeMap" type="org.exem.flamingo.web.model.rest.Tree">
+        <result property="id"           column="ID"         jdbcType="INTEGER"/>
+        <result property="name"         column="NAME"       jdbcType="VARCHAR"/>
+        <result property="treeType"     column="TREE"       jdbcType="VARCHAR"/>
+        <result property="nodeType"     column="NODE"       jdbcType="VARCHAR"/>
+        <result property="root"         column="ROOT"       jdbcType="BOOLEAN"/>
+        <result property="username"     column="USERNAME"   jdbcType="VARCHAR"/>
+        <result property="referenceId"  column="REF_ID"     jdbcType="VARCHAR"/>
+
+        <association property="parent" column="PARENT_ID" javaType="tree" select="select">
+            <id property="id" column="ID"/>
+            <result property="name"         column="NAME"       jdbcType="VARCHAR"/>
+            <result property="treeType"     column="TREE"       jdbcType="VARCHAR"/>
+            <result property="nodeType"     column="NODE"       jdbcType="VARCHAR"/>
+            <result property="root"         column="ROOT"       jdbcType="BOOLEAN"/>
+            <result property="username"     column="USERNAME"   jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+
+    <sql id="select">
+        SELECT ID, NAME, TREE, NODE, ROOT, USERNAME, PARENT_ID
+        FROM FL_TREE
+    </sql>
+
+    <sql id="sort">
+        ORDER BY ID ASC, NODE ASC
+    </sql>
+
+    <select id="select" parameterType="long" resultMap="treeMap">
+        <include refid="select"/>
+        WHERE ID = 7
+    </select>
+
+    <select id="selectRoot" parameterType="tree" resultMap="treeMap">
+        <include refid="select"/>
+        WHERE 1=1
+          AND NAME = '/'
+          AND TREE = #{treeType}
+          AND NODE = 'FOLDER'
+          AND USERNAME = #{username}
+        <include refid="sort"/>
+    </select>
+
+    <select id="selectWorkflowChilds" parameterType="long" resultMap="treeMap">
+        SELECT T.ID AS ID, T.NAME AS NAME, T.TREE AS TREE, T.NODE AS NODE, T.ROOT AS ROOT, T.USERNAME AS USERNAME,
+        W.ID AS REF_ID
+        FROM FL_TREE AS T
+        LEFT OUTER JOIN WORKFLOW AS W
+        ON T.ID = W.TREE_ID
+        WHERE PARENT_ID = #{id} AND T.ROOT = 0
+        ORDER BY NODE ASC, ID ASC
+    </select>
+
+    <select id="selectChilds" parameterType="long" resultMap="treeMap">
+        <include refid="select"/>
+        WHERE 1=1
+          AND PARENT_ID = #{id}
+        ORDER BY NODE, ID
+    </select>
+
+    <select id="selectAll" resultMap="treeMap">
+        <include refid="select"/>
+    </select>
+
+    <insert id="insert" parameterType="tree" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+        INSERT INTO FL_TREE
+        (
+            ID,
+            NAME,
+            TREE,
+            NODE,
+            ROOT,
+            USERNAME,
+            PARENT_ID
+        )
+        VALUES
+        (
+            #{id},
+            #{name},
+            #{treeType},
+            #{nodeType},
+            #{root},
+            #{username},
+            #{parent.id}
+        )
+
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="insertByMap" parameterType="map" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+        INSERT INTO FL_TREE
+        (
+            NAME,
+            TREE,
+            NODE,
+            ROOT,
+            USERNAME,
+            PARENT_ID
+        )
+        VALUES
+        (
+            #{name},
+            #{treeType},
+            #{nodeType},
+            #{root},
+            #{username},
+            #{parentId}
+        )
+
+        <selectKey resultType="long" keyProperty="id" order="AFTER">
+            SELECT currval(pg_get_serial_sequence('persons','id'))
+        </selectKey>
+    </insert>
+
+    <update id="update" parameterType="tree">
+        UPDATE FL_TREE
+        SET
+            NAME = #{name}
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="delete" parameterType="tree">
+        DELETE FROM FL_TREE WHERE ID = #{id}
+    </delete>
+</mapper>

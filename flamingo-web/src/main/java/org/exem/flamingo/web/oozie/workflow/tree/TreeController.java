@@ -16,8 +16,12 @@
 package org.exem.flamingo.web.oozie.workflow.tree;
 
 import org.exem.flamingo.shared.core.rest.Response;
+import org.exem.flamingo.shared.core.security.SessionUtils;
+import org.exem.flamingo.web.model.rest.NodeType;
 import org.exem.flamingo.web.model.rest.Tree;
+import org.exem.flamingo.web.model.rest.TreeType;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +37,9 @@ import java.util.Map;
 @RequestMapping("/tree")
 public class TreeController implements InitializingBean {
 
+
+  @Autowired
+  TreeService treeService;
   /**
    * ROOT 노드의 ID
    */
@@ -62,31 +69,24 @@ public class TreeController implements InitializingBean {
 
     Response response = new Response();
     Tree parent;
-//    if (ROOT.equals(node)) {
-//      // ROOT 노드라면 Tree Type의 ROOT 노드를 부모 노드로 설정한다.
-//      parent = treeService.getRoot(TreeType.valueOf(type.trim()), SessionUtils.getUsername());
-//    } else {
-//      // ROOT 노드가 아니라면 PK인 Tree Id를 부모 노드로 설정한다.
-//      parent = treeService.get(Long.parseLong(node));
-//    }
-//
-//    // 부모 노드의 자식 노드를 조회한다.
-//    List<Tree> childs = treeService.getChilds(parent.getId());
-//    for (Tree tree : childs) {
-//      Map<String, Object> map = new HashMap<>();
-//      map.put("id", tree.getId());
-//      map.put("cls", NodeType.FOLDER.equals(tree.getNodeType()) ? "folder" : "file");
-//      map.put("text", tree.getName());
-//      map.put("leaf", !NodeType.FOLDER.equals(tree.getNodeType()));
-//      response.getList().add(map);
-//    }
+    if (ROOT.equals(node)) {
+      // ROOT 노드라면 Tree Type의 ROOT 노드를 부모 노드로 설정한다.
+      parent = treeService.getRoot(TreeType.valueOf(type.trim()), SessionUtils.getUsername());
+    } else {
+      // ROOT 노드가 아니라면 PK인 Tree Id를 부모 노드로 설정한다.
+      parent = treeService.get(Long.parseLong(node));
+    }
 
-    Map<String, Object> map = new HashMap<>();
-    map.put("id", 1);
-    map.put("cls", "file");
-    map.put("text", "testName");
-    map.put("leaf", true);
-    response.getList().add(map);
+    // 부모 노드의 자식 노드를 조회한다.
+    List<Tree> childs = treeService.getChilds(parent.getId());
+    for (Tree tree : childs) {
+      Map<String, Object> map = new HashMap<>();
+      map.put("id", tree.getId());
+      map.put("cls", NodeType.FOLDER.equals(tree.getNodeType()) ? "folder" : "file");
+      map.put("text", tree.getName());
+      map.put("leaf", !NodeType.FOLDER.equals(tree.getNodeType()));
+      response.getList().add(map);
+    }
 
     response.setSuccess(true);
     return response;

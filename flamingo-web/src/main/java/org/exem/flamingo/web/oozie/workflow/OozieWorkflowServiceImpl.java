@@ -31,6 +31,7 @@ import org.exem.flamingo.web.model.rest.TreeType;
 import org.exem.flamingo.web.model.rest.WorkflowStatusType;
 import org.exem.flamingo.web.oozie.workflow.activiti.task.Transformer;
 import org.exem.flamingo.web.oozie.workflow.model.Workflow;
+import org.exem.flamingo.web.oozie.workflow.tree.TreeService;
 import org.exem.flamingo.web.util.FreeMarkerUtils;
 import org.exem.flamingo.web.util.HdfsUtils;
 import org.exem.flamingo.web.util.XmlFormatter;
@@ -67,6 +68,9 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
 
   @Autowired
   Transformer transformer;
+
+  @Autowired
+  TreeService treeService;
 
   @Autowired
   OozieWorkflowRepository oozieWorkflowRepository;
@@ -186,7 +190,6 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     return params;
   }
 
-  // TODO : Tree 부분 구현하기
   @Override
   public Map<String, Object> saveAsNew(String parentTreeId, String xml, String username) {
     try {
@@ -204,30 +207,26 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
       // BPMN 모델을 생성한다.
       BpmnModel bpmnModel = transformer.unmarshall(xml, newProcessId);
 
-      String bpmnXml = transformer.createBpmnXML(bpmnModel);
-
       // 트리 노드를 생성한다.
-//      Tree parent;
-//      if ("/".equals(parentTreeId)) {
-//        parent = treeService.getRoot(TreeType.WORKFLOW, username);
-//      } else {
-//        parent = treeService.get(Long.parseLong(parentTreeId));
-//      }
-//
-//      //Tree tree = new Tree(bpmnModel.getMainProcess().getName());
-//      tree.setTreeType(TreeType.WORKFLOW);
-//      tree.setNodeType(NodeType.ITEM);
-//      tree.setUsername(username);
-//
-//      //Tree child = treeService.create(parent, tree, NodeType.ITEM);
-//      String designerXml = getDesignerXml(child.getId(), newProcessId, xml, WorkflowStatusType.REGISTERED.toString());
-      String designerXml = getDesignerXml(1, newProcessId, xml, WorkflowStatusType.REGISTERED.toString());
+      Tree parent;
+      if ("/".equals(parentTreeId)) {
+        parent = treeService.getRoot(TreeType.WORKFLOW, username);
+      } else {
+        parent = treeService.get(Long.parseLong(parentTreeId));
+      }
+
+      Tree tree = new Tree(bpmnModel.getMainProcess().getName());
+      tree.setTreeType(TreeType.WORKFLOW);
+      tree.setNodeType(NodeType.ITEM);
+      tree.setUsername(username);
+
+      Tree child = treeService.create(parent, tree, NodeType.ITEM);
+      String designerXml = getDesignerXml(child.getId(), newProcessId, xml, WorkflowStatusType.REGISTERED.toString());
       String workflowXml = transformer.convertUengineBpmnXml(transformer.createBpmnXML(bpmnModel));
 
-      // 1-> child.getId
       Map<String, Object> saved = save(WorkflowStatusType.CREATED,
               newProcessId, bpmnModel.getMainProcess().getName(),
-              designerXml, workflowXml, variable, 1,
+              designerXml, workflowXml, variable, child.getId(),
               getSteps(bpmnModel.getMainProcess().getFlowElements()), username);
 
       logger.info("The process has been saved : {}", saved);
@@ -235,6 +234,90 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
       return saved;
     } catch (Exception ex) {
       throw new ServiceException("You can not save a new workflow", ex);
+    }
+  }
+//
+//  // TODO : Tree 부분 구현하기
+//  @Override
+//  public Map<String, Object> saveAsNew(String parentTreeId, String xml, String username) {
+//    try {
+//      Map<String, Object> variable = new HashMap<>();
+//      Map<String, Map<String, Object>> localVariables = transformer.getLocalVariables(xml);
+//      Map<String, Object> globalVariables = transformer.getGlobalVariables(xml);
+//      List parallelVectors = transformer.getParallelVectors(xml);
+//      variable.put("local", localVariables);
+//      variable.put("global", globalVariables);
+//      variable.put("parallelVectors", parallelVectors);
+//
+//      // 신규 Process ID를 생성한다.
+//      String newProcessId = getCurrentDateTime() + "_" + generateUUID();
+//
+//      // BPMN 모델을 생성한다.
+//      BpmnModel bpmnModel = transformer.unmarshall(xml, newProcessId);
+//
+//      String bpmnXml = transformer.createBpmnXML(bpmnModel);
+//
+//      // 트리 노드를 생성한다.
+////      Tree parent;
+////      if ("/".equals(parentTreeId)) {
+////        parent = treeService.getRoot(TreeType.WORKFLOW, username);
+////      } else {
+////        parent = treeService.get(Long.parseLong(parentTreeId));
+////      }
+////
+////      //Tree tree = new Tree(bpmnModel.getMainProcess().getName());
+////      tree.setTreeType(TreeType.WORKFLOW);
+////      tree.setNodeType(NodeType.ITEM);
+////      tree.setUsername(username);
+////
+////      //Tree child = treeService.create(parent, tree, NodeType.ITEM);
+////      String designerXml = getDesignerXml(child.getId(), newProcessId, xml, WorkflowStatusType.REGISTERED.toString());
+//      String designerXml = getDesignerXml(1, newProcessId, xml, WorkflowStatusType.REGISTERED.toString());
+//      String workflowXml = transformer.convertUengineBpmnXml(transformer.createBpmnXML(bpmnModel));
+//
+//      // 1-> child.getId
+//      Map<String, Object> saved = save(WorkflowStatusType.CREATED,
+//              newProcessId, bpmnModel.getMainProcess().getName(),
+//              designerXml, workflowXml, variable, 1,
+//              getSteps(bpmnModel.getMainProcess().getFlowElements()), username);
+//
+//      logger.info("The process has been saved : {}", saved);
+//
+//      return saved;
+//    } catch (Exception ex) {
+//      throw new ServiceException("You can not save a new workflow", ex);
+//    }
+//  }
+
+  @Override
+  public Map<String, Object> saveAsUpdate(String treeId, String processId, String xml, String username) {
+    try {
+      Map<String, Object> variable = new HashMap<>();
+      Map<String, Map<String, Object>> localVariables = transformer.getLocalVariables(xml);
+      Map<String, Object> globalVariables = transformer.getGlobalVariables(xml);
+      List parallelVectors = transformer.getParallelVectors(xml);
+      variable.put("local", localVariables);
+      variable.put("global", globalVariables);
+      variable.put("parallelVectors", parallelVectors);
+
+      //  BPMN 모델을 생성한다.
+      BpmnModel model = transformer.unmarshall(xml, processId);
+      Tree tree = treeService.get(Long.parseLong(treeId));
+      tree.setName(model.getMainProcess().getName());
+      treeService.rename(tree);
+      String workflowXml = transformer.convertUengineBpmnXml(transformer.createBpmnXML(model));
+      String designerXml = getDesignerXml(tree.getId(), processId, xml, WorkflowStatusType.REGISTERED.toString());
+
+      Map<String, Object> saved = save(WorkflowStatusType.REGISTERED,
+              processId, model.getMainProcess().getName(), designerXml,
+              workflowXml, variable, tree.getId(),
+              getSteps(model.getMainProcess().getFlowElements()), username);
+
+      logger.info("The process has been saved : {}", saved);
+
+      return saved;
+    } catch (Exception ex) {
+      throw new ServiceException("You can not update a workflow", ex);
     }
   }
 
