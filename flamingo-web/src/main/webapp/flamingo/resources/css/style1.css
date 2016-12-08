@@ -1,0 +1,57 @@
+/*
+ * Copyright 2012-2016 the Flamingo Community.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+@charset "utf-8";
+/* CSS Document */
+
+body{font-family:'Montserrat', san-serif; font-size:13pt; line-height:1.5em; color:#666666;}
+
+#wrap{width:100%; position:relative;}
+
+/*헤더*/
+.header{background: #474b57;}
+.header .logo{height:46px; width:400px; float:left; margin:17px 26px; background: url(../images/logo.png) center left no-repeat; padding-left:25px;}
+.header .logo h1{line-height:10px; font-size:17px; color: #ffffff; }
+.header .logo h1 span{font-size:14px; color:#a0a5b5;}
+.header .topmenu{float:right; margin:25px 26px;}
+
+/*좌측메뉴*/
+.nav{width:295px; height:900px; position:relative; background: #2f323a; float:left; }
+.nav ul{font-size:0px; padding:0px;} /* 픽셀차이 잡아주기 */
+.nav ul, li, ol { list-style-type: none;}
+.nav li.depth_1 {
+    line-height: 60px;
+    padding:0 26px;
+    display: block;
+    color:#edeff5;
+    cursor: pointer;
+    font-size: 16px;
+    clear:both;
+    border-bottom: 1px solid #474b57;
+    font-weight: 300;
+}
+.nav li.d1_on, li.depth_1:hover{background:#3e4048; }
+.nav li ul{margin-left:-26px; margin-right:-26px; background: #2f323a; padding:15px 26px;}
+.nav li li{line-height:30px; font-size:14px; color:#a0a5b5; }
+.nav li li.d2_on{color:#ffffff; background: url(../img/icon_menuOn.png) center right no-repeat;}
+.nav li li:hover{color:#ffffff;}
+.nav li.depth_1 .icon{float:left; margin-right:8px;}
+.nav li.depth_1 .icon img{margin-top: -4px;}
+
+/*컨텐츠*/
+section{width:1145px; height:900px; background: #f2f0f0; float:left;}
+section heading{display: block; height:60px; background: #ffffff; clear:both; padding-left:30px;}
+section heading h2{font-size:24px; color:#2f323a; line-height: 60px; font-weight: 300;}
+section article{margin:30px 30px 12px 30px; background:#ffffff; border-radius: 10px;}
