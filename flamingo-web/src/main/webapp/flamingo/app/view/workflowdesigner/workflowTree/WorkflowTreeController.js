@@ -256,7 +256,7 @@ Ext.define('Flamingo.view.workflowdesigner.workflowTree.WorkflowTreeController',
                         treeType: 'WORKFLOW'
                     };
 
-                    invokePostByMap(CONSTANTS.DESIGNER.NEW, param,
+                    invokePostByMap(CONSTANTS.OOZIE.WORKFLOW.TREE.CREATE, param,
                         function (response) {
                             var obj = Ext.decode(response.responseText);
                             if (obj.success) {
@@ -329,7 +329,7 @@ Ext.define('Flamingo.view.workflowdesigner.workflowTree.WorkflowTreeController',
                         treeType: 'WORKFLOW'
                     };
 
-                    invokePostByMap(CONSTANTS.DESIGNER.DELETE, param,
+                    invokePostByMap(CONSTANTS.OOZIE.WORKFLOW.TREE.DELETE, param,
                         function (response) {
                             var obj = Ext.decode(response.responseText);
                             if (obj.success) {

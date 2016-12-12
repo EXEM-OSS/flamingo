@@ -240,64 +240,6 @@ Ext.define('Flamingo.view.workflowdesigner.canvas.events.onCanvasActionControlle
         });
     },
 
-    /**
-     * 액션 버튼 Click 핸들러 : 워크플로우를 실행한다. //SHELL용 테스터
-     */
-    onActionClick: function () {
-        var canvas = Ext.ComponentQuery.query('canvas')[0];
-        var form = canvas.getForm();
-        var isValid = form.isValid() && this._isValidWorkflow();
-
-        if (!isValid) {
-            return;
-        }
-
-        var params = {
-            treeId: form.getValues()['tree_id'],
-            name: form.getValues()['name']
-        };
-
-        Ext.MessageBox.show({
-            title: 'Information',
-            message: 'Do you want to execute the workflow action?',
-            width: 300,
-            buttons: Ext.MessageBox.YESNO,
-            icon: Ext.MessageBox.INFO,
-            scope: this,
-            fn: function (btn, text, eOpts) {
-                if (btn === 'yes') {
-                    // 워크플로우를 실행한다.
-                    invokePostByMap(CONSTANTS.OOZIE.WORKFLOW_ACTION, params,
-                        function (response) {
-                            var obj = Ext.decode(response.responseText);
-                            if (obj.success) {
-                                Ext.create('Flamingo.view.workflowdesigner.monitoring.WorkflowMonitoringWindow', {
-                                    propertyData: obj.map.identifier
-                                }).center().show();
-
-                                //Ext.create('Flamingo.view.workflowdesigner.Toast', {
-                                //    title: obj.map.name,
-                                //    position: 'tr',
-                                //    width: 250,
-                                //    jobId: obj.map.jobId,
-                                //    slideInDelay: 600,
-                                //    autoClose: false,
-                                //    slideDownAnimation: 'easeIn'
-                                //}).show();
-                            } else {
-                                error('Failed in executing workflow', obj.error.cause);
-                            }
-                        },
-                        function (response) {
-                            error('Failed in executing workflow', response.statusText);
-                        }
-                    );
-                }
-            },
-            animateTarget: 'wd_btn_action'
-        });
-    },
-
     onWorkflowCopyClick: function () {
         var canvas = Ext.ComponentQuery.query('canvas')[0];
         var form = canvas.getForm();

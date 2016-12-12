@@ -59,9 +59,9 @@
     <!-- 2. Delete                              -->
     <!-- =======================================-->
 
-    <update id="deleteWorkflow" parameterType="long">
+    <update id="deleteByTreeId" parameterType="long">
         DELETE FROM FL_WORKFLOW
-        WHERE ID = #{value}
+        WHERE TREE_ID = #{value}
     </update>
 
     <!-- =======================================-->

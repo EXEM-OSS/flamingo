@@ -18,10 +18,13 @@ package org.exem.flamingo.web.oozie.workflow;
 import org.apache.commons.beanutils.BeanMap;
 import org.exem.flamingo.shared.core.rest.Response;
 import org.exem.flamingo.shared.util.StringUtils;
+import org.exem.flamingo.web.model.rest.NodeType;
 import org.exem.flamingo.web.model.rest.Tree;
+import org.exem.flamingo.web.model.rest.TreeType;
 import org.exem.flamingo.web.oozie.workflow.model.Action;
 import org.exem.flamingo.web.oozie.workflow.model.Data;
 import org.exem.flamingo.web.oozie.workflow.model.Workflow;
+import org.exem.flamingo.web.oozie.workflow.tree.TreeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +54,9 @@ public class OozieWorkflowController {
 
   @Autowired
   OozieWorkflowService oozieWorkflowService;
+
+  @Autowired
+  TreeService treeService;
 
   @Value("#{config['oozie.jobTracker.url']}")
   private String jobTracker;
@@ -244,15 +250,14 @@ public class OozieWorkflowController {
     return response;
   }
 
-  @RequestMapping("/delete")
-  public Response deleteWorkflow(@RequestParam Map param) {
+  @RequestMapping(value = "/delete", method = RequestMethod.POST)
+  public Response deleteWorkflow(@RequestBody Map param) {
     Response response = new Response();
 
     //TODO : param을 통해서 입력 받도록 개발 필요
-    Map map = oozieWorkflowService.getRecentWorkflow();
-    long id = (long)map.get("id");
+    long treeId = Long.parseLong(param.get("id").toString());
     try{
-      oozieWorkflowService.deleteWorkflow(id);
+      oozieWorkflowService.deleteWorkflow(treeId);
       response.setSuccess(true);
     }catch (Exception e){
       response.setSuccess(false);
@@ -289,10 +294,6 @@ public class OozieWorkflowController {
     response.setSuccess(true);
     return response;
 
-//    oozieWorkflowService.saveAsNew(parentTreeId, xml, "admin");
-//
-//    response.setSuccess(true);
-//    return response;
   }
 
   @RequestMapping(value = "/load", method = RequestMethod.GET)
@@ -303,6 +304,59 @@ public class OozieWorkflowController {
     String designerXml = oozieWorkflowService.loadDesignerXml(treeId);
 
     response.setObject(designerXml);
+    response.setSuccess(true);
+    return response;
+  }
+
+  /**
+   * 새로운 노드를 생성한다. 노드를 생성하기 위해서 필요한 것은 다음과 같다.
+   * <ul>
+   * <li>부모 노드의 ID</li>
+   * <li>생성할 Tree의 유형(예; <tt>JOB, WORKFLOW</tt>)</li>
+   * <li>노드의 유형(예; <tt>FOLDER, ITEM</tt>)(</li>
+   * <li>노드의 이름(</li>
+   * <li>ROOT 노드 여부(기본값은 <tt>false</tt>)(</li>
+   * </ul>
+   *
+   * @param map 노드 생성을 위한 Key Value
+   * @return Response REST JAXB Object
+   */
+  @RequestMapping(value = "newFolder", method = RequestMethod.POST)
+  @ResponseStatus(HttpStatus.OK)
+  @ResponseBody
+  public Response newFolder(@RequestBody Map<String, String> map) {
+
+    Response response = new Response();
+    TreeType treeType = TreeType.valueOf(map.get("treeType").toUpperCase());
+    NodeType nodeType = NodeType.valueOf(map.get("nodeType").toUpperCase());
+
+    Tree parent;
+
+    if ("/".equals(map.get("id"))) {
+      // ROOT 노드라면 Tree Type의 ROOT 노드를 부모 노드로 설정한다.
+      //TODO : SessionUtils.getUsername() 으로 admin 대체
+      parent = treeService.getRoot(treeType, "admin");
+    } else {
+      // 새로운 노드를 추가하기 위해서 부모 노드를 먼저 알아낸다.
+      long parentId = Long.parseLong(map.get("id"));
+      parent = treeService.get(parentId);
+    }
+
+    Tree child = new Tree();
+    child.setName(map.get("name"));
+    child.setTreeType(treeType);
+    child.setNodeType(nodeType);
+    child.setRoot(false);
+    //TODO : SessionUtils.getUsername() 으로 admin 대체
+    child.setUsername("admin");
+    child.setParent(parent);
+
+    // 부모 노드에 속한 자식 노드를 생성하고 그 결과를 구성한다.
+    Tree tree = treeService.create(parent, child, nodeType);
+    response.getMap().put("id", tree.getId());
+    response.getMap().put("text", tree.getName());
+    response.getMap().put("cls", "folder");
+    response.getMap().put("leaf", false);
     response.setSuccess(true);
     return response;
   }

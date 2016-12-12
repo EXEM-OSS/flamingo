@@ -30,7 +30,7 @@ public interface OozieWorkflowRepository {
   public List<Map> listWorkflows();
   public Map getRecentWorkflow();
   public void updateWorkflow(Map param);
-  public void deleteWorkflow(long id);
+  public void deleteWorkflowByTreeId(long treeId);
   public int insert(Map param);
   public int update(Map param);
   public Workflow selectByTreeId(long treeId);

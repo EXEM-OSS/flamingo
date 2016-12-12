@@ -82,4 +82,6 @@ CONSTANTS.FS.S3_PREVIEW_OBJECT                  = '/fs/s3/getObjectAsString.json
 CONSTANTS.OOZIE.WORKFLOW_ACTION                 = '/oozie/workflow/action.json';
 CONSTANTS.OOZIE.WORKFLOW_RUN                    = '/oozie/workflow/run.json';
 CONSTANTS.OOZIE.WORKFLOW_SAVE                   = '/oozie/workflow/save.json';
-CONSTANTS.OOZIE.WORKFLOW.TREE.GET               = '/oozie/workflow/treeGet.json'
+CONSTANTS.OOZIE.WORKFLOW.TREE.GET               = '/oozie/workflow/treeGet.json';
+CONSTANTS.OOZIE.WORKFLOW.TREE.DELETE            = '/oozie/workflow/delete.json';
+CONSTANTS.OOZIE.WORKFLOW.TREE.CREATE            = '/oozie/workflow/newFolder.json';

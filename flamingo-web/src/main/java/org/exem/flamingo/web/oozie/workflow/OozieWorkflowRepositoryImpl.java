@@ -57,8 +57,8 @@ public class OozieWorkflowRepositoryImpl extends PersistentRepositoryImpl implem
     this.getSqlSessionTemplate().insert(this.getNamespace() + ".updateWorkflow", param);
   }
 
-  public void deleteWorkflow(long id) {
-    this.getSqlSessionTemplate().delete(this.getNamespace() + ".deleteWorkflow", id);
+  public void deleteWorkflowByTreeId(long treeId) {
+    this.getSqlSessionTemplate().delete(this.getNamespace() + ".deleteByTreeId", treeId);
   }
 
   @Override
