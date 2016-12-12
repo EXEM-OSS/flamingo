@@ -115,7 +115,7 @@
         )
 
         <selectKey resultType="long" keyProperty="id" order="AFTER">
-            SELECT currval(pg_get_serial_sequence('persons','id'))
+            SELECT currval(pg_get_serial_sequence('fl_tree','id'))
         </selectKey>
     </insert>
 
