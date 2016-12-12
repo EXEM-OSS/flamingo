@@ -318,4 +318,61 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     Map params = (Map)localVariables.values().toArray()[0];
     return params.get(key).toString();
   }
+
+  @Override
+  public Map<String, Object> copy(String parentTreeId, Workflow workflow, String username) {
+    try {
+      // 신규 프로세스이므로 새로운 Process ID를 생성한다.
+      String newProcessId = getCurrentDateTime() + "_" + generateUUID();
+      String xml = workflow.getDesignerXml();
+
+      //  BPMN 모델을 생성한다.
+      BpmnModel model = transformer.unmarshall(xml, newProcessId);
+      String processName = model.getMainProcess().getName();
+      Map<String, Map<String, Object>> localVariables = transformer.getLocalVariables(xml);
+      Map<String, Object> globalVariables = transformer.getGlobalVariables(xml);
+      List parallelVectors = transformer.getParallelVectors(xml);
+
+      String bpmnXML = transformer.convertUengineBpmnXml(transformer.createBpmnXML(model));
+
+      Map<String, Object> vars = new HashMap<>();
+      vars.put("local", localVariables);
+      vars.put("global", globalVariables);
+      vars.put("parallelVectors", parallelVectors);
+
+      logger.info("The process has been saved. Process ID = {}, Process Name = {}", newProcessId, model.getMainProcess().getName());
+
+      // 트리 노드를 생성한다.
+      Tree parent;
+      if ("/".equals(parentTreeId)) {
+        parent = treeService.getRoot(TreeType.WORKFLOW, username);
+      } else {
+        parent = treeService.get(Long.parseLong(parentTreeId));
+      }
+
+      Tree tree = new Tree();
+      tree.setName(workflow.getWorkflowName() + "_Copied");
+      tree.setTreeType(TreeType.WORKFLOW);
+      tree.setNodeType(NodeType.ITEM);
+      tree.setUsername(username);
+      Tree child = treeService.create(parent, tree, NodeType.ITEM);
+
+      // 프로세스 정보를 기록한다.
+      String designerXml = getDesignerXml(child.getId(), newProcessId, xml, WorkflowStatusType.REGISTERED.toString());
+      Map<String, Object> saved = save(WorkflowStatusType.COPIED, newProcessId, processName + "_Copied",
+              designerXml, bpmnXML, vars, child.getId(),
+              getSteps(model.getMainProcess().getFlowElements()), username);
+
+      logger.info("The process has been saved : {}", saved);
+
+      return saved;
+    } catch (Exception ex) {
+      throw new ServiceException("You can not copy a workflow", ex);
+    }
+  }
+
+  @Override
+  public Workflow getWorkflowByTreeId(long treeId){
+    return oozieWorkflowRepository.selectByTreeId(treeId);
+  }
 }

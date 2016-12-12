@@ -279,7 +279,7 @@ Ext.define('Flamingo.view.workflowdesigner.canvas.events.onCanvasActionControlle
                             };
 
                             var win = popWindow;
-                            invokePostByMap(CONSTANTS.DESIGNER.COPY, params,
+                            invokePostByMap(CONSTANTS.OOZIE.WORKFLOW.TREE.COPY, params,
                                 function (response) {
                                     var obj = Ext.decode(response.responseText);
                                     if (obj.success) {

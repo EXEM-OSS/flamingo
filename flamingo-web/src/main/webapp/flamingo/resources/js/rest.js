@@ -85,3 +85,4 @@ CONSTANTS.OOZIE.WORKFLOW_SAVE                   = '/oozie/workflow/save.json';
 CONSTANTS.OOZIE.WORKFLOW.TREE.GET               = '/oozie/workflow/treeGet.json';
 CONSTANTS.OOZIE.WORKFLOW.TREE.DELETE            = '/oozie/workflow/delete.json';
 CONSTANTS.OOZIE.WORKFLOW.TREE.CREATE            = '/oozie/workflow/newFolder.json';
+CONSTANTS.OOZIE.WORKFLOW.TREE.COPY              = '/oozie/workflow/copy.json';

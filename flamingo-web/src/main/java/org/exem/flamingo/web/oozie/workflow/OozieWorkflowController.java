@@ -360,4 +360,20 @@ public class OozieWorkflowController {
     response.setSuccess(true);
     return response;
   }
+
+
+  @RequestMapping(value = "/copy", method = RequestMethod.POST)
+  public Response copy(@RequestBody Map<String, Object> map) {
+
+    Response response = new Response();
+
+    String parentTreeId = map.get("parentTreeId").toString();
+    String treeId = map.get("treeId").toString();
+    //TODO : SessionUtils.getUsername() 으로 admin 대체
+    Workflow workflow = oozieWorkflowService.getWorkflowByTreeId(Long.parseLong(treeId));
+    oozieWorkflowService.copy(parentTreeId, workflow, "admin");
+
+    response.setSuccess(true);
+    return response;
+  }
 }

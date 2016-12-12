@@ -15,6 +15,8 @@
  */
 package org.exem.flamingo.web.oozie.workflow;
 
+import org.exem.flamingo.web.oozie.workflow.model.Workflow;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -29,7 +31,7 @@ public interface OozieWorkflowService {
     public String makeShellActionXml(Map param) throws IOException;
     public String localOozieJobSend(String xmlString);
     public List<Map> getWorkflows();
-    public Map getRecentWorkflow();
+    public Workflow getWorkflowByTreeId(long treeId);
     public void updateWorkflow(Map param);
     public void deleteWorkflow(long id);
 
@@ -39,4 +41,6 @@ public interface OozieWorkflowService {
     public String loadDesignerXml(Long treeId);
     public Map getLocalvariables(String xml) throws Exception;
     public String getLocalVariableParameter(String xml, String key) throws Exception;
+    public Map<String, Object> copy(String parentTreeId, Workflow workflow, String username);
+
 }
