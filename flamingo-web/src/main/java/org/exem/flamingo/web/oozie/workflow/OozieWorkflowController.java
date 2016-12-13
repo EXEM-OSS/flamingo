@@ -33,7 +33,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -66,63 +65,6 @@ public class OozieWorkflowController {
 
   @Value("#{config['oozie.xml.store.path']}")
   private String xmlStorePath;
-
-  @RequestMapping(value = "action", method = RequestMethod.POST)
-  @ResponseStatus(HttpStatus.OK)
-  public Response Action(@RequestBody Map<String, Object> params) {
-    Response response = new Response();
-    Map map = new HashMap<String, Object>();
-
-    try {
-
-      // TODO : 아래 로직을 DB에서 꺼내와야 하며, 리펙토링 필요
-      // set workflow
-      Workflow workflow = new Workflow();
-      workflow.setName(params.get("name").toString());
-      workflow.setStartTo("testStartTo");
-      workflow.setEndName("testEndName");
-      // set shell action
-      ArrayList actions = new ArrayList<Action>();
-      Action shellAction = new Action();
-      shellAction.setName("testStartTo");
-      shellAction.setCategory("action");
-      shellAction.setOkTo("testEndName");
-      shellAction.setErrorTo("killAction");
-      // set data
-      Data data = new Data();
-      data.setType("shell");
-      data.setExec("ls");
-      data.setJobTracker(jobTracker);
-      data.setNameNode(nameNode);
-      // make hierarchical object
-      shellAction.setData(data);
-      //make kill action
-      Action killAction = new Action();
-      killAction.setCategory("kill");
-      killAction.setName("killAction");
-      killAction.setMessage("fail to shell action!!");
-      // set actions
-      actions.add(shellAction);
-      actions.add(killAction);
-      // add actions to workflow
-      workflow.setActions(actions);
-      // set object to map
-      //map.put("workflow", workflow);
-      map = new BeanMap(workflow);
-
-      String xmlString = oozieWorkflowService.makeShellActionXml(map);
-      String result = oozieWorkflowService.localOozieJobSend(xmlString);
-      logger.info("result : {}", result);
-
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    response.setSuccess(true);
-    return response;
-  }
 
   @RequestMapping(value = "run", method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.OK)
@@ -168,7 +110,7 @@ public class OozieWorkflowController {
       map = new BeanMap(workflow);
 
       String xmlString = oozieWorkflowService.makeShellActionXml(map);
-      String result = oozieWorkflowService.localOozieJobSend(xmlString);
+      String result = oozieWorkflowService.oozieJobSend(xmlString);
       logger.info("result : {}", result);
 
     } catch (IOException e) {
@@ -191,70 +133,10 @@ public class OozieWorkflowController {
     return response;
   }
 
-  @RequestMapping("/insert")
-  public Response insert(@RequestParam Map param) {
-
-    Response response = new Response();
-
-//    String treeId = param.get("treeId").toString();
-
-    //TODO : param을 통해서 입력 받도록 개발 필요
-    Map tmpMap = new HashMap();
-    tmpMap.put("workflowId", "workflowTestId");
-    tmpMap.put("workflowName", "workflowName");
-    tmpMap.put("workflowXml", "<xmlTest2/>");
-    tmpMap.put("designerXml", "<xmlTest/>");
-    tmpMap.put("status", "Running");
-    tmpMap.put("treeId", 1);
-    tmpMap.put("username", "flamingo");
-
-
-//    if (StringUtils.isEmpty(treeId)) {
-//      saved = oozieWorkflowService.saveAsNew(parentTreeId, xml, username);
-//    } else {
-//      saved = oozieWorkflowService.saveAsUpdate(treeId, processId, xml, username);
-//    }
-
-
-    try{
-      oozieWorkflowService.insert(tmpMap);
-      response.setSuccess(true);
-    }catch (Exception e){
-      response.setSuccess(false);
-    }
-
-    return response;
-  }
-
-  @RequestMapping("/update")
-  public Response updateWorkflow(@RequestParam Map param) {
-    Response response = new Response();
-
-    //TODO : param을 통해서 입력 받도록 개발 필요
-    Map tmpMap = new HashMap();
-    tmpMap.put("workflowId", "UpdateWorkflowTestId");
-    tmpMap.put("workflowName", "UpdateWorkflowName");
-    tmpMap.put("workflowXml", "<xmlTest2Update/>");
-    tmpMap.put("designerXml", "<xmlTestUpdate/>");
-    tmpMap.put("status", "Update");
-    tmpMap.put("treeId", 1);
-    tmpMap.put("username", "flamingo_update");
-
-    try{
-      oozieWorkflowService.updateWorkflow(tmpMap);
-      response.setSuccess(true);
-    }catch (Exception e){
-      response.setSuccess(false);
-    }
-
-    return response;
-  }
-
   @RequestMapping(value = "/delete", method = RequestMethod.POST)
   public Response deleteWorkflow(@RequestBody Map param) {
     Response response = new Response();
 
-    //TODO : param을 통해서 입력 받도록 개발 필요
     long treeId = Long.parseLong(param.get("id").toString());
     try{
       oozieWorkflowService.deleteWorkflow(treeId);
@@ -360,7 +242,6 @@ public class OozieWorkflowController {
     response.setSuccess(true);
     return response;
   }
-
 
   @RequestMapping(value = "/copy", method = RequestMethod.POST)
   public Response copy(@RequestBody Map<String, Object> map) {

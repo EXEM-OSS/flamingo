@@ -27,20 +27,17 @@ import java.util.Map;
  */
 public interface OozieWorkflowService {
 
-    //public void doShellWorkflow(String workflowXml) throws FileNotFoundException;
-    public String makeShellActionXml(Map param) throws IOException;
-    public String localOozieJobSend(String xmlString);
-    public List<Map> getWorkflows();
-    public Workflow getWorkflowByTreeId(long treeId);
-    public void updateWorkflow(Map param);
-    public void deleteWorkflow(long id);
+    String makeShellActionXml(Map param) throws IOException;
+    String oozieJobSend(String xmlString);
+    List<Map> getWorkflows();
+    Workflow getWorkflowByTreeId(long treeId);
+    void deleteWorkflow(long id);
 
-    public void insert(Map param);
-    public Map<String, Object> saveAsNew(String parentTreeId, String xml, String username);
-    public Map<String, Object> saveAsUpdate(String treeId, String processId, String xml, String username);
-    public String loadDesignerXml(Long treeId);
-    public Map getLocalvariables(String xml) throws Exception;
-    public String getLocalVariableParameter(String xml, String key) throws Exception;
-    public Map<String, Object> copy(String parentTreeId, Workflow workflow, String username);
+    void insert(Map param);
+    Map<String, Object> saveAsNew(String parentTreeId, String xml, String username);
+    Map<String, Object> saveAsUpdate(String treeId, String processId, String xml, String username);
+    String loadDesignerXml(Long treeId);
+    String getLocalVariableParameter(String xml, String key) throws Exception;
+    Map<String, Object> copy(String parentTreeId, Workflow workflow, String username);
 
 }

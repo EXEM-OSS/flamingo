@@ -110,16 +110,16 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     return result;
   }
 
-  public String localOozieJobSend(String xmlString){
+  public String oozieJobSend(String xmlString){
     try {
       FileUtils.writeStringToFile(new File(xmlStorePath + "/testShell.xml"), xmlString, "UTF-8");
       HdfsUtils.localFileToHdfs(xmlStorePath + "/testShell.xml", oozieHdfsWorkflowPath + "/workflow.xml");
-
       OozieClient wc = new OozieClient(oozieSiteUrl);
 
       Properties conf = wc.createConfiguration();
       conf.setProperty(OozieClient.APP_PATH, new Path(oozieHdfsWorkflowPath, "workflow.xml").toString());
       String jobId = wc.run(conf);
+      // TODO : 아래 디버그 성 코드는 추후 삭제 필요
       Thread.sleep(1000);
 
       while (wc.getJobInfo(jobId).getStatus() == WorkflowJob.Status.RUNNING) {

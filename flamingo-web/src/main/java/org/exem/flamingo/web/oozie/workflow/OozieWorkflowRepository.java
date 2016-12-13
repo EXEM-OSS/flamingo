@@ -26,12 +26,12 @@ import java.util.Map;
 public interface OozieWorkflowRepository {
   public static final String NAMESPACE = OozieWorkflowRepository.class.getName();
 
-  public Map selectTreeId(String jobId);
-  public List<Map> listWorkflows();
-  public Map getRecentWorkflow();
-  public void updateWorkflow(Map param);
-  public void deleteWorkflowByTreeId(long treeId);
-  public int insert(Map param);
-  public int update(Map param);
-  public Workflow selectByTreeId(long treeId);
+  Map selectTreeId(String jobId);
+  List<Map> listWorkflows();
+  Map getRecentWorkflow();
+  void updateWorkflow(Map param);
+  void deleteWorkflowByTreeId(long treeId);
+  int insert(Map param);
+  int update(Map param);
+  Workflow selectByTreeId(long treeId);
 }

@@ -41,22 +41,27 @@ public class OozieWorkflowRepositoryImpl extends PersistentRepositoryImpl implem
     super.setSqlSessionTemplate(flamingoSessionTemplate);
   }
 
+  @Override
   public Map selectTreeId(String jobId) {
     return this.getSqlSessionTemplate().selectOne(this.getNamespace() + ".selectJobId", jobId);
   }
 
+  @Override
   public List<Map> listWorkflows() {
     return this.getSqlSessionTemplate().selectList(this.getNamespace() + ".listWorkflows");
   }
 
+  @Override
   public Map getRecentWorkflow() {
     return this.getSqlSessionTemplate().selectOne(this.getNamespace() + ".selectRecentWorkflow");
   }
 
+  @Override
   public void updateWorkflow(Map param) {
     this.getSqlSessionTemplate().insert(this.getNamespace() + ".updateWorkflow", param);
   }
 
+  @Override
   public void deleteWorkflowByTreeId(long treeId) {
     this.getSqlSessionTemplate().delete(this.getNamespace() + ".deleteByTreeId", treeId);
   }
@@ -71,6 +76,7 @@ public class OozieWorkflowRepositoryImpl extends PersistentRepositoryImpl implem
     return this.getSqlSessionTemplate().update(this.getNamespace() + ".update", param);
   }
 
+  @Override
   public Workflow selectByTreeId(long treeId) {
     return this.getSqlSessionTemplate().selectOne(NAMESPACE + ".selectByTreeId", treeId);
   }
