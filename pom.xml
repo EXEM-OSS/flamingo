@@ -9,7 +9,9 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>Flamingo</name>
-    <description>Flamingo is a web application for managing Apache Oozie. Flamingo drastically simplifies management of Apache Oozie.</description>
+    <description>Flamingo is a web application for managing Apache Oozie. Flamingo drastically simplifies management of
+        Apache Oozie.
+    </description>
     <url>https://exem-oss.github.io/flamingo</url>
 
     <modules>
@@ -125,7 +127,7 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.6</version>
                 <configuration>
-                    <linkXref>true</linkXref>
+                    <linkXRef>true</linkXRef>
                     <sourceEncoding>utf-8</sourceEncoding>
                     <minimumTokens>100</minimumTokens>
                     <targetJdk>${java.version}</targetJdk>
@@ -316,86 +318,86 @@
                 </reportSets>
             </plugin>
 
-<!--
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>taglist-maven-plugin</artifactId>
-                <version>2.4</version>
-                <reportSets>
-                    <reportSet>
-                        <id>taglist-report</id>
-                        <reports>
-                            <report>taglist</report>
-                        </reports>
-                        <configuration>
-                            <tagListOptions>
-                                <tagClasses>
-                                    <tagClass>
-                                        <displayName>Todo Work</displayName>
-                                        <tags>
-                                            <tag>
-                                                <matchString>TODO</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                            <tag>
-                                                <matchString>FIXME</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                        </tags>
-                                    </tagClass>
-                                    <tagClass>
-                                        <displayName>Architecture Review Needed</displayName>
-                                        <tags>
-                                            <tag>
-                                                <matchString>ARCH-REV</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                        </tags>
-                                    </tagClass>
-                                </tagClasses>
-                            </tagListOptions>
-                        </configuration>
-                    </reportSet>
+            <!--
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>taglist-maven-plugin</artifactId>
+                            <version>2.4</version>
+                            <reportSets>
+                                <reportSet>
+                                    <id>taglist-report</id>
+                                    <reports>
+                                        <report>taglist</report>
+                                    </reports>
+                                    <configuration>
+                                        <tagListOptions>
+                                            <tagClasses>
+                                                <tagClass>
+                                                    <displayName>Todo Work</displayName>
+                                                    <tags>
+                                                        <tag>
+                                                            <matchString>TODO</matchString>
+                                                            <matchType>exact</matchType>
+                                                        </tag>
+                                                        <tag>
+                                                            <matchString>FIXME</matchString>
+                                                            <matchType>exact</matchType>
+                                                        </tag>
+                                                    </tags>
+                                                </tagClass>
+                                                <tagClass>
+                                                    <displayName>Architecture Review Needed</displayName>
+                                                    <tags>
+                                                        <tag>
+                                                            <matchString>ARCH-REV</matchString>
+                                                            <matchType>exact</matchType>
+                                                        </tag>
+                                                    </tags>
+                                                </tagClass>
+                                            </tagClasses>
+                                        </tagListOptions>
+                                    </configuration>
+                                </reportSet>
 
-                    <reportSet>
-                        <id>taglist-aggregate</id>
-                        <inherited>false</inherited>
-                        <reports>
-                            <report>taglist</report>
-                        </reports>
-                        <configuration>
-                            <aggregate>true</aggregate>
-                            <tagListOptions>
-                                <tagClasses>
-                                    <tagClass>
-                                        <displayName>Todo Work</displayName>
-                                        <tags>
-                                            <tag>
-                                                <matchString>TODO</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                            <tag>
-                                                <matchString>FIXME</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                        </tags>
-                                    </tagClass>
-                                    <tagClass>
-                                        <displayName>Architecture Review Needed</displayName>
-                                        <tags>
-                                            <tag>
-                                                <matchString>ARCH-REV</matchString>
-                                                <matchType>exact</matchType>
-                                            </tag>
-                                        </tags>
-                                    </tagClass>
-                                </tagClasses>
-                            </tagListOptions>
-                        </configuration>
-                    </reportSet>
-                </reportSets>
-            </plugin>
--->
+                                <reportSet>
+                                    <id>taglist-aggregate</id>
+                                    <inherited>false</inherited>
+                                    <reports>
+                                        <report>taglist</report>
+                                    </reports>
+                                    <configuration>
+                                        <aggregate>true</aggregate>
+                                        <tagListOptions>
+                                            <tagClasses>
+                                                <tagClass>
+                                                    <displayName>Todo Work</displayName>
+                                                    <tags>
+                                                        <tag>
+                                                            <matchString>TODO</matchString>
+                                                            <matchType>exact</matchType>
+                                                        </tag>
+                                                        <tag>
+                                                            <matchString>FIXME</matchString>
+                                                            <matchType>exact</matchType>
+                                                        </tag>
+                                                    </tags>
+                                                </tagClass>
+                                                <tagClass>
+                                                    <displayName>Architecture Review Needed</displayName>
+                                                    <tags>
+                                                        <tag>
+                                                            <matchString>ARCH-REV</matchString>
+                                                            <matchType>exact</matchType>
+                                                        </tag>
+                                                    </tags>
+                                                </tagClass>
+                                            </tagClasses>
+                                        </tagListOptions>
+                                    </configuration>
+                                </reportSet>
+                            </reportSets>
+                        </plugin>
+            -->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

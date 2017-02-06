@@ -13,25 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.exem.flamingo.web.oozie.workflow;
+package org.exem.flamingo.web.oozie.workflowdesigner;
 
-import org.exem.flamingo.web.oozie.workflow.model.Workflow;
+import org.exem.flamingo.web.oozie.workflowdesigner.model.Workflow;
 
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * Created by sanghyunbak on 2016. 12. 1..
  */
 public interface OozieWorkflowRepository {
-  public static final String NAMESPACE = OozieWorkflowRepository.class.getName();
+    public static final String NAMESPACE = OozieWorkflowRepository.class.getName();
 
-  Map selectTreeId(String jobId);
-  List<Map> listWorkflows();
-  Map getRecentWorkflow();
-  void updateWorkflow(Map param);
-  void deleteWorkflowByTreeId(long treeId);
-  int insert(Map param);
-  int update(Map param);
-  Workflow selectByTreeId(long treeId);
+    Map selectTreeId(String jobId);
+
+    List<Map> listWorkflows();
+
+    Map getRecentWorkflow();
+
+    void updateWorkflow(Map param);
+
+    void deleteWorkflowByTreeId(long treeId);
+
+    int insert(Map param);
+
+    int update(Map param);
+
+    Workflow selectByTreeId(long treeId);
 }
