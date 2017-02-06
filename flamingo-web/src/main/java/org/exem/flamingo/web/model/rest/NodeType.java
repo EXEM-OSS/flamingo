@@ -13,25 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.exem.flamingo.web.oozie.workflow;
+package org.exem.flamingo.web.model.rest;
 
-import org.exem.flamingo.web.oozie.workflow.model.Workflow;
-
-import java.util.List;
-import java.util.Map;
+import java.io.Serializable;
 
 /**
- * Created by sanghyunbak on 2016. 12. 1..
+ * Created by sanghyunbak on 2016. 12. 6..
  */
-public interface OozieWorkflowRepository {
-  public static final String NAMESPACE = OozieWorkflowRepository.class.getName();
+public enum NodeType implements Serializable {
 
-  Map selectTreeId(String jobId);
-  List<Map> listWorkflows();
-  Map getRecentWorkflow();
-  void updateWorkflow(Map param);
-  void deleteWorkflowByTreeId(long treeId);
-  int insert(Map param);
-  int update(Map param);
-  Workflow selectByTreeId(long treeId);
+  FOLDER("folder"), ITEM("item");
+
+  /**
+   * 노드 유형의 문자열 값
+   */
+  public final String value;
+
+  /**
+   * 기본 생성자.
+   *
+   * @param value 노드 유형의 문자열 값
+   */
+  NodeType(String value) {
+    this.value = value;
+  }
 }

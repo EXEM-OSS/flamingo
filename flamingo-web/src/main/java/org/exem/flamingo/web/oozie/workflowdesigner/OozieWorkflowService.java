@@ -13,8 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.exem.flamingo.web.oozie.workflowdesigner;
+package org.exem.flamingo.web.oozie.workflow;
 
+import org.exem.flamingo.web.oozie.workflow.model.Workflow;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -24,12 +27,17 @@ import java.util.Map;
  */
 public interface OozieWorkflowService {
 
-    //public void doShellWorkflow(String workflowXml) throws FileNotFoundException;
-    public String makeShellActionXml(Map param) throws IOException;
-    public String localOozieJobSend(String xmlString);
-    public List<Map> getWorkflows();
-    public Map getRecentWorkflow();
-    public void saveWorkflow(Map param);
-    public void updateWorkflow(Map param);
-    public void deleteWorkflow(long id);
+    String makeShellActionXml(Map param) throws IOException;
+    String oozieJobSend(String xmlString);
+    List<Map> getWorkflows();
+    Workflow getWorkflowByTreeId(long treeId);
+    void deleteWorkflow(long id);
+
+    void insert(Map param);
+    Map<String, Object> saveAsNew(String parentTreeId, String xml, String username);
+    Map<String, Object> saveAsUpdate(String treeId, String processId, String xml, String username);
+    String loadDesignerXml(Long treeId);
+    String getLocalVariableParameter(String xml, String key) throws Exception;
+    Map<String, Object> copy(String parentTreeId, Workflow workflow, String username);
+
 }

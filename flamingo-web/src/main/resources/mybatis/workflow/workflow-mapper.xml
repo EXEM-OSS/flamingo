@@ -5,6 +5,31 @@
     <!-- 1. Insert                              -->
     <!-- =======================================-->
 
+    <insert id="insert" parameterType="map">
+        INSERT INTO FL_WORKFLOW (
+        WORKFLOW_ID,
+        WORKFLOW_NAME,
+        VARIABLE,
+        WORKFLOW_XML,
+        DESIGNER_XML,
+        CREATE_DT,
+        STATUS,
+        TREE_ID,
+        USERNAME
+        )
+        VALUES (
+        #{workflowId},
+        #{workflowName},
+        #{variable},
+        #{workflowXml},
+        #{designerXml},
+        #{create},
+        #{status},
+        #{treeId},
+        #{username}
+        )
+    </insert>
+
     <insert id="insertWorkflow" parameterType="map">
         INSERT INTO FL_WORKFLOW (
             WORKFLOW_ID,
@@ -34,16 +59,16 @@
     <!-- 2. Delete                              -->
     <!-- =======================================-->
 
-    <update id="deleteWorkflow" parameterType="long">
+    <update id="deleteByTreeId" parameterType="long">
         DELETE FROM FL_WORKFLOW
-        WHERE ID = #{value}
+        WHERE TREE_ID = #{value}
     </update>
 
     <!-- =======================================-->
     <!-- 3. Select                              -->
     <!-- =======================================-->
 
-    <select id="selectByTreeId" resultType="map"  parameterType="string">
+    <select id="selectByTreeId" parameterType="long" resultType="org.exem.flamingo.web.oozie.workflow.model.Workflow">
         SELECT
             ID as id,
             WORKFLOW_ID as workflowId,
@@ -95,7 +120,7 @@
     <!-- 4. Update                              -->
     <!-- ======================= ================-->
 
-    <update id="updateWorkflow" parameterType="map">
+    <update id="update" parameterType="map">
         UPDATE
         FL_WORKFLOW
         SET

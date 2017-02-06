@@ -10,7 +10,7 @@
     </settings>
 
     <typeAliases>
-
+        <typeAlias type="org.exem.flamingo.web.model.rest.Tree" alias="tree"/>
     </typeAliases>
 
 </configuration>

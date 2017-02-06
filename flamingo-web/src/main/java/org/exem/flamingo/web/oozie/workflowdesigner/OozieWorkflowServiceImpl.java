@@ -18,8 +18,20 @@ package org.exem.flamingo.web.oozie.workflowdesigner;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import org.activiti.bpmn.model.FlowElement;
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.fs.Path;
+import org.exem.flamingo.shared.core.exception.ServiceException;
+import org.exem.flamingo.shared.model.opengraph.Opengraph;
+import org.exem.flamingo.shared.util.JaxbUtils;
+import org.exem.flamingo.shared.util.JsonUtils;
+import org.exem.flamingo.web.model.rest.NodeType;
+import org.exem.flamingo.web.model.rest.Tree;
+import org.exem.flamingo.web.model.rest.TreeType;
+import org.exem.flamingo.web.model.rest.WorkflowStatusType;
+import org.exem.flamingo.web.oozie.workflow.activiti.task.Transformer;
+import org.exem.flamingo.web.oozie.workflow.model.Workflow;
+import org.exem.flamingo.web.oozie.workflow.tree.TreeService;
 import org.exem.flamingo.web.util.FreeMarkerUtils;
 import org.exem.flamingo.web.util.HdfsUtils;
 import org.exem.flamingo.web.util.XmlFormatter;
@@ -30,9 +42,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.apache.oozie.client.OozieClient;
 import org.apache.oozie.client.WorkflowJob;
+import org.activiti.bpmn.model.BpmnModel;
 
+import javax.xml.bind.JAXBException;
 import java.io.*;
+import java.sql.Timestamp;
 import java.util.*;
+
+import static org.exem.flamingo.shared.util.DateUtils.getCurrentDateTime;
+import static org.exem.flamingo.shared.util.EscapeUtils.unescape;
+import static org.exem.flamingo.shared.util.JVMIDUtils.generateUUID;
+import static org.exem.flamingo.shared.util.JsonUtils.format;
+import static org.exem.flamingo.shared.util.StringUtils.escape;
 
 /**
  * Created by Sanghyun Bak on 2016. 11. 22..
@@ -44,6 +65,12 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
    * SLF4J Logging
    */
   private Logger logger = LoggerFactory.getLogger(OozieWorkflowServiceImpl.class);
+
+  @Autowired
+  Transformer transformer;
+
+  @Autowired
+  TreeService treeService;
 
   @Autowired
   OozieWorkflowRepository oozieWorkflowRepository;
@@ -83,16 +110,16 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     return result;
   }
 
-  public String localOozieJobSend(String xmlString){
+  public String oozieJobSend(String xmlString){
     try {
       FileUtils.writeStringToFile(new File(xmlStorePath + "/testShell.xml"), xmlString, "UTF-8");
       HdfsUtils.localFileToHdfs(xmlStorePath + "/testShell.xml", oozieHdfsWorkflowPath + "/workflow.xml");
-
       OozieClient wc = new OozieClient(oozieSiteUrl);
 
       Properties conf = wc.createConfiguration();
       conf.setProperty(OozieClient.APP_PATH, new Path(oozieHdfsWorkflowPath, "workflow.xml").toString());
       String jobId = wc.run(conf);
+      // TODO : 아래 디버그 성 코드는 추후 삭제 필요
       Thread.sleep(1000);
 
       while (wc.getJobInfo(jobId).getStatus() == WorkflowJob.Status.RUNNING) {
@@ -123,15 +150,229 @@ public class OozieWorkflowServiceImpl implements OozieWorkflowService {
     return workflow;
   }
 
-  public void saveWorkflow(Map param){
-    oozieWorkflowRepository.insertWorkflow(param);
-  }
-
   public void updateWorkflow(Map param){
     oozieWorkflowRepository.updateWorkflow(param);
   }
 
-  public void deleteWorkflow(long id){
-    oozieWorkflowRepository.deleteWorkflow(id);
+  public void deleteWorkflow(long treeId){
+    treeService.delete(treeId);
+    oozieWorkflowRepository.deleteWorkflowByTreeId(treeId);
+  }
+
+  public void insert(Map param){
+    oozieWorkflowRepository.insert(param);
+  }
+
+  public Map<String, Object> save(WorkflowStatusType status, String processId, String workflowName,
+                                  String designerXml, String workflowXml, Map<String, Object> variable,
+                                  long treeId, long steps, String username) {
+    Map<String, Object> params = new HashMap<>();
+    params.put("workflowId", processId);
+    params.put("workflowName", workflowName);
+    params.put("variable", escape(format(variable)));
+    params.put("workflowXml", workflowXml);
+    params.put("designerXml", designerXml);
+    params.put("create", new Timestamp(new Date().getTime()));
+    params.put("treeId", treeId);
+    params.put("username", username);
+
+    if (status == WorkflowStatusType.CREATED) {
+      params.put("status", WorkflowStatusType.REGISTERED);
+      oozieWorkflowRepository.insert(params);
+    } else if (status == WorkflowStatusType.REGISTERED) {
+      params.put("status", WorkflowStatusType.REGISTERED);
+      oozieWorkflowRepository.update(params);
+    } else if (status == WorkflowStatusType.COPIED) {
+      params.put("status", WorkflowStatusType.REGISTERED);
+      oozieWorkflowRepository.insert(params);
+    } else {
+      logger.info("CREATED, REGISTERED, COPIED state did not come to save the workflow.");
+    }
+    return params;
+  }
+
+  @Override
+  public Map<String, Object> saveAsNew(String parentTreeId, String xml, String username) {
+    try {
+      Map<String, Object> variable = new HashMap<>();
+      Map<String, Map<String, Object>> localVariables = transformer.getLocalVariables(xml);
+      Map<String, Object> globalVariables = transformer.getGlobalVariables(xml);
+      List parallelVectors = transformer.getParallelVectors(xml);
+      variable.put("local", localVariables);
+      variable.put("global", globalVariables);
+      variable.put("parallelVectors", parallelVectors);
+
+      // 신규 Process ID를 생성한다.
+      String newProcessId = getCurrentDateTime() + "_" + generateUUID();
+
+      // BPMN 모델을 생성한다.
+      BpmnModel bpmnModel = transformer.unmarshall(xml, newProcessId);
+
+      // 트리 노드를 생성한다.
+      Tree parent;
+      if ("/".equals(parentTreeId)) {
+        parent = treeService.getRoot(TreeType.WORKFLOW, username);
+      } else {
+        parent = treeService.get(Long.parseLong(parentTreeId));
+      }
+
+      Tree tree = new Tree(bpmnModel.getMainProcess().getName());
+      tree.setTreeType(TreeType.WORKFLOW);
+      tree.setNodeType(NodeType.ITEM);
+      tree.setUsername(username);
+
+      Tree child = treeService.create(parent, tree, NodeType.ITEM);
+      String designerXml = getDesignerXml(child.getId(), newProcessId, xml, WorkflowStatusType.REGISTERED.toString());
+      String workflowXml = transformer.convertUengineBpmnXml(transformer.createBpmnXML(bpmnModel));
+
+      Map<String, Object> saved = save(WorkflowStatusType.CREATED,
+              newProcessId, bpmnModel.getMainProcess().getName(),
+              designerXml, workflowXml, variable, child.getId(),
+              getSteps(bpmnModel.getMainProcess().getFlowElements()), username);
+
+      logger.info("The process has been saved : {}", saved);
+
+      return saved;
+    } catch (Exception ex) {
+      throw new ServiceException("You can not save a new workflow", ex);
+    }
+  }
+
+  @Override
+  public Map<String, Object> saveAsUpdate(String treeId, String processId, String xml, String username) {
+    try {
+      Map<String, Object> variable = new HashMap<>();
+      Map<String, Map<String, Object>> localVariables = transformer.getLocalVariables(xml);
+      Map<String, Object> globalVariables = transformer.getGlobalVariables(xml);
+      List parallelVectors = transformer.getParallelVectors(xml);
+      variable.put("local", localVariables);
+      variable.put("global", globalVariables);
+      variable.put("parallelVectors", parallelVectors);
+
+      //  BPMN 모델을 생성한다.
+      BpmnModel model = transformer.unmarshall(xml, processId);
+      Tree tree = treeService.get(Long.parseLong(treeId));
+      tree.setName(model.getMainProcess().getName());
+      treeService.rename(tree);
+      String workflowXml = transformer.convertUengineBpmnXml(transformer.createBpmnXML(model));
+      String designerXml = getDesignerXml(tree.getId(), processId, xml, WorkflowStatusType.REGISTERED.toString());
+
+      Map<String, Object> saved = save(WorkflowStatusType.REGISTERED,
+              processId, model.getMainProcess().getName(), designerXml,
+              workflowXml, variable, tree.getId(),
+              getSteps(model.getMainProcess().getFlowElements()), username);
+
+      logger.info("The process has been saved : {}", saved);
+
+      return saved;
+    } catch (Exception ex) {
+      throw new ServiceException("You can not update a workflow", ex);
+    }
+  }
+
+  private String getDesignerXml(long treeId, String processId, String xml, String status) throws JAXBException, IOException {
+    //Opengraph opengraph = (Opengraph) JaxbUtils.unmarshal("org.opencloudengine.flamingo2.model.opengraph", xml);
+    Opengraph opengraph = (Opengraph) JaxbUtils.unmarshal(transformer.JAXB_PACKAGE, xml);
+    Map map = JsonUtils.unmarshal(unescape(opengraph.getData()));
+    Map<String, Object> workflow = (Map<String, Object>) map.get("workflow");
+
+    workflow.put("process_id", processId);
+    workflow.put("status", status);
+    workflow.put("tree_id", treeId);
+
+    opengraph.setData(escape(format(map)));
+
+    return JaxbUtils.marshal(transformer.JAXB_PACKAGE, opengraph);
+  }
+
+  private long getSteps(Collection<FlowElement> flowElements) {
+    int count = 0;
+    for (FlowElement element : flowElements) {
+      switch (element.getClass().getName()) {
+        case "org.activiti.bpmn.model.ServiceTask":
+        case "org.activiti.bpmn.model.SubProcess":
+        case "org.activiti.bpmn.model.UserTask":
+        case "org.activiti.bpmn.model.BusinessRuleTask":
+          count++;
+          break;
+        default:
+          break;
+      }
+    }
+    return count;
+  }
+
+  @Override
+  public String loadDesignerXml(Long treeId) {
+    Workflow workflow = oozieWorkflowRepository.selectByTreeId(treeId);
+    return workflow.getDesignerXml();
+  }
+
+  public Map getLocalvariables(String xml) throws Exception {
+    Map<String, Map<String, Object>> localVariables = transformer.getLocalVariables(xml);
+    return localVariables;
+  }
+
+  public String getLocalVariableParameter(String xml, String key) throws Exception {
+    Map<String, Map<String, Object>> localVariables = transformer.getLocalVariables(xml);
+    Map params = (Map)localVariables.values().toArray()[0];
+    return params.get(key).toString();
+  }
+
+  @Override
+  public Map<String, Object> copy(String parentTreeId, Workflow workflow, String username) {
+    try {
+      // 신규 프로세스이므로 새로운 Process ID를 생성한다.
+      String newProcessId = getCurrentDateTime() + "_" + generateUUID();
+      String xml = workflow.getDesignerXml();
+
+      //  BPMN 모델을 생성한다.
+      BpmnModel model = transformer.unmarshall(xml, newProcessId);
+      String processName = model.getMainProcess().getName();
+      Map<String, Map<String, Object>> localVariables = transformer.getLocalVariables(xml);
+      Map<String, Object> globalVariables = transformer.getGlobalVariables(xml);
+      List parallelVectors = transformer.getParallelVectors(xml);
+
+      String bpmnXML = transformer.convertUengineBpmnXml(transformer.createBpmnXML(model));
+
+      Map<String, Object> vars = new HashMap<>();
+      vars.put("local", localVariables);
+      vars.put("global", globalVariables);
+      vars.put("parallelVectors", parallelVectors);
+
+      logger.info("The process has been saved. Process ID = {}, Process Name = {}", newProcessId, model.getMainProcess().getName());
+
+      // 트리 노드를 생성한다.
+      Tree parent;
+      if ("/".equals(parentTreeId)) {
+        parent = treeService.getRoot(TreeType.WORKFLOW, username);
+      } else {
+        parent = treeService.get(Long.parseLong(parentTreeId));
+      }
+
+      Tree tree = new Tree();
+      tree.setName(workflow.getWorkflowName() + "_Copied");
+      tree.setTreeType(TreeType.WORKFLOW);
+      tree.setNodeType(NodeType.ITEM);
+      tree.setUsername(username);
+      Tree child = treeService.create(parent, tree, NodeType.ITEM);
+
+      // 프로세스 정보를 기록한다.
+      String designerXml = getDesignerXml(child.getId(), newProcessId, xml, WorkflowStatusType.REGISTERED.toString());
+      Map<String, Object> saved = save(WorkflowStatusType.COPIED, newProcessId, processName + "_Copied",
+              designerXml, bpmnXML, vars, child.getId(),
+              getSteps(model.getMainProcess().getFlowElements()), username);
+
+      logger.info("The process has been saved : {}", saved);
+
+      return saved;
+    } catch (Exception ex) {
+      throw new ServiceException("You can not copy a workflow", ex);
+    }
+  }
+
+  @Override
+  public Workflow getWorkflowByTreeId(long treeId){
+    return oozieWorkflowRepository.selectByTreeId(treeId);
   }
 }

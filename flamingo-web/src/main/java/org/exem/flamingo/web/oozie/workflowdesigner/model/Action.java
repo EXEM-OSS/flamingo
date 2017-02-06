@@ -16,6 +16,14 @@ public class Action {
   private String errorTo;
   private String message;
 
+  public Action(){}
+
+  public Action(String category, String name, String message) {
+    this.category = category;
+    this.name = name;
+    this.message = message;
+  }
+
   public Data getData() {
     return data;
   }

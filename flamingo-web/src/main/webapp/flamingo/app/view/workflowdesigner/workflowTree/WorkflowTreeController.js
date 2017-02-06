@@ -28,6 +28,7 @@ Ext.define('Flamingo.view.workflowdesigner.workflowTree.WorkflowTreeController',
     },
 
     onWorkflowTreeRefresh: function () {
+        alert("tree refresh");
         var panel = this.lookupReference('treepanel');
         var refreshButton = this.lookupReference('refreshButton');
         refreshButton.setDisabled(true);
@@ -48,7 +49,6 @@ Ext.define('Flamingo.view.workflowdesigner.workflowTree.WorkflowTreeController',
     onWorkflowTreeRender: function () {
         // 브라우저 자체 Right Button을 막고자 한다면 uncomment한다.
         Ext.getBody().on("contextmenu", Ext.emptyFn, null, {preventDefault: true});
-
         // If the root node has any child nodes, enable the refresh button.
         var panel = this.lookupReference('treepanel');
         if (panel.getRootNode().childNodes.length > 0) {
@@ -256,7 +256,7 @@ Ext.define('Flamingo.view.workflowdesigner.workflowTree.WorkflowTreeController',
                         treeType: 'WORKFLOW'
                     };
 
-                    invokePostByMap(CONSTANTS.DESIGNER.NEW, param,
+                    invokePostByMap(CONSTANTS.OOZIE.WORKFLOW.TREE.CREATE, param,
                         function (response) {
                             var obj = Ext.decode(response.responseText);
                             if (obj.success) {
@@ -329,7 +329,7 @@ Ext.define('Flamingo.view.workflowdesigner.workflowTree.WorkflowTreeController',
                         treeType: 'WORKFLOW'
                     };
 
-                    invokePostByMap(CONSTANTS.DESIGNER.DELETE, param,
+                    invokePostByMap(CONSTANTS.OOZIE.WORKFLOW.TREE.DELETE, param,
                         function (response) {
                             var obj = Ext.decode(response.responseText);
                             if (obj.success) {

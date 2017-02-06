@@ -207,14 +207,6 @@ Ext.define('Flamingo.view.workflowdesigner.canvas.Canvas', {
                         click: 'onRunClick'
                     }
                 },
-                {
-                    id: 'wd_btn_action',
-                    text: 'Action',
-                    iconCls: 'common-execute',
-                    listeners: {
-                        click: 'onActionClick'
-                    }
-                },
 //                '-',
                 {
                     id: 'wd_btn_xml',

@@ -17,6 +17,9 @@
 
     <properties>
         <aws.sdk.version>1.11.33</aws.sdk.version>
+
+        <!-- Activiti -->
+        <activiti.version>5.17.0</activiti.version>
     </properties>
 
     <build>
@@ -298,13 +301,32 @@
             <artifactId>spring-test</artifactId>
         </dependency>
 
-        <!-- =========== -->
-        <!--     Jdom    -->
-        <!-- =========== -->
+        <!-- ========== -->
+        <!--  Activiti  -->
+        <!-- ========== -->
+
         <dependency>
-            <groupId>jdom</groupId>
-            <artifactId>jdom</artifactId>
-            <version>1.1</version>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-engine</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-bpmn-model</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-bpmn-layout</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring</artifactId>
+            <version>${activiti.version}</version>
         </dependency>
     </dependencies>
 </project>

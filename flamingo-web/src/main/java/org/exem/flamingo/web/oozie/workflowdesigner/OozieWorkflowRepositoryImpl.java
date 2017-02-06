@@ -1,7 +1,23 @@
-package org.exem.flamingo.web.oozie.workflowdesigner;
+/*
+ * Copyright 2012-2016 the Flamingo Community.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.exem.flamingo.web.oozie.workflow;
 
 import org.exem.flamingo.shared.core.repository.PersistentRepositoryImpl;
 import org.exem.flamingo.web.jdbc.FlamingoSessionTemplate;
+import org.exem.flamingo.web.oozie.workflow.model.Workflow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -41,17 +57,27 @@ public class OozieWorkflowRepositoryImpl extends PersistentRepositoryImpl implem
   }
 
   @Override
-  public void insertWorkflow(Map param) {
-    this.getSqlSessionTemplate().insert(this.getNamespace() + ".insertWorkflow", param);
-  }
-
-  @Override
   public void updateWorkflow(Map param) {
     this.getSqlSessionTemplate().insert(this.getNamespace() + ".updateWorkflow", param);
   }
 
   @Override
-  public void deleteWorkflow(long id) {
-    this.getSqlSessionTemplate().delete(this.getNamespace() + ".deleteWorkflow", id);
+  public void deleteWorkflowByTreeId(long treeId) {
+    this.getSqlSessionTemplate().delete(this.getNamespace() + ".deleteByTreeId", treeId);
+  }
+
+  @Override
+  public int insert(Map param){
+    return this.getSqlSessionTemplate().insert(this.getNamespace() + ".insert", param);
+  }
+
+  @Override
+  public int update(Map param) {
+    return this.getSqlSessionTemplate().update(this.getNamespace() + ".update", param);
+  }
+
+  @Override
+  public Workflow selectByTreeId(long treeId) {
+    return this.getSqlSessionTemplate().selectOne(NAMESPACE + ".selectByTreeId", treeId);
   }
 }
